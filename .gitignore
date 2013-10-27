@@ -1,2 +1,2 @@
-logs/*
-!.gitkeep
+.DS_Store
+.idea/

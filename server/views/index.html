@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>Adjuncts</title>
+  <link rel="icon" type="image/x-icon" href="img/ico/favicon.ico" >
+
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-tagsinput.css">
+  <link rel="stylesheet" href="css/xeditable.css">
+  <link rel="stylesheet" href="css/app.css"/>
+
+  <script src="js/lib/jquery-1.10.2.min.js"></script>
+  <script src="js/lib/angular/angular.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-strap/0.7.4/angular-strap.min.js"></script>
+  <script src="js/lib/angular/angular-route.js"></script>
+  <script src="js/lib/bootstrap-tagsinput-angular.js"></script>
+  <script src="js/lib/xeditable.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"><img src="img/logo.png" height="25" ></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="jobs">Jobs</a></li>
+                    <li><a href="profile">Profiles</a></li>
+                    <li><a href="contact">Contact</a></li>
+                </ul>
+                <div class="nav navbar-nav navbar-right">
+                   <button type="button" class="btn btn-custom" data-placement="bottom" data-title="Sign In" bs-popover="'partial/signin-popover'">Sign In</button>
+               </div>
+            </div>
+        </div>
+    </div>
+    <div ng-view>
+    </div>
+    <hr class="featurette-divider">
+    <footer>
+        <!--Welcome! It's a tough market. We're glad you're here. For more information, please contact us at <a href="mailto:team@adjuncts.co">team@adjuncts.co</a>.-->
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; Adjuncts Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+</body>
+</html>

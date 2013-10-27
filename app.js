@@ -1,61 +1,43 @@
 var express = require('express'),
-    pg = require('pg'),
+    http = require('http'),
+    path = require('path'),
+    db = require('./server/db.js'),
     app = express();
 
-var db = require('./db.js');
-
-
+app.set('port', process.env.PORT || 3000);
+app.set('views', path.join(__dirname, 'server/views'));
+app.set('partials', path.join(app.get('views'),  'partials'));
+app.engine('html', require('ejs').renderFile);
+app.use(express.logger('dev'));
 app.use(express.bodyParser());
+app.use(express.cookieParser());
+app.use(express.methodOverride());
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.configure(function(){
-  app.use(express.static(__dirname + '/app'));
+app.get('/', function(req, res) {
+    res.render(path.join(app.get('views'), 'index.html'));
 });
 
-app.get('/', function(req, res){
-  res.sendfile(__dirname + '/index.html');
+app.get('/jobs', function(req, res) {
+    res.render(path.join(app.get('views'), 'index.html'));
 });
 
-app.get('/get', function(req, res){
-    db.get(function(val){ res.send(val); console.log(val);}) ;
-
-
+app.get('/partial/:name', function(req, res) {
+    var name = req.params.name;
+    res.render(path.join(app.get('partials'), name + '.html'));
 });
 
-
-
-
-
-app.post('/search', function(req, res) {
+app.post('/test', function(req, res) {
     var name = req.body.query;
     console.log(name);
     db.insert(name);
     res.send("working");
 });
 
+/**
+ * Start Server
+ */
 
-
-
-
-
-app.listen(process.env.PORT || 3000);
-
-var aDBparams = {
-    host: 'ec2-54-225-123-71.compute-1.amazonaws.com',
-    port: '5432',
-    user: 'mnobcdbdvsdjut',
-    password: '5EZKzFT28d_1s3R5j27roSPiLn',
-    database: 'den5374f86g52o',
-    ssl: true
-};
-
-var client = new pg.Client(aDBparams);
-
-client.connect(function(err, client, done) {
-    if (err) {
-        return console.error('error running query', err);
-    }
-    client.query('SELECT * FROM public.adjunct', function(err, result) {
-
-        console.log(result.rows);
-    });
+http.createServer(app).listen(app.get('port'), function () {
+    console.log('Express server listening on port ' + app.get('port'));
 });
