@@ -767,7 +767,6 @@ tbody{
     height: auto;
 }
 
-
-
-
-
+.form-signin {
+    max-width: 260px;
+}

@@ -2,7 +2,13 @@
 
 /* Controllers */
 angular.module('myApp.controllers', ['$strap.directives'])
+    .run(function($rootScope, $http, $route) {
+        $rootScope.signout = function() {
+            $http({method: 'GET', url: '/signout'});
+        }
+    })
     .controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
+
         $scope.search = function () {
             $http({
                 url: '/search',
@@ -17,21 +23,11 @@ angular.module('myApp.controllers', ['$strap.directives'])
             });
         };
         $scope.init= function(){
-            /*
-            $http({
-            url: '/get',
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'}
-        }).success(function (data, status, headers, config) {
-                    $scope.query= data;
-                    console.log(data);
-            }).error(function (data, status, headers, config) {
-                console.log("it didn't work");
 
-            });
-            */
         };
     }])
     .controller('JobsCtrl', ['$scope', function ($scope) {
-        $scope.cost = 12;
+
+    }]).controller('SigninCtrl', ['$scope', function ($scope) {
+        $scope.showError = true;
     }]);

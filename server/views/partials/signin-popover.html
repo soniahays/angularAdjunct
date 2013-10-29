@@ -1,9 +1,10 @@
-<form class="form-signin input-group-sm">
+<form action="/signin" method="post" class="form-signin input-group-sm">
+    <div ng-show="showError" style="color: #b94a48">Please enter a valid email and password.</div>
     <label>Email: </label>
-    <input type="text" class="form-control input-sm " placeholder="Email address" autofocus>
+    <input name="username" type="text" class="form-control input-sm" placeholder="Email address" autofocus>
     <br />
     <label>Password:</label>
-    <input type="password" class="form-control input-sm" placeholder="Password">
+    <input name="password" type="password" class="form-control input-sm" placeholder="Password">
     <span><a href="#"><small>Forgot password?</small></a></span>
     <label class="checkbox">
         <input type="checkbox" value="remember-me"><small>Remember me</small>
