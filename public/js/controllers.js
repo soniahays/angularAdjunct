@@ -2,13 +2,7 @@
 
 /* Controllers */
 angular.module('myApp.controllers', ['$strap.directives'])
-    .run(function($rootScope, $http, $route) {
-        $rootScope.signout = function() {
-            $http({method: 'GET', url: '/signout'});
-        }
-    })
     .controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
-
         $scope.search = function () {
             $http({
                 url: '/search',

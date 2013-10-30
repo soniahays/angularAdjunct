@@ -38,7 +38,7 @@
                 </ul>
                 <div class="nav navbar-nav navbar-right">
                     <% if (user) { %>
-                        <button class="btn btn-custom" ng-click="signout()">Sign Out</button>
+                        <button class="btn btn-custom" onclick="window.location.replace('/signout');">Sign Out</button>
                     <% } else { %>
                         <button class="btn btn-custom" data-placement="bottom" data-title="Sign In" bs-popover="'partial/signin-popover'">Sign In</button>
                     <% } %>
@@ -50,7 +50,6 @@
     </div>
     <hr class="featurette-divider">
     <footer>
-        <!--Welcome! It's a tough market. We're glad you're here. For more information, please contact us at <a href="mailto:team@adjuncts.co">team@adjuncts.co</a>.-->
         <p class="pull-right"><a href="#">Back to top</a></p>
         <p>&copy; Adjuncts Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
     </footer>

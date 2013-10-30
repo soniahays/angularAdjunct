@@ -6,6 +6,7 @@ var express = require('express'),
     path = require('path'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
+    cel = require('connect-ensure-login'),
     db = require('./server/db.js');
 
 /**
@@ -64,7 +65,6 @@ app.get('/signout', function(req, res){
 });
 
 app.get('*', function(req, res) {
-    console.log(req.user);
     res.render(path.join(app.get('views'), 'index.html'), { user: req.user });
 });
 
@@ -73,6 +73,7 @@ app.post('/signin',
         successRedirect: '/',
         failureRedirect: '/signin' })
 );
+
 /**
  * Start Server
  */
