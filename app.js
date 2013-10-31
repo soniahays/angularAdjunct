@@ -5,12 +5,12 @@ var express = require('express'),
     http = require('http'),
     path = require('path'),
     passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy,
     cel = require('connect-ensure-login'),
-    db = require('./server/db.js');
+    db = require('./server/db.js'),
+    pass = require('./server/passport.js')(db, passport);
 
 /**
- * Express & Passport Configuration
+ * Configuration
  */
 var app = express();
 app.set('port', process.env.PORT || 3000);
@@ -26,29 +26,7 @@ app.use(express.session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(
-    function(username, password, done) {
-        db.get(function(dbUsername, dbPassword) {
-            if (username != dbUsername) {
-                return done(null, false, { message: 'Incorrect username.' });
-            }
-            if (password != dbPassword) {
-                return done(null, false, { message: 'Incorrect password.' });
-            }
-            return done(null, username );
-        });
-    }
-));
 
-passport.serializeUser(function(user, done) {
-    done(null, user);
-});
-
-passport.deserializeUser(function(user, done) {
-    db.get(function(dbUsername, dbPassword) {
-        done(null, dbUsername);
-    });
-});
 
 /**
  * Routes
