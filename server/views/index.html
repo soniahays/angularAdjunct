@@ -40,7 +40,7 @@
                     <% if (user) { %>
                         <button class="btn btn-custom" onclick="window.location.replace('/signout');">Sign Out</button>
                     <% } else { %>
-                        <button class="btn btn-custom" data-placement="bottom" data-title="Sign In" bs-popover="'partial/signin-popover'">Sign In</button>
+                        <button class="btn btn-custom" data-placement="bottom" data-title="Sign In" bs-popover="'partial/signin-popover'" ng-controller="SigninCtrl">Sign In</button>
                     <% } %>
                </div>
             </div>

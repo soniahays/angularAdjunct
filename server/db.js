@@ -15,19 +15,29 @@ module.exports.insert = function (username, password) {
     var collection = db.collection('users');
     collection.remove(function (err, result) {
         if (err) {
-            return console.error(err)
+            return console.error(err);
         }
         collection.insert([{ username: username, password: password }], function (err, docs) {
             if (err) {
-                return console.error(err)
+                return console.error(err);
             }
         })
     })
 };
 
+module.exports.insertData = function (collection, data) {
+    var collection = db.collection(collection);
+        collection.insert([data], function (err, docs) {
+            if (err) {
+                return console.error(err);
+            }
+        })
+
+};
+
 module.exports.get = function (callback) {
     var collection = db.collection('users');
     collection.find().toArray(function(err, docs){
-        callback(docs[0].username, docs[0].password);
+        callback(docs[0].email, docs[0].password);
     });
 };

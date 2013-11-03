@@ -52,6 +52,10 @@ app.post('/signin',
         failureRedirect: '/signin' })
 );
 
+app.post('/signup', function(req, res){
+    db.insertData('users',req.body.user);
+});
+
 /**
  * Start Server
  */
