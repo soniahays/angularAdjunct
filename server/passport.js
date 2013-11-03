@@ -2,7 +2,10 @@
 var LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function(db, passport) {
-    passport.use(new LocalStrategy(
+    passport.use(new LocalStrategy({
+            usernameField: 'email',
+            passwordField: 'password'
+    },
         function(username, password, done) {
             db.get(function(dbUsername, dbPassword) {
                 if (username != dbUsername) {

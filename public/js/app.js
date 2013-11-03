@@ -13,6 +13,7 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
   $routeProvider.when('/jobs', {templateUrl: 'partial/jobs', controller: 'JobsCtrl'});
   $routeProvider.when('/profile', {templateUrl: 'partial/profile', controller: 'ProfileCtrl'});
   $routeProvider.when('/signin', {templateUrl: 'partial/signin-popover', controller: 'SigninCtrl'});
+  $routeProvider.when('/signup', {templateUrl: 'partial/signup', controller: 'SignupCtrl'});
   $routeProvider.otherwise({redirectTo: '/'});
   $locationProvider.html5Mode(true);
 }]);
