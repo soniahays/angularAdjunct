@@ -6,9 +6,9 @@ var express = require('express'),
     path = require('path'),
     passport = require('passport'),
     cel = require('connect-ensure-login'),
-    db = require('./server/db.js'),
-    pass = require('./server/passport.js')(db, passport);
-
+    bcrypt = require('bcrypt'),
+    db = require('./server/db.js')(bcrypt),
+    pass = require('./server/passport.js')(db, passport, bcrypt)
 /**
  * Configuration
  */
@@ -53,7 +53,7 @@ app.post('/signin',
 );
 
 app.post('/signup', function(req, res){
-    db.insertData('users',req.body.user);
+    db.insertUser(req.body.user);
 });
 
 /**

@@ -1,31 +1,35 @@
 
 var LocalStrategy = require('passport-local').Strategy;
 
-module.exports = function(db, passport) {
+module.exports = function(db, passport, bcrypt) {
     passport.use(new LocalStrategy({
             usernameField: 'email',
             passwordField: 'password'
     },
-        function(username, password, done) {
-            db.get(function(dbUsername, dbPassword) {
-                if (username != dbUsername) {
-                    return done(null, false, { message: 'Incorrect username.' });
+        function(email, password, done) {
+            db.getUser(email, function(dbEmail, dbPassword) {
+                if (email != dbEmail) {
+                    return done(null, false, { message: 'Incorrect email.' });
                 }
-                if (password != dbPassword) {
-                    return done(null, false, { message: 'Incorrect password.' });
-                }
-                return done(null, username );
+
+                bcrypt.compare(password, dbPassword, function(err, res) {
+                    if (!res) {
+                        return done(null, false, { message: 'Incorrect password.' });
+                    }
+                });
+
+                return done(null, email);
             });
         }
     ));
 
-    passport.serializeUser(function(user, done) {
-        done(null, user);
+    passport.serializeUser(function(email, done) {
+        done(null, email);
     });
 
-    passport.deserializeUser(function(user, done) {
-        db.get(function(dbUsername, dbPassword) {
-            done(null, dbUsername);
+    passport.deserializeUser(function(email, done) {
+        db.getUser(email, function(dbEmail, dbPassword) {
+            done(null, dbEmail);
         });
     });
 }
