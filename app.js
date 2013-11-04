@@ -54,6 +54,7 @@ app.post('/signin',
 
 app.post('/signup', function(req, res){
     db.insertData('users',req.body.user);
+    res.end();
 });
 
 /**

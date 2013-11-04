@@ -14,6 +14,7 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
   $routeProvider.when('/profile', {templateUrl: 'partial/profile', controller: 'ProfileCtrl'});
   $routeProvider.when('/signin', {templateUrl: 'partial/signin-popover', controller: 'SigninCtrl'});
   $routeProvider.when('/signup', {templateUrl: 'partial/signup', controller: 'SignupCtrl'});
+  $routeProvider.when('/basic-profile', {templateUrl: 'partial/basic-profile', controller: 'BasicPrflCtrl'});
   $routeProvider.otherwise({redirectTo: '/'});
   $locationProvider.html5Mode(true);
 }]);

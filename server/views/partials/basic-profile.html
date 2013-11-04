@@ -1,9 +1,108 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+<div class=" col-md-offset-2 col-md-8">
 
-</body>
-</html>
+    <br />
+    <br />
+
+    <!--<form class="form-signin">-->
+        <!--<h3 class="form-signin-heading">Sign up to adjuncts</h3>-->
+
+        <!--First Name: <input type="text" class="form-control" ng-model="user.firstName" placeholder="" autofocus/><br />-->
+        <!--Last Name: <input type="text" class="form-control" ng-model="user.lastName" placeholder="" /><br />-->
+        <!--Email: <input type="text" class="form-control" ng-model="user.email" placeholder=""  /><br />-->
+        <!--Password <input type="password" class="form-control" ng-model="user.password" placeholder="" /><br />-->
+    <!--</form>    <br />-->
+    <!--<button class="btn btn-primary  btn-custom" ng-click= "joinNow()">Join now</button>-->
+
+<form class="form-horizontal clearfix">
+    <fieldset>
+        <legend>{{user.firstName}} let's start creating your Adjunct profile</legend>
+      <br />
+      <td>Country:</td>
+      <td>
+      <select ng-model="country" ng-options="c.name for c in countries" ng-model="user.country" class="input-xlarge" required>
+            <option value="">-- choose country --</option>
+      </select>
+      </td>
+      <br/>
+      <br/>
+      <tr>
+      <td>Postal Code:</td>
+      <td><input type="text" class="input-xlarge" ng-model="user.postalCode" required/><br /></td><td></td><td><p class="help-block profile-card-table-th">e.g. M5E 1W5</p></td>
+      </tr>
+      <br/>
+      <br/>
+
+        <table id="profile-card-table">
+            <tbody>
+            <tr id="overview-summary-specialty">
+                <th cscope="row">Country</th>
+                <td class="profile-card-table-td"><span editable-text="user.specialty1">{{ user.specialty1 || 'empty' }}</span>
+                    <span editable-text="user.specialty2">{{ user.specialty2 || 'empty' }}</span>
+                    </br>
+                    <span editable-text="user.specialty3">{{ user.specialty3 || 'empty' }}</span>
+                </td>
+            </tr>
+            <tr id="overview-summary-education">
+                <td class="profile-card-table-th">Education</td>
+                <td class="profile-card-table-td"><span editable-text="user.educationLevel" >{{ user.educationLevel || 'empty' }}</span></td>
+                <td><button type="button" class="btn btn-xs btn-primary" ng-click="editableForm.$show()" ng-show="!editableForm.$visible" style>Edit Profile</button></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+        <!-- Multiple Checkboxes (inline) -->
+        <div class="control-group">
+            <label class="control-label" for="checkboxes">I am currently:</label>
+            <div class="controls">
+                <label class="checkbox inline" for="checkboxes-0">
+                    <input type="checkbox" name="checkboxes" id="checkboxes-0" value="Employed">
+                    Employed
+                </label>
+                <label class="checkbox inline" for="checkboxes-1">
+                    <input type="checkbox" name="checkboxes" id="checkboxes-1" value="Job Seeker">
+                    Job Seeker
+                </label>
+                <label class="checkbox inline" for="checkboxes-2">
+                    <input type="checkbox" name="checkboxes" id="checkboxes-2" value="Student">
+                    Student
+                </label>
+            </div>
+        </div>
+
+        <!-- Appended checkbox -->
+        <div class="control-group">
+            <label class="control-label" for="appendedcheckbox">Job title</label>
+            <div class="controls">
+                <div class="input-append">
+                    <input id="appendedcheckbox" name="appendedcheckbox" class="span2" type="text" placeholder="" required="">
+      <span class="add-on">
+        <input type="checkbox">
+      </span>
+                </div>
+                <p class="help-block">I am self-employed</p>
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="control-group">
+            <label class="control-label" for="textinput">Educational Institution</label>
+            <div class="controls">
+                <input id="textinput" name="textinput" type="text" placeholder="" class="input-xlarge">
+
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="control-group">
+            <label class="control-label" for="singlebutton"></label>
+            <div class="controls">
+                <button id="singlebutton" name="singlebutton" class="btn btn-primary">Create my profile</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+
+</div>
