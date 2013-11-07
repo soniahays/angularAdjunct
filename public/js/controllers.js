@@ -23,13 +23,21 @@ angular.module('myApp.controllers', ['$strap.directives'])
     .controller('JobsCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('BasicPrflCtrl', ['$scope', function ($scope) {
+    .controller('BasicPrflCtrl', ['$scope','$rootScope','$http', function ($scope,$rootScope,$http) {
+            console.log($rootScope.user);
+            $scope.user = $rootScope.user;
+            $scope.countries = [];
+            $http({
+                url: '/api/countries',
+                method: 'GET',
+                headers: {'Content-Type': 'application/json'}
+            }).success(function (data, status, headers, config) {
+                    console.log(data);
+                    $scope.countries= data;
+                }).error(function (data, status, headers, config) {
+                    console.log("it didn't work");
 
-            $scope.countries = [
-                {name:'United States'},
-                {name:'Canada'},
-                {name:'France'}
-            ];
+                });
 //            $scope.color = $scope.colors[2]; // red
 
 
@@ -37,11 +45,21 @@ angular.module('myApp.controllers', ['$strap.directives'])
     }]).controller('SigninCtrl', ['$scope','$location', function ($scope, $location) {
         $scope.goToSignUp=function(){
             $location.path( '/signup' );
+            $scope.hide();
         }
         $scope.showError = true;
-    }]).controller('SignupCtrl', ['$scope','$http','$location', function ($scope, $http, $location) {
-        $scope.user;
+    }]).controller('SignupCtrl', ['$scope','$rootScope','$http','$location', function ($scope,$rootScope, $http, $location) {
+         $scope.user={};
+
+         $scope.user.firstName='Sonia';
+         $scope.user.lastName='Brami';
+         $scope.user.email='sonia@brami.com';
+         $scope.user.password='sonia';
+
+
+
         $scope.joinNow= function(){
+              $rootScope.user = $scope.user ;
               console.log("Join now!", $scope.user);
             $http({
                 url: '/signup',

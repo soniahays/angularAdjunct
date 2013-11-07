@@ -1,4 +1,4 @@
-<div class=" col-md-offset-2 col-md-8">
+<div class=" col-md-offset-2 col-md-10 ">
 
     <br />
     <br />
@@ -13,96 +13,77 @@
     <!--</form>    <br />-->
     <!--<button class="btn btn-primary  btn-custom" ng-click= "joinNow()">Join now</button>-->
 
-<form class="form-horizontal clearfix">
+     <div class="clearfix">
     <fieldset>
-        <legend>{{user.firstName}} let's start creating your Adjunct profile</legend>
-      <br />
-      <td>Country:</td>
-      <td>
-      <select ng-model="country" ng-options="c.name for c in countries" ng-model="user.country" class="input-xlarge" required>
-            <option value="">-- choose country --</option>
-      </select>
-      </td>
-      <br/>
-      <br/>
+        <legend>{{user.firstName}} let's start creating your Adjunct profile</legend> </fieldset>
+      <table>
       <tr>
-      <td>Postal Code:</td>
-      <td><input type="text" class="input-xlarge" ng-model="user.postalCode" required/><br /></td><td></td><td><p class="help-block profile-card-table-th">e.g. M5E 1W5</p></td>
+          <td>Country:</td>
+          <td><select ng-model="country" ng-options="c.name for c in countries" ng-model="user.country" class="input-xlarge" required>
+               <option value="">-- choose country --</option></select>
+          </td>
       </tr>
-      <br/>
-      <br/>
+      <tr>
+          <td>Postal Code:</td>
+          <td><input type="text" class="input-xlarge" ng-model="user.postalCode" required/></td>
+      </tr>
+      <tr>
+          <td></td>
+          <td><p class="help-block profile-card-table-th">e.g. M5E 1W5</p></td>
+      </tr>
+      <tr>
+          <td>I am currently:</td>
+          <td>
+              <input type="radio" ng-model="jobStatus" value="employed">  Employed
+              <!--</td>-->
+              <!--<td>-->
+              <input type="radio" ng-model="jobStatus" value="job-seeker"> Job Seeker
+              <!--</td>-->
+              <!--<td>-->
+              <input type="radio" ng-model="jobStatus" value="student"> Student
+          </td>
+      </tr>
+      <tr>
+          <td>Job title:</td>
+          <td><input type="text" class="input-xlarge" ng-model="user.jobTitle" required/></td>
+      </tr>
+      <tr>
+          <td></td>
+          <td><span><input type="checkbox" ng-model="user.selfEmployed" ng-true-value="YES" ng-false-value="NO">
+          <p class="help-block profile-card-table-th">I am self-employed</p></span>
+          </td>
+      </tr>
+      <tr>
+          <td>Educational Institution:</td>
+          <td><input type="text" class="input-xlarge" ng-model="user.educationalInstitution" required/></td>
+      </tr>
+      <tr>
+         <td>Country:</td>
+         <td><select ng-model="field" ng-options="f.name for f in fields" ng-model="user.field" class="input-xlarge" required>
+             <option value="">-- select a field --</option></select>
+          </td>
+      </tr>
+      <tr>
 
-        <table id="profile-card-table">
-            <tbody>
-            <tr id="overview-summary-specialty">
-                <th cscope="row">Country</th>
-                <td class="profile-card-table-td"><span editable-text="user.specialty1">{{ user.specialty1 || 'empty' }}</span>
-                    <span editable-text="user.specialty2">{{ user.specialty2 || 'empty' }}</span>
-                    </br>
-                    <span editable-text="user.specialty3">{{ user.specialty3 || 'empty' }}</span>
-                </td>
-            </tr>
-            <tr id="overview-summary-education">
-                <td class="profile-card-table-th">Education</td>
-                <td class="profile-card-table-td"><span editable-text="user.educationLevel" >{{ user.educationLevel || 'empty' }}</span></td>
-                <td><button type="button" class="btn btn-xs btn-primary" ng-click="editableForm.$show()" ng-show="!editableForm.$visible" style>Edit Profile</button></td>
-            </tr>
-            </tbody>
-        </table>
+          <td> <br />
+              </td>
 
-
-
-        <!-- Multiple Checkboxes (inline) -->
-        <div class="control-group">
-            <label class="control-label" for="checkboxes">I am currently:</label>
-            <div class="controls">
-                <label class="checkbox inline" for="checkboxes-0">
-                    <input type="checkbox" name="checkboxes" id="checkboxes-0" value="Employed">
-                    Employed
-                </label>
-                <label class="checkbox inline" for="checkboxes-1">
-                    <input type="checkbox" name="checkboxes" id="checkboxes-1" value="Job Seeker">
-                    Job Seeker
-                </label>
-                <label class="checkbox inline" for="checkboxes-2">
-                    <input type="checkbox" name="checkboxes" id="checkboxes-2" value="Student">
-                    Student
-                </label>
-            </div>
-        </div>
-
-        <!-- Appended checkbox -->
-        <div class="control-group">
-            <label class="control-label" for="appendedcheckbox">Job title</label>
-            <div class="controls">
-                <div class="input-append">
-                    <input id="appendedcheckbox" name="appendedcheckbox" class="span2" type="text" placeholder="" required="">
-      <span class="add-on">
-        <input type="checkbox">
-      </span>
-                </div>
-                <p class="help-block">I am self-employed</p>
-            </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="control-group">
-            <label class="control-label" for="textinput">Educational Institution</label>
-            <div class="controls">
-                <input id="textinput" name="textinput" type="text" placeholder="" class="input-xlarge">
-
-            </div>
-        </div>
-
-        <!-- Button -->
-        <div class="control-group">
-            <label class="control-label" for="singlebutton"></label>
-            <div class="controls">
-                <button id="singlebutton" name="singlebutton" class="btn btn-primary">Create my profile</button>
-            </div>
-        </div>
-
-    </fieldset>
-</form>
+          <td>      <br />
+              <div class="controls">
+              <button id="singlebutton" name="singlebutton" class="btn btn-primary">Create my profile</button>
+          </div></td>
+      </tr>
+      </table>
+         <br />
+         <br />
+         <br />
+         <br />
+         <br />
+         <br />
+         <br />
+         <br />
+  </div>
 
 </div>
+
+

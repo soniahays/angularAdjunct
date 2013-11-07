@@ -8,8 +8,7 @@ var express = require('express'),
     cel = require('connect-ensure-login'),
     bcrypt = require('bcrypt'),
     db = require('./server/db.js')(bcrypt),
-    pass = require('./server/passport.js')(db, passport, bcrypt),
-    countries = require('./server/api/countries.json');
+    pass = require('./server/passport.js')(db, passport, bcrypt)
 /**
  * Configuration
  */
@@ -32,10 +31,6 @@ app.use(passport.session());
 /**
  * Routes
  */
-app.get('/api/countries', function(req, res) {
-    var name = req.params.name;
-    res.json(countries);
-});
 
 app.get('/partial/:name', function(req, res) {
     var name = req.params.name;
@@ -58,8 +53,13 @@ app.post('/signin',
 );
 
 app.post('/signup', function(req, res){
+<<<<<<< HEAD
+    db.insertData('users',req.body.user);
+    res.end();
+=======
     db.insertUser(req.body.user);
-    res.end();});
+>>>>>>> b2c911b429ac28125d9f1ddbef30a31e255cb91d
+});
 
 /**
  * Start Server
