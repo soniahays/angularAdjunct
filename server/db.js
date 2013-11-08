@@ -6,7 +6,8 @@ module.exports = function(bcrypt) {
     var db, err;
     var self = {
         connect: function(callback) {
-            MongoClient.connect("mongodb://localhost:27017/adjunct", function(err_, db_) {
+            //MongoClient.connect("mongodb://localhost:27017/adjunct", function(err_, db_) {
+            MongoClient.connect("mongodb://nader:adj0nct@paulo.mongohq.com:10043/adjunct", function(err_, db_) {
                 err = err_;
                 db = db_;
                 callback();
