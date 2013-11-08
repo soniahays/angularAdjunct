@@ -61,6 +61,14 @@ app.get('/auth/facebook/callback',
         failureRedirect: '/signin' })
 );
 
+app.get('/auth/linkedin', passport.authenticate('linkedin'));
+
+app.get('/auth/linkedin/callback',
+    passport.authenticate('linkedin', {
+        successRedirect: '/',
+        failureRedirect: '/signin' })
+);
+
 app.post('/signin',
     passport.authenticate('local', {
         successRedirect: '/',

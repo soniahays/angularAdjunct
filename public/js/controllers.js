@@ -51,6 +51,10 @@ angular.module('myApp.controllers', ['$strap.directives'])
             window.location.href = '/auth/facebook';
             $scope.hide();
         }
+        $scope.linkedinAuth = function() {
+            window.location.href = '/auth/linkedin';
+            $scope.hide();
+        }
         $scope.showError = true;
     }]).controller('SignupCtrl', ['$scope','$rootScope','$http','$location', function ($scope,$rootScope, $http, $location) {
          $scope.user={};

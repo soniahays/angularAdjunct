@@ -15,30 +15,51 @@ module.exports = function(bcrypt) {
         },
         insertUser: function (user, callback) {
             var collection = db.collection('users');
-            bcrypt.genSalt(10, function(err, salt) {
-                bcrypt.hash(user.password, salt, function(err, hash) {
-                    user.password = hash;
-                    collection.insert([user], function (err) {
-                        if (err) {
-                            return console.error(err);
-                        }
-                        else {
-                            if (callback)
-                                callback(err, user);
-                        }
+            if (user.password) {
+                bcrypt.genSalt(10, function(err, salt) {
+                    bcrypt.hash(user.password, salt, function(err, hash) {
+                        user.password = hash;
+                        collection.insert([user], function (err) {
+                            if (err) {
+                                return console.error(err);
+                            }
+                            else {
+                                if (callback)
+                                    callback(err, user);
+                            }
+                        });
                     });
                 });
-            });
+            }
+            else {
+                collection.insert([user], function (err) {
+                    if (err) {
+                        return console.error(err);
+                    }
+                    else {
+                        if (callback)
+                            callback(err, user);
+                    }
+                });
+            }
         },
         getUser: function (user, callback) {
             var collection = db.collection('users');
             var result = collection.find({$and: [{'email': {$exists: true}}, {'email': user.email}]});
             result.toArray(function(err, docs) {
                 if (docs.length == 0) {
-                    result = collection.find({'facebookId': user.facebookId});
+                    result = collection.find({$and: [{'facebookId': {$exists: true}}, {'facebookId': user.facebookId}]});
                     result.toArray(function(err, docs) {
                         if (docs.length == 0) {
-                            callback(null, []);
+                            result = collection.find({$and: [{'linkedinId': {$exists: true}}, {'linkedinId': user.linkedinId}]});
+                            result.toArray(function(err, docs) {
+                                if (docs.length == 0) {
+                                    callback(null, null);
+                                }
+                                else {
+                                    callback(null, docs[0]);
+                                }
+                            });
                         }
                         else {
                             callback(null, docs[0]);

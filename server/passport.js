@@ -13,7 +13,7 @@ module.exports = function(db, passport, bcrypt) {
                 if (err)
                     return done(err,null);
 
-                if (email != user.email) {
+                if (!user) {
                     return done(null, false, { message: 'Incorrect email.' });
                 }
 
@@ -34,9 +34,18 @@ module.exports = function(db, passport, bcrypt) {
             consumerSecret: 'Chw82KgUKBgteXNh',
             callbackURL: "http://localhost:3000/auth/linkedin/callback"
         },
-        function(token, tokenSecret, profile, done) {
-            User.findOrCreate({ linkedinId: profile.id }, function (err, user) {
-                return done(err, user);
+        function(accessToken, refreshToken, profile, done) {
+            console.log(profile);
+            db.getUser({ linkedinId: profile.id }, function(err, user) {
+                if (err) {
+                    return done(err);
+                }
+                if (user) {
+                    done(null, user);
+                }
+                else {
+                    db.insertUser({'linkedinId': profile.id, 'firstName': profile.name.givenName, 'lastName': profile.name.familyName }, done);
+                }
             });
         }
     ));
@@ -47,9 +56,17 @@ module.exports = function(db, passport, bcrypt) {
             callbackURL: "http://localhost:3000/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done) {
-            db.findOrCreate({ facebookId: profile.id }, function(err, user) {
-                if (err) { return done(err); }
-                done(null, user);
+            console.log(profile);
+            db.getUser({ facebookId: profile.id }, function(err, user) {
+                if (err) {
+                    return done(err);
+                }
+                if (user) {
+                    done(null, user);
+                }
+                else {
+                    db.insertUser({'facebookId': profile.id, 'firstName': profile.name.givenName, 'lastName': profile.name.familyName }, done);
+                }
             });
         }
     ));
