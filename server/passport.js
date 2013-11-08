@@ -32,7 +32,8 @@ module.exports = function(db, passport, bcrypt) {
     passport.use(new LinkedInStrategy({
             consumerKey: 'mw29t6wc4cfa',
             consumerSecret: 'Chw82KgUKBgteXNh',
-            callbackURL: "http://localhost:3000/auth/linkedin/callback"
+            //callbackURL: "http://localhost:3000/auth/linkedin/callback"
+            callbackURL: "http://adjuncts-dev.herokuapp.com/auth/linkedin/callback"
         },
         function(accessToken, refreshToken, profile, done) {
             console.log(profile);
@@ -53,7 +54,8 @@ module.exports = function(db, passport, bcrypt) {
     passport.use(new FacebookStrategy({
             clientID: '573386006047842',
             clientSecret: 'dd82492ee233507c44937f3701d078b2',
-            callbackURL: "http://localhost:3000/auth/facebook/callback"
+            //callbackURL: "http://localhost:3000/auth/facebook/callback"
+            callbackURL: "http://adjuncts-dev.herokuapp.com/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done) {
             console.log(profile);
