@@ -13,17 +13,18 @@ module.exports = function(db, passport, bcrypt) {
                 if (err)
                     return done(err,null);
 
-                if (email != user.dbEmail) {
+                if (email != user.email) {
                     return done(null, false, { message: 'Incorrect email.' });
                 }
 
-                bcrypt.compare(password, user.dbPassword, function(err, res) {
+                bcrypt.compare(password, user.password, function(err, res) {
                     if (!res) {
                         return done(null, false, { message: 'Incorrect password.' });
                     }
+                    else {
+                        return done(null, user);
+                    }
                 });
-
-                return done(null, email);
             });
         }
     ));
@@ -43,7 +44,7 @@ module.exports = function(db, passport, bcrypt) {
     passport.use(new FacebookStrategy({
             clientID: '573386006047842',
             clientSecret: 'dd82492ee233507c44937f3701d078b2',
-            callbackURL: "http://adjuncts-dev.herokuapp.com/auth/facebook/callback"
+            callbackURL: "http://localhost:3000/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done) {
             db.findOrCreate({ facebookId: profile.id }, function(err, user) {
