@@ -44,7 +44,7 @@ module.exports = function(db, passport, bcrypt) {
     passport.use(new FacebookStrategy({
             clientID: '573386006047842',
             clientSecret: 'dd82492ee233507c44937f3701d078b2',
-            callbackURL: "http://localhost:3000/auth/facebook/callback"
+            callbackURL: "http://adjuncts-dev.herokuapp.com/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done) {
             db.findOrCreate({ facebookId: profile.id }, function(err, user) {
