@@ -1,20 +1,25 @@
-/**
- * Modules
- */
-var express = require('express'),
-    http = require('http'),
+
+var express = require('express');
+var app = express();
+var isLocal;
+
+app.configure('development', function(){
+    isLocal = true;
+});
+app.configure('production', function(){
+    isLocal = false;
+});
+
+var http = require('http'),
     path = require('path'),
     passport = require('passport'),
     cel = require('connect-ensure-login'),
     bcrypt = require('bcrypt'),
-    db = require('./server/db.js')(bcrypt),
-    pass = require('./server/passport.js')(db, passport, bcrypt),
+    db = require('./server/db.js')(bcrypt, isLocal),
+    pass = require('./server/passport.js')(db, passport, bcrypt, isLocal),
     countries = require('./server/api/countries.json'),
-    fieldGroup = require('./server/api/countries.json');
-/**
- * Configuration
- */
-var app = express();
+    fieldGroup = require('./server/api/fieldGroup.json');
+
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'server/views'));
 app.set('partials', path.join(app.get('views'),  'partials'));
@@ -39,6 +44,7 @@ app.get('/api/countries', function(req, res) {
 app.get('/api/fieldGroup', function(req, res) {
     res.json(fieldGroup);
 });
+
 app.get('/partial/:name', function(req, res) {
     var name = req.params.name;
     res.render(path.join(app.get('partials'), name + '.html'));
