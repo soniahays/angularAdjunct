@@ -9,7 +9,8 @@ var express = require('express'),
     bcrypt = require('bcrypt'),
     db = require('./server/db.js')(bcrypt),
     pass = require('./server/passport.js')(db, passport, bcrypt),
-    countries = require('./server/api/countries.json');
+    countries = require('./server/api/countries.json'),
+    fieldGroup = require('./server/api/countries.json');
 /**
  * Configuration
  */
