@@ -2,6 +2,8 @@
 
 /* Controllers */
 angular.module('myApp.controllers', ['$strap.directives'])
+
+
     .controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
         $scope.search = function () {
             $http({
@@ -20,12 +22,56 @@ angular.module('myApp.controllers', ['$strap.directives'])
 
         };
     }])
+
+
     .controller('JobsCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('BasicPrflCtrl', ['$scope','$rootScope','$http', function ($scope,$rootScope,$http) {
+
+
+
+//    .controller('AdjPrflCtrl',['$scope','$rootScope','$http', function ($scope,$rootScope,$http) {
+//        console.log($rootScope.user);
+//        $scope.user = $rootScope.user;
+//
+//    }])
+
+    .controller('EditableFormCtrl',['$scope','$rootScope','$http', function ($scope,$rootScope,$http) {
+        console.log($rootScope.user);
+        $scope.user = $rootScope.user;
+        $scope.user={
+            firstName:'Jenny',
+            lastName:'Marlow',
+            currentPosition:'Teaching Assistant',
+            institution:'Michigan State University',
+            city:'East Lansing',
+            generalArea:'Michigan',
+            department:'History Dpt.'
+        };
+
+
+
+
+    }])
+
+
+
+    .controller('ConfirmEmailCtrl' ['$scope','$location',   function ($scope,$location) {
+
+        $scope.confEmail=function(){
+            $location.path( '/adjuncts-profile' );
+
+        }
+
+
+
+    }])
+
+
+    .controller('BasicPrflCtrl', ['$scope','$rootScope','$http','$location', function ($scope,$rootScope,$http,$location) {
             console.log($rootScope.user);
             $scope.user = $rootScope.user;
+
             $scope.countries = [];
             $http({
                 url: '/api/countries',
@@ -38,11 +84,47 @@ angular.module('myApp.controllers', ['$strap.directives'])
                     console.log("it didn't work");
 
                 });
-//            $scope.color = $scope.colors[2]; // red
+
+
+            $scope.fieldGroup = [];
+            $http({
+                url: '/api/fieldGroup',
+                method: 'GET',
+                headers: {'Content-Type': 'application/json'}
+            }).success(function (data, status, headers, config) {
+                    console.log(data);
+                    $scope.fieldGroup= data;
+                }).error(function (data, status, headers, config) {
+                    console.log("it didn't work");
+
+                });
 
 
 
-    }]).controller('SigninCtrl', ['$scope','$location', function ($scope, $location) {
+
+
+            $scope.createProf= function(){
+                $rootScope.user = $scope.user ;
+                console.log("Create Profile!", $scope.user);
+                $http({
+                    url: '/basic-profile',
+                    method: 'POST',
+                    data: JSON.stringify({'user':$scope.user}),
+                    headers: {'Content-Type': 'application/json'}
+                }).success(function (data, status, headers, config) {
+                        console.log("it worked");
+                        $location.path( '/confirm-email' );
+                    }).error(function (data, status, headers, config) {
+                        console.log("it didn't work");
+
+                    });
+            }
+
+
+    }])
+
+
+    .controller('SigninCtrl', ['$scope','$location', function ($scope, $location) {
         $scope.goToSignUp=function(){
             $location.path( '/signup' );
             $scope.hide();

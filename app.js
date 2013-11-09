@@ -10,6 +10,7 @@ var express = require('express'),
     db = require('./server/db.js')(bcrypt),
     pass = require('./server/passport.js')(db, passport, bcrypt),
     countries = require('./server/api/countries.json');
+    fieldGroup = require('./server/api/fieldGroup.json');
 /**
  * Configuration
  */
@@ -37,6 +38,10 @@ app.get('/api/countries', function(req, res) {
     res.json(countries);
 });
 
+app.get('/api/fieldGroup', function(req, res) {
+    var name = req.params.name;
+    res.json(fieldGroup);
+});
 app.get('/partial/:name', function(req, res) {
     var name = req.params.name;
     res.render(path.join(app.get('partials'), name + '.html'));
@@ -61,6 +66,13 @@ app.post('/signup', function(req, res){
     db.insertUser(req.body.user);
     res.end();});
 
+app.post('/basic-profile', function(req, res){
+    db.insertUser(req.body.user);
+    res.end();});
+
+app.post('/adjuncts-profile', function(req, res){
+    db.insertUser(req.body.user);
+    res.end();});
 /**
  * Start Server
  */

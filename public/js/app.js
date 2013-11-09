@@ -11,10 +11,12 @@ angular.module('myApp', [
 config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $routeProvider.when('/', {templateUrl: 'partial/home', controller: 'HomeCtrl'});
   $routeProvider.when('/jobs', {templateUrl: 'partial/jobs', controller: 'JobsCtrl'});
-  $routeProvider.when('/profile', {templateUrl: 'partial/profile', controller: 'ProfileCtrl'});
+  $routeProvider.when('/profile', {templateUrl: 'partial/adjuncts-profile', controller: 'EditableFormCtrl'});
   $routeProvider.when('/signin', {templateUrl: 'partial/signin-popover', controller: 'SigninCtrl'});
   $routeProvider.when('/signup', {templateUrl: 'partial/signup', controller: 'SignupCtrl'});
   $routeProvider.when('/basic-profile', {templateUrl: 'partial/basic-profile', controller: 'BasicPrflCtrl'});
+  $routeProvider.when('/confirm-email', {templateUrl: 'partial/confirm-email', controller: 'ConfirmEmailCtrl'});
+  $routeProvider.when('/adjuncts-profile', {templateUrl: 'partial/adjuncts-profile', controller: 'EditableFormCtrl'});
   $routeProvider.otherwise({redirectTo: '/'});
   $locationProvider.html5Mode(true);
 }]);

@@ -1,89 +1,77 @@
 <div class=" col-md-offset-2 col-md-10 ">
+  <br />
+  <br />
+      <div class="clearfix">
+           <fieldset><legend>{{user.firstName}} let's start creating your Adjunct profile</legend> </fieldset>
+            <table>
+                  <tr>
+                      <td>Country:</td>
+                      <td><select ng-model="user.country" ng-options="c.name for c in countries" class="input-xlarge" required>
+                           <option value="">-- choose country --</option></select>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>Postal Code:</td>
+                      <td><input type="text" class="input-xlarge" ng-model="user.postalCode" required/></td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <td><p class="help-block profile-card-table-th">e.g. M5E 1W5</p></td>
+                  </tr>
+                  <tr>
+                      <td>I am currently:</td>
+                      <td>
+                          <input type="radio" ng-model="jobStatus" value="employed">  Employed
+                          <!--</td>-->
+                          <!--<td>-->
+                          <input type="radio" ng-model="jobStatus" value="job-seeker"> Job Seeker
+                          <!--</td>-->
+                          <!--<td>-->
+                          <input type="radio" ng-model="jobStatus" value="student"> Student
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>Job title:</td>
+                      <td><input type="text" class="input-xlarge" ng-model="user.jobTitle" required/></td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <td><span><input type="checkbox" ng-model="user.selfEmployed" ng-true-value="YES" ng-false-value="NO">
+                      <p class="help-block profile-card-table-th">I am self-employed</p></span>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>Educational Institution:</td>
+                      <td><input type="text" class="input-xlarge" ng-model="user.institution" required/></td>
+                  </tr>
+                  <tr>
+                     <td>Specialty:</td>
+                     <td><select  ng-options="f.name for f in fieldGroup" ng-model="user.field" class="input-xlarge" required>
+                         <option value="">-- select a field --</option></select>
+                      </td>
+                  </tr>
+                  <tr>
 
-    <br />
-    <br />
+     <td> <br />
+                          </td>
 
-    <!--<form class="form-signin">-->
-        <!--<h3 class="form-signin-heading">Sign up to adjuncts</h3>-->
+                      <td>      <br />
+                          <div class="controls">
+                          <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-click= "createProf()">Create my profile</button>
 
-        <!--First Name: <input type="text" class="form-control" ng-model="user.firstName" placeholder="" autofocus/><br />-->
-        <!--Last Name: <input type="text" class="form-control" ng-model="user.lastName" placeholder="" /><br />-->
-        <!--Email: <input type="text" class="form-control" ng-model="user.email" placeholder=""  /><br />-->
-        <!--Password <input type="password" class="form-control" ng-model="user.password" placeholder="" /><br />-->
-    <!--</form>    <br />-->
-    <!--<button class="btn btn-primary  btn-custom" ng-click= "joinNow()">Join now</button>-->
+                      </div></td>
+                  </tr>
+                  </table>
+                     <br />
+                     <br />
+                     <br />
+                     <br />
+                     <br />
+                     <br />
+                     <br />
+                     <br />
+              </div>
 
-     <div class="clearfix">
-    <fieldset>
-        <legend>{{user.firstName}} let's start creating your Adjunct profile</legend> </fieldset>
-      <table>
-      <tr>
-          <td>Country:</td>
-          <td><select ng-model="country" ng-options="c.name for c in countries" ng-model="user.country" class="input-xlarge" required>
-               <option value="">-- choose country --</option></select>
-          </td>
-      </tr>
-      <tr>
-          <td>Postal Code:</td>
-          <td><input type="text" class="input-xlarge" ng-model="user.postalCode" required/></td>
-      </tr>
-      <tr>
-          <td></td>
-          <td><p class="help-block profile-card-table-th">e.g. M5E 1W5</p></td>
-      </tr>
-      <tr>
-          <td>I am currently:</td>
-          <td>
-              <input type="radio" ng-model="jobStatus" value="employed">  Employed
-              <!--</td>-->
-              <!--<td>-->
-              <input type="radio" ng-model="jobStatus" value="job-seeker"> Job Seeker
-              <!--</td>-->
-              <!--<td>-->
-              <input type="radio" ng-model="jobStatus" value="student"> Student
-          </td>
-      </tr>
-      <tr>
-          <td>Job title:</td>
-          <td><input type="text" class="input-xlarge" ng-model="user.jobTitle" required/></td>
-      </tr>
-      <tr>
-          <td></td>
-          <td><span><input type="checkbox" ng-model="user.selfEmployed" ng-true-value="YES" ng-false-value="NO">
-          <p class="help-block profile-card-table-th">I am self-employed</p></span>
-          </td>
-      </tr>
-      <tr>
-          <td>Educational Institution:</td>
-          <td><input type="text" class="input-xlarge" ng-model="user.educationalInstitution" required/></td>
-      </tr>
-      <tr>
-         <td>Country:</td>
-         <td><select ng-model="field" ng-options="f.name for f in fields" ng-model="user.field" class="input-xlarge" required>
-             <option value="">-- select a field --</option></select>
-          </td>
-      </tr>
-      <tr>
-
-          <td> <br />
-              </td>
-
-          <td>      <br />
-              <div class="controls">
-              <button id="singlebutton" name="singlebutton" class="btn btn-primary">Create my profile</button>
-          </div></td>
-      </tr>
-      </table>
-         <br />
-         <br />
-         <br />
-         <br />
-         <br />
-         <br />
-         <br />
-         <br />
-  </div>
-
-</div>
+            </div>
 
 
