@@ -173,7 +173,6 @@ body { font-family: Arial, sans-serif; }
 
 .banner-text {
     margin: 15px;
-    /*margin: 4.5em 4em;*/
     font-size:0.7em;
 }
 
@@ -252,9 +251,8 @@ body { font-family: Arial, sans-serif; }
 
 .banner{
     background: url("../img/BannerBackgroung.png") no-repeat;
-    /*background-color:rgba(100,100,100,1);*/
-    background-size: 100% ;
-
+    background-size: 100%;
+    margin-top: -10px;
 }
 
 
@@ -769,4 +767,12 @@ tbody{
 
 .form-signin {
     max-width: 260px;
+}
+
+.btn-signin {
+    margin-top: 10px;
+}
+
+.home-bottom-text {
+margin-left: 45px;
 }
