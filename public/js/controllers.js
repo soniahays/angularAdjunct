@@ -126,19 +126,24 @@ angular.module('myApp.controllers', ['$strap.directives'])
 
     .controller('SigninCtrl', ['$scope','$location', function ($scope, $location) {
         $scope.goToSignUp=function(){
-            $location.path( '/signup' );
+            $location.path('/signup');
+            $scope.hide();
+        }
+        $scope.facebookAuth = function() {
+            window.location.href = '/auth/facebook';
+            $scope.hide();
+        }
+        $scope.linkedinAuth = function() {
+            window.location.href = '/auth/linkedin';
             $scope.hide();
         }
         $scope.showError = true;
     }]).controller('SignupCtrl', ['$scope','$rootScope','$http','$location', function ($scope,$rootScope, $http, $location) {
          $scope.user={};
-
          $scope.user.firstName='Sonia';
          $scope.user.lastName='Brami';
          $scope.user.email='sonia@brami.com';
          $scope.user.password='sonia';
-
-
 
         $scope.joinNow= function(){
               $rootScope.user = $scope.user ;

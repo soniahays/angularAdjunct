@@ -10,7 +10,6 @@ var express = require('express'),
     db = require('./server/db.js')(bcrypt),
     pass = require('./server/passport.js')(db, passport, bcrypt),
     countries = require('./server/api/countries.json');
-    fieldGroup = require('./server/api/fieldGroup.json');
 /**
  * Configuration
  */
@@ -29,17 +28,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
 /**
  * Routes
  */
 app.get('/api/countries', function(req, res) {
-    var name = req.params.name;
     res.json(countries);
 });
 
 app.get('/api/fieldGroup', function(req, res) {
-    var name = req.params.name;
     res.json(fieldGroup);
 });
 app.get('/partial/:name', function(req, res) {
@@ -52,9 +48,28 @@ app.get('/signout', function(req, res){
     res.redirect('/');
 });
 
-app.get('*', function(req, res) {
-    res.render(path.join(app.get('views'), 'index.html'), { user: req.user });
-});
+// Redirect the user to Facebook for authentication.  When complete,
+// Facebook will redirect the user back to the application at
+//     /auth/facebook/callback
+app.get('/auth/facebook', passport.authenticate('facebook'));
+
+// Facebook will redirect the user to this URL after approval.  Finish the
+// authentication process by attempting to obtain an access token.  If
+// access was granted, the user will be logged in.  Otherwise,
+// authentication has failed.
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+        successRedirect: '/',
+        failureRedirect: '/signin' })
+);
+
+app.get('/auth/linkedin', passport.authenticate('linkedin'));
+
+app.get('/auth/linkedin/callback',
+    passport.authenticate('linkedin', {
+        successRedirect: '/',
+        failureRedirect: '/signin' })
+);
 
 app.post('/signin',
     passport.authenticate('local', {
@@ -64,7 +79,9 @@ app.post('/signin',
 
 app.post('/signup', function(req, res){
     db.insertUser(req.body.user);
-    res.end();});
+    res.end();
+});
+
 
 app.post('/basic-profile', function(req, res){
     db.insertUser(req.body.user);
@@ -73,6 +90,12 @@ app.post('/basic-profile', function(req, res){
 app.post('/adjuncts-profile', function(req, res){
     db.insertUser(req.body.user);
     res.end();});
+
+
+app.get('*', function(req, res) {
+    res.render(path.join(app.get('views'), 'index.html'), { user: req.user });
+});
+
 /**
  * Start Server
  */
