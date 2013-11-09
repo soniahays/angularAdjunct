@@ -70,17 +70,6 @@ module.exports = function(bcrypt) {
                     callback(null, docs[0]);
                 }
             });
-        },
-        findOrCreate: function(user, callback)  {
-            var collection = db.collection('users');
-            collection.find(user).toArray(function(err, docs){
-                if (docs.length > 0)
-                    callback(err, docs[0]);
-                else {
-                    self.insertUser(user, function() { callback(err, docs[0]); });
-                }
-            });
-
         }
     };
     return self;
