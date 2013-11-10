@@ -1,5 +1,11 @@
 /* app css stylesheet */
 
+/*-----------------CUSTOM ICONS----------------------------*/
+.icon-car {
+    background-image: url("http://cdn5.iconfinder.com/data/icons/Symbolicons_Transportation/24/Car.png");
+    background-position: center center;
+}
+
 /*-----------------CONTAINER----------------------------*/
 
 .container .navbar-header,
@@ -768,6 +774,14 @@ tbody{
 .form-signin {
     max-width: 260px;
 }
+
+/*.popover {*/
+    /*width: 360px !important;*/
+    /*min-width: 230px;*/
+    /*width: auto;*/
+    /*position: absolute;*/
+    /*z-index: 5000;*/
+/*}*/
 
 .btn-signin {
     margin-top: 10px;
