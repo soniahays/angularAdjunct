@@ -790,3 +790,14 @@ tbody{
 .home-bottom-text {
 margin-left: 45px;
 }
+
+.popover {
+    width: 300px;
+    max-width: 300px;
+}
+
+.expertise-tags li {
+    color: #ffffff !important;
+    background: #428bca !important;
+    border-color: #357ebd !important;
+}

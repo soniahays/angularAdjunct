@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-angular.module('myApp.controllers', ['$strap.directives'])
+angular.module('adjunct.controllers', ['$strap.directives'])
 
     .controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
         $scope.search = function () {
@@ -32,9 +32,9 @@ angular.module('myApp.controllers', ['$strap.directives'])
 //    }])
 
     .controller('EditableFormCtrl',['$scope','$rootScope','$filter','$http', function ($scope,$rootScope,$filter,$http) {
-        console.log($rootScope.user);
         $scope.user = $rootScope.user;
-        $scope.user={
+
+        $scope.user = {
             firstName:'Jenny',
             lastName:'Marlow',
             currentPosition:'Teaching Assistant',
@@ -54,17 +54,30 @@ angular.module('myApp.controllers', ['$strap.directives'])
             experience1TimePeriodYear:'2013',
             experience1Summary:'write more about your experience here'
         };
+
         $scope.statuses = [
             {value:1, text:'fall'},
             {value:2, text:'winter'},
             {value:3, text:'spring'},
             {value:4, text:'summer'}
         ];
+
         $scope.saveUser = function() {
             //$scope.user already updated!
             return $http.post('/saveUser', $scope.user);
         };
 
+        $scope.expertiseTags = ['Early Modern Europe','Asia and the World','World History','Nazi Policy','Jewish Emancipation'];
+
+        $scope.edit = function(){
+            $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card-edit';
+        }
+
+        $scope.save = function(){
+            $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
+        }
+
+        $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
     }])
 
     .controller('ConfirmEmailCtrl' ['$scope','$location',   function ($scope,$location) {

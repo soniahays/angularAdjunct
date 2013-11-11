@@ -1,12 +1,13 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-angular.module('myApp', [
+angular.module('adjunct', [
   'ngRoute',
-  'myApp.filters',
-  'myApp.services',
-  'myApp.directives',
-  'myApp.controllers'
+  'tags-input',
+  'adjunct.filters',
+  'adjunct.services',
+  //'adjunct.directives',
+  'adjunct.controllers'
 ]).
 config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $routeProvider.when('/', {templateUrl: 'partial/home', controller: 'HomeCtrl'});
@@ -16,7 +17,6 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
   $routeProvider.when('/signup', {templateUrl: 'partial/signup', controller: 'SignupCtrl'});
   $routeProvider.when('/basic-profile', {templateUrl: 'partial/basic-profile', controller: 'BasicPrflCtrl'});
   $routeProvider.when('/confirm-email', {templateUrl: 'partial/confirm-email', controller: 'ConfirmEmailCtrl'});
-  $routeProvider.when('/adjuncts-profile', {templateUrl: 'partial/adjuncts-profile', controller: 'EditableFormCtrl'});
   $routeProvider.otherwise({redirectTo: '/'});
   $locationProvider.html5Mode(true);
 }]);
