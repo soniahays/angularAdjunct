@@ -10,9 +10,9 @@ angular.module('adjunct', [
   'adjunct.controllers'
 ]).
 config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-  $routeProvider.when('/', {templateUrl: 'partial/home', controller: 'HomeCtrl'});
+  $routeProvider.when('/', {templateUrl: 'partial/home', controller: 'HomeCtrl', authenticate: false});
   $routeProvider.when('/jobs', {templateUrl: 'partial/jobs', controller: 'JobsCtrl'});
-  $routeProvider.when('/profile', {templateUrl: 'partial/adjuncts-profile', controller: 'EditableFormCtrl'});
+  $routeProvider.when('/profile', {templateUrl: 'partial/adjuncts-profile', controller: 'EditableFormCtrl', authenticate: true});
   $routeProvider.when('/signin', {templateUrl: 'partial/signin-popover', controller: 'SigninCtrl'});
   $routeProvider.when('/signup', {templateUrl: 'partial/signup', controller: 'SignupCtrl'});
   $routeProvider.when('/basic-profile', {templateUrl: 'partial/basic-profile', controller: 'BasicPrflCtrl'});

@@ -62,12 +62,9 @@ angular.module('adjunct.controllers', ['$strap.directives'])
             {value:4, text:'summer'}
         ];
 
-        $scope.saveUser = function() {
-            //$scope.user already updated!
-            return $http.post('/saveUser', $scope.user);
-        };
-
         $scope.expertiseTags = ['Early Modern Europe','Asia and the World','World History','Nazi Policy','Jewish Emancipation'];
+
+        $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
 
         $scope.edit = function(){
             $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card-edit';
@@ -75,9 +72,18 @@ angular.module('adjunct.controllers', ['$strap.directives'])
 
         $scope.save = function(){
             $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
-        }
 
-        $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
+            $http({
+                url: '/adjuncts-profile',
+                method: 'POST',
+                data: JSON.stringify({'user': $scope.user}),
+                headers: {'Content-Type': 'application/json'}
+            }).success(function (data, status, headers, config) {
+                console.log("save-adjuncts-profile-top-card worked");
+            }).error(function (data, status, headers, config) {
+                console.log("save-adjuncts-profile-top-card didn't work");
+            });
+            }
     }])
 
     .controller('ConfirmEmailCtrl' ['$scope','$location',   function ($scope,$location) {

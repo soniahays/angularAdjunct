@@ -1,7 +1,7 @@
 
 var express = require('express');
 var app = express();
-var isLocal;
+var isLocal = false;
 
 app.configure('development', function(){
     isLocal = true;
@@ -13,7 +13,6 @@ app.configure('production', function(){
 var http = require('http'),
     path = require('path'),
     passport = require('passport'),
-    cel = require('connect-ensure-login'),
     bcrypt = require('bcrypt'),
     db = require('./server/db.js')(bcrypt, isLocal),
     pass = require('./server/passport.js')(db, passport, bcrypt, isLocal),
@@ -45,7 +44,8 @@ app.get('/api/fieldGroup', function(req, res) {
     res.json(fieldGroup);
 });
 
-app.get('/partial/:name', function(req, res) {
+app.get('/partial/:name',
+    function(req, res) {
     var name = req.params.name;
     res.render(path.join(app.get('partials'), name + '.html'));
 });
@@ -77,10 +77,16 @@ app.get('/auth/linkedin/callback',
         successRedirect: '/',
         failureRedirect: '/signin' })
 );
-
+/*
+app.get('/adjuncts-profile', function(req, res){
+    //res.json(fieldGroup);
+    //db.getUser()
+    res.end();
+});
+*/
 app.post('/signin',
     passport.authenticate('local', {
-        successRedirect: '/',
+        successReturnToOrRedirect: '/',
         failureRedirect: '/signin' })
 );
 
@@ -91,11 +97,13 @@ app.post('/signup', function(req, res){
 
 app.post('/basic-profile', function(req, res){
     db.insertUser(req.body.user);
-    res.end();});
+    res.end();
+});
 
 app.post('/adjuncts-profile', function(req, res){
     db.insertUser(req.body.user);
-    res.end();});
+    res.end();
+});
 
 app.get('*', function(req, res) {
     res.render(path.join(app.get('views'), 'index.html'), { user: req.user });
