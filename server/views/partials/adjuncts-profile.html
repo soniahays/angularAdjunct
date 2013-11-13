@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" ng-controller="AdjunctsProfileCtrl">
 <div id="demo" class="col-md-2 sidebar-offcanvas collapse in width" id="sidebar" role="navigation">
     <div class="well ">
 
@@ -40,17 +40,12 @@
         </ul>
         <br/><br/>
         <button class="btn btn-sm btn-custom"   onclick="window.location.href = '/profile';">Search</button>
-
-
     </div>
 </div>
 
 <div class="panel col-md-7">
-
     <div ng-include="topCardTemplateUrl"></div>
-
     <div class="panel-group middle-card  col-md-12" id="accordion" style="padding-left:0px !important;padding-right:0px !important;">
-
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -87,48 +82,39 @@
 
     <div id="bottom-card" class="panel panel-default col-md-12">
         <div class="panel-body profile-bottom-card">
-            <!--<div ng-controller="EditableFormCtrl2" id ="profile-details">-->
-                <div class="profile-details-content">
-                    <form editable-form name="editableForm2">
+            <div class="profile-details-content">
+                <form editable-form name="editableForm2">
 
-                        <div id="summary-container">
-                     <span class=" lead user-summary lead" editable-textarea="user.summary" e-rows="12" e-cols="80">
-                         <p style="background-color: white;">{{user.summary || 'no description'}}</p>
-                     </span>
-                        </div>
+                    <div id="summary-container">
+                 <span class=" lead user-summary lead" editable-textarea="user.summary" e-rows="12" e-cols="80">
+                     <p style="background-color: white;">{{user.summary || 'no description'}}</p>
+                 </span>
+                    </div>
 
-                        <div id="experience-container">
-                            <span editable-text="user.experience1Title"> <div id="headline">{{ user.experience1Title|| 'empty' }}</div></span>
-                            <span editable-text="user.experience1Institution"><div id="headline-institution">{{ user.experience1Institution || 'empty' }}</div></span>
-                            <span editable-text="user.experience1Location"><div id="headline-location"class="text-muted">{{ user.experience1Location || 'empty' }}</div></span>
-                            <span editable-select="user.status" e-ng-options="s.value as s.text for s in statuses"> {{ showStatus() }}</span>
-                            <span editable-text="user.experience1TimePeriodYear">{{}}</span>
-                            <!--<span editable-text="user.experience1TimePeriodYear">{{ user.experience1TimePeriodYear || 'empty' }}</span>-->
-                    <span editable-textarea="user.experience1Summary" e-rows="12" e-cols="80">
-                        <p id="headline-i"><em>{{user.experience1Summary || 'no description'}}</em></p>
-                    </span>
-                        </div>
-
-
-                        <div class="profile-edit">
-                            <!-- button to show form -->
-                            <button type="button" class="btn btn-xs btn-primary" ng-click="editableForm2.$show()" ng-show="!editableForm2.$visible">Edit Profile</button>
-                            <!-- buttons to submit / cancel form -->
-                  <span ng-show="editableForm2.$visible">
-                  <button type="submit" class="btn btn-primary" ng-disabled="editableForm2.$waiting">Save</button>
-                  <button type="button" class="btn btn-default" ng-disabled="editableForm2.$waiting" ng-click="editableForm2.$hide()">Cancel</button>
-                  </span>
-                        </div>
-
-                    </form>
-                </div>
-            <!--</div>-->
+                    <div id="experience-container">
+                        <span editable-text="user.experience1Title"> <div id="headline">{{ user.experience1Title|| 'empty' }}</div></span>
+                        <span editable-text="user.experience1Institution"><div id="headline-institution">{{ user.experience1Institution || 'empty' }}</div></span>
+                        <span editable-text="user.experience1Location"><div id="headline-location"class="text-muted">{{ user.experience1Location || 'empty' }}</div></span>
+                        <span editable-select="user.status" e-ng-options="s.value as s.text for s in statuses"> {{ showStatus() }}</span>
+                        <span editable-text="user.experience1TimePeriodYear">{{}}</span>
+                        <!--<span editable-text="user.experience1TimePeriodYear">{{ user.experience1TimePeriodYear || 'empty' }}</span>-->
+                        <span editable-textarea="user.experience1Summary" e-rows="12" e-cols="80">
+                            <p id="headline-i"><em>{{user.experience1Summary || 'no description'}}</em></p>
+                        </span>
+                    </div>
+                    <div class="profile-edit">
+                        <!-- button to show form -->
+                        <button type="button" class="btn btn-xs btn-primary" ng-click="editableForm2.$show()" ng-show="!editableForm2.$visible">Edit Profile</button>
+                        <!-- buttons to submit / cancel form -->
+                        <span ng-show="editableForm2.$visible">
+                        <button type="submit" class="btn btn-primary" ng-disabled="editableForm2.$waiting">Save</button>
+                        <button type="button" class="btn btn-default" ng-disabled="editableForm2.$waiting" ng-click="editableForm2.$hide()">Cancel</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-
-
-
-
 </div>
 <div class="col-md-3 sidebar-offcanvas" id="sidebar2" role="navigation">
     <div class="list-group col-md-12" >
@@ -162,7 +148,6 @@
                 <span class="ppl-also-name-mini">Mallory Roberts</span><br/><span >High energy Astrophysics</span>
             </row>
         </a>
-
     </div>
 
     <div class="list-group col-md-12" >
@@ -198,8 +183,5 @@
         </a>
 
     </div>
-</div><!--/row-->
-
-
-
+</div>
 </div>

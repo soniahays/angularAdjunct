@@ -107,7 +107,7 @@ fetch the changes and merge them into your project with git.
       index-async.html  --> just like index.html, but loads js files asynchronously
       js/               --> javascript files
         app.js          --> application
-        controllers.js  --> application controllers
+        signup.js  --> application controllers
         directives.js   --> application directives
         filters.js      --> custom angular filters
         services.js     --> custom angular services

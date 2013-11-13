@@ -99,12 +99,12 @@ app.post('/basic-profile', function(req, res){
     db.insertUser(req.body.user);
     res.end();
 });
-
+/*
 app.post('/adjuncts-profile', function(req, res){
     db.insertUser(req.body.user);
     res.end();
 });
-
+*/
 app.get('*', function(req, res) {
     res.render(path.join(app.get('views'), 'index.html'), { user: req.user });
 });
