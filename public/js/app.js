@@ -2,6 +2,7 @@
 
 angular.module('adjunct', [
   'ngRoute',
+  '$strap.directives',
   'tags-input',
   'adjunct.filters',
   'adjunct.services',
@@ -20,4 +21,7 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
   $locationProvider.html5Mode(true);
 }]);
 
+angular.module('adjunct.filters', []);
+angular.module('adjunct.services', []);
+angular.module('adjunct.directives', []);
 angular.module('adjunct.controllers', []);

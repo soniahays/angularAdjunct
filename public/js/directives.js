@@ -2,7 +2,7 @@
 
 /* Directives */
 /*
-angular.module('adjunct.directives', []).
+angular.module('adjunct.directives').
   directive('profileTopCard', function() {
         return {
             templateUrl: function(notsurewhatthisis, attr) {
