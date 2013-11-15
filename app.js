@@ -12,7 +12,7 @@ app.configure('production', function () {
 var http = require('http'),
     path = require('path'),
     passport = require('passport'),
-    cel = require('connect-ensure-login'),
+    ensureLoggedIn = require('./server/ensureLoggedIn.js'),
     bcrypt = require('bcrypt'),
     db = require('./server/db.js')(bcrypt, isLocal),
     pass = require('./server/passport.js')(db, passport, bcrypt, isLocal),
@@ -45,8 +45,12 @@ app.get('/api/fieldGroup', function (req, res) {
 });
 
 app.get('/partial/adjuncts-profile',
-    //cel.ensureLoggedIn('/signin'),
+    ensureLoggedIn({ redirectTo: path.join(app.get('partials'), 'signin-popover.html'), setReturnTo: true, customReturnTo: '/profile' }),
     function (req, res) {
+        res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.header('Pragma', 'no-cache');
+        res.header('Expires', '0');
+        console.log('rendering adjuncts-profile.html');
         res.render(path.join(app.get('partials'), 'adjuncts-profile.html'));
     });
 
@@ -99,9 +103,10 @@ app.post('/basic-profile', function (req, res) {
  });
  */
 app.get('*', function (req, res) {
-    console.log("GET index.html", "user: " + req.user);
+    console.log("GET index.html", "user: " + req.user, "url: " + req.url);
     res.render(path.join(app.get('views'), 'index.html'), { user: req.user });
 });
+
 
 /**
  * Start Server
