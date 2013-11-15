@@ -1,189 +1,212 @@
 <div class="container" ng-controller="AdjunctsProfileCtrl">
-<div id="demo" class="col-md-2 sidebar-offcanvas collapse in width" id="sidebar" role="navigation">
-    <div class="well ">
+    <div id="demo" class="col-md-2 sidebar-offcanvas collapse in width" id="sidebar" role="navigation">
+        <div class="well">
 
-        <ul class="nav" style="margin: -20px;">
-            <button role="button" class="background-label btn" data-toggle="collapse" data-target="#demo" style="width: 50px">
-                <span class="glyphicon glyphicon-search"></span>
-            </button>
+            <ul class="nav" style="margin: -20px;">
+                <button role="button" class="background-label btn" data-toggle="collapse" data-target="#demo"
+                        style="width: 50px">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
 
-            <br/>
-            <small>University:&#9;</small>
-            <input type="text" style="width:100px; height:20px;"/>
-            <br/>
-            </li>
-            <li style="padding:10px">
-                <small>Discipline:&#9;</small>
+                <br/>
+                <small>University:&#9;</small>
                 <input type="text" style="width:100px; height:20px;"/>
                 <br/>
-            </li>
-            <li style="padding:10px">
-                <small>Location:&#9;</small>
-                <input type="text" style="width:100px; height:20px;"/>
-                <br/>
-            </li>
-            <li style="padding:10px">
-                <small>Courses:&#9;</small>
-                <input type="text" style="width:100px; height:20px;"/>
-                <br/>
-            </li>
-            <li style="padding:10px">
-                <small>Teacher:&#9;</small>
-                <input type="text" style="width:100px; height:20px;"/>
-                <br/>
-            </li>
-            <li style="padding:10px">
-                <small>Network:&#9;</small>
-                <input type="text" style="width:100px; height:20px;"/>
-                <br/>
-            </li>
-        </ul>
-        <br/><br/>
-        <button class="btn btn-sm btn-custom"   onclick="window.location.href = '/profile';">Search</button>
+                </li>
+                <li style="padding:10px">
+                    <small>Discipline:&#9;</small>
+                    <input type="text" style="width:100px; height:20px;"/>
+                    <br/>
+                </li>
+                <li style="padding:10px">
+                    <small>Location:&#9;</small>
+                    <input type="text" style="width:100px; height:20px;"/>
+                    <br/>
+                </li>
+                <li style="padding:10px">
+                    <small>Courses:&#9;</small>
+                    <input type="text" style="width:100px; height:20px;"/>
+                    <br/>
+                </li>
+                <li style="padding:10px">
+                    <small>Teacher:&#9;</small>
+                    <input type="text" style="width:100px; height:20px;"/>
+                    <br/>
+                </li>
+                <li style="padding:10px">
+                    <small>Network:&#9;</small>
+                    <input type="text" style="width:100px; height:20px;"/>
+                    <br/>
+                </li>
+            </ul>
+            <br/><br/>
+            <button class="btn btn-sm btn-custom" onclick="window.location.href = '/profile';">Search</button>
+        </div>
     </div>
-</div>
 
-<div class="panel col-md-7">
+    <div class="panel col-md-7">
 
-    <div ng-include="topCardTemplateUrl"></div>
+        <div ng-include="topCardTemplateUrl"></div>
 
-    <div class="panel-group middle-card  col-md-12" id="accordion" style="padding-left:0px !important;padding-right:0px !important;">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                        Portfolio
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse in">
-                <div class="panel-body">
-                    <div class="panel-body porfolio-middle-card" style="padding-top: 2px !important;padding-bottom: 2px !important;">
-                        <div id="tags-container">
-                            <tags-input ng-model="expertiseTags" ng-class="expertise-tags"></tags-input>
-                        </div>
-                        <br />
-                        <div id="media-container">
+        <div class="panel-group middle-card  col-md-12" id="accordion"
+             style="padding-left:0px !important;padding-right:0px !important;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            Portfolio
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="panel-body porfolio-middle-card"
+                             style="padding-top: 2px !important;padding-bottom: 2px !important;">
+                            <div id="tags-container">
+                                <tags-input ng-model="expertiseTags" ng-class="expertise-tags"></tags-input>
+                            </div>
+                            <br/>
+
+                            <div id="media-container">
                              <span class="well" style="background-color: white; margin-bottom:5px; padding:7px 6px;">
-                             <a href="https://www.youtube.com/watch?v=YKulXXvK2TA"><img src="img/vid1.jpg" height=30px /></a>
-                             <a href="https://www.youtube.com/watch?v=F1QNHJ1N-p0"><img src="img/vid2.jpg" height=30px /></a>
-                             <a href="/files/cv.pdf"><img src="img/PortfolioIconResume.png" height=30px /></a>
-                             <a href="/files/syllabus.pdf"><img src="img/PortfolioIconSyllabus.png" height=30px /></a>
+                             <a href="https://www.youtube.com/watch?v=YKulXXvK2TA"><img src="img/vid1.jpg" height=30px/></a>
+                             <a href="https://www.youtube.com/watch?v=F1QNHJ1N-p0"><img src="img/vid2.jpg" height=30px/></a>
+                             <a href="/files/cv.pdf"><img src="img/PortfolioIconResume.png" height=30px/></a>
+                             <a href="/files/syllabus.pdf"><img src="img/PortfolioIconSyllabus.png" height=30px/></a>
                              </span>
-                         </div>
-                         <div id="badges-container" style="margin-top: 6px !important;">
-                             <span class="well" style="background-color: white;margin-top:10px;margin-right:5px !important; padding:7px 6px; ">
-                                <span><img class="profile-badge-img"src="img/badges/D2L.png" height=20px /><img class="profile-badge-img" src="img/badges/adobeconnect.png" height=30px /><img class="profile-badge-img" src="img/badges/blackboard.png" height=20px /><img class="profile-badge-img" src="img/badges/softchalk.png" height=20px /></span>
+                            </div>
+                            <div id="badges-container" style="margin-top: 6px !important;">
+                             <span class="well"
+                                   style="background-color: white;margin-top:10px;margin-right:5px !important; padding:7px 6px; ">
+                                <span><img class="profile-badge-img" src="img/badges/D2L.png" height=20px/><img
+                                        class="profile-badge-img" src="img/badges/adobeconnect.png" height=30px/><img
+                                        class="profile-badge-img" src="img/badges/blackboard.png" height=20px/><img
+                                        class="profile-badge-img" src="img/badges/softchalk.png" height=20px/></span>
                              </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div id="bottom-card" class="panel panel-default col-md-12">
-        <div class="panel-body profile-bottom-card">
-            <div class="profile-details-content">
-                <form editable-form name="editableForm2">
+        <div id="bottom-card" class="panel panel-default col-md-12">
+            <div class="panel-body profile-bottom-card">
+                <div class="profile-details-content">
+                    <form editable-form name="editableForm2">
 
-                    <div id="summary-container">
+                        <div id="summary-container">
                  <span class=" lead user-summary lead" editable-textarea="user.summary" e-rows="12" e-cols="80">
                      <p style="background-color: white;">{{user.summary || 'no description'}}</p>
                  </span>
-                    </div>
+                        </div>
 
-                    <div id="experience-container">
-                        <span editable-text="user.experience1Title"> <div id="headline">{{ user.experience1Title|| 'empty' }}</div></span>
-                        <span editable-text="user.experience1Institution"><div id="headline-institution">{{ user.experience1Institution || 'empty' }}</div></span>
-                        <span editable-text="user.experience1Location"><div id="headline-location"class="text-muted">{{ user.experience1Location || 'empty' }}</div></span>
-                        <span editable-select="user.status" e-ng-options="s.value as s.text for s in statuses"> {{ showStatus() }}</span>
-                        <span editable-text="user.experience1TimePeriodYear">{{}}</span>
-                        <!--<span editable-text="user.experience1TimePeriodYear">{{ user.experience1TimePeriodYear || 'empty' }}</span>-->
+                        <div id="experience-container">
+                            <span editable-text="user.experience1Title"> <div id="headline">{{ user.experience1Title||
+                                'empty' }}
+                            </div></span>
+                            <span editable-text="user.experience1Institution"><div id="headline-institution">{{
+                                user.experience1Institution || 'empty' }}
+                            </div></span>
+                            <span editable-text="user.experience1Location"><div id="headline-location"
+                                                                                class="text-muted">{{
+                                user.experience1Location || 'empty' }}
+                            </div></span>
+                            <span editable-select="user.status" e-ng-options="s.value as s.text for s in statuses"> {{ showStatus() }}</span>
+                            <span editable-text="user.experience1TimePeriodYear">{{}}</span>
+                            <!--<span editable-text="user.experience1TimePeriodYear">{{ user.experience1TimePeriodYear || 'empty' }}</span>-->
                         <span editable-textarea="user.experience1Summary" e-rows="12" e-cols="80">
                             <p id="headline-i"><em>{{user.experience1Summary || 'no description'}}</em></p>
                         </span>
-                    </div>
-                    <div class="profile-edit">
-                        <!-- button to show form -->
-                        <button type="button" class="btn btn-xs btn-primary" ng-click="editableForm2.$show()" ng-show="!editableForm2.$visible">Edit Profile</button>
-                        <!-- buttons to submit / cancel form -->
+                        </div>
+                        <div class="profile-edit">
+                            <!-- button to show form -->
+                            <button type="button" class="btn btn-xs btn-primary" ng-click="editableForm2.$show()"
+                                    ng-show="!editableForm2.$visible">Edit Profile
+                            </button>
+                            <!-- buttons to submit / cancel form -->
                         <span ng-show="editableForm2.$visible">
                         <button type="submit" class="btn btn-primary" ng-disabled="editableForm2.$waiting">Save</button>
-                        <button type="button" class="btn btn-default" ng-disabled="editableForm2.$waiting" ng-click="editableForm2.$hide()">Cancel</button>
+                        <button type="button" class="btn btn-default" ng-disabled="editableForm2.$waiting"
+                                ng-click="editableForm2.$hide()">Cancel
+                        </button>
                         </span>
-                    </div>
-                </form>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="col-md-3 sidebar-offcanvas" id="sidebar2" role="navigation">
-    <div class="list-group col-md-12" >
-        <a href="#" class="list-group-item list-group-item-customized-inside-right">
-            <h6>PEOPLE YOU MAY KNOW</h6>  </a>
+    <div class="col-md-3 sidebar-offcanvas" id="sidebar2" role="navigation">
+        <div class="list-group col-md-12">
+            <a href="#" class="list-group-item list-group-item-customized-inside-right">
+                <h6>PEOPLE YOU MAY KNOW</h6></a>
 
-        <a href="#" class="list-group-item list-group-item-customized">
-            <row>
-                <span><img class= "pull-left search-image" src="/img/profilesAaron.png" width=50px /></span>
-                <span class="ppl-also-name-mini">Aaron Wilkinson</span><br/><span><small>Ethnic Studies, African and American studies</small></span>
-            </row>
-        </a>
+            <a href="#" class="list-group-item list-group-item-customized">
+                <row>
+                    <span><img class="pull-left search-image" src="/img/profilesAaron.png" width=50px/></span>
+                    <span class="ppl-also-name-mini">Aaron Wilkinson</span><br/><span><small>Ethnic Studies, African and
+                    American studies
+                </small></span>
+                </row>
+            </a>
 
-        <a href="#" class="list-group-item list-group-item-customized">
-            <row>
-                <span><img class= "pull-left search-image" src="/img/profilesLindsey.png" width=50px /></span>
-                <span class="ppl-also-name-mini">Lindsey Davis</span><br/><span >Criminal justice, family and social networks</span>
-            </row>
-        </a>
+            <a href="#" class="list-group-item list-group-item-customized">
+                <row>
+                    <span><img class="pull-left search-image" src="/img/profilesLindsey.png" width=50px/></span>
+                    <span class="ppl-also-name-mini">Lindsey Davis</span><br/><span>Criminal justice, family and social networks</span>
+                </row>
+            </a>
 
-        <a href="#" class="list-group-item list-group-item-customized">
-            <row>
-                <span><img class= "pull-left search-image" src="/img/profilesNell.png" width=50px /></span>
-                <span class="ppl-also-name-mini">Nell Haynes</span><br/><span >Women and gender in latin america</span>
-            </row>
-        </a>
+            <a href="#" class="list-group-item list-group-item-customized">
+                <row>
+                    <span><img class="pull-left search-image" src="/img/profilesNell.png" width=50px/></span>
+                    <span class="ppl-also-name-mini">Nell Haynes</span><br/><span>Women and gender in latin america</span>
+                </row>
+            </a>
 
-        <a href="#" class="list-group-item list-group-item-customized">
-            <row>
-                <span><img class= "pull-left search-image" src="/img/profilesMallory.png" width=50px /></span>
-                <span class="ppl-also-name-mini">Mallory Roberts</span><br/><span >High energy Astrophysics</span>
-            </row>
-        </a>
+            <a href="#" class="list-group-item list-group-item-customized">
+                <row>
+                    <span><img class="pull-left search-image" src="/img/profilesMallory.png" width=50px/></span>
+                    <span class="ppl-also-name-mini">Mallory Roberts</span><br/><span>High energy Astrophysics</span>
+                </row>
+            </a>
+        </div>
+
+        <div class="list-group col-md-12">
+            <a href="#" class="list-group-item list-group-item-customized-inside-right">
+                <h6>SIMILAR PROFILE</h6></a>
+
+            <a href="#" class="list-group-item list-group-item-customized">
+                <row>
+                    <span><img class="pull-left search-image" src="/img/profilesAaron.png" width=50px/></span>
+                    <span class="ppl-also-name-mini">Aaron Wilkinson</span><br/><span><small>Ethnic Studies, African and
+                    American studies
+                </small></span>
+                </row>
+            </a>
+
+            <a href="#" class="list-group-item list-group-item-customized">
+                <row>
+                    <span><img class="pull-left search-image" src="/img/profilesLindsey.png" width=50px/></span>
+                    <span class="ppl-also-name-mini">Lindsey Davis</span><br/><span>Criminal justice, family and social networks</span>
+                </row>
+            </a>
+
+            <a href="#" class="list-group-item list-group-item-customized">
+                <row>
+                    <span><img class="pull-left search-image" src="/img/profilesNell.png" width=50px/></span>
+                    <span class="ppl-also-name-mini">Nell Haynes</span><br/><span>Women and gender in latin america</span>
+                </row>
+            </a>
+
+            <a href="#" class="list-group-item list-group-item-customized">
+                <row>
+                    <span><img class="pull-left search-image" src="/img/profilesMallory.png" width=50px/></span>
+                    <span class="ppl-also-name-mini">Mallory Roberts</span><br/><span>High energy Astrophysics</span>
+                </row>
+            </a>
+
+        </div>
     </div>
-
-    <div class="list-group col-md-12" >
-        <a href="#" class="list-group-item list-group-item-customized-inside-right">
-            <h6>SIMILAR PROFILE</h6>   </a>
-
-        <a href="#" class="list-group-item list-group-item-customized">
-            <row>
-                <span><img class= "pull-left search-image" src="/img/profilesAaron.png" width=50px /></span>
-                <span class="ppl-also-name-mini">Aaron Wilkinson</span><br/><span><small>Ethnic Studies, African and American studies</small></span>
-            </row>
-        </a>
-
-        <a href="#" class="list-group-item list-group-item-customized">
-            <row>
-                <span><img class= "pull-left search-image" src="/img/profilesLindsey.png" width=50px /></span>
-                <span class="ppl-also-name-mini">Lindsey Davis</span><br/><span >Criminal justice, family and social networks</span>
-            </row>
-        </a>
-
-        <a href="#" class="list-group-item list-group-item-customized">
-            <row>
-                <span><img class= "pull-left search-image" src="/img/profilesNell.png" width=50px /></span>
-                <span class="ppl-also-name-mini">Nell Haynes</span><br/><span >Women and gender in latin america</span>
-            </row>
-        </a>
-
-        <a href="#" class="list-group-item list-group-item-customized">
-            <row>
-                <span><img class= "pull-left search-image" src="/img/profilesMallory.png" width=50px /></span>
-                <span class="ppl-also-name-mini">Mallory Roberts</span><br/><span >High energy Astrophysics</span>
-            </row>
-        </a>
-
-    </div>
-</div>
 </div>

@@ -1,20 +1,23 @@
 'use strict';
 
 /* Directives */
-/*
-angular.module('adjunct.directives').
-  directive('profileTopCard', function() {
+
+angular.module('adjunct.directives')
+    .directive('checkUser', ['$rootScope', '$location', 'Auth', function ($root, $location, Auth) {
         return {
-            templateUrl: function(notsurewhatthisis, attr) {
-                console.log(attr.isEditMode);
-                return attr.isEditMode == 'true' ? '/partial/profile-top-card-edit' : '/partial/profile-top-card'
-            },
-            link: function (scope, element, attrs) {
-                scope.$watch('isEditMode', function(newValue) {
-                    alert('isEditMode changed');
-                    // do something here
+            link: function (scope, elem, attrs, ctrl) {
+                $root.$on('$routeChangeStart', function (event, currRoute, prevRoute) {
+                    if (currRoute.accessLevel == 'private' && ((typeof globalUser == 'undefined') || globalUser == null)) {
+                        //returnTo = currRoute.templateUrl;
+                        $location.path('/signin');
+                    }
+                    /*
+                     * IMPORTANT:
+                     * It's not difficult to fool the previous control,
+                     * so it's really IMPORTANT to repeat the control also in the backend,
+                     * before sending back from the server reserved information.
+                     */
                 });
             }
-        };
-  });
-*/
+        }
+    }]);

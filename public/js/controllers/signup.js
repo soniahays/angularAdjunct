@@ -8,18 +8,18 @@ angular.module('adjunct.controllers')
         $scope.user.email='sonia@brami.com';
         $scope.user.password='sonia';
         $scope.joinNow = function(){
-          $rootScope.user = $scope.user ;
-          console.log("Join now!", $scope.user);
+        $rootScope.user = $scope.user ;
+
         $http({
             url: '/signup',
             method: 'POST',
             data: JSON.stringify({'user':$scope.user}),
                 headers: {'Content-Type': 'application/json'}
             }).success(function (data, status, headers, config) {
-                console.log("it worked");
+                console.log("signup post worked");
                 $location.path( '/basic-profile' );
             }).error(function (data, status, headers, config) {
-                console.log("it didn't work");
+                console.log("signup post didn't work");
 
             });
         }

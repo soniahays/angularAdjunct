@@ -11,10 +11,9 @@ angular.module('adjunct.controllers')
             method: 'GET',
             headers: {'Content-Type': 'application/json'}
         }).success(function (data, status, headers, config) {
-                console.log(data);
-                $scope.countries= data;
+                $scope.countries = data;
             }).error(function (data, status, headers, config) {
-                console.log("it didn't work");
+                console.log("get countries didn't work");
             });
 
 
@@ -24,10 +23,9 @@ angular.module('adjunct.controllers')
             method: 'GET',
             headers: {'Content-Type': 'application/json'}
         }).success(function (data, status, headers, config) {
-                console.log(data);
-                $scope.fieldGroup= data;
+                $scope.fieldGroup = data;
             }).error(function (data, status, headers, config) {
-                console.log("it didn't work");
+                console.log("get fieldGroup didn't work");
             });
 
         $scope.createProf = function(){
@@ -39,10 +37,9 @@ angular.module('adjunct.controllers')
                 data: JSON.stringify({'user':$scope.user}),
                 headers: {'Content-Type': 'application/json'}
             }).success(function (data, status, headers, config) {
-                    console.log("it worked");
                     $location.path( '/confirm-email' );
                 }).error(function (data, status, headers, config) {
-                    console.log("it didn't work");
+                    console.log("basic profile post didn't work");
                 });
         }
 

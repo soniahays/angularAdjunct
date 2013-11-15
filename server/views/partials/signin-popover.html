@@ -1,22 +1,21 @@
-<form action="/signin" method="post" class="form-signin input-group-sm signin-popover">
+<form  method="post" action="/signin-post" class="form-signin input-group-sm signin-popover">
     <!--<div ng-show="showError" style="color: #b94a48">Please enter a valid email and password.</div>-->
 
     <i class="icon-large icon-facebook"></i><button id="facebookAuth" class="btn btn-sm" type="button" ng-click="facebookAuth()">Facebook</button>
     <button id="linkedinAuth" class="btn btn-sm" type="button" ng-click="linkedinAuth()">Linkedin</button><br />
     <hr />
     <label><small>Email: </small></label>
-    <input name="email" type="text" class="form-control input-sm" placeholder="Email address" autofocus></span>
+    <input name="email"  ng-model="email" type="text" class="form-control input-sm" placeholder="Email address" autofocus></span>
     <br />
     <label><small>Password:</small></label>
-    <input name="password" type="password" class="form-control input-sm" placeholder="Password">
+    <input name="password" ng-model="password"  type="password" class="form-control input-sm" placeholder="Password">
     <span><a href="#"><small>Forgot password?</small></a></span>
     <label class="checkbox">
-        <input type="checkbox" value="remember-me"><small>Remember me</small>
-        <button id="signIn" class="btn btn-primary btn-sm btn-sample" type="submit">Sign in</button>
+        <input name="remember-me" type="checkbox" value="remember-me"><small>Remember me</small>
+        <button id="signin" class="btn btn-primary btn-sm btn-sample" type="submit">Sign in</button>
     </label>
 
     <hr/>
     <!--<button id="signUp" class="btn btn-success btn-sm" type="button" ng-click="goToSignUp()">Sign up</button><br />-->
     <small>No account? Sign up! </small>
-
 </form>
