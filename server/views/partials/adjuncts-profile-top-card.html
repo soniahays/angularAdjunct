@@ -1,9 +1,10 @@
 <div id="top-card" class="panel panel-default col-md-12 " style="padding-left:5px !important;padding-right:5px !important; padding-bottom: 0px !important; margin-bottom: 5px !important">
+
+
     <div class="panel-body profile-top-card">
         <div class="profile-picture">
             <span><img class= "img-thumbnail pull-left" src="img/jenny.jpg" /></span>
         </div>
-
         <div class="profile-overview-content">
                 <div class="lead lead-custom masthead">
                     <div class="account-icons">
@@ -41,10 +42,18 @@
                     <tr id="overview-summary-education">
                         <td class="profile-card-table-th">Education</td>
                         <td class="profile-card-table-td"><span>{{ user.educationLevel || 'empty' }}</span></td>
-                        <td><button type="button" class="btn btn-xs btn-primary" ng-click="edit()">Edit Profile</button></td>
+
+
+
+
                     </tr>
                     </tbody>
                 </table>
+            <!--<div id="tags-container">-->
+                <!--<tags-input ng-model="expertiseTags" ng-class="expertise-tags"></tags-input>-->
+            <!--</div>-->
+
+            <td><button type="button" class="btn btn-xs btn-primary btn-top-card-profile" ng-click="edit()">Edit Profile</button></td>
         </div>
     </div>
 </div>

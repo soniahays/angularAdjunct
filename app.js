@@ -50,7 +50,6 @@ app.get('/partial/adjuncts-profile',
         res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
         res.header('Pragma', 'no-cache');
         res.header('Expires', '0');
-        console.log('rendering adjuncts-profile.html');
         res.render(path.join(app.get('partials'), 'adjuncts-profile.html'));
     });
 

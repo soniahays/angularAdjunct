@@ -4,6 +4,14 @@ angular.module('adjunct.controllers')
     .controller('AdjunctsProfileCtrl', ['$scope','$rootScope','$filter','$http', function ($scope,$rootScope,$filter,$http) {
         $scope.user = $rootScope.user;
 
+        $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
+        $scope.middleCardTemplateUrl = '/partial/adjuncts-profile-middle-card';
+        $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card';
+        $scope.sideSearchColumnUrl = '/partial/side-search-column';
+        $scope.rightTopSideColumnUrl ='/partial/adjuncts-profile-right-topSide-column';
+        $scope.rightBottomSideColumnUrl ='/partial/adjuncts-profile-right-bottomSide-column';
+        $scope.badgeSectionUrl ='/partial/badge-section';
+
         $scope.user = {
             firstName:'Jenny',
             lastName:'Marlow',
@@ -33,8 +41,6 @@ angular.module('adjunct.controllers')
         ];
 
         $scope.expertiseTags = ['Early Modern Europe','Asia and the World','World History','Nazi Policy','Jewish Emancipation'];
-
-        $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
 
         $scope.edit = function(){
             $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card-edit';

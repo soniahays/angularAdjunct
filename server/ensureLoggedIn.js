@@ -50,12 +50,10 @@ module.exports = function ensureLoggedIn(options) {
                     req.session.returnTo = req.originalUrl || req.url;
                 }
             }
-            console.log("ensureLoggedIn redirecting to ", url);
             //return res.redirect(url);
             return res.render(url);
 
         }
-        console.log("ensureLoggedIn calling next()");
         return next();
     }
 }
