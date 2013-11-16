@@ -65,7 +65,7 @@ angular.module('adjunct.controllers')
             $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card-edit';
         }
 
-        $scope.save = function () {
+        $scope.saveTopCard = function () {
             $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
 
             $http({
