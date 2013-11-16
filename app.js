@@ -44,6 +44,24 @@ app.get('/api/fieldGroup', function (req, res) {
     res.json(fieldGroup);
 });
 
+app.get('/api/get-adjuncts-profile/:email', function(req, res){
+    var email = req.params.email;
+
+    if (!email)
+        return res.send("email required");
+
+    db.getUser({'email': email}, function(err, user) {
+        if (err) {
+            return res.send(500, "Error retrieving user");
+        }
+        if (!user) {
+            return res.send("{}");
+        }
+        delete user.password;
+        res.json(user);
+    });
+});
+
 app.get('/partial/adjuncts-profile',
     ensureLoggedIn({ redirectTo: path.join(app.get('partials'), 'signin-popover.html'), setReturnTo: true, customReturnTo: '/profile' }),
     function (req, res) {
@@ -92,15 +110,16 @@ app.post('/signup', function (req, res) {
 });
 
 app.post('/basic-profile', function (req, res) {
-    db.insertUser(req.body.user);
+    db.updateUser(req.body.user);
     res.end();
 });
-/*
- app.post('/adjuncts-profile', function(req, res){
- db.insertUser(req.body.user);
- res.end();
+
+app.post('/save-adjuncts-profile', function(req, res){
+    console.log(req.body.user);
+    db.updateUser(req.body.user);
+    res.end();
  });
- */
+
 app.get('*', function (req, res) {
     console.log("GET index.html", "user: " + req.user, "url: " + req.url);
     res.render(path.join(app.get('views'), 'index.html'), { user: req.user });

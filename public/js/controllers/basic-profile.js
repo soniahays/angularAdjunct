@@ -2,7 +2,6 @@
 
 angular.module('adjunct.controllers')
     .controller('BasicProfileCtrl', ['$scope','$rootScope','$http','$location', function ($scope,$rootScope,$http,$location) {
-        console.log($rootScope.user);
         $scope.user = $rootScope.user;
 
         $scope.countries = [];

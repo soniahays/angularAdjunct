@@ -11,6 +11,7 @@
                 </div>
 
                 <div id="experience-container">
+                    Hello
                     <span editable-text="user.experience1Title"> <div id="headline">{{ user.experience1Title|| 'empty' }}</div></span>
                     <span editable-text="user.experience1Institution"><div id="headline-institution">{{ user.experience1Institution || 'empty' }}</div></span>
                     <span editable-text="user.experience1Location"><div id="headline-location"class="text-muted">{{ user.experience1Location || 'empty' }}</div></span>
@@ -25,11 +26,11 @@
 
                 <div class="profile-edit">
                     <!-- button to show form -->
-                    <button type="button" class="btn btn-xs btn-primary" ng-click="editBottomCard()">Edit Profile</button>
+                    <button type="button" class="btn btn-xs btn-primary" ng-click="saveBottomCard()">Save Profile</button>
                     <!-- buttons to submit / cancel form -->
-                  <span ng-show="editableForm2.$visible">
-                  <button type="submit" class="btn btn-primary" ng-disabled="editableForm2.$waiting">Save</button>
-                  <button type="button" class="btn btn-default" ng-disabled="editableForm2.$waiting" ng-click="editableForm2.$hide()">Cancel</button>
+                  <span>
+                  <button class="btn btn-primary">Save</button>
+                  <button type="button" class="btn btn-default">Cancel</button>
                   </span>
                 </div>
 

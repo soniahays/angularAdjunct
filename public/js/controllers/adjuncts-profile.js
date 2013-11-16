@@ -1,63 +1,82 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('AdjunctsProfileCtrl', ['$scope','$rootScope','$filter','$http', function ($scope,$rootScope,$filter,$http) {
-        $scope.user = $rootScope.user;
+    .controller('AdjunctsProfileCtrl', ['$scope', '$filter', '$http', 'Auth', function ($scope, $filter, $http, Auth) {
 
+        if (!Auth.isLoggedIn)
+            return;
+
+        console.log(Auth.user);
         $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
         $scope.middleCardTemplateUrl = '/partial/adjuncts-profile-middle-card';
         $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card';
         $scope.sideSearchColumnUrl = '/partial/side-search-column';
-        $scope.rightTopSideColumnUrl ='/partial/adjuncts-profile-right-topSide-column';
-        $scope.rightBottomSideColumnUrl ='/partial/adjuncts-profile-right-bottomSide-column';
-        $scope.badgeSectionUrl ='/partial/badge-section';
+        $scope.rightTopSideColumnUrl = '/partial/adjuncts-profile-right-topSide-column';
+        $scope.rightBottomSideColumnUrl = '/partial/adjuncts-profile-right-bottomSide-column';
+        $scope.badgeSectionUrl = '/partial/badge-section';
 
+        $http({
+            url: '/api/get-adjuncts-profile/' + Auth.user.email,
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        }).success(function (data, status, headers, config) {
+                $scope.user = data;
+                console.log("get-adjuncts-profile-top-card worked", data);
+            }).error(function (data, status, headers, config) {
+                console.log("get-adjuncts-profile-top-card didn't work");
+            });
+/*
         $scope.user = {
-            firstName:'Jenny',
-            lastName:'Marlow',
-            currentPosition:'Teaching Assistant',
-            institution:'Michigan State University',
-            city:'East Lansing',
-            generalArea:'Michigan',
-            department:'History Dpt.',
+            email: Auth.user.email,
+            firstName: 'Jenny',
+            lastName: 'Marlow',
+            currentPosition: 'Teaching Assistant',
+            institution: 'Michigan State University',
+            city: 'East Lansing',
+            generalArea: 'Michigan',
+            department: 'History Dpt.',
             specialty1: '20th Century',
-            specialty2:'Women & Gender',
-            specialty3:'Europe & Russia',
-            educationLevel:'Ph.D (expected)',
-            summary:'Jennifer is currently pursuing her graduate degree at Michigan State University. Her research interests include Poland, the Holocaust, European Jewry Gender Childhood and Family. She has over six years of experience as an instructor and teaching assistant. Jennifer is a tech savvy teacher and has been enhancing her classes with Youtube video and online questionnaire for four years now ',
-            experience1Institution:'Saginaw Valley State University',
-            experience1Title:'Instructor',
-            experience1Location:'fall 2013, Kochville, Michigan ',
-            status:1,
-            experience1TimePeriodYear:'2013',
-            experience1Summary:'write more about your experience here'
+            specialty2: 'Women & Gender',
+            specialty3: 'Europe & Russia',
+            educationLevel: 'Ph.D (expected)',
+            summary: 'Jennifer is currently pursuing her graduate degree at Michigan State University. Her research interests include Poland, the Holocaust, European Jewry Gender Childhood and Family. She has over six years of experience as an instructor and teaching assistant. Jennifer is a tech savvy teacher and has been enhancing her classes with Youtube video and online questionnaire for four years now',
+            experience1Institution: 'Saginaw Valley State University',
+            experience1Title: 'Instructor',
+            experience1Location: 'Fall 2013, Kochville, Michigan',
+            status: 1,
+            experience1TimePeriodYear: '2013',
+            experience1Summary: 'write more about your experience here'
         };
 
+        $scope.expertiseTags = ['Early Modern Europe', 'Asia and the World', 'World History', 'Nazi Policy', 'Jewish Emancipation'];
+*/
         $scope.statuses = [
-            {value:1, text:'fall'},
-            {value:2, text:'winter'},
-            {value:3, text:'spring'},
-            {value:4, text:'summer'}
+            {value: 1, text: 'fall'},
+            {value: 2, text: 'winter'},
+            {value: 3, text: 'spring'},
+            {value: 4, text: 'summer'}
         ];
 
-        $scope.expertiseTags = ['Early Modern Europe','Asia and the World','World History','Nazi Policy','Jewish Emancipation'];
-
-        $scope.edit = function(){
+        $scope.editTopCard = function () {
             $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card-edit';
         }
 
-        $scope.save = function(){
+        $scope.editBottomCard = function () {
+            $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card-edit';
+        }
+
+        $scope.save = function () {
             $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
 
             $http({
-                url: '/adjuncts-profile',
+                url: '/save-adjuncts-profile',
                 method: 'POST',
                 data: JSON.stringify({'user': $scope.user}),
                 headers: {'Content-Type': 'application/json'}
             }).success(function (data, status, headers, config) {
-                console.log("save-adjuncts-profile-top-card worked");
-            }).error(function (data, status, headers, config) {
-                console.log("save-adjuncts-profile-top-card didn't work");
-            });
+                    console.log("save-adjuncts-profile-top-card worked");
+                }).error(function (data, status, headers, config) {
+                    console.log("save-adjuncts-profile-top-card didn't work");
+                });
         }
     }]);
