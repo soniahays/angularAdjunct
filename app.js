@@ -44,30 +44,38 @@ app.get('/api/fieldGroup', function (req, res) {
     res.json(fieldGroup);
 });
 
-app.get('/api/get-adjuncts-profile/:email', function(req, res){
-    var email = req.params.email;
+app.get('/api/get-adjuncts-profile/:idType/:id', function(req, res){
+    res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.header('Pragma', 'no-cache');
+    res.header('Expires', '0');
+    var idType = req.params.idType;
+    var id = req.params.id;
 
-    if (!email)
-        return res.send("email required");
+    if (!id || !idType)
+        return res.send("ID and ID Type required");
 
-    db.getUser({'email': email}, function(err, user) {
+    var user = {'id': id, 'idType': idType};
+
+    db.getUser(user, function(err, user) {
         if (err) {
             return res.send(500, "Error retrieving user");
         }
         if (!user) {
-            return res.send("{}");
+            return res.json({});
         }
         delete user.password;
-        res.json(user);
+        return res.json(user);
     });
 });
 
 app.get('/partial/adjuncts-profile',
-    ensureLoggedIn({ redirectTo: path.join(app.get('partials'), 'signin-popover.html'), setReturnTo: true, customReturnTo: '/profile' }),
+    ensureLoggedIn({ redirectTo: path.join(app.get('partials'), 'signin-popover.html'), customReturnTo: '/profile' }),
     function (req, res) {
         res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
         res.header('Pragma', 'no-cache');
         res.header('Expires', '0');
+        res.cookie('id', req.user.id);
+        res.cookie('idType', req.user.idType);
         res.render(path.join(app.get('partials'), 'adjuncts-profile.html'));
     });
 
@@ -121,7 +129,6 @@ app.post('/save-adjuncts-profile', function(req, res){
  });
 
 app.get('*', function (req, res) {
-    console.log("GET index.html", "user: " + req.user, "url: " + req.url);
     res.render(path.join(app.get('views'), 'index.html'), { user: req.user });
 });
 

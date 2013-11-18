@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('AdjunctsProfileCtrl', ['$scope', '$filter', '$http', 'Auth', function ($scope, $filter, $http, Auth) {
+    .controller('AdjunctsProfileCtrl', ['$scope', '$filter', '$http', '$cookies', function ($scope, $filter, $http, $cookies) {
 
-        if (!Auth.isLoggedIn)
+        if (!$cookies.id) {
+            console.error("No ID!");
             return;
+        }
 
-        console.log(Auth.user);
         $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
         $scope.middleCardTemplateUrl = '/partial/adjuncts-profile-middle-card';
         $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card';
@@ -16,15 +17,14 @@ angular.module('adjunct.controllers')
         $scope.badgeSectionUrl = '/partial/badge-section';
 
         $http({
-            url: '/api/get-adjuncts-profile/' + Auth.user.email,
+            url: '/api/get-adjuncts-profile/' + $cookies.idType + '/' + $cookies.id,
             method: 'GET',
             headers: {'Content-Type': 'application/json'}
         }).success(function (data, status, headers, config) {
-                $scope.user = data;
-                console.log("get-adjuncts-profile-top-card worked", data);
-            }).error(function (data, status, headers, config) {
-                console.log("get-adjuncts-profile-top-card didn't work");
-            });
+            $scope.user = data;
+        }).error(function (data, status, headers, config) {
+            console.log("get-adjuncts-profile-top-card didn't work");
+        });
 /*
         $scope.user = {
             email: Auth.user.email,

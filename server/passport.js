@@ -7,11 +7,11 @@ module.exports = function(db, passport, bcrypt, isLocal) {
     passport.use(new LocalStrategy({
             usernameField: 'email',
             passwordField: 'password'
-    },
+        },
         function(email, password, done) {
-            db.getUser({'email': email}, function(err, user) {
+            db.getUser({'id': email, 'idType': 'email'}, function(err, user) {
                 if (err)
-                    return done(err,null);
+                    return done(err, null);
 
                 if (!user) {
                     return done(null, false, { message: 'Incorrect email.' });
@@ -35,16 +35,17 @@ module.exports = function(db, passport, bcrypt, isLocal) {
             callbackURL: isLocal ? "http://localhost:3000/auth/linkedin/callback" : "http://adjuncts-dev.herokuapp.com/auth/linkedin/callback"
         },
         function(accessToken, refreshToken, profile, done) {
-            console.log(profile);
-            db.getUser({ linkedinId: profile.id }, function(err, user) {
+            db.getUser({ 'id': profile.id, 'idType': 'linkedinId' }, function(err, user) {
+
                 if (err) {
                     return done(err);
                 }
+
                 if (user) {
                     done(null, user);
                 }
                 else {
-                    db.insertUser({'linkedinId': profile.id, 'firstName': profile.name.givenName, 'lastName': profile.name.familyName }, done);
+                    db.insertUser({'idType': 'linkedinId', 'id': profile.id, 'firstName': profile.name.givenName, 'lastName': profile.name.familyName }, done);
                 }
             });
         }
@@ -56,7 +57,7 @@ module.exports = function(db, passport, bcrypt, isLocal) {
             callbackURL: isLocal ? "http://localhost:3000/auth/facebook/callback" : "http://adjuncts-dev.herokuapp.com/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done) {
-            db.getUser({ facebookId: profile.id }, function(err, user) {
+            db.getUser({ 'facebookId': profile.id, 'idType': 'facebookId' }, function(err, user) {
                 if (err) {
                     return done(err);
                 }
@@ -64,7 +65,7 @@ module.exports = function(db, passport, bcrypt, isLocal) {
                     done(null, user);
                 }
                 else {
-                    db.insertUser({'facebookId': profile.id, 'firstName': profile.name.givenName, 'lastName': profile.name.familyName }, done);
+                    db.insertUser({'idType': 'facebookId', 'id': profile.id, 'firstName': profile.name.givenName, 'lastName': profile.name.familyName }, done);
                 }
             });
         }

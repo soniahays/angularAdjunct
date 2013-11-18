@@ -17,6 +17,8 @@ module.exports = function (bcrypt, isLocal) {
         insertUser: function (user, callback) {
             var collection = db.collection('users');
             if (user.password) {
+                user.idType = 'email';
+                user.id = user.email;
                 bcrypt.genSalt(10, function (err, salt) {
                     bcrypt.hash(user.password, salt, function (err, hash) {
                         user.password = hash;
@@ -52,7 +54,7 @@ module.exports = function (bcrypt, isLocal) {
                 var collection = db.collection('users');
                 user.password = u.password;
                 delete user._id;
-                collection.update({'email': u.email}, user, function (err) {
+                collection.update({'id': u.id}, user, function (err) {
                     if (err) {
                         return console.error(err);
                     }
@@ -63,41 +65,18 @@ module.exports = function (bcrypt, isLocal) {
         },
         getUser: function (user, callback) {
             var collection = db.collection('users');
-            var result = collection.find({$and: [
-                {'email': {$exists: true}},
-                {'email': user.email}
-            ]});
-            result.toArray(function (err, docs) {
+            collection.find({'idType': user.idType, 'id': user.id})
+            .toArray(function (err, docs) {
+                if (err) {
+                    return console.error(err);
+                }
                 if (docs.length == 0) {
-                    result = collection.find({$and: [
-                        {'facebookId': {$exists: true}},
-                        {'facebookId': user.facebookId}
-                    ]});
-                    result.toArray(function (err, docs) {
-                        if (docs.length == 0) {
-                            result = collection.find({$and: [
-                                {'linkedinId': {$exists: true}},
-                                {'linkedinId': user.linkedinId}
-                            ]});
-                            result.toArray(function (err, docs) {
-                                if (docs.length == 0) {
-                                    callback(null, null);
-                                }
-                                else {
-                                    callback(null, docs[0]);
-                                }
-                            });
-                        }
-                        else {
-                            callback(null, docs[0]);
-                        }
-                    });
+                     callback(null, null);
                 }
                 else {
                     callback(null, docs[0]);
                 }
             });
-        }
-    };
+        }};
     return self;
 }

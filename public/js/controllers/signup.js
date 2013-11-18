@@ -23,7 +23,6 @@ angular.module('adjunct.controllers')
                     $location.path('/basic-profile');
                 }).error(function (data, status, headers, config) {
                     console.log("signup post didn't work");
-
                 });
         }
     }]);
