@@ -14,6 +14,11 @@ angular.module('adjunct.controllers')
             if ($scope.hide)
                 $scope.hide();
         }
+        $scope.googleAuth = function () {
+            window.location.href = '/auth/google';
+            if ($scope.hide)
+                $scope.hide();
+        }
         $scope.goToSignUp = function () {
             $location.path('/signup');
             if ($scope.hide)

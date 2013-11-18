@@ -1,7 +1,8 @@
 
 var LocalStrategy = require('passport-local').Strategy,
     LinkedInStrategy = require('passport-linkedin').Strategy,
-    FacebookStrategy = require('passport-facebook').Strategy;
+    FacebookStrategy = require('passport-facebook').Strategy,
+    GoogleStrategy = require('passport-google').Strategy;
 
 module.exports = function(db, passport, bcrypt, isLocal) {
     passport.use(new LocalStrategy({
@@ -66,6 +67,26 @@ module.exports = function(db, passport, bcrypt, isLocal) {
                 }
                 else {
                     db.insertUser({'idType': 'facebookId', 'id': profile.id, 'firstName': profile.name.givenName, 'lastName': profile.name.familyName }, done);
+                }
+            });
+        }
+    ));
+
+    passport.use(new GoogleStrategy({
+        returnURL: isLocal ? "http://localhost:3000/auth/google/callback" : "http://adjuncts-dev.herokuapp.com/auth/google/callback",
+        realm: isLocal ? "http://localhost:3000" : "http://adjuncts-dev.herokuapp.com"
+        },
+        function(identifier, profile, done) {
+            var id = encodeURIComponent(identifier);
+            db.getUser({ 'id': id, 'idType': 'googleId' }, function(err, user) {
+                if (err) {
+                    return done(err);
+                }
+                if (user) {
+                    done(null, user);
+                }
+                else {
+                    db.insertUser({'idType': 'googleId', 'id': id, 'firstName': profile.name.givenName, 'lastName': profile.name.familyName }, done);
                 }
             });
         }

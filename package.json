@@ -1,5 +1,5 @@
 {
-    "name": "adjunct",
+    "name": "adjuncts",
     "version": "0.0.1",
     "dependencies": {
         "express": "3.4.x",
@@ -9,6 +9,7 @@
         "passport": "0.1.17",
         "passport-facebook": "1.0.x",
         "passport-linkedin": "0.1.x",
+        "passport-google": "0.3.x",
         "passport-local": "0.1.6"
     },
     "engines": {

@@ -46,7 +46,7 @@ app.get('/api/fieldGroup', function (req, res) {
 
 app.get('/api/get-adjuncts-profile/:idType/:id', function(req, res){
     var idType = req.params.idType;
-    var id = req.params.id;
+    var id = encodeURIComponent(req.params.id);
 
     if (!id || !idType)
         return res.send("ID and ID Type required");
@@ -96,6 +96,14 @@ app.get('/auth/linkedin', passport.authenticate('linkedin'));
 
 app.get('/auth/linkedin/callback',
     passport.authenticate('linkedin', {
+        successRedirect: '/',
+        failureRedirect: '/signin' })
+);
+
+app.get('/auth/google', passport.authenticate('google'));
+
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
         successRedirect: '/',
         failureRedirect: '/signin' })
 );
