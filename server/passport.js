@@ -57,7 +57,7 @@ module.exports = function(db, passport, bcrypt, isLocal) {
             callbackURL: isLocal ? "http://localhost:3000/auth/facebook/callback" : "http://adjuncts-dev.herokuapp.com/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done) {
-            db.getUser({ 'facebookId': profile.id, 'idType': 'facebookId' }, function(err, user) {
+            db.getUser({ 'id': profile.id, 'idType': 'facebookId' }, function(err, user) {
                 if (err) {
                     return done(err);
                 }

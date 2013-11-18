@@ -45,9 +45,6 @@ app.get('/api/fieldGroup', function (req, res) {
 });
 
 app.get('/api/get-adjuncts-profile/:idType/:id', function(req, res){
-    res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
-    res.header('Pragma', 'no-cache');
-    res.header('Expires', '0');
     var idType = req.params.idType;
     var id = req.params.id;
 
@@ -71,9 +68,6 @@ app.get('/api/get-adjuncts-profile/:idType/:id', function(req, res){
 app.get('/partial/adjuncts-profile',
     ensureLoggedIn({ redirectTo: path.join(app.get('partials'), 'signin-popover.html'), customReturnTo: '/profile' }),
     function (req, res) {
-        res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
-        res.header('Pragma', 'no-cache');
-        res.header('Expires', '0');
         res.cookie('id', req.user.id);
         res.cookie('idType', req.user.idType);
         res.render(path.join(app.get('partials'), 'adjuncts-profile.html'));
@@ -123,7 +117,6 @@ app.post('/basic-profile', function (req, res) {
 });
 
 app.post('/save-adjuncts-profile', function(req, res){
-    console.log(req.body.user);
     db.updateUser(req.body.user);
     res.end();
  });
