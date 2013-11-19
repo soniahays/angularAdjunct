@@ -10,6 +10,7 @@ module.exports = function(db, passport, bcrypt, isLocal) {
             passwordField: 'password'
         },
         function(email, password, done) {
+            email = encodeURIComponent(email);
             db.getUser({'id': email, 'idType': 'email'}, function(err, user) {
                 if (err)
                     return done(err, null);

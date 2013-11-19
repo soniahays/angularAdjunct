@@ -12,6 +12,7 @@ angular.module('adjunct.controllers')
         }
 
         $scope.joinNow = function () {
+            $scope.user.email = encodeURIComponent($scope.user.email);
             $rootScope.user = $scope.user;
             $http({
                 url: '/signup',
