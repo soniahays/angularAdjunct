@@ -2,7 +2,6 @@
 
 angular.module('adjunct.controllers')
     .controller('SigninCtrl', ['$scope', '$location', function ($scope, $location) {
-        $scope.showError = true;
 
         $scope.facebookAuth = function () {
             window.location.href = '/auth/facebook';

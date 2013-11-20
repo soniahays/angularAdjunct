@@ -81,6 +81,8 @@ app.get('/partial/:name',
 
 app.get('/signout', function (req, res) {
     req.logout();
+    res.clearCookie('id', { path: '/' });
+    res.clearCookie('idType', { path: '/' });
     res.redirect('/');
 });
 
@@ -88,7 +90,7 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-        successRedirect: '/',
+        successReturnToOrRedirect: '/',
         failureRedirect: '/signin' })
 );
 
@@ -96,7 +98,7 @@ app.get('/auth/linkedin', passport.authenticate('linkedin'));
 
 app.get('/auth/linkedin/callback',
     passport.authenticate('linkedin', {
-        successRedirect: '/',
+        successReturnToOrRedirect: '/',
         failureRedirect: '/signin' })
 );
 
@@ -104,7 +106,7 @@ app.get('/auth/google', passport.authenticate('google'));
 
 app.get('/auth/google/callback',
     passport.authenticate('google', {
-        successRedirect: '/',
+        successReturnToOrRedirect: '/',
         failureRedirect: '/signin' })
 );
 
@@ -130,7 +132,11 @@ app.post('/save-adjuncts-profile', function(req, res){
  });
 
 app.get('*', function (req, res) {
-    res.render(path.join(app.get('views'), 'index.html'), { user: req.user });
+    if (req.user) {
+        res.cookie('id', req.user.id);
+        res.cookie('idType', req.user.idType);
+    }
+    res.render(path.join(app.get('views'), 'index.html'));
 });
 
 

@@ -63,6 +63,7 @@ module.exports = function(db, passport, bcrypt, isLocal) {
                 if (err) {
                     return done(err);
                 }
+
                 if (user) {
                     done(null, user);
                 }

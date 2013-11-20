@@ -4,7 +4,6 @@ angular.module('adjunct.controllers')
     .controller('AdjunctsProfileCtrl', ['$scope', '$filter', '$http', '$cookies', function ($scope, $filter, $http, $cookies) {
 
         if (!$cookies.id) {
-            console.error("No ID!");
             return;
         }
 

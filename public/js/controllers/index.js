@@ -2,9 +2,8 @@
 
 angular.module('adjunct.controllers')
 .controller('IndexCtrl', ['$scope', '$cookies', function ($scope, $cookies) {
-    $scope.signout = function() {
-        $cookies.id = null;
-        $cookies.idType = null;
-        window.location.replace('/signout');
-    }
+        $scope.isSignedIn = $cookies.id != null;
+        $scope.signout = function() {
+            window.location.replace('/signout');
+        }
 }]);

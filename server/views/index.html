@@ -44,11 +44,8 @@
                     <li><a href="contact">Contact</a></li>
                 </ul>
                 <div class="nav navbar-nav navbar-right">
-                    <% if (user) { %>
-                        <button class="btn btn-custom btn-signin" ng-click="signout()">Sign Out</button>
-                    <% } else { %>
-                        <button class="btn btn-custom btn-signin" data-placement="bottom" data-title="Sign In" bs-popover="'partial/signin-popover'">Sign In</button>
-                    <% } %>
+                    <button class="btn btn-custom btn-signin" ng-click="signout()" ng-show="isSignedIn">Sign Out</button>
+                    <button class="btn btn-custom btn-signin" data-placement="bottom" data-title="Sign In" bs-popover="'partial/signin-popover'" ng-show="!isSignedIn">Sign In</button>
                </div>
             </div>
         </div>
