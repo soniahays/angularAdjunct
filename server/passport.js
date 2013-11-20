@@ -4,7 +4,18 @@ var LocalStrategy = require('passport-local').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
     GoogleStrategy = require('passport-google').Strategy;
 
-module.exports = function(db, passport, bcrypt, isLocal) {
+module.exports = function(db, passport, bcrypt) {
+
+    var ROOT_URL = "http://localhost:3000";
+    switch(process.env.NODE_ENV) {
+        case 'development':
+            ROOT_URL = "http://adjuncts-dev.herokuapp.com";
+            break;
+        case 'production':
+            ROOT_URL = "http://adjuncts.herokuapp.com";
+            break;
+    }
+
     passport.use(new LocalStrategy({
             usernameField: 'email',
             passwordField: 'password'
@@ -34,7 +45,7 @@ module.exports = function(db, passport, bcrypt, isLocal) {
     passport.use(new LinkedInStrategy({
             consumerKey: 'mw29t6wc4cfa',
             consumerSecret: 'Chw82KgUKBgteXNh',
-            callbackURL: isLocal ? "http://localhost:3000/auth/linkedin/callback" : "http://adjuncts-dev.herokuapp.com/auth/linkedin/callback"
+            callbackURL: ROOT_URL + '/auth/linkedin/callback'
         },
         function(accessToken, refreshToken, profile, done) {
             db.getUser({ 'id': profile.id, 'idType': 'linkedinId' }, function(err, user) {
@@ -56,7 +67,7 @@ module.exports = function(db, passport, bcrypt, isLocal) {
     passport.use(new FacebookStrategy({
             clientID: '573386006047842',
             clientSecret: 'dd82492ee233507c44937f3701d078b2',
-            callbackURL: isLocal ? "http://localhost:3000/auth/facebook/callback" : "http://adjuncts-dev.herokuapp.com/auth/facebook/callback"
+            callbackURL: ROOT_URL + '/auth/facebook/callback'
         },
         function(accessToken, refreshToken, profile, done) {
             db.getUser({ 'id': profile.id, 'idType': 'facebookId' }, function(err, user) {
@@ -75,8 +86,8 @@ module.exports = function(db, passport, bcrypt, isLocal) {
     ));
 
     passport.use(new GoogleStrategy({
-        returnURL: isLocal ? "http://localhost:3000/auth/google/callback" : "http://adjuncts-dev.herokuapp.com/auth/google/callback",
-        realm: isLocal ? "http://localhost:3000" : "http://adjuncts-dev.herokuapp.com"
+        returnURL: ROOT_URL + '/auth/google/callback',
+        realm: ROOT_URL
         },
         function(identifier, profile, done) {
             var id = encodeURIComponent(identifier);

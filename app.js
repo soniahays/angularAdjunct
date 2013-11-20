@@ -1,12 +1,11 @@
 var express = require('express');
 var app = express();
-var isLocal = false;
 
 app.configure('development', function () {
-    isLocal = true;
+
 });
 app.configure('production', function () {
-    isLocal = false;
+
 });
 
 var http = require('http'),
@@ -14,8 +13,8 @@ var http = require('http'),
     passport = require('passport'),
     ensureLoggedIn = require('./server/ensureLoggedIn.js'),
     bcrypt = require('bcrypt'),
-    db = require('./server/db.js')(bcrypt, isLocal),
-    pass = require('./server/passport.js')(db, passport, bcrypt, isLocal),
+    db = require('./server/db.js')(bcrypt),
+    pass = require('./server/passport.js')(db, passport, bcrypt),
     countries = require('./server/api/countries.json'),
     fieldGroup = require('./server/api/fieldGroup.json');
 

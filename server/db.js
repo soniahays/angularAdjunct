@@ -1,9 +1,17 @@
 var mongodb = require('mongodb'),
     MongoClient = mongodb.MongoClient;
 
-module.exports = function (bcrypt, isLocal) {
+module.exports = function (bcrypt) {
 
-    var MONGO_URL = isLocal ? "mongodb://localhost:27017/adjunct" : "mongodb://nader:adj0nct@paulo.mongohq.com:10043/adjunct";
+    var MONGO_URL = "mongodb://localhost:27017/adjunct";
+    switch(process.env.NODE_ENV) {
+        case 'development':
+            MONGO_URL = "mongodb://nader:adj0nct@paulo.mongohq.com:10043/adjunct";
+        break;
+        case 'production':
+            MONGO_URL = "mongodb://nader:adj0nct@paulo.mongohq.com:10043/adjunct";
+        break;
+    }
 
     var db, err;
     var self = {
