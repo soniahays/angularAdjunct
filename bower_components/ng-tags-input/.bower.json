@@ -1,0 +1,23 @@
+{
+  "name": "ng-tags-input",
+  "version": "0.1.4",
+  "location": "https://github.com/mbenford/ngTagsInput-bower",
+  "main": [
+    "ng-tags-input.min.js",
+    "ng-tags-input.min.css"
+  ],
+  "description": "Tags input directive for AngularJS",
+  "dependencies": {
+    "angular": "~1.0.5"
+  },
+  "homepage": "https://github.com/mbenford/ngTagsInput-bower",
+  "_release": "0.1.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.4",
+    "commit": "7553ff1c24a5c77f860875e0e836bf136242868f"
+  },
+  "_source": "git://github.com/mbenford/ngTagsInput-bower.git",
+  "_target": "~0.1",
+  "_originalSource": "ng-tags-input"
+}

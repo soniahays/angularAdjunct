@@ -1,15 +1,6 @@
-var express = require('express');
-var app = express();
-
-app.configure('development', function () {
-
-});
-app.configure('production', function () {
-
-});
-
 var http = require('http'),
     path = require('path'),
+    express = require('express'),
     passport = require('passport'),
     ensureLoggedIn = require('./server/ensureLoggedIn.js'),
     bcrypt = require('bcrypt'),
@@ -17,6 +8,8 @@ var http = require('http'),
     pass = require('./server/passport.js')(db, passport, bcrypt),
     countries = require('./server/api/countries.json'),
     fieldGroup = require('./server/api/fieldGroup.json');
+
+var app = express();
 
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'server/views'));
@@ -27,6 +20,7 @@ app.use(express.bodyParser());
 app.use(express.cookieParser());
 app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'bower_components')));
 app.use(express.session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
