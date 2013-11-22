@@ -2,18 +2,6 @@
     <div class="panel-body profile-top-card">
         <div class="profile-picture">
             <span><img class="img-thumbnail pull-left" src="{{user.imagePath}}"/></span>
-            <div>
-                <form id="profile-pic-upload" ng-upload method="POST" action="/upload?delay=yes">
-                    <p>
-                        <label>Select a profile picture:</label>
-                        <input type="file" name="file" />
-                    </p>
-                    <p>
-                        <input upload-submit="uploadComplete(content)" type="submit" class="btn" value="Submit"/>
-                    </p>
-                </form>
-                <div ng-bind-html-unsafe="uploadResponse"></div>
-            </div>
         </div>
         <div class="profile-overview-content">
             <div class="lead lead-custom masthead">
