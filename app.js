@@ -1,7 +1,6 @@
 var http = require('http'),
     path = require('path'),
     fs = require('fs'),
-    mv = require('mv'),
     uuid = require('node-uuid'),
     express = require('express'),
     passport = require('passport'),
@@ -140,16 +139,11 @@ app.post('/upload', function (req, res) {
                 var file = req.files.file;
                 var newFileName = uuid.v1() + path.extname(file.path);
                 var newFilePath = path.join(app.get('uploadPath'),  newFileName);
-                mv(file.path, newFilePath, function (err) {
-                    if (err)
-                        throw err;
-                    else {
-                        db.updateUserField(req.cookies.id, {'imageName': newFileName}, function() {
-                            res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
-                        });
-                    }
-                });
-
+                fs.createReadStream(file.path).pipe(fs.createWriteStream(newFilePath).on('close', function() {
+                    db.updateUserField(req.cookies.id, {'imageName': newFileName}, function() {
+                        res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
+                    });
+                }));
             }
         },
         (req.param('delay', 'yes') == 'yes') ? 2000 : -1
