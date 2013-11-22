@@ -21,7 +21,6 @@ angular.module('adjunct.controllers')
             headers: {'Content-Type': 'application/json'}
         }).success(function (data, status, headers, config) {
             $scope.user = data;
-            $scope.user.imagePath = '/uploads/' + data.imageName;
         }).error(function (data, status, headers, config) {
             console.log("get-adjuncts-profile-top-card didn't work");
         });
@@ -88,7 +87,7 @@ angular.module('adjunct.controllers')
                 method: 'GET',
                 headers: {'Content-Type': 'application/json'}
             }).success(function (data, status, headers, config) {
-                    $scope.user.imagePath = '/uploads/' + data.imageName;
+                    $scope.user.imageName = data.imageName;
                 }).error(function (data, status, headers, config) {
                     console.log("get-adjuncts-profile-top-card didn't work");
                 });

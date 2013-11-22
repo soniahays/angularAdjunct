@@ -1,7 +1,7 @@
 <div id="top-card" class="panel panel-default col-md-12" style="padding-left:5px !important;padding-right:5px !important; padding-bottom: 0px !important; margin-bottom: 5px !important">
     <div class="panel-body profile-top-card">
         <div class="profile-picture">
-            <span><img class= "img-thumbnail pull-left" src="{{user.imagePath}}"/></span>
+            <span><img class= "img-thumbnail pull-left" src="/uploads/{{user.imageName}}"/></span>
             <div>
                 <form id="profile-pic-upload" ng-upload method="POST" action="/upload?delay=yes">
                     <p>

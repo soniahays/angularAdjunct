@@ -156,6 +156,27 @@ app.post('/upload', function (req, res) {
     );
 });
 
+app.get('/image/:idType/:id', function(req, res) {
+    var idType = req.params.idType;
+    var id = req.params.id;
+
+    if (!id || !idType)
+        return res.send("ID and ID Type required");
+
+    var user = {'id': id, 'idType': idType};
+
+    db.getUser(user, function (err, user) {
+        if (err) {
+            return res.send(500, "Error retrieving user");
+        }
+        if (!user) {
+            return res.send('Not found');
+        }
+        delete user.password;
+        return res.json({ 'imagePath': '/uploads/' + user.imageName });
+    });
+});
+
 app.get('*', function (req, res) {
     if (req.user) { // user coming from valid passport authentication
         res.cookie('id', req.user.id);
