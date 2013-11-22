@@ -10,7 +10,9 @@
         "passport-facebook": "1.0.x",
         "passport-linkedin": "0.1.x",
         "passport-google": "0.3.x",
-        "passport-local": "0.1.6"
+        "passport-local": "0.1.6",
+        "mv": "~1.0",
+        "node-uuid": "~1.4"
     },
     "engines": {
         "node": "0.10.x",

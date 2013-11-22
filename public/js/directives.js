@@ -1,17 +1,23 @@
 'use strict';
 
 /* Directives */
-/*
+
 angular.module('adjunct.directives')
-    .directive('checkUser', ['$location', 'Auth', function ($location, Auth) {
+    .directive('ngBindHtmlUnsafe', ['$sce', function ($sce) {
         return {
-            link: function (scope, elem, attrs, ctrl) {
-                $root.$on('$routeChangeStart', function (event, currRoute, prevRoute) {
-                    if (currRoute.accessLevel == 'private' && !Auth.isLoggedIn) {
-                        $location.path('/signin');
-                    }
+            scope: {
+                ngBindHtmlUnsafe: '='
+            },
+            template: "<div ng-bind-html='trustedHtml'></div>",
+            link: function ($scope, iElm, iAttrs, controller) {
+                $scope.updateView = function () {
+                    $scope.trustedHtml = $sce.trustAsHtml($scope.ngBindHtmlUnsafe);
+                }
+
+                $scope.$watch('ngBindHtmlUnsafe', function (newVal, oldVal) {
+                    $scope.updateView(newVal);
                 });
             }
-        }
+        };
     }]);
-*/
+;

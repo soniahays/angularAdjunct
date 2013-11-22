@@ -21,6 +21,7 @@ angular.module('adjunct.controllers')
             headers: {'Content-Type': 'application/json'}
         }).success(function (data, status, headers, config) {
             $scope.user = data;
+            $scope.user.imagePath = '/uploads/' + data.imageName;
         }).error(function (data, status, headers, config) {
             console.log("get-adjuncts-profile-top-card didn't work");
         });
@@ -78,4 +79,20 @@ angular.module('adjunct.controllers')
                     console.log("save-adjuncts-profile-top-card didn't work");
                 });
         }
+
+        $scope.uploadComplete = function (content, completed) {
+            console.log(content);
+
+            $http({
+                url: '/api/get-adjuncts-profile/' + $cookies.idType + '/' + $cookies.id,
+                method: 'GET',
+                headers: {'Content-Type': 'application/json'}
+            }).success(function (data, status, headers, config) {
+                    $scope.user.imagePath = '/uploads/' + data.imageName;
+                }).error(function (data, status, headers, config) {
+                    console.log("get-adjuncts-profile-top-card didn't work");
+                });
+
+
+        };
     }]);

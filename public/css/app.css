@@ -658,6 +658,7 @@ mfp-container-custom{
     margin-right:30px !important;
     overflow: hidden;
     float:left;
+    z-index:1000;
 }
 
 
