@@ -5,6 +5,7 @@
     <title>Adjuncts</title>
     <link rel="icon" type="image/x-icon" href="img/ico/favicon.ico" >
 
+    <link rel="stylesheet" href="css/font-awesome.css"/>
     <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/ng-tags-input.min.css">
     <link rel="stylesheet" href="css/app.css"/>
@@ -33,11 +34,13 @@
 <body ng-controller="IndexCtrl">
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#"><img src="img/logo.png" height="25"></a>
-            </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+            <div class="navbar-header">
+                <li><a class="navbar-brand" href="/"><img src="img/logo.png" height="25"></a></li>
+            </div>
+
+
                     <li class="active"><a href="/">Home</a></li>
                     <li><a ng-href="/profile">Profile</a></li>
                     <li><a href="jobs">Jobs</a></li>
@@ -45,7 +48,7 @@
                 </ul>
                 <div class="nav navbar-nav navbar-right">
                     <button class="btn btn-custom btn-signin" ng-click="signout()" ng-show="isSignedIn">Sign Out</button>
-                    <button class="btn btn-custom btn-signin" data-placement="bottom" data-title="Sign In" bs-popover="'partial/signin-popover'" ng-show="!isSignedIn">Sign In</button>
+                    <button class="btn  btn-primary-custom btn-custom btn-signin" data-placement="bottom" data-title="" bs-popover="'partial/signin-popover'" ng-show="!isSignedIn">Sign In</button>
                </div>
             </div>
         </div>

@@ -21,9 +21,20 @@ angular.module('adjunct.controllers')
             headers: {'Content-Type': 'application/json'}
         }).success(function (data, status, headers, config) {
             $scope.user = data;
+                $scope.user ={
+                    summary: 'Jennifer is currently pursuing her graduate degree at Michigan State University. Her research interests include Poland, the Holocaust, European Jewry Gender Childhood and Family. She has over six years of experience as an instructor and teaching assistant. Jennifer is a tech savvy teacher and has been enhancing her classes with Youtube video and online questionnaire for four years now',
+                    experience1Institution: 'Saginaw Valley State University',
+                    experience1Title: 'Instructor',
+                    experience1Location: 'Fall 2013, Kochville, Michigan',
+                    status: 1,
+                    experience1TimePeriodYear: '2013',
+                    experience1Summary: 'write more about your experience here'
+                };
         }).error(function (data, status, headers, config) {
             console.log("get-adjuncts-profile-top-card didn't work");
         });
+
+
 /*
         $scope.user = {
             email: Auth.user.email,
