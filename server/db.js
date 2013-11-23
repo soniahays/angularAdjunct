@@ -71,6 +71,16 @@ module.exports = function (bcrypt) {
                 });
             });
         },
+        updateUserField: function (id, field, callback) {
+            var collection = db.collection('users');
+            collection.update({'id': id}, {'$set': field}, function (err, user) {
+                if (err) {
+                    return console.error(err);
+                }
+                if (callback)
+                    callback(err, user);
+            });
+        },
         getUser: function (user, callback) {
             var collection = db.collection('users');
             collection.find({'idType': user.idType, 'id': user.id})

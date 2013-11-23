@@ -5,6 +5,7 @@ angular.module('adjunct', [
   'ngCookies',
   '$strap.directives',
   'tags-input',
+  'ngUpload',
   'adjunct.filters',
   'adjunct.services',
   'adjunct.directives',

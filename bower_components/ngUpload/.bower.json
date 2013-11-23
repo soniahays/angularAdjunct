@@ -1,0 +1,33 @@
+{
+  "name": "ngUpload",
+  "version": "0.4.1",
+  "main": "ng-upload.js",
+  "ignore": [
+    "node_modules",
+    "components",
+    "examples",
+    "libs",
+    "nuget",
+    "test",
+    ".bower.json",
+    ".gitignore",
+    "bower.json",
+    "Gruntfile.js",
+    "package.json",
+    "testacular.conf.js"
+  ],
+  "dependencies": {
+    "angular": ">=1.0.4"
+  },
+  "homepage": "https://github.com/twilson63/ngUpload",
+  "_release": "0.4.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.4.1",
+    "commit": "678436435585c9dd02f9368311f37cc09090dc34"
+  },
+  "_source": "git://github.com/twilson63/ngUpload.git",
+  "_target": "~0.4.1",
+  "_originalSource": "ngUpload",
+  "_direct": true
+}

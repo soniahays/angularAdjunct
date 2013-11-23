@@ -1,7 +1,13 @@
 <div id="top-card" class="panel panel-default col-md-12" style="padding-left:5px !important;padding-right:5px !important; padding-bottom: 0px !important; margin-bottom: 5px !important">
     <div class="panel-body profile-top-card">
-
+<<<<<<< HEAD
         <div class="profile-picture-container col-sm-4">
+            <div class="profile-picture">
+                <span><img class= "img-thumbnail pull-left" src="img/jenny.jpg"/></span>
+            </div>
+        </div>
+        <div class="profile-overview-content-edit col-sm-8" style="margin-left: 0px; padding-left: 15px;padding-right: 0px;">
+=======
         <div class="profile-picture">
             <span><img class= "img-thumbnail pull-left" src="/uploads/{{user.imageName}}"/></span>
             <div>
@@ -16,11 +22,9 @@
                 </form>
                 <div ng-bind-html-unsafe="uploadResponse"></div>
             </div>
-
         </div>
-        </div>
-
-            <div class="profile-overview-content-edit col-sm-8" style="margin-left: 0px; padding-left: 15px;padding-right: 0px;">
+        <div class="profile-overview-content-edit col-md-6" style="margin-left: 60px; padding-left: 15px;padding-right: 0px;">
+>>>>>>> 4c412c2c3dfe94cd63f3bf40aaa0cd353797070f
             <form>
                 <div class="lead lead-custom masthead">
                     <div class="account-icons">
