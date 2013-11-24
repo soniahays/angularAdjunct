@@ -13,7 +13,7 @@ angular.module('adjunct', [
     ]).
     config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider.when('/', {templateUrl: 'partial/home', controller: 'HomeCtrl', accessLevel: 'public'});
-        $routeProvider.when('/jobs', {templateUrl: 'partial/jobs', controller: 'JobsCtrl', accessLevel: 'public'});
+        $routeProvider.when('/search-results', {templateUrl: 'partial/search-results', controller: 'SearchResultsCtrl', accessLevel: 'public'});
         $routeProvider.when('/profile', {templateUrl: 'partial/adjuncts-profile', controller: 'AdjunctsProfileCtrl', accessLevel: 'private'});
         $routeProvider.when('/signup', {templateUrl: 'partial/signup', controller: 'SignupCtrl', accessLevel: 'public'});
         $routeProvider.when('/basic-profile', {templateUrl: 'partial/basic-profile', controller: 'BasicProfileCtrl', accessLevel: 'public'});

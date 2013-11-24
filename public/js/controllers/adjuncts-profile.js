@@ -14,6 +14,8 @@ angular.module('adjunct.controllers')
         $scope.rightTopSideColumnUrl = '/partial/adjuncts-profile-right-topSide-column';
         $scope.rightBottomSideColumnUrl = '/partial/adjuncts-profile-right-bottomSide-column';
         $scope.badgeSectionUrl = '/partial/badge-section';
+        $scope.user = {};
+        $scope.user.imageName = null;
 
         $http({
             url: '/api/get-adjuncts-profile/' + $cookies.idType + '/' + $cookies.id,

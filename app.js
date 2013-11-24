@@ -30,6 +30,8 @@ app.use(express.static(app.get('bowerPath')));
 app.use(express.session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Kill the cache because Internet Explorer doesn't do caching properly
 app.use(function noCache(req, res, next) {
     res.header("Cache-Control", "no-cache, no-store, must-revalidate");
     res.header("Pragma", "no-cache");
@@ -37,6 +39,7 @@ app.use(function noCache(req, res, next) {
     next();
 });
 
+// We use AWS S3 to store profile pictures
 aws.config.loadFromPath('./server/config/aws-config.json');
 var s3 = new aws.S3();
 
@@ -49,6 +52,18 @@ app.get('/api/countries', function (req, res) {
 
 app.get('/api/fieldGroup', function (req, res) {
     res.json(fieldGroup);
+});
+
+app.get('/api/users', function(req, res) {
+    db.getUsers(function (err, users) {
+        if (err) {
+            return res.send(500, "Error retrieving user");
+        }
+        if (!users) {
+            return res.send('Not found');
+        }
+        return res.json(users);
+    });
 });
 
 app.get('/api/get-adjuncts-profile/:idType/:id', function (req, res) {

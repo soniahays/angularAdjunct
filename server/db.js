@@ -95,6 +95,27 @@ module.exports = function (bcrypt) {
                         callback(null, docs[0]);
                     }
                 });
-        }};
+        },
+        getUsers: function (callback) {
+            var collection = db.collection('users');
+            collection.find()
+                .toArray(function (err, docs) {
+                    if (err) {
+                        return console.error(err);
+                    }
+                    if (docs.length == 0) {
+                        callback(null, null);
+                    }
+                    else {
+
+                        for (var i = 0; i < docs.length; i++) {
+                            delete docs[i].password;
+                        }
+
+                        callback(null, docs);
+                    }
+                });
+        }
+    };
     return self;
 }

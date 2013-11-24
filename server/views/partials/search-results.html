@@ -1,6 +1,6 @@
 <div class="container">
     <div class="col-md-2 sidebar-offcanvas" id="sidebar1" role="navigation">
-        <div class="well ">
+        <div class="well">
             <ul class="nav" style="margin: -20px;">
                 <h3 class="background-label" style="width: 80px">Search</h3><br />
                 <li style="padding:10px">
@@ -44,39 +44,16 @@
             <div class="list-group-item list-group-item-customized-middle">
                 <h6>JOBS FOR:&nbsp Women and Gender Studies</h6>
             </div>
-            <a href="#" class="list-group-item list-group-item-customized">
+            <a href="#" class="list-group-item list-group-item-customized" ng-repeat="user in users">
                 <row>
-                    <span><img class= "pull-left main-search-job-image" src="/img/university.gif" width=100px /></span>
-                    <span class="list-group-item-heading-customized ppl-also-name">Adjunct Instructor - Math</span><br /><span >Appleton, WI</br> Posted Yesterday</br>
-                    Stevenson University <br></span>
-                </row>
-            </a>
-            <a href="#" class="list-group-item list-group-item-customized">
-                <row>
-                    <span><img class= "pull-left main-search-job-image" src="/img/mcgill.png" width=100px /></span>
-                    <span class="list-group-item-heading-customized ppl-also-name">Adjunct Instructor - Spanish</span><br /><span >Montreal,QC</br> Posted Yesterday</br>
-                    Mc Gill University <br></span>
-                </row>
-            </a>
-            <a href="#" class="list-group-item list-group-item-customized">
-                <row>
-                    <span><img class= "pull-left main-search-job-image" src="/img/nlu.png" width=100px /></span>
-                    <span class="list-group-item-heading-customized ppl-also-name">Online Adjunct - Nursing</span><br /><span >Anywhere</br> Posted on Oct 5</br>
-                    National Louis University <br></span>
-                </row>
-            </a>
-            <a href="#" class="list-group-item list-group-item-customized">
-                <row>
-                    <span><img class= "pull-left main-search-job-image" src="/img/cls.png" width=100px /></span>
-                    <span class="list-group-item-heading-customized ppl-also-name">Adjunct Instructor </span><br /><span >New York, NY</br> Posted on Oct 6</br>
-                    Columbia University <br></span>
-                </row>
-            </a>
-            <a href="#" class="list-group-item list-group-item-customized">
-                <row>
-                    <span><img class= "pull-left main-search-job-image" src="/img/uofphoenix.png" width=100px /></span>
-                    <span class="list-group-item-heading-customized ppl-also-name">Adjunct Instructor</span><br /><span >Multiple Location</br>Posted on Sept 9</br>
-                    University of Phoenix <br></span>
+                    <span><img class= "pull-left main-search-job-image" src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}" width=100px /></span>
+                    <span class="list-group-item-heading-customized ppl-also-name">
+                        {{user.firstName}} {{user.lastName}}
+                    </span>
+                    <br /><span >Appleton, WI
+                    </br>Posted Yesterday</br>
+                    Stevenson University <br>
+                </span>
                 </row>
             </a>
         </div>
