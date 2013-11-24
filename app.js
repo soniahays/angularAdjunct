@@ -138,19 +138,24 @@ app.post('/upload', function (req, res) {
             else {
                 var file = req.files.file;
                 var newFileName = uuid.v1() + path.extname(file.path);
-                var newFilePath = path.join(app.get('uploadPath'),  newFileName);
-                fs.createReadStream(file.path).pipe(fs.createWriteStream(newFilePath).on('close', function() {
-                    db.updateUserField(req.cookies.id, {'imageName': newFileName}, function() {
-                        res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
-                    });
-                }));
+                var newFilePath = path.join(app.get('uploadPath'), newFileName);
+                try {
+                        fs.createReadStream(file.path).pipe(fs.createWriteStream(newFilePath).on('close', function () {
+                        db.updateUserField(req.cookies.id, {'imageName': newFileName}, function () {
+                            res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
+                        });
+                    }));
+                }
+                catch(e) {
+                    res.send({ msg: '<b>"' + file.name + '"</b> NOT uploaded. ' });
+                }
             }
         },
         (req.param('delay', 'yes') == 'yes') ? 2000 : -1
     );
 });
 
-app.get('/image/:idType/:id', function(req, res) {
+app.get('/image/:idType/:id', function (req, res) {
     var idType = req.params.idType;
     var id = req.params.id;
 

@@ -46,9 +46,9 @@ angular.module('adjunct.controllers')
             experience1TimePeriodYear: '2013',
             experience1Summary: 'write more about your experience here'
         };
-
-        $scope.expertiseTags = ['Early Modern Europe', 'Asia and the World', 'World History', 'Nazi Policy', 'Jewish Emancipation'];
 */
+        $scope.expertiseTags = ['Early Modern Europe', 'Asia and the World', 'World History', 'Nazi Policy', 'Jewish Emancipation'];
+
         $scope.statuses = [
             {value: 1, text: 'fall'},
             {value: 2, text: 'winter'},
