@@ -1,21 +1,37 @@
-<form  method="post" action="/signin-post" class="form-signin input-group-sm signin-popover" ng-controller="SigninCtrl">
-    <i class="icon-large icon-facebook"></i>
-    <button id="facebookAuth" class="btn btn-sm" type="button" ng-click="facebookAuth()">Facebook</button>
-    <button id="linkedinAuth" class="btn btn-sm" type="button" ng-click="linkedinAuth()">LinkedIn</button>
-    <button id="googleAuth" class="btn btn-sm" type="button" ng-click="googleAuth()">Google</button>
-    <br />
-    <hr />
-    <label><small>Email: </small></label>
-    <input name="email"  ng-model="email" type="text" class="form-control input-sm" placeholder="Email address" autofocus></span>
-    <br />
-    <label><small>Password:</small></label>
-    <input name="password" ng-model="password"  type="password" class="form-control input-sm" placeholder="Password">
-    <span><a href="#"><small>Forgot password?</small></a></span>
-    <label class="checkbox">
-        <input name="remember-me" type="checkbox" value="remember-me"><small>Remember me</small>
-        <button id="signin" class="btn btn-primary btn-sm btn-sample" type="submit">Sign in</button>
-    </label>
-    <hr/>
-    <!--<button id="signUp" class="btn btn-success btn-sm" type="button" ng-click="goToSignUp()">Sign up</button><br />-->
-    <small>No account? Sign up!</small>
+
+
+
+<form  method="post" action="/signin-post" class="form-signin input-group-sm signin-popover " ng-controller="SigninCtrl">
+    <!--<div ng-show="showError" style="color: #b94a48">Please enter a valid email and password.</div>-->
+    <div class="social-connect-container clearfix" >
+        <table>
+            <small style="text-align:center;">Connect with your favorite social media account or with your email address</small>
+            <tr>
+                <th><h6><small><em>SOCIAL ACCOUNT </em></small></h6></th>
+                <th><h6><small><em> EMAIL</em></small></h6></th>
+            </tr>
+            <tr>
+                <td id="social-connectors">
+                    <a class="btn btn-lg btn-primary btn-social-facebook" type="submit" ng-click="facebookAuth()" >
+                        <i class="fa fa-facebook fa-lg fa-facebook-custom "></i> Facebook</a>
+                    <br />
+                    <a class="btn btn-lg btn-primary btn-social-google" type="submit" ng-click="googleAuth()" >
+                        <i class="fa fa-google-plus fa-lg fa-linkedin-custom"></i> Google+</a>
+                    <br />
+                    <a class="btn btn-lg btn-primary btn-social-linkedin" type="submit" ng-click="linkedinAuth()" >
+                        <i class="fa fa-linkedin fa-lg fa-linkedin-custom"></i> LinkedIn</a>
+                </td>
+                <td id="email-connector">
+                    <input type="text" ng-model="email" class="form-control form-control-custom" placeholder="Email" required autofocus>
+                    <input type="password" ng-model="password"  class="form-control form-control-custom" placeholder="Password" required>
+                    <button class="btn btn-lg btn-primary btn-block btn-block-custom" id="signin-btn"type="submit" ng-click="goToSignUp()">Sign in</button>
+                    <label class="checkbox pull-left"><input type="checkbox" value="remember-me"><small>Remember me </small></label>
+                    <span class="clearfix"></span>
+                    <a href="#" class="text-center new-account">Create an account </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--<span><a href="#"><small>Forgot password?</small></a></span>-->
+    <!--<label><small>Email: </small></label>-->
 </form>
