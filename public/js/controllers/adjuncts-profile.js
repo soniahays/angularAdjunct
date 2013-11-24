@@ -29,7 +29,7 @@ angular.module('adjunct.controllers')
                     status: 1,
                     experience1TimePeriodYear: '2013',
                     experience1Summary: 'write more about your experience here'
-                };
+                };console.log($scope.user.imageName);
         }).error(function (data, status, headers, config) {
             console.log("get-adjuncts-profile-top-card didn't work");
         });

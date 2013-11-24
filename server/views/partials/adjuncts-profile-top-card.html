@@ -3,8 +3,21 @@
 
     <div class="panel-body profile-top-card">
         <div class="profile-picture">
-            <span><img class= "img-thumbnail pull-left" src="/uploads/{{user.imageName}}"/></span>
 
+                <!--<span><img class= "img-thumbnail pull-left" src="img/placehold.jpg" /></span>-->
+
+            <span><img class= "img-thumbnail pull-left" src="/uploads/{{user.imageName}}"/></span>
+            <div class="no-picture" ng-show="!user.imageName">
+                <div class="addPictLink">
+                <a href="" bs-modal="'partial/upload-picture-modal'">
+                <span style= "color: #fff;">
+                 <img src="../uploads/icon_add_photo_27x27_v1.png"> Add a photo
+                </span>
+                </a>
+                    <!--<button type="button" class="btn" bs-modal="'partial/upload-picture-modal'">...</button>-->
+
+                </div>
+            </div>
         </div>
         <div class="profile-overview-content">
                 <div class="lead lead-custom masthead">
