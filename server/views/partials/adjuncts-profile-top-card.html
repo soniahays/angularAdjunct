@@ -1,64 +1,70 @@
-<div id="top-card" class="panel panel-default col-md-12 " style="padding-left:5px !important;padding-right:5px !important; padding-bottom: 0px !important; margin-bottom: 5px !important">
+<div id="top-card" class="panel panel-default col-md-12 "
+     style="padding-left:5px !important;padding-right:5px !important; padding-bottom: 0px !important; margin-bottom: 5px !important">
 
 
     <div class="panel-body profile-top-card">
         <div class="profile-picture">
-            <span><img class= "img-thumbnail pull-left" src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}"/></span>
+            <span><img class="img-thumbnail pull-left"
+                       src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}"/></span>
 
         </div>
         <div class="profile-overview-content">
-                <div class="lead lead-custom masthead">
-                    <!--<div class="account-icons">-->
-                        <!--<div id="badge-container">-->
-                            <!--<img class="img-thumbnail" id="badge" src="img/universityBadge_MSU.png"/>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <div id="name-container">
-                        <h2>
-                            <span>{{ user.firstName || 'empty' }}</span>
-                            <span>{{ user.lastName || 'empty' }}</span>
-                        </h2>
-                    </div>
-                    <div id="headline-container">
-                        <span>{{ user.currentPosition || 'empty' }}</span>
-                        <span>at {{ user.institution|| 'empty' }}</span>
-                    </div>
-                    <div class="text-muted" id="demographic-info">
-                        <span>{{ user.city || 'empty' }}</span>
-                        <span>, {{ user.generalArea|| 'empty' }}</span>
-                        <span>| {{ user.department|| 'empty' }}</span>
-                    </div>
+            <div class="lead lead-custom masthead">
+                <!--<div class="account-icons">-->
+                <!--<div id="badge-container">-->
+                <!--<img class="img-thumbnail" id="badge" src="img/universityBadge_MSU.png"/>-->
+                <!--</div>-->
+                <!--</div>-->
+                <div id="name-container">
+                    <h2>
+                        <span>{{ user.firstName || 'empty' }}</span>
+                        <span>{{ user.lastName || 'empty' }}</span>
+                    </h2>
                 </div>
+                <div id="headline-container">
+                    <span>{{ user.currentPosition || 'empty' }}</span>
+                    <span>at {{ user.institution|| 'empty' }}</span>
+                </div>
+                <div class="text-muted" id="demographic-info">
+                    <span>{{ user.city || 'empty' }}</span>
+                    <span>, {{ user.generalArea|| 'empty' }}</span>
+                    <span>| {{ user.department|| 'empty' }}</span>
+                </div>
+            </div>
 
-                <table id="profile-card-table">
-                    <tbody>
-                    <tr id="overview-summary-specialty">
-                        <th class="profile-card-table-th" scope="row">Expertise </th>
-                        <td class="profile-card-table-td"><span>{{ user.specialty1 || 'empty' }}</span>
-                            <span>{{ user.specialty2 || 'empty' }}</span>
-                            </br>
-                            <span>{{ user.specialty3 || 'empty' }}</span>
-                        </td>
-                    </tr>
-                    <tr id="overview-summary-education">
-                        <td class="profile-card-table-th">Education</td>
-                        <td class="profile-card-table-td"><span>{{ user.educationLevel || 'empty' }}</span></td>
-
-
-
-
-                    </tr>
-                    </tbody>
-                </table>
-            <!--<div id="tags-container">-->
-            <!--<tags-input ng-model="expertiseTags" ng-class="expertise-tags"></tags-input>-->
-            <!--</div>-->
-
-            <td>
-                <button type="button" class="btn btn-xs btn-primary btn-top-card-profile" ng-click="editTopCard()">Edit
-                    Profile
-                </button>
-            </td>
+            <table id="profile-card-table">
+                <tbody>
+                <tr id="overview-summary-specialty">
+                    <th class="profile-card-table-th" scope="row">Expertise</th>
+                    <td class="profile-card-table-td"><span>{{ user.specialty1 || 'empty' }}</span>
+                        <span>{{ user.specialty2 || 'empty' }}</span>
+                        </br>
+                        <span>{{ user.specialty3 || 'empty' }}</span>
+                    </td>
+                </tr>
+                <tr id="overview-summary-education">
+                    <td class="profile-card-table-th">Education</td>
+                    <td class="profile-card-table-td"><span>{{ user.educationLevel || 'empty' }}</span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div ng-repeat="item in user.expertiseTags">
+                            {{ item }}
+                        </div>
+                    </td>
+                    <br/>
+                    <br/>
+                    <td>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-xs btn-primary btn-top-card-profile" ng-click="editTopCard()">Edit
+                            Profile
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
