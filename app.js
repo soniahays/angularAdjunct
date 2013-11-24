@@ -6,6 +6,7 @@ var http = require('http'),
     passport = require('passport'),
     ensureLoggedIn = require('./server/ensureLoggedIn.js'),
     bcrypt = require('bcrypt'),
+    aws = require('aws-sdk'),
     db = require('./server/db.js')(bcrypt),
     pass = require('./server/passport.js')(db, passport, bcrypt),
     countries = require('./server/api/countries.json'),
@@ -29,7 +30,15 @@ app.use(express.static(app.get('bowerPath')));
 app.use(express.session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(function noCache(req, res, next) {
+    res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.header("Pragma", "no-cache");
+    res.header("Expires", 0);
+    next();
+});
 
+aws.config.loadFromPath('./server/config/aws-config.json');
+var s3 = new aws.S3();
 
 /**
  * Routes
@@ -125,7 +134,12 @@ app.post('/basic-profile', function (req, res) {
 });
 
 app.post('/save-adjuncts-profile', function (req, res) {
-    db.updateUser(req.body.user);
+    if (req.body.user) {
+        db.updateUser(req.body.user);
+    }
+    else {
+        console.log("req.body.user is null!");
+    }
     res.end();
 });
 
@@ -134,23 +148,39 @@ app.post('/upload', function (req, res) {
         function () {
             res.setHeader('Content-Type', 'text/html');
             if (req.files.length == 0 || req.files.file.size == 0)
-                res.send({ msg: 'No file uploaded.' });
+                res.send({ 'msg': 'No file uploaded.' });
             else {
                 var file = req.files.file;
                 var newFileName = uuid.v1() + path.extname(file.path);
-                var newFilePath = path.join(app.get('uploadPath'),  newFileName);
-                fs.createReadStream(file.path).pipe(fs.createWriteStream(newFilePath).on('close', function() {
-                    db.updateUserField(req.cookies.id, {'imageName': newFileName}, function() {
-                        res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
+                try {
+                    var s3object = {
+                        'Bucket': 'Adjuncts',
+                        'Key': newFileName,
+                        'Body': fs.createReadStream(file.path),
+                        'ACL': 'public-read'
+                    };
+                    s3.putObject(s3object, function (err, data) {
+                        if (err) {
+                            console.log(err);
+                            res.send(err);
+                        }
+                        else {
+                            db.updateUserField(req.cookies.id, {'imageName': newFileName}, function() {
+                                res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
+                            });
+                        }
                     });
-                }));
+                }
+                catch (e) {
+                    res.send({ 'msg': '<b>"' + file.name + '"</b> NOT uploaded. ' + e });
+                }
             }
         },
         (req.param('delay', 'yes') == 'yes') ? 2000 : -1
     );
 });
 
-app.get('/image/:idType/:id', function(req, res) {
+app.get('/image/:idType/:id', function (req, res) {
     var idType = req.params.idType;
     var id = req.params.id;
 

@@ -1,26 +1,30 @@
-<div id="top-card" class="panel panel-default col-md-12" style="padding-left:5px !important;padding-right:5px !important; padding-bottom: 0px !important; margin-bottom: 5px !important">
+<div id="top-card" class="panel panel-default col-md-12"
+     style="padding-left:5px !important;padding-right:5px !important; padding-bottom: 0px !important; margin-bottom: 5px !important">
     <div class="panel-body profile-top-card">
 
         <div class="profile-picture-container col-sm-4">
-        <div class="profile-picture">
-            <span><img class= "img-thumbnail pull-left" src="/uploads/{{user.imageName}}"/></span>
-            <div>
-                <form id="profile-pic-upload" ng-upload method="POST" action="/upload?delay=yes">
-                    <p>
-                        <label>Select a profile picture:</label>
-                        <input type="file" name="file" />
-                    </p>
-                    <p>
-                        <input upload-submit="uploadComplete(content)" type="submit" class="btn" value="Submit"/>
-                    </p>
-                </form>
-                <div ng-bind-html-unsafe="uploadResponse"></div>
+            <div class="profile-picture">
+                <span ng-show="user.imageName"><img class="img-thumbnail pull-left" src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}"/></span>
+
+                <div>
+                    <form id="profile-pic-upload" ng-upload method="POST" action="/upload?delay=yes">
+                        <p>
+                            <label>Select a profile picture:</label>
+                            <input type="file" name="file"/>
+                        </p>
+
+                        <p>
+                            <input upload-submit="uploadComplete(content)" type="submit" class="btn" value="Submit"/>
+                        </p>
+                    </form>
+                    <div ng-bind-html-unsafe="uploadResponse"></div>
+                </div>
+
             </div>
-
-        </div>
         </div>
 
-            <div class="profile-overview-content-edit col-sm-8" style="margin-left: 0px; padding-left: 15px;padding-right: 0px;">
+        <div class="profile-overview-content-edit col-sm-8"
+             style="margin-left: 0px; padding-left: 15px;padding-right: 0px;">
             <form>
                 <div class="lead lead-custom masthead">
                     <div class="account-icons">
@@ -62,77 +66,91 @@
                         <h6>
                             <div class="form-group">
 
-
                                 <table>
                                     <tr>
                                         <th>Name:</th>
-
                                     </tr>
                                     <tr>
-                                        <td><input type="text" class="form-control form-inline input-sm profile-forms" name="firstName" ng-model="user.firstName"></td>
-                                        <td> <input type="text" class="form-control form-inline input-sm profile-forms " name="lastName" ng-model="user.lastName"></td>
+                                        <td><input type="text" class="form-control form-inline input-sm profile-forms"
+                                                   name="firstName" ng-model="user.firstName"></td>
+                                        <td><input type="text" class="form-control form-inline input-sm profile-forms "
+                                                   name="lastName" ng-model="user.lastName"></td>
                                     </tr>
                                     <tr>
                                         <th>Your professional headline:</th>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" class="form-control form-inline input-sm profile-forms" name="currentPosition" ng-model="user.currentPosition"></td>
-                                        <td><input type="text" class="form-control form-inline input-sm profile-forms" name="department" ng-model="user.department"></td>
+                                        <td><input type="text" class="form-control form-inline input-sm profile-forms"
+                                                   name="currentPosition" ng-model="user.currentPosition"></td>
+                                        <td><input type="text" class="form-control form-inline input-sm profile-forms"
+                                                   name="department" ng-model="user.department"></td>
                                     </tr>
                                     <tr>
                                         <th>Educational institution:</th>
                                     </tr>
                                     <tr>
-                                        <td> <input type="text" class="form-control form-inline input-sm profile-forms col-xs-5 " name="institution" ng-model="user.institution"></td>
+                                        <td><input type="text"
+                                                   class="form-control form-inline input-sm profile-forms col-xs-5 "
+                                                   name="institution" ng-model="user.institution"></td>
                                     </tr>
                                     <tr>
                                         <th>Location:</th>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" class="form-control form-inline input-sm profile-forms" name="city" ng-model="user.city"></td>
-                                        <td><input type="text" class="form-control form-inline input-sm profile-forms" name="generalArea" ng-model="user.generalArea"></td>
+                                        <td><input type="text" class="form-control form-inline input-sm profile-forms"
+                                                   name="city" ng-model="user.city"></td>
+                                        <td><input type="text" class="form-control form-inline input-sm profile-forms"
+                                                   name="generalArea" ng-model="user.generalArea"></td>
                                     </tr>
                                 </table>
                                 <table id="profile-card-table" style="margin-left: 0px; margin-top: 0px;">
                                     <tbody>
                                     <tr id="overview-summary-specialty">
                                         <th class="profile-card-table-th" scope="row">Expertise</th>
-                                        <td class="profile-card-table-td"><span><input type="text" class="form-control form-inline input-sm profile-forms" name="Specialty1" ng-model="user.specialty1"></span>
-                                            <span><input type="text" class="form-control form-inline input-sm profile-forms" name="Specialty2" ng-model="user.specialty2"></span>
+                                        <td class="profile-card-table-td"><span><input type="text"
+                                                                                       class="form-control form-inline input-sm profile-forms"
+                                                                                       name="Specialty1"
+                                                                                       ng-model="user.specialty1"></span>
+                                            <span><input type="text"
+                                                         class="form-control form-inline input-sm profile-forms"
+                                                         name="Specialty2" ng-model="user.specialty2"></span>
 
-                                            <span><input type="text" class="form-control form-inline input-sm profile-forms" name="Specialty3" ng-model="user.specialty3"></span>
+                                            <span><input type="text"
+                                                         class="form-control form-inline input-sm profile-forms"
+                                                         name="Specialty3" ng-model="user.specialty3"></span>
                                         </td>
                                     </tr>
                                     <tr id="overview-summary-education">
                                         <td class="profile-card-table-th">Education</td>
-                                        <td class="profile-card-table-td"><span><input type="text" class="form-control form-inline input-sm profile-forms" name="educationLevel" ng-model="user.educationLevel"></span></td>
+                                        <td class="profile-card-table-td">
+                                            <span><input type="text"
+                                                         class="form-control form-inline input-sm profile-forms"
+                                                         name="educationLevel" ng-model="user.educationLevel"></span>
+                                        </td>
 
                                     </tr>
-
+                                    <tr>
                                     <td></td>
-
                                     <td>
                                         <div id="tags-container">
                                             <tags-input ng-model="user.expertiseTags" ng-class="expertise-tags"></tags-input>
-                                        </div>    </td>  <br/><br/>
-                                    <td></td>
-                                    <td><button type="button" class="btn btn-xs btn-primary" ng-click="saveTopCard()">Save Profile</button></td>
+                                        </div>
+                                    </td>
+                                    <br/>
+                                    <br/>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-xs btn-primary" ng-click="saveTopCard()">
+                                            Save Profile
+                                        </button>
+                                    </td>
+                                    </tr>
                                     </tbody>
                                 </table>
 
 
                         </h6>
-
-
-
-
-
-
-
-
-
-
-
 
 
                         <!--<div id="headline-container">-->
