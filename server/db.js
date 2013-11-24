@@ -4,13 +4,13 @@ var mongodb = require('mongodb'),
 module.exports = function (bcrypt) {
 
     var MONGO_URL = "mongodb://localhost:27017/adjunct";
-    switch(process.env.NODE_ENV) {
+    switch (process.env.NODE_ENV) {
         case 'development':
             MONGO_URL = "mongodb://nader:adj0nct@paulo.mongohq.com:10043/adjunct";
-        break;
+            break;
         case 'production':
             MONGO_URL = "mongodb://nader:adj0nct@paulo.mongohq.com:10043/adjunct";
-        break;
+            break;
     }
 
     var db, err;
@@ -55,20 +55,20 @@ module.exports = function (bcrypt) {
             }
         },
         updateUser: function (user, callback) {
-            this.getUser(user, function(err, u) {
+            this.getUser(user, function (err, u) {
                 if (err) {
                     return console.error(err);
                 }
                 var collection = db.collection('users');
-                user.password = u.password;
-                delete user._id;
-                collection.update({'id': u.id}, user, function (err) {
-                    if (err) {
-                        return console.error(err);
-                    }
-                    if (callback)
-                        callback(err, user);
-                });
+                    user.password = u.password;
+                    delete user._id;
+                    collection.update({'id': u.id}, user, function (err) {
+                        if (err) {
+                            return console.error(err);
+                        }
+                        if (callback)
+                            callback(err, user);
+                    });
             });
         },
         updateUserField: function (id, field, callback) {
@@ -84,17 +84,17 @@ module.exports = function (bcrypt) {
         getUser: function (user, callback) {
             var collection = db.collection('users');
             collection.find({'idType': user.idType, 'id': user.id})
-            .toArray(function (err, docs) {
-                if (err) {
-                    return console.error(err);
-                }
-                if (docs.length == 0) {
-                     callback(null, null);
-                }
-                else {
-                    callback(null, docs[0]);
-                }
-            });
+                .toArray(function (err, docs) {
+                    if (err) {
+                        return console.error(err);
+                    }
+                    if (docs.length == 0) {
+                        callback(null, null);
+                    }
+                    else {
+                        callback(null, docs[0]);
+                    }
+                });
         }};
     return self;
 }
