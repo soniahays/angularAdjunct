@@ -14,6 +14,8 @@ angular.module('adjunct.controllers')
         $scope.rightTopSideColumnUrl = '/partial/adjuncts-profile-right-topSide-column';
         $scope.rightBottomSideColumnUrl = '/partial/adjuncts-profile-right-bottomSide-column';
         $scope.badgeSectionUrl = '/partial/badge-section';
+        $scope.uploadPictureModalUrl = '/partial/upload-picture-modal';
+        $scope.videoModalUrl = '/partial/video-modal';
         $scope.user = {};
         $scope.user.imageName = null;
         $scope.badges=[{"imageUrl": "/img/badges/desire-badge.png"}, {"imageUrl": "/img/badges/sakai.png"}] ;
@@ -68,22 +70,16 @@ angular.module('adjunct.controllers')
         }
 
         $scope.openPictureUploadModal = function() {
-            $modal({
-                template: 'partial/upload-picture-modal',
-                show: true,
-                backdrop: 'static',
-                scope: $scope,
-                modalClass: 'modal-picture-custom'
+            $('#upload-picture-modal').modal();
+            $('#upload-picture-modal').off('shown.bs.modal').on('shown.bs.modal', function () {
+                $('.modal-backdrop').css({'opacity': '0.1'});
             });
         }
 
         $scope.openVideoModal = function() {
-            $modal({
-                template: 'partial/video-modal',
-                show: true,
-                backdrop: 'static',
-                scope: $scope,
-                modalClass: 'modal-video-custom'
+            $('#video-modal').modal();
+            $('#video-modal').off('shown.bs.modal').on('shown.bs.modal', function () {
+                $('.modal-backdrop').css({'opacity': '0.9'});
             });
         }
 

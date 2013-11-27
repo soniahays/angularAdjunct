@@ -1082,14 +1082,3 @@ tbody{
     background: #428bca !important;
     border-color: #357ebd !important;
 }
-
-.modal-picture-custom {
-    opacity: 0;
-    max-height: 500px;
-    height: 500px;
-
-}
-
-.modal-video-custom {
-    opacity: 0;
-}

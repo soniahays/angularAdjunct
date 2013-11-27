@@ -27,7 +27,6 @@
     "commit": "678436435585c9dd02f9368311f37cc09090dc34"
   },
   "_source": "git://github.com/twilson63/ngUpload.git",
-  "_target": "~0.4.1",
-  "_originalSource": "ngUpload",
-  "_direct": true
+  "_target": "~0.4",
+  "_originalSource": "ngUpload"
 }
