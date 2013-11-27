@@ -8,7 +8,7 @@
             </span>
             <div ng-if="!user.imageName" class="no-picture">
                 <div class="addPictLink">
-                    <a href="#" bs-modal="'partial/upload-picture-modal'">
+                    <a href="#" ng-click="openPictureUploadModal()">
                         <span style= "color: #fff;">
                             <img src="/img/icon_add_photo_27x27_v1.png" /> Add a photo
                         </span>

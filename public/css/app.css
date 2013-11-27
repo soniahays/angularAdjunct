@@ -8,9 +8,6 @@
 
 }
 
-.modal-backdrop-custom{
-    opacity:0;
-}
 .modal-header-custom{
     padding: 0 0;
     color: #F7F0F0;
@@ -1074,10 +1071,6 @@ tbody{
     height: auto;
 }
 
-
-
-
-
 .home-bottom-text {
     margin-left: 45px;
 }
@@ -1088,4 +1081,15 @@ tbody{
     color: #ffffff !important;
     background: #428bca !important;
     border-color: #357ebd !important;
+}
+
+.modal-picture-custom {
+    opacity: 0;
+    max-height: 500px;
+    height: 500px;
+
+}
+
+.modal-video-custom {
+    opacity: 0;
 }
