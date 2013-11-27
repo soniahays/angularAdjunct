@@ -1,3 +1,38 @@
+.wrap{
+    margin: 0 0 0 0 !important;
+    padding: 0 0 0 0 !important;
+}
+.ui{
+    margin: 1px; padding: 1px; float: left; width:20px; height:20px; font-size: 12px; text-align: center; border: solid 1px black;
+    list-style-type: none;
+
+}
+
+.modal-backdrop-custom{
+    opacity:0;
+}
+.modal-header-custom{
+    padding: 0 0;
+    color: #F7F0F0;
+    margin-left: auto;
+    margin-right: auto;
+}
+.modal-body-custom{
+    padding: 0 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#badges tr td{
+    /*border:0.2em solid grey;*/
+    /*border-width:3px;*/
+    display: table ;
+    display: table-cell  ;
+
+}
+
+
+
 .no-picture{
     box-shadow: none;
     width: 100%;
@@ -17,7 +52,7 @@
     /*background: url('../uploads/icon_add_photo_27x27_v1.png') no-repeat;*/
 }
 .addPictLink{
-    margin-top: 90px;
+    padding-top: 90px;
 
 }
 .img-thumbnail{

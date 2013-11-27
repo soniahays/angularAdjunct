@@ -16,6 +16,7 @@ angular.module('adjunct.controllers')
         $scope.badgeSectionUrl = '/partial/badge-section';
         $scope.user = {};
         $scope.user.imageName = null;
+        $scope.badge=[{"imageUrl": "img/badges/desire-badge.png"}] ;
 
         $http({
             url: '/api/get-adjuncts-profile/' + $cookies.idType + '/' + $cookies.id,
@@ -65,6 +66,21 @@ angular.module('adjunct.controllers')
                     console.log("save-adjuncts-profile-top-card didn't work");
                 });
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        $scope.$on('modal-shown', function() { $('.modal-backdrop').css({'opacity': '0.1','color':'blue'}); });
 
         $scope.uploadComplete = function (content, completed) {
             console.log(content);

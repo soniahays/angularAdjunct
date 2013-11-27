@@ -17,13 +17,28 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="profile-overview-content">
             <div class="lead lead-custom masthead">
-                <!--<div class="account-icons">-->
-                <!--<div id="badge-container">-->
-                <!--<img class="img-thumbnail" id="badge" src="img/universityBadge_MSU.png"/>-->
-                <!--</div>-->
-                <!--</div>-->
                 <div id="name-container">
                     <h2>
                         <span>{{ user.firstName || 'empty' }}</span>
@@ -40,7 +55,6 @@
                     <span>| {{ user.department|| 'empty' }}</span>
                 </div>
             </div>
-
             <table id="profile-card-table">
                 <tbody>
                 <tr id="overview-summary-specialty">
@@ -53,21 +67,27 @@
                 </tr>
                 <tr id="overview-summary-education">
                     <td class="profile-card-table-th">Education</td>
-                    <td class="profile-card-table-td"><span>{{ user.educationLevel || 'empty' }}</span></td>
+                    <td class="profile-card-table-td"><span>{{ user.educationLevel || 'educationempty' }}</span></td>
                 </tr>
+                <!--<tr>-->
+                    <!--<td></td>-->
+                    <!--<td><button type="button" class="btn btn-xs btn-primary" ng-click="editTopCard()">Edit-->
+                        <!--Profile-->
+                    <!--</button></td>-->
+                <!--</tr>-->
                 <tr>
                     <td></td>
                     <td>
                         <div ng-repeat="item in user.expertiseTags">
-                            {{ item }}
+                            {{ item||'tags go here' }}
                         </div>
                     </td>
-                    <br/>
-                    <br/>
+
+
                     <td>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-xs btn-primary btn-top-card-profile" ng-click="editTopCard()">Edit
+                        <button type="button" class="btn btn-xs btn-primary" ng-click="editTopCard()">Edit
                             Profile
                         </button>
                     </td>
@@ -77,3 +97,5 @@
         </div>
     </div>
 </div>
+
+
