@@ -14,11 +14,12 @@ angular.module('adjunct.controllers')
         $scope.rightTopSideColumnUrl = '/partial/adjuncts-profile-right-topSide-column';
         $scope.rightBottomSideColumnUrl = '/partial/adjuncts-profile-right-bottomSide-column';
         $scope.badgeSectionUrl = '/partial/badge-section';
+        $scope.badgeEditModallUrl = '/partial/badge-edit-modal';
         $scope.uploadPictureModalUrl = '/partial/upload-picture-modal';
         $scope.videoModalUrl = '/partial/video-modal';
         $scope.user = {};
         $scope.user.imageName = null;
-        $scope.badges=[{"imageUrl": "/img/badges/desire-badge.png"}, {"imageUrl": "/img/badges/sakai.png"}] ;
+        $scope.badges=[{"imageUrl": "/img/badges/uni-blackb-badge.png"}, {"imageUrl": "/img/badges/uni-canvas-badge.png"},{"imageUrl": "/img/badges/uni-captivate-badge.png"},{"imageUrl": "/img/badges/uni-desire-badge.png"}] ;
 
         $http({
             url: '/api/get-adjuncts-profile/' + $cookies.idType + '/' + $cookies.id,
@@ -72,7 +73,7 @@ angular.module('adjunct.controllers')
         $scope.openPictureUploadModal = function() {
             $('#upload-picture-modal').modal();
             $('#upload-picture-modal').off('shown.bs.modal').on('shown.bs.modal', function () {
-                $('.modal-backdrop').css({'opacity': '0.1'});
+                $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.1'});
             });
         }
 
@@ -80,6 +81,13 @@ angular.module('adjunct.controllers')
             $('#video-modal').modal();
             $('#video-modal').off('shown.bs.modal').on('shown.bs.modal', function () {
                 $('.modal-backdrop').css({'opacity': '0.9'});
+            });
+        }
+
+        $scope.openBadgeEditModal= function() {
+            $('#badge-edit-modal').modal();
+            $('#badge-edit-modal').off('shown.bs.modal').on('shown.bs.modal', function () {
+                $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.1'});
             });
         }
 

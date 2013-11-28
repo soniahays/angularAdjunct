@@ -1,75 +1,30 @@
+
+
+
+
 <div class="list-group col-md-12" >
+    <div class="list-group-item list-group-item-custom list-group-item-customize-left" style=" position: relative; padding-right: 0px; padding-top: 0px;padding-bottom: 20px; ">
+        <button class="btn btn-lg btn-primary " id="edit-badges" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px" ng-click="openBadgeEditModal()" >
+            <i class="fa fa-pencil-square-o fa-lg"></i></button>
 
-    <!--<div id="badges-container" style="margin-top: 6px !important;">-->
-    <!--<span class="well" style="background-color: white;margin-top:10px;margin-right:5px !important; padding:7px 6px; ">-->
-    <!--<span><img class="profile-badge-img"src="img/badges/D2L.png" height=20px /><img class="profile-badge-img" src="img/badges/adobeconnect.png" height=30px /><img class="profile-badge-img" src="img/badges/blackboard.png" height=20px /><img class="profile-badge-img" src="img/badges/softchalk.png" height=20px /></span>-->
-    <!--</span>-->
-    <!--</div>-->
-    <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left">
-        <br />
-        <row>
-            <span>
-                <!--<table>-->
-                    <!--<tr>...-->
-                    <!--<tr ng-repeat="row in rows | filter:userFilter">-->
-                        <!--<td ng-repeat="col in row">{{col}}</td>-->
-                    <!--</tr>-->
-                <!--</table>-->
-                <!--<ul class='wrap'>-->
-                  <!--<li class="ui">1</li>-->
-                  <!--<li class="ui">2</li>-->
-                  <!--<li class="ui">3</li>-->
-                  <!--<li class="ui">4</li>-->
-                  <!--<li class="ui">5</li>-->
-                  <!--<li class="ui">6</li>-->
-                  <!--<li class="ui">7</li>-->
-                  <!--<li class="ui">8</li>-->
-                  <!--<li class="ui">9</li>-->
-                  <!--<li class="ui">10</li>-->
-                  <!--<li class="ui">11</li>-->
-                  <!--<li class="ui">12</li>-->
-                <!--</ul>-->
+        <div class="badges-container" style="margin-top: 35px;">
 
-                 <ul class="badges">
-                     <li ng-repeat="badge in badges" class="badge-thumbnail">
-                         <img ng-src="{{badge.imageUrl}}" alt=""/>
-                     </li>
-                 </ul>
+            <ul class="badges" style="padding-left: 0px;">
+                <li ng-repeat="badge in badges" class="badge-thumbnail">
+                    <img ng-src="{{badge.imageUrl}}" alt="" style="width: 45px!important;height: 45px!important;"/>
+                </li>
+            </ul>
 
-                <!--<table id="badges">-->
+        </div>
+        <br /><br/>
 
-                <!--<tr>-->
-                <!--<td>-->
-                <!--<img class="profile-badge-img"src="img/badges/uni-desire-badge.png" height=45px style="margin:-5px;margin-right: -5px; margin-top: -5px;margin-bottom: -5px;"/>-->
-                 <!--</td>-->
-                 <!--<td>-->
-                 <!--<img class="profile-badge-img" src="img/badges/uni-blackb-badge.png" height=45px style="margin-left: -5px;margin-right: -5px; margin-top: -5px;margin-bottom: -5px;"/>-->
-                 <!--</td>-->
-                 <!--<td>-->
-                 <!--<img class="profile-badge-img" src="img/badges/uni-canvas-badge.png" height=45px style="margin-left: -5px;margin-right: -5px; margin-top: -5px;margin-bottom: -5px; margin-top: -5px;margin-bottom: -5px;"/>-->
-                 <!--</td>-->
-                 <!--<td>-->
-                 <!--<img class="profile-badge-img" src="img/badges/uni-captivate-badge.png" height=45px style="margin-left: -5px;margin-right: -5px; margin-top: -5px;margin-bottom: -5px;"/>-->
-                 <!--</td>-->
-                <!--</tr>-->
-                    <!--<td>-->
-                        <!--<img class="profile-badge-img"src="img/badges/uni-desire-badge.png" height=45px style="margin:-5px;margin-right: -5px; margin-top: -5px;margin-bottom: -5px;"/>-->
-                    <!--</td>-->
-                    <!--<td>-->
-                        <!--<img class="profile-badge-img" src="img/badges/uni-blackb-badge.png" height=45px style="margin-left: -5px;margin-right: -5px; margin-top: -5px;margin-bottom: -5px;"/>-->
-                    <!--</td>-->
-                    <!--<td>-->
-                        <!--<img class="profile-badge-img" src="img/badges/uni-canvas-badge.png" height=45px style="margin-left: -5px;margin-right: -5px; margin-top: -5px;margin-bottom: -5px; margin-top: -5px;margin-bottom: -5px;"/>-->
-                    <!--</td>-->
-                    <!--<td>-->
-                        <!--<img class="profile-badge-img" src="img/badges/uni-captivate-badge.png" height=45px style="margin-left: -5px;margin-right: -5px; margin-top: -5px;margin-bottom: -5px;"/>-->
-                    <!--</td>-->
-                    <!--</tr>-->
-                <!--</table>Cancel-->
-            </span>
+        </div>
 
-        </row>
-        <br /><br/></a>
+
+
+
+
+
     <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left">
         <h6 id="h6-text">TEACH WITH TEXT</h6>
         <div class="progress progress-custom">
@@ -98,12 +53,6 @@
                 <span class="sr-only">30% Complete</span>
             </div>
         </div></a>
-    <!--<a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left">-->
-        <!--<h6>INSTRUCTIONAL TECHNOLOGIES</h6>     </a>-->
-    <!--<a href="#" class="list-group-item list-group-item-customized">-->
- <!---->
-    <!--</a>-->
-
     <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left">
         <h6>INSTRUCTIONAL DESIGN</h6>
         <div class="progress progress-custom">
