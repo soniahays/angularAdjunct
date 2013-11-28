@@ -72,23 +72,18 @@ angular.module('adjunct.controllers')
 
         $scope.openPictureUploadModal = function() {
             $('#upload-picture-modal').modal();
-            $('#upload-picture-modal').off('shown.bs.modal').on('shown.bs.modal', function () {
                 $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.1'});
-            });
+
         }
 
         $scope.openVideoModal = function() {
             $('#video-modal').modal();
-            $('#video-modal').off('shown.bs.modal').on('shown.bs.modal', function () {
-                $('.modal-backdrop').css({'opacity': '0.9'});
-            });
+                $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.4'});
         }
 
         $scope.openBadgeEditModal= function() {
             $('#badge-edit-modal').modal();
-            $('#badge-edit-modal').off('shown.bs.modal').on('shown.bs.modal', function () {
                 $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.1'});
-            });
         }
 
         $scope.uploadComplete = function (content, completed) {

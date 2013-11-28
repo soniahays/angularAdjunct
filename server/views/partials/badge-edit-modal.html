@@ -5,16 +5,41 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="padding-left:10px;padding-right:10px;" >
+                <div id="badges-form-wrapper">
+                    <form name="badgeForm">
+                        <div id="header">Technological tools competencies:</div>
+                        <div id="content">
+                            <div id="content-left">
+                                <img class="badge-form-thumb" ng-src="/img/badges/uni-blackb-badge.png"/>Blackboard <input type="checkbox" ng-model="badge.blackboard"> <br/>
+                                <img class="badge-form-thumb" ng-src="/img/badges/uni-canvas-badge.png"/>Canvas <input type="checkbox" ng-model="badge.canvas"> <br/>
+                                <img class="badge-form-thumb" ng-src="/img/badges/uni-desire-badge.png"/>Desire2Learn <input type="checkbox" ng-model="badge.desire2learn"> <br/>
+                                <img class="badge-form-thumb" ng-src="/img/badges/uni-sakai-badge.png"/>Sakai <input type="checkbox" ng-model="badge.sakai"> <br/>
+                                <img class="badge-form-thumb" ng-src="/img/badges/uni-softchalk-badge.png"/>SoftChalk <input type="checkbox" ng-model="badge.softchalk"> <br/>
+                            </div>
+                            <div id="content-right">
+                                <img class="badge-form-thumb" ng-src="/img/badges/uni-connect-badge.png"/>Adobe Connect <input type="checkbox" ng-model="badge.connect"> <br/>
+                                <img class="badge-form-thumb" ng-src="/img/badges/uni-captivate-badge.png"/>Adobe Captivate <input type="checkbox" ng-model="badge.captivate"> <br/>
+                                <img class="badge-form-thumb" ng-src="/img/badges/uni-camtasia-badge.png"/>Camtasia <input type="checkbox" ng-model="badge.camtasia"> <br/>
+                                <img class="badge-form-thumb" ng-src="/img/badges/uni-omeka-badge.png"/>Omeka <input type="checkbox" ng-model="badge.omeka"> <br/>
+                                <img class="badge-form-thumb" ng-src="/img/badges/uni-zotero-badge.png"/>Zotero <input type="checkbox" ng-model="badge.zotero"> <br/>
+                            </div>
+                        </div>
+                        <div id="footer">
+                            PowerPoint <input type="checkbox" ng-model="badge.powerpoint">
+                            , Prezi <input type="checkbox" ng-model="badge.prezi">
+                            , Keynote <input type="checkbox" ng-model="badge.keynote">
+                            , HandBrake <input type="checkbox" ng-model="badge.handBrake">
+                            , Audacity <input type="checkbox" ng-model="badge.audacity">
+                            , ExplainEverything <input type="checkbox" ng-model="badge.explaineverything">
+                            , iBookAuthor <input type="checkbox" ng-model="badge.ibookauthor">
+                        </div>
+                        <div id="bottom"></div>
+                        </div>
+                    </form>
 
-                <form name="badgeForm">
-                    Technological tools competencies:<br/>
-                    Blackboard: <input type="checkbox" ng-model="badge.blackboard"> <br/>
-                    Canvas: <input type="checkbox" ng-model="badge.canvas"> <br/>
-                    Desire2Learn: <input type="checkbox" ng-model="badge.desire2learn"> <br/>
-                    Sakai: <input type="checkbox" ng-model="badge.sakai"> <br/>
-                    SoftChalk: <input type="checkbox" ng-model="badge.sakai"> <br/>
-                </form>
+
+
 
 
 
