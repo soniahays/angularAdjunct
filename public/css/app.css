@@ -1,3 +1,43 @@
+/*-----------------BADGES FORM SECTION----------------------------*/
+#badges-form-wrapper {
+    width:358px;
+    margin:0px auto;
+}
+#content {
+    margin-top:10px;
+    padding-bottom:10px;
+}
+#content div {
+    padding:0px;
+    float:left;
+}
+#content-left {
+    width:160px;
+}
+
+#content-right {
+    margin-left:10px;
+    width:160px;
+}
+#footer {
+    width:330px;
+    float:left;
+    margin-top:10px;
+    margin-bottom:10px;
+    /*padding:10px;*/
+
+
+}
+#bottom {
+    clear:both;
+    text-align:right;
+}
+.badge-form-thumb{
+    width:35px
+}
+/*-----------------BADGES FORM SECTION -END----------------------------*/
+
+
 #edit-top-card{
     font-size: 0.85em !important;
     line-height: 0.55em !important;
