@@ -4,7 +4,7 @@ var LocalStrategy = require('passport-local').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
     GoogleStrategy = require('passport-google').Strategy;
 
-module.exports = function(db, passport, bcrypt) {
+module.exports = function(db, passport, bcrypt, mongodb) {
 
     var ROOT_URL = "http://localhost:3000";
     switch(process.env.NODE_ENV) {
@@ -22,7 +22,7 @@ module.exports = function(db, passport, bcrypt) {
         },
         function(email, password, done) {
             email = encodeURIComponent(email);
-            db.getUser({'id': email, 'idType': 'email'}, function(err, user) {
+            db.getUser({'email': email}, function(err, user) {
                 if (err)
                     return done(err, null);
 
@@ -48,7 +48,7 @@ module.exports = function(db, passport, bcrypt) {
             callbackURL: ROOT_URL + '/auth/linkedin/callback'
         },
         function(accessToken, refreshToken, profile, done) {
-            db.getUser({ 'id': profile.id, 'idType': 'linkedinId' }, function(err, user) {
+            db.getUser({ 'linkedinId': profile.id }, function(err, user) {
 
                 if (err) {
                     return done(err);
@@ -58,7 +58,7 @@ module.exports = function(db, passport, bcrypt) {
                     done(null, user);
                 }
                 else {
-                    db.insertUser({'idType': 'linkedinId', 'id': profile.id, 'firstName': profile.name.givenName, 'lastName': profile.name.familyName }, done);
+                    db.insertUser({'linkedinId': profile.id, 'firstName': profile.name.givenName, 'lastName': profile.name.familyName }, done);
                 }
             });
         }
@@ -70,7 +70,7 @@ module.exports = function(db, passport, bcrypt) {
             callbackURL: ROOT_URL + '/auth/facebook/callback'
         },
         function(accessToken, refreshToken, profile, done) {
-            db.getUser({ 'id': profile.id, 'idType': 'facebookId' }, function(err, user) {
+            db.getUser({ 'facebookId': profile.id }, function(err, user) {
                 if (err) {
                     return done(err);
                 }
@@ -79,7 +79,7 @@ module.exports = function(db, passport, bcrypt) {
                     done(null, user);
                 }
                 else {
-                    db.insertUser({'idType': 'facebookId', 'id': profile.id, 'firstName': profile.name.givenName, 'lastName': profile.name.familyName }, done);
+                    db.insertUser({'facebookId': profile.id, 'firstName': profile.name.givenName, 'lastName': profile.name.familyName }, done);
                 }
             });
         }
@@ -90,8 +90,8 @@ module.exports = function(db, passport, bcrypt) {
         realm: ROOT_URL
         },
         function(identifier, profile, done) {
-            var id = encodeURIComponent(identifier);
-            db.getUser({ 'id': id, 'idType': 'googleId' }, function(err, user) {
+            var googleId = encodeURIComponent(identifier);
+            db.getUser({ 'googleId': googleId }, function(err, user) {
                 if (err) {
                     return done(err);
                 }
@@ -99,18 +99,18 @@ module.exports = function(db, passport, bcrypt) {
                     done(null, user);
                 }
                 else {
-                    db.insertUser({'idType': 'googleId', 'id': id, 'firstName': profile.name.givenName, 'lastName': profile.name.familyName }, done);
+                    db.insertUser({ 'googleId': googleId, 'firstName': profile.name.givenName, 'lastName': profile.name.familyName }, done);
                 }
             });
         }
     ));
 
     passport.serializeUser(function(user, done) {
-        done(null, user);
+        done(null, {'_id': user._id});
     });
 
     passport.deserializeUser(function(user, done) {
-        db.getUser(user, function(err, u) {
+        db.getUser({'_id': user._id}, function(err, u) {
             done(null, u);
         });
     });

@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('AdjunctsProfileCtrl', ['$scope', '$filter', '$http', '$cookies', '$modal', function ($scope, $filter, $http, $cookies, $modal) {
+    .controller('AdjunctsProfileCtrl', ['$scope', '$filter', '$http', '$cookies', '$modal', function ($scope, $filter, $http, $cookies) {
 
-        if (!$cookies.id) {
+        if (!$cookies._id) {
             return;
         }
 
@@ -22,7 +22,7 @@ angular.module('adjunct.controllers')
         $scope.badges=[{"imageUrl": "/img/badges/uni-blackb-badge.png"}, {"imageUrl": "/img/badges/uni-canvas-badge.png"},{"imageUrl": "/img/badges/uni-captivate-badge.png"},{"imageUrl": "/img/badges/uni-desire-badge.png"}] ;
 
         $http({
-            url: '/api/get-adjuncts-profile/' + $cookies.idType + '/' + $cookies.id,
+            url: '/api/get-adjuncts-profile/' + $cookies._id,
             method: 'GET',
             headers: {'Content-Type': 'application/json'}
         }).success(function (data, status, headers, config) {
@@ -72,9 +72,7 @@ angular.module('adjunct.controllers')
 
         $scope.openPictureUploadModal = function() {
             $('#upload-picture-modal').modal();
-            $('#upload-picture-modal').off('shown.bs.modal').on('shown.bs.modal', function () {
-                $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.1'});
-            });
+            $('.modal-backdrop').css({'background-color': 'black', 'opacity': '0.9'});
         }
 
         $scope.openVideoModal = function() {
@@ -95,7 +93,7 @@ angular.module('adjunct.controllers')
             console.log(content);
 
             $http({
-                url: '/api/get-adjuncts-profile/' + $cookies.idType + '/' + $cookies.id,
+                url: '/api/get-adjuncts-profile/' + $cookies._id,
                 method: 'GET',
                 headers: {'Content-Type': 'application/json'}
             }).success(function (data, status, headers, config) {
