@@ -1,12 +1,16 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('AdjunctsProfileCtrl', ['$scope', '$filter', '$http', '$cookies', '$modal', function ($scope, $filter, $http, $cookies, $modal) {
+<<<<<<< HEAD
+    .controller('AdjunctsProfileCtrl', ['$scope', '$filter','$rootScope', '$http', '$cookies', '$modal', function ($scope, $filter,$rootScope, $http, $cookies, $modal) {
+=======
+    .controller('AdjunctsProfileCtrl', ['$scope', '$filter', '$http', '$cookies', '$modal', function ($scope, $filter, $http, $cookies) {
+>>>>>>> 59e7fbffa4af5310cc2cb3c7fc91303f3859ed77
 
         if (!$cookies._id) {
             return;
         }
-
+        $scope.user = $rootScope.user;
         $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
         $scope.middleCardTemplateUrl = '/partial/adjuncts-profile-middle-card';
         $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card';

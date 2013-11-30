@@ -1,3 +1,6 @@
+ol, ul{
+    list-style: none;
+}
 /*-----------------BADGES FORM SECTION----------------------------*/
 #badges-form-wrapper {
     width:358px;
