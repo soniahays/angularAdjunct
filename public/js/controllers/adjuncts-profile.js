@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('AdjunctsProfileCtrl', ['$scope', '$filter','$rootScope', '$http', '$cookies', '$modal', function ($scope, $filter,$rootScope, $http, $cookies, $modal) {
+    .controller('AdjunctsProfileCtrl', ['$scope', '$filter', '$http', '$cookies', '$modal', function ($scope, $filter, $http, $cookies, $modal) {
 
         if (!$cookies.id) {
             return;
         }
-        $scope.user = $rootScope.user;
+
         $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
         $scope.middleCardTemplateUrl = '/partial/adjuncts-profile-middle-card';
         $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card';
@@ -22,7 +22,7 @@ angular.module('adjunct.controllers')
         $scope.badges=[{"imageUrl": "/img/badges/uni-blackb-badge.png"}, {"imageUrl": "/img/badges/uni-canvas-badge.png"},{"imageUrl": "/img/badges/uni-captivate-badge.png"},{"imageUrl": "/img/badges/uni-desire-badge.png"}] ;
 
         $http({
-            url: '/api/get-adjuncts-profile/' + $cookies.idType + '/' + $cookies.id,
+            url: '/api/get-adjuncts-profile/' + $cookies._id,
             method: 'GET',
             headers: {'Content-Type': 'application/json'}
         }).success(function (data, status, headers, config) {
@@ -116,7 +116,7 @@ angular.module('adjunct.controllers')
             console.log(content);
 
             $http({
-                url: '/api/get-adjuncts-profile/' + $cookies.idType + '/' + $cookies.id,
+                url: '/api/get-adjuncts-profile/' + $cookies._id,
                 method: 'GET',
                 headers: {'Content-Type': 'application/json'}
             }).success(function (data, status, headers, config) {

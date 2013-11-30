@@ -1,7 +1,7 @@
-var mongodb = require('mongodb'),
-    MongoClient = mongodb.MongoClient;
 
-module.exports = function (bcrypt) {
+module.exports = function (bcrypt, mongodb) {
+
+        var MongoClient = mongodb.MongoClient;
 
     var MONGO_URL = "mongodb://localhost:27017/adjunct";
     switch (process.env.NODE_ENV) {
@@ -14,6 +14,8 @@ module.exports = function (bcrypt) {
     }
 
     var db, err;
+    var BSON = mongodb.BSONPure;
+
     var self = {
         connect: function (callback) {
             MongoClient.connect(MONGO_URL, function (err_, db_) {
@@ -25,8 +27,6 @@ module.exports = function (bcrypt) {
         insertUser: function (user, callback) {
             var collection = db.collection('users');
             if (user.password) {
-                user.idType = 'email';
-                user.id = user.email;
                 bcrypt.genSalt(10, function (err, salt) {
                     bcrypt.hash(user.password, salt, function (err, hash) {
                         user.password = hash;
@@ -55,14 +55,16 @@ module.exports = function (bcrypt) {
             }
         },
         updateUser: function (user, callback) {
-            this.getUser(user, function (err, u) {
+            var query = {'_id': user._id };
+            this.getUser(query, function (err, u) {
                 if (err) {
                     return console.error(err);
                 }
                 var collection = db.collection('users');
-                    user.password = u.password;
-                    delete user._id;
-                    collection.update({'id': u.id}, user, function (err) {
+                user.password = u.password;
+                var o_id = new BSON.ObjectID(u._id);
+                delete user._id;
+                collection.update({'_id': o_id}, user, function (err) {
                         if (err) {
                             return console.error(err);
                         }
@@ -71,9 +73,10 @@ module.exports = function (bcrypt) {
                     });
             });
         },
-        updateUserField: function (id, field, callback) {
+        updateUserField: function (_id, field, callback) {
             var collection = db.collection('users');
-            collection.update({'id': id}, {'$set': field}, function (err, user) {
+            var o_id = new BSON.ObjectID(_id);
+            collection.update({'_id': o_id}, {'$set': field}, function (err, user) {
                 if (err) {
                     return console.error(err);
                 }
@@ -83,7 +86,11 @@ module.exports = function (bcrypt) {
         },
         getUser: function (user, callback) {
             var collection = db.collection('users');
-            collection.find({'idType': user.idType, 'id': user.id})
+            if (user._id) {
+                var o_id = new BSON.ObjectID(user._id);
+                user._id = o_id;
+            }
+            collection.find(user)
                 .toArray(function (err, docs) {
                     if (err) {
                         return console.error(err);
@@ -92,6 +99,7 @@ module.exports = function (bcrypt) {
                         callback(null, null);
                     }
                     else {
+                        docs[0]._id = docs[0]._id.toHexString();
                         callback(null, docs[0]);
                     }
                 });

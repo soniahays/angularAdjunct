@@ -3,14 +3,6 @@
 angular.module('adjunct.controllers')
     .controller('SignupCtrl', ['$scope', '$rootScope', '$http', '$location', function ($scope, $rootScope, $http, $location) {
 
-        if (false) {
-            $scope.user = {};
-            $scope.user.firstName = 'Sonia';
-            $scope.user.lastName = 'Brami';
-            $scope.user.email = 'sonia@brami.com';
-            $scope.user.password = 'sonia';
-        }
-
         $scope.joinNow = function () {
             $scope.user.email = encodeURIComponent($scope.user.email);
             $rootScope.user = $scope.user;

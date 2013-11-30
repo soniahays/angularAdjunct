@@ -6,7 +6,7 @@
             <span ng-if="user.imageName">
                 <img class="img-thumbnail pull-left" ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}"/>
             </span>
-            <div ng-if="user.imageName" class="no-picture">
+            <div ng-if="!user.imageName" class="no-picture">
                 <div class="addPictLink">
                     <a href="#" ng-click="openPictureUploadModal()">
                         <span style= "color: #fff;">

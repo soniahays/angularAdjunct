@@ -7,8 +7,9 @@ var http = require('http'),
     ensureLoggedIn = require('./server/ensureLoggedIn.js'),
     bcrypt = require('bcrypt'),
     aws = require('aws-sdk'),
-    db = require('./server/db.js')(bcrypt),
-    pass = require('./server/passport.js')(db, passport, bcrypt),
+    mongodb = require('mongodb'),
+    db = require('./server/db.js')(bcrypt, mongodb),
+    pass = require('./server/passport.js')(db, passport, bcrypt, mongodb),
     countries = require('./server/api/countries.json'),
     months = require('./server/api/months.json'),
     fieldGroup = require('./server/api/fieldGroup.json');
@@ -69,14 +70,13 @@ app.get('/api/users', function(req, res) {
     });
 });
 
-app.get('/api/get-adjuncts-profile/:idType/:id', function (req, res) {
-    var idType = req.params.idType;
-    var id = encodeURIComponent(req.params.id);
+app.get('/api/get-adjuncts-profile/:id', function (req, res) {
+    var _id = req.params.id;
 
-    if (!id || !idType)
-        return res.send("ID and ID Type required");
+    if (!_id)
+        return res.send("ID required");
 
-    var user = {'id': id, 'idType': idType};
+    var user = {'_id': _id};
 
     db.getUser(user, function (err, user) {
         if (err) {
@@ -93,8 +93,7 @@ app.get('/api/get-adjuncts-profile/:idType/:id', function (req, res) {
 app.get('/partial/adjuncts-profile',
     ensureLoggedIn({ redirectTo: path.join(app.get('partials'), 'signin-popover.html'), customReturnTo: '/profile' }),
     function (req, res) {
-        res.cookie('id', req.user.id);
-        res.cookie('idType', req.user.idType);
+        res.cookie('_id', req.user._id);
         res.render(path.join(app.get('partials'), 'adjuncts-profile.html'));
     });
 
@@ -106,8 +105,7 @@ app.get('/partial/:name',
 
 app.get('/signout', function (req, res) {
     req.logout();
-    res.clearCookie('id', { path: '/' });
-    res.clearCookie('idType', { path: '/' });
+    res.clearCookie('_id', { path: '/' });
     res.redirect('/');
 });
 
@@ -183,7 +181,7 @@ app.post('/upload', function (req, res) {
                             res.send(err);
                         }
                         else {
-                            db.updateUserField(req.cookies.id, {'imageName': newFileName}, function() {
+                            db.updateUserField(req.cookies._id, {'imageName': newFileName}, function() {
                                 res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
                             });
                         }
@@ -198,31 +196,9 @@ app.post('/upload', function (req, res) {
     );
 });
 
-app.get('/image/:idType/:id', function (req, res) {
-    var idType = req.params.idType;
-    var id = req.params.id;
-
-    if (!id || !idType)
-        return res.send("ID and ID Type required");
-
-    var user = {'id': id, 'idType': idType};
-
-    db.getUser(user, function (err, user) {
-        if (err) {
-            return res.send(500, "Error retrieving user");
-        }
-        if (!user) {
-            return res.send('Not found');
-        }
-        delete user.password;
-        return res.json({ 'imagePath': '/uploads/' + user.imageName });
-    });
-});
-
 app.get('*', function (req, res) {
     if (req.user) { // user coming from valid passport authentication
-        res.cookie('id', req.user.id);
-        res.cookie('idType', req.user.idType);
+        res.cookie('_id', req.user._id);
     }
     res.render(path.join(app.get('views'), 'index.html'));
 });
