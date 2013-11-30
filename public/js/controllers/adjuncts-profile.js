@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('AdjunctsProfileCtrl', ['$scope', '$filter', '$http', '$cookies', '$modal', function ($scope, $filter, $http, $cookies, $modal) {
+    .controller('AdjunctsProfileCtrl', ['$scope', '$filter','$rootScope', '$http', '$cookies', '$modal', function ($scope, $filter,$rootScope, $http, $cookies, $modal) {
 
         if (!$cookies.id) {
             return;
         }
-
+        $scope.user = $rootScope.user;
         $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
         $scope.middleCardTemplateUrl = '/partial/adjuncts-profile-middle-card';
         $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card';
@@ -40,6 +40,18 @@ angular.module('adjunct.controllers')
                 console.log("get-adjuncts-profile-top-card didn't work");
             });
 
+        $scope.months = [];
+        $http({
+            url: '/api/months',
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        }).success(function (data, status, headers, config) {
+                $scope.months = data;
+            }).error(function (data, status, headers, config) {
+                console.log("get months didn't work");
+            });
+
+
         $scope.statuses = [
             {value: 1, text: 'fall'},
             {value: 2, text: 'winter'},
@@ -67,6 +79,20 @@ angular.module('adjunct.controllers')
                     console.log("save-adjuncts-profile-top-card worked");
                 }).error(function (data, status, headers, config) {
                     console.log("save-adjuncts-profile-top-card didn't work");
+                });
+        }
+        $scope.saveBottomCard = function () {
+            $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card';
+
+            $http({
+                url: '/save-adjuncts-profile',
+                method: 'POST',
+                data: JSON.stringify({'user': $scope.user}),
+                headers: {'Content-Type': 'application/json'}
+            }).success(function (data, status, headers, config) {
+                    console.log("save-adjuncts-profile-bottom-card worked");
+                }).error(function (data, status, headers, config) {
+                    console.log("save-adjuncts-profile-bottom-card didn't work");
                 });
         }
 

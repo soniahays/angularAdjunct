@@ -24,18 +24,19 @@
                 </div>
 
 
-                <div class="profile-edit">
-                    <!-- button to show form -->
-                    <button type="button" class="btn btn-xs btn-primary" ng-click="editBottomCard()">Edit Profile</button>
-                    <!-- buttons to submit / cancel form -->
-                  <span ng-show="editableForm2.$visible">
-                  <button type="submit" class="btn btn-primary" ng-disabled="editableForm2.$waiting">Save</button>
-                  <button type="button" class="btn btn-default" ng-disabled="editableForm2.$waiting" ng-click="editableForm2.$hide()">Cancel</button>
-                  </span>
-                </div>
+                <!--<div class="profile-edit">-->
+                    <!--&lt;!&ndash; button to show form &ndash;&gt;-->
+                    <!--<button type="button" class="btn btn-xs btn-primary" ng-click="editBottomCard()">Edit Profile</button>-->
+                    <!--&lt;!&ndash; buttons to submit / cancel form &ndash;&gt;-->
+                  <!--<span ng-show="editableForm2.$visible">-->
+                  <!--<button type="submit" class="btn btn-primary" ng-disabled="editableForm2.$waiting">Save</button>-->
+                  <!--<button type="button" class="btn btn-default" ng-disabled="editableForm2.$waiting" ng-click="editableForm2.$hide()">Cancel</button>-->
+                  <!--</span>-->
+                <!--</div>-->
 
             </form>
         </div>
         <!--</div>-->
     </div>
+    <button type="button" class="btn btn-md btn-primary"  id="edit-top-card"style="position:absolute; right: 0px ; bottom: 0px ;border-radius:3px 0px 3px 0px" ng-click="editBottomCard()"><i class="fa fa-pencil-square-o fa-lg"></i> Edit Profile</button>
 </div>

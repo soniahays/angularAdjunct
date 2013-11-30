@@ -10,6 +10,7 @@ var http = require('http'),
     db = require('./server/db.js')(bcrypt),
     pass = require('./server/passport.js')(db, passport, bcrypt),
     countries = require('./server/api/countries.json'),
+    months = require('./server/api/months.json'),
     fieldGroup = require('./server/api/fieldGroup.json');
 
 var app = express();
@@ -49,7 +50,9 @@ var s3 = new aws.S3();
 app.get('/api/countries', function (req, res) {
     res.json(countries);
 });
-
+app.get('/api/months', function (req, res) {
+    res.json(months);
+});
 app.get('/api/fieldGroup', function (req, res) {
     res.json(fieldGroup);
 });
