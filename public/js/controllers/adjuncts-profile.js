@@ -81,6 +81,22 @@ angular.module('adjunct.controllers')
                     console.log("save-adjuncts-profile-top-card didn't work");
                 });
         }
+
+        $scope.saveBadgeCard = function () {
+            $scope.badgeSectionUrl = '/partial/badge-section';
+            console.log($scope.user.badge);
+            $http({
+                url: '/save-adjuncts-profile',
+                method: 'POST',
+                data: JSON.stringify({'user': $scope.user}),
+                headers: {'Content-Type': 'application/json'}
+            }).success(function (data, status, headers, config) {
+                    console.log("save-adjunct-badge-card worked");
+                }).error(function (data, status, headers, config) {
+                    console.log("save-adjunct-badge-card didn't work");
+                });
+        }
+
         $scope.saveBottomCard = function () {
             $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card';
 
@@ -109,7 +125,7 @@ angular.module('adjunct.controllers')
 
         $scope.openBadgeEditModal= function() {
             $('#badge-edit-modal').modal();
-                $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.1'});
+                $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
         }
 
         $scope.uploadComplete = function (content, completed) {

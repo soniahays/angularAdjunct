@@ -1,5 +1,37 @@
+.edit-buttons{
+    /*background-color: #707070;*/
+    /*border-color:#707070;*/
+    /*color:white;*/
+    background-color: #D1D1D1;
+    border-color:#D1D1D1;
+    color:#272727;
+}
+.list-group-item-customize-left h6{
+    color:#272727;
+}
+
+#top-card{
+    background-color: #F6F6F6;
+    /*border-bottom-right-radius: 0px !important;*/
+    border-bottom-left-radius: 0px !important;
+
+}
+.edit-experience{
+    width:390px;
+}
+.edit-year{
+    width:90px;
+}
+.year{
+    width:60px;
+}
+label, legend{
+    font-size:14px;
+    font-weight: normal
+}
 ol, ul{
     list-style: none;
+    padding-left:0px;
 }
 /*-----------------BADGES FORM SECTION----------------------------*/
 #badges-form-wrapper {
@@ -117,7 +149,11 @@ ol, ul{
     width:902px;
     height:480px;
 }
+.modal-content-custom{
+    background-color:#F6F6F6;
+}
 .modal-dialog-custom{
+
   width:380px;
   margin-top:150px;
 }
@@ -254,7 +290,10 @@ ol, ul{
     padding: 2px 15px 5px 12px;
 
 }
-/*.list-group-item-customize-left h6{*/
+.list-group-item-customize-left{
+    background-color:#F6F6F6;
+    border-top-right-radius: 0px !important;
+    border-top-left-radius: 0px !important;
 /*padding: 2px 15px 5px 12px; !important*/
 /*margin-bottom: 0px;*/
 /*}*/
@@ -262,7 +301,7 @@ ol, ul{
 /*#h6-text{*/
 /*padding: 2px 15px -25px 0px; !important*/
 /*margin-bottom: 0px;*/
-/*}*/
+}
 
 
 .progress-custom{
@@ -273,7 +312,7 @@ ol, ul{
 .progress-bar-custom{
     height:13px;
     margin-bottom: 10px;
-    background-color: #919ba2;
+    background-color: #EB7737;
 }
 /*-----------------ICONS CUSTOM----------------------------*/
 .icon-car {
