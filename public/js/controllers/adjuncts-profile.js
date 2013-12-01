@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('AdjunctsProfileCtrl', ['$scope', '$filter', '$http', '$cookies', '$modal', function ($scope, $filter, $http, $cookies, $modal) {
+    .controller('AdjunctsProfileCtrl', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
 
-        if (!$cookies._id) {
+        var userId = $('#userId').html();
+
+        if (!$cookies._id && !userId) {
             return;
         }
 
@@ -22,7 +24,7 @@ angular.module('adjunct.controllers')
         $scope.badges=[{"imageUrl": "/img/badges/uni-blackb-badge.png"}, {"imageUrl": "/img/badges/uni-canvas-badge.png"},{"imageUrl": "/img/badges/uni-captivate-badge.png"},{"imageUrl": "/img/badges/uni-desire-badge.png"}] ;
 
         $http({
-            url: '/api/get-adjuncts-profile/' + $cookies._id,
+            url: '/api/get-adjuncts-profile/' + (userId ? userId : $cookies._id),
             method: 'GET',
             headers: {'Content-Type': 'application/json'}
         }).success(function (data, status, headers, config) {

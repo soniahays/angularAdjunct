@@ -1,3 +1,6 @@
+<% if (locals.userId) { %>
+    <div id="userId" style="display:none"><%= locals.userId %></div>
+<% } %>
 <div class="container">
     <div class="panel col-md-9">
         <div ng-include="topCardTemplateUrl" />
@@ -18,3 +21,4 @@
 <div ng-include="uploadPictureModalUrl" />
 <div ng-include="videoModalUrl" />
 <div ng-include="badgeEditModallUrl" />
+

@@ -12,12 +12,13 @@ angular.module('adjunct', [
         'adjunct.controllers'
     ]).
     config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-        $routeProvider.when('/', {templateUrl: 'partial/home', controller: 'HomeCtrl', accessLevel: 'public'});
-        $routeProvider.when('/search-results', {templateUrl: 'partial/search-results', controller: 'SearchResultsCtrl', accessLevel: 'public'});
-        $routeProvider.when('/profile', {templateUrl: 'partial/adjuncts-profile', controller: 'AdjunctsProfileCtrl', accessLevel: 'private'});
-        $routeProvider.when('/signup', {templateUrl: 'partial/signup', controller: 'SignupCtrl', accessLevel: 'public'});
-        $routeProvider.when('/basic-profile', {templateUrl: 'partial/basic-profile', controller: 'BasicProfileCtrl', accessLevel: 'public'});
-        $routeProvider.when('/confirm-email', {templateUrl: 'partial/confirm-email', controller: 'ConfirmEmailCtrl', accessLevel: 'public'});
+        $routeProvider.when('/', {templateUrl: '/partial/home', controller: 'HomeCtrl', accessLevel: 'public'});
+        $routeProvider.when('/search-results', {templateUrl: '/partial/search-results', controller: 'SearchResultsCtrl', accessLevel: 'public'});
+        $routeProvider.when('/profile/:id', {templateUrl: function(params) {  return '/partial/adjuncts-profile/' + params.id; }, controller: 'AdjunctsProfileCtrl', accessLevel: 'public'});
+        $routeProvider.when('/profile', {templateUrl: '/partial/adjuncts-profile', controller: 'AdjunctsProfileCtrl', accessLevel: 'private'});
+        $routeProvider.when('/signup', {templateUrl: '/partial/signup', controller: 'SignupCtrl', accessLevel: 'public'});
+        $routeProvider.when('/basic-profile', {templateUrl: '/partial/basic-profile', controller: 'BasicProfileCtrl', accessLevel: 'public'});
+        $routeProvider.when('/confirm-email', {templateUrl: '/partial/confirm-email', controller: 'ConfirmEmailCtrl', accessLevel: 'public'});
         $routeProvider.otherwise({redirectTo: '/'});
         $locationProvider.html5Mode(true);
     }]);

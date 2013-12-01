@@ -6,4 +6,6 @@ angular.module('adjunct.controllers')
         $scope.signout = function() {
             window.location.replace('/signout');
         }
+
+        $scope.index = 0;
 }]);

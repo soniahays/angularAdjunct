@@ -51,6 +51,7 @@ var s3 = new aws.S3();
 app.get('/api/countries', function (req, res) {
     res.json(countries);
 });
+
 app.get('/api/months', function (req, res) {
     res.json(months);
 });
@@ -95,6 +96,11 @@ app.get('/partial/adjuncts-profile',
     function (req, res) {
         res.cookie('_id', req.user._id);
         res.render(path.join(app.get('partials'), 'adjuncts-profile.html'));
+    });
+
+app.get('/partial/adjuncts-profile/:userId',
+    function (req, res) {
+        res.render(path.join(app.get('partials'), 'adjuncts-profile.html'), { locals: {'userId': req.params.userId}});
     });
 
 app.get('/partial/:name',
