@@ -45,8 +45,9 @@
 
                     <li ng-class="{active: index == 0}" ng-click="index = 0"><a href="/">Home</a></li>
                     <li ng-class="{active: index == 1}" ng-click="index = 1"><a ng-href="/profile">Profile</a></li>
-                    <li ng-class="{active: index == 2}" ng-click="index = 2"><a href="/search-results">Jobs</a></li>
-                    <li ng-class="{active: index == 3}" ng-click="index = 3"><a href="/contact">Contact</a></li>
+                    <li ng-class="{active: index == 2}" ng-click="index = 2"><a href="/search-results">Network</a></li>
+                    <li ng-class="{active: index == 3}" ng-click="index = 3"><a href="/jobs">Jobs</a></li>
+                    <li ng-class="{active: index == 4}" ng-click="index = 4"><a href="/contact">Contact</a></li>
                 </ul>
                 <div class="nav navbar-nav navbar-right">
                     <button class="btn btn-custom btn-signin" ng-click="signout()" ng-show="isSignedIn">Sign Out</button>
