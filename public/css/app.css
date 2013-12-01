@@ -1,3 +1,9 @@
+.badge{
+    padding-left: 0px;
+    margin-right: 10px;
+    padding-right: 0px;
+    background-color: transparent;
+}
 .edit-buttons{
     /*background-color: #707070;*/
     /*border-color:#707070;*/

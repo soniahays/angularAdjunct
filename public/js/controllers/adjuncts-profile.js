@@ -21,7 +21,8 @@ angular.module('adjunct.controllers')
         $scope.videoModalUrl = '/partial/video-modal';
         $scope.user = {};
         $scope.user.imageName = null;
-        $scope.badges=[{"imageUrl": "/img/badges/uni-blackb-badge.png"}, {"imageUrl": "/img/badges/uni-canvas-badge.png"},{"imageUrl": "/img/badges/uni-captivate-badge.png"},{"imageUrl": "/img/badges/uni-desire-badge.png"}] ;
+        $scope.user.badges = [];
+
 
         $http({
             url: '/api/get-adjuncts-profile/' + (userId ? userId : $cookies._id),
@@ -38,6 +39,15 @@ angular.module('adjunct.controllers')
                     experience1TimePeriodYear: '2013',
                     experience1Summary: 'write more about your experience here'
                 });
+                $scope.filteredBadges = [];
+
+                for (var badge in $scope.user.badges) {
+                    var val = $scope.user.badges[badge];
+                    if (val != false) {
+                        $scope.filteredBadges.push(val);
+                    }
+                }
+
             }).error(function (data, status, headers, config) {
                 console.log("get-adjuncts-profile-top-card didn't work");
             });
@@ -85,8 +95,6 @@ angular.module('adjunct.controllers')
         }
 
         $scope.saveBadgeCard = function () {
-            $scope.badgeSectionUrl = '/partial/badge-section';
-            console.log($scope.user.badge);
             $http({
                 url: '/save-adjuncts-profile',
                 method: 'POST',
@@ -94,6 +102,14 @@ angular.module('adjunct.controllers')
                 headers: {'Content-Type': 'application/json'}
             }).success(function (data, status, headers, config) {
                     console.log("save-adjunct-badge-card worked");
+                    $scope.filteredBadges = [];
+
+                    for (var badge in $scope.user.badges) {
+                        var val = $scope.user.badges[badge];
+                        if (val != false) {
+                            $scope.filteredBadges.push(val);
+                        }
+                    }
                 }).error(function (data, status, headers, config) {
                     console.log("save-adjunct-badge-card didn't work");
                 });
@@ -139,6 +155,7 @@ angular.module('adjunct.controllers')
                 headers: {'Content-Type': 'application/json'}
             }).success(function (data, status, headers, config) {
                     $scope.user.imageName = data.imageName;
+                    $('#upload-picture-modal').modal('hide');
                 }).error(function (data, status, headers, config) {
                     console.log("get-adjuncts-profile-top-card didn't work");
                 });

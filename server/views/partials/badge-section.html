@@ -6,14 +6,15 @@
 
         <div class="badges-container" style="margin-top: 35px;">
 
-            <ul class="badges" style="padding-left: 0px;">
-                <li ng-repeat="badge in badges" class="badge-thumbnail">
-                    <img ng-src="{{badge.imageUrl}}" alt="" style="width: 45px!important;height: 45px!important;"/>
+            <ul class="badge" style="padding-left: 0px;">
+                <li ng-repeat="badge in filteredBadges" class="badge-thumbnail">
+
+                    <img ng-src="/img/badges/{{badge}}.png" alt="" style="width: 45px!important;height: 45px!important;"/>
                 </li>
             </ul>
 
         </div>
-        <br /><br/>
+
 
         </div>
 
