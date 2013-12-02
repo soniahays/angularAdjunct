@@ -1,0 +1,28 @@
+<div id="portfolio-edit-modal" class="modal">
+    <div class="modal-dialog modal-dialog-custom">
+        <div class="modal-content modal-content-custom modal-content-custom-porfolio">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body" style="padding-left:10px;padding-right:10px;" >
+                <div id="video-form-wrapper">
+
+
+                    <label>Paste in the link of your Youtube video:</label><br/>
+                       <!--user.portfolio.videoLink-->
+
+                    <ul ng-repeat="videoLink in user.videoLinks">
+                        <li> <input type="text" name="videoLink" style="width:406px" ng-model="videoLink" /><a href="#">Remove</a></li>
+                    </ul>
+                    <input type="text" name="videoLi" style="width:406px" ng-model="videoLi" /><br/>
+                    <a href="#">Add</a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-xs btn-primary" data-dismiss="modal" ng-click="savePortfolioCard()">Save</button>
+                <button type="button" class="btn btn-xs" data-dismiss="modal">Cancel</button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

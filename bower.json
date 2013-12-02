@@ -22,7 +22,8 @@
         "angular-cookies": "~1.2",
         "bootstrap": "~3.0",
         "angular-strap": "~0.7",
-        "ngUpload": "~0.4"
+        "ngUpload": "~0.4",
+        "uri.js":"~1.11"
     },
     "resolutions": {
         "angular": "~1.2",

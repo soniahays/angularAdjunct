@@ -1,3 +1,16 @@
+.video-thumbnails{
+
+    float:left;
+}
+.video-thumbnail{
+  display:inline;
+}
+#sidebar2{
+    padding-right:0px! important;
+}
+.custom-main-left-panel{
+    padding-right: 0px !important;
+}
 .badge{
     padding-left: 0px;
     margin-right: 10px;
@@ -20,6 +33,7 @@
     background-color: #F6F6F6;
     /*border-bottom-right-radius: 0px !important;*/
     border-bottom-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
 
 }
 .edit-experience{
@@ -157,6 +171,9 @@ ol, ul{
 }
 .modal-content-custom{
     background-color:#F6F6F6;
+}
+.modal-content-custom-porfolio{
+    width:458px;
 }
 .modal-dialog-custom{
 
