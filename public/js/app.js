@@ -11,10 +11,10 @@ angular.module('adjunct', [
         'adjunct.directives',
         'adjunct.controllers'
     ]).
-    config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+    config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', function ($routeProvider, $locationProvider, $sceDelegateProvider) {
         $routeProvider.when('/', {templateUrl: '/partial/home', controller: 'HomeCtrl', accessLevel: 'public'});
         $routeProvider.when('/search-results', {templateUrl: '/partial/search-results', controller: 'SearchResultsCtrl', accessLevel: 'public'});
-        $routeProvider.when('/job-profile', {templateUrl: '/partial/job-profile', controller: 'JobProfileCtrl', accessLevel: 'public'});
+        $routeProvider.when('/jobs-profile', {templateUrl: '/partial/jobs-profile', controller: 'JobsProfileCtrl', accessLevel: 'public'});
         $routeProvider.when('/institution-profile', {templateUrl: '/partial/institution-profile', controller: 'InstitutionProfileCtrl', accessLevel: 'public'});
         $routeProvider.when('/profile/:id', {templateUrl: function(params) {  return '/partial/adjuncts-profile/' + params.id; }, controller: 'AdjunctsProfileCtrl', accessLevel: 'public'});
         $routeProvider.when('/profile', {templateUrl: '/partial/adjuncts-profile', controller: 'AdjunctsProfileCtrl', accessLevel: 'private'});
@@ -23,6 +23,7 @@ angular.module('adjunct', [
         $routeProvider.when('/confirm-email', {templateUrl: '/partial/confirm-email', controller: 'ConfirmEmailCtrl', accessLevel: 'public'});
         $routeProvider.otherwise({redirectTo: '/'});
         $locationProvider.html5Mode(true);
+        $sceDelegateProvider.resourceUrlWhitelist(["http://www.youtube.com/embed/*", "self"]);
     }]);
 
 angular.module('adjunct.filters', []);

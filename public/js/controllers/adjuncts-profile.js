@@ -20,11 +20,7 @@ angular.module('adjunct.controllers')
         $scope.portfolioEditModallUrl = '/partial/portfolio-edit-modal';
         $scope.uploadPictureModalUrl = '/partial/upload-picture-modal';
         $scope.videoModalUrl = '/partial/video-modal';
-        $scope.user = {};
-        $scope.user.imageName = null;
-        $scope.user.badges = [];
-        $scope.user.videoLinks = [];
-
+        $scope.videoUrl = '';
 
         $http({
             url: '/api/get-adjuncts-profile/' + (userId ? userId : $cookies._id),
@@ -33,7 +29,6 @@ angular.module('adjunct.controllers')
         }).success(function (data, status, headers, config) {
                 $scope.user = data;
                 angular.extend($scope.user, {
-                    summary: 'Jennifer is currently pursuing her graduate degree at Michigan State University. Her research interests include Poland, the Holocaust, European Jewry Gender Childhood and Family. She has over six years of experience as an instructor and teaching assistant. Jennifer is a tech savvy teacher and has been enhancing her classes with Youtube video and online questionnaire for four years now',
                     experience1Institution: 'Saginaw Valley State University',
                     experience1Title: 'Instructor',
                     experience1Location: 'Fall 2013, Kochville, Michigan',
@@ -41,6 +36,7 @@ angular.module('adjunct.controllers')
                     experience1TimePeriodYear: '2013',
                     experience1Summary: 'write more about your experience here'
                 });
+
                 $scope.filteredBadges = [];
 
                 for (var badge in $scope.user.badges) {
@@ -49,14 +45,27 @@ angular.module('adjunct.controllers')
                         $scope.filteredBadges.push(val);
                     }
                 }
-                //$scope.user.videoLinks = ["https://www.youtube.com/watch?v=Xorgyc7CPGg","https://www.youtube.com/watch?v=Xweeegyc7CPGg"];
-                $scope.user.videoIds=[];
 
-                for (var index in $scope.user.videoLinks){
-                    var videoLink = $scope.user.videoLinks[index];
-                    var videoId = URI.parseQuery(URI.parse(videoLink).query).v;
-                    $scope.user.videoIds.push(videoId);
+
+                if (!$scope.user.portfolioLinks)
+                    $scope.user.portfolioLinks = [];
+
+                $scope.user.videoIds = [];
+
+                    console.log($scope.user.portfolioLinks);
+                for (var index in $scope.user.portfolioLinks){
+                    var portfolioLink = $scope.user.portfolioLinks[index];
+                    if (portfolioLink.type == 'video') {
+                        var videoId = URI.parseQuery(URI.parse(portfolioLink.value).query).v;
+                        console.log("videoId: ",videoId);
+                        $scope.user.videoIds.push(videoId);
+
+                    }
+
                 }
+
+
+
 
 
             }).error(function (data, status, headers, config) {
@@ -127,23 +136,15 @@ angular.module('adjunct.controllers')
         }
 
         $scope.savePortfolioCard = function () {
-            console.log($scope.user.videoLinks);
+            console.log($scope.user.portfolioLinks);
             $http({
                 url: '/save-adjuncts-profile',
                 method: 'POST',
                 data: JSON.stringify({'user': $scope.user}),
                 headers: {'Content-Type': 'application/json'}
             }).success(function (data, status, headers, config) {
-//
+
                     console.log("save-adjunct-portfolio-card worked");
-//                    $scope.filteredBadges = [];
-//
-//                    for (var videoLink in $scope.user.videoLinks) {
-//                        var val = $scope.user.videoLinks[videoLink];
-//                        if (val != false) {
-//                            $scope.filteredBadges.push(val);
-//                        }
-//                    }
                 }).error(function (data, status, headers, config) {
                     console.log("save-adjunct-badge-card didn't work");
                 });
@@ -164,15 +165,30 @@ angular.module('adjunct.controllers')
                 });
         }
 
+        $scope.addPortfolioLink= function(){
+            console.log("from addPortfolioLink",$scope.user.portfolioLinks);
+           $scope.user.portfolioLinks.push({type:'video', value:''});
+        }
+
+        $scope.removePortfolioLink= function(portfolioLink)
+        {
+            for(var i= 0, ii = $scope.user.portfolioLinks.length; i < ii; i++){
+                if(portfolioLink==$scope.user.portfolioLinks[i]){
+                    $scope.user.portfolioLinks.splice(i, 1);
+                }
+            }
+        }
+
         $scope.openPictureUploadModal = function() {
             $('#upload-picture-modal').modal();
                 $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.1'});
 
         }
 
-        $scope.openVideoModal = function() {
+        $scope.openVideoModal = function(videoId) {
+            $scope.videoUrl = "http://www.youtube.com/embed/" + videoId;
             $('#video-modal').modal();
-                $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.4'});
+            $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.4'});
         }
 
         $scope.openBadgeEditModal= function() {

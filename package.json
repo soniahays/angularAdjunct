@@ -1,21 +1,21 @@
 {
-    "name": "adjuncts",
-    "version": "0.0.1",
-    "dependencies": {
-        "express": "3.4.x",
-        "bcrypt": "0.7.x",
-        "ejs": "0.8.x",
-        "mongodb": "1.3.19",
-        "passport": "0.1.17",
-        "passport-facebook": "1.0.x",
-        "passport-linkedin": "0.1.x",
-        "passport-google": "0.3.x",
-        "passport-local": "0.1.x",
-        "node-uuid": "~1.4",
-        "aws-sdk": "~1.12"
-    },
-    "engines": {
-        "node": "0.10.x",
-        "npm": "1.3.x"
-    }
+  "name": "adjuncts",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "3.4.x",
+    "bcrypt": "0.7.x",
+    "ejs": "0.8.x",
+    "mongodb": "1.3.19",
+    "passport": "0.1.17",
+    "passport-facebook": "1.0.x",
+    "passport-linkedin": "0.1.x",
+    "passport-google": "0.3.x",
+    "passport-local": "0.1.x",
+    "node-uuid": "~1.4",
+    "aws-sdk": "~1.12"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.3.x"
+  }
 }

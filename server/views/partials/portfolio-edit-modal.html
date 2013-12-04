@@ -8,14 +8,23 @@
                 <div id="video-form-wrapper">
 
 
-                    <label>Paste in the link of your Youtube video:</label><br/>
-                       <!--user.portfolio.videoLink-->
+                    <form name="portfolioForm">
+                    <label>Paste in the link of your Youtube video:</label></br>
+                    [<a href="" ng-click="addPortfolioLink()">add</a>]
+                    <div ng-repeat="portfolioLink in user.portfolioLinks">
+                        <select ng-model="portfolioLink.type">
+                            <option>video</option>
+                            <option>pdf</option>
+                        </select>
+                        <input type="text" class="portfolio-form" ng-model="portfolioLink.value" required>
+                        [<a href="" ng-click="removePortfolioLink(portfolioLink)">X</a>]
+                    </div>
+                    </form>
 
-                    <ul ng-repeat="videoLink in user.videoLinks">
-                        <li> <input type="text" name="videoLink" style="width:406px" ng-model="videoLink" /><a href="#">Remove</a></li>
-                    </ul>
-                    <input type="text" name="videoLi" style="width:406px" ng-model="videoLi" /><br/>
-                    <a href="#">Add</a>
+
+
+                    <!--style="width:406px"-->
+
                 </div>
             </div>
             <div class="modal-footer">

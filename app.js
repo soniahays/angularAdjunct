@@ -8,8 +8,8 @@ var http = require('http'),
     bcrypt = require('bcrypt'),
     aws = require('aws-sdk'),
     mongodb = require('mongodb'),
-    db = require('./server/db.js')(bcrypt, mongodb),
-    pass = require('./server/passport.js')(db, passport, bcrypt, mongodb),
+    userDb = require('./server/userDb.js')(bcrypt, mongodb),
+    pass = require('./server/passport.js')(userDb, passport, bcrypt, mongodb),
     countries = require('./server/api/countries.json'),
     months = require('./server/api/months.json'),
     fieldGroup = require('./server/api/fieldGroup.json');
@@ -60,7 +60,7 @@ app.get('/api/fieldGroup', function (req, res) {
 });
 
 app.get('/api/users', function(req, res) {
-    db.getUsers(function (err, users) {
+    userDb.getUsers(function (err, users) {
         if (err) {
             return res.send(500, "Error retrieving user");
         }
@@ -79,7 +79,7 @@ app.get('/api/get-adjuncts-profile/:id', function (req, res) {
 
     var user = {'_id': _id};
 
-    db.getUser(user, function (err, user) {
+    userDb.getUser(user, function (err, user) {
         if (err) {
             return res.send(500, "Error retrieving user");
         }
@@ -146,18 +146,18 @@ app.post('/signin-post',
 );
 
 app.post('/signup', function (req, res) {
-    db.insertUser(req.body.user);
+    userDb.insertUser(req.body.user);
     res.end();
 });
 
 app.post('/basic-profile', function (req, res) {
-    db.updateUser(req.body.user);
+    userDb.updateUser(req.body.user);
     res.end();
 });
 
 app.post('/save-adjuncts-profile', function (req, res) {
     if (req.body.user) {
-        db.updateUser(req.body.user);
+        userDb.updateUser(req.body.user);
     }
     else {
         console.log("req.body.user is null!");
@@ -189,7 +189,7 @@ app.post('/upload', function (req, res) {
                             res.send(err);
                         }
                         else {
-                            db.updateUserField(req.cookies._id, {'imageName': newFileName}, function() {
+                            userDb.updateUserField(req.cookies._id, {'imageName': newFileName}, function() {
                                 res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
                             });
                         }
@@ -215,7 +215,7 @@ app.get('*', function (req, res) {
 /**
  * Start Server
  */
-db.connect(function () {
+userDb.connect(function () {
     console.log('Connected to mongodb.');
     http.createServer(app).listen(app.get('port'), function () {
         console.log('Express server listening on port ' + app.get('port'));
