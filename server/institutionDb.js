@@ -23,56 +23,56 @@ module.exports = function (mongodb) {
                 callback();
             });
         },
-        insertJob: function (job, callback) {
-            var collection = db.collection('jobs');
-            collection.insert([job], function (err) {
+        insertInstitution: function (institution, callback) {
+            var collection = db.collection('institutions');
+            collection.insert([institution], function (err) {
                 if (err) {
                     return console.error(err);
                 }
                 else {
                     if (callback)
-                        callback(err, job);
+                        callback(err, institution);
                 }
             });
 
         },
-//        updateJob: function (job, callback) {
-//            var query = {'_id': job._id };
-//            this.getJob(query, function (err, u) {
+//        updateInstitution: function (institution, callback) {
+//            var query = {'_id': institution._id };
+//            this.getInstitution(query, function (err, u) {
 //                if (err) {
 //                    return console.error(err);
 //                }
-//                var collection = db.collection('jobs');
-//                job.password = u.password;
+//                var collection = db.collection('institutions');
+//                institution.password = u.password;
 //                var o_id = new BSON.ObjectID(u._id);
-//                delete job._id;
-//                collection.update({'_id': o_id}, job, function (err) {
+//                delete institution._id;
+//                collection.update({'_id': o_id}, institution, function (err) {
 //                    if (err) {
 //                        return console.error(err);
 //                    }
 //                    if (callback)
-//                        callback(err, job);
+//                        callback(err, institution);
 //                });
 //            });
 //        },
-        updateJobField: function (_id, field, callback) {
-            var collection = db.collection('jobs');
+        updateInstitutionField: function (_id, field, callback) {
+            var collection = db.collection('institutions');
             var o_id = new BSON.ObjectID(_id);
-            collection.update({'_id': o_id}, {'$set': field}, function (err, job) {
+            collection.update({'_id': o_id}, {'$set': field}, function (err, institution) {
                 if (err) {
                     return console.error(err);
                 }
                 if (callback)
-                    callback(err, job);
+                    callback(err, institution);
             });
         },
-        getJob: function (job, callback) {
-            var collection = db.collection('jobs');
-            if (job._id) {
-                var o_id = new BSON.ObjectID(job._id);
-                job._id = o_id;
+        getInstitution: function (institution, callback) {
+            var collection = db.collection('institutions');
+            if (institution._id) {
+                var o_id = new BSON.ObjectID(institution._id);
+                institution._id = o_id;
             }
-            collection.find(job)
+            collection.find(institution)
                 .toArray(function (err, docs) {
                     if (err) {
                         return console.error(err);
@@ -86,8 +86,8 @@ module.exports = function (mongodb) {
                     }
                 });
         },
-        getJobs: function (callback) {
-            var collection = db.collection('jobs');
+        getInstitutions: function (callback) {
+            var collection = db.collection('institutions');
             collection.find()
                 .toArray(function (err, docs) {
                     if (err) {

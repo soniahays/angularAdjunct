@@ -15,7 +15,7 @@ angular.module('adjunct', [
         $routeProvider.when('/', {templateUrl: '/partial/home', controller: 'HomeCtrl', accessLevel: 'public'});
         $routeProvider.when('/search-results', {templateUrl: '/partial/search-results', controller: 'SearchResultsCtrl', accessLevel: 'public'});
         $routeProvider.when('/jobs-profile', {templateUrl: '/partial/jobs-profile', controller: 'JobsProfileCtrl', accessLevel: 'public'});
-        $routeProvider.when('/institution-profile', {templateUrl: '/partial/institution-profile', controller: 'InstitutionProfileCtrl', accessLevel: 'public'});
+        $routeProvider.when('/institutions-profile', {templateUrl: '/partial/institutions-profile', controller: 'InstitutionsProfileCtrl', accessLevel: 'public'});
         $routeProvider.when('/profile/:id', {templateUrl: function(params) {  return '/partial/adjuncts-profile/' + params.id; }, controller: 'AdjunctsProfileCtrl', accessLevel: 'public'});
         $routeProvider.when('/profile', {templateUrl: '/partial/adjuncts-profile', controller: 'AdjunctsProfileCtrl', accessLevel: 'private'});
         $routeProvider.when('/signup', {templateUrl: '/partial/signup', controller: 'SignupCtrl', accessLevel: 'public'});

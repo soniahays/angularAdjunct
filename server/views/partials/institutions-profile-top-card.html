@@ -3,11 +3,11 @@
 
     <div class="panel-body profile-top-card">
         <div class="profile-picture">
-            <span ng-if="job.imageName">
-                <img class="img-thumbnail pull-left" ng-src="https://s3.amazonaws.com/Adjuncts/{{job.imageName}}"/>
+            <span ng-if="institution.imageName">
+                <img class="img-thumbnail pull-left" ng-src="https://s3.amazonaws.com/Adjuncts/{{institution.imageName}}"/>
             </span>
-            <div ng-if="!job.imageName" class="no-job-picture">
-                <i class="fa fa-briefcase" style="font-size:14em"></i>
+            <div ng-if="!institution.imageName" class="no-institution-picture">
+                <i class="fa fa-shield" style="font-size:8em"></i>
                 <div class="addPictLink">
                     <a href="#" ng-click="openPictureUploadModal()">
                         <span style= "color: #fff;">
@@ -23,41 +23,41 @@
             <div class="lead lead-custom masthead">
                 <div id="name-container">
                     <h2>
-                        <span>{{ job.field|| 'Information Technology' }}</span>
+                        <span>{{ institution.field|| 'Bay State College' }}</span>
                         -
-                        <span>{{ job.jobTitle|| 'Adjunct Faculty' }} </span>
+                        <span>{{ institution.institutionTitle|| 'Community College' }} </span>
                     </h2>
                 </div>
                 <div id="headline-container">
-                    <span>At {{ job.institution|| 'Bay State College' }}</span>
+                    <span>At {{ institution.institution|| 'Bay State College' }}</span>
                     -
-                    <span>{{ job.contractType || 'Part-time' }} position</span>
+                    <span>{{ institution.contractType || 'Part-time' }} position</span>
 
                 </div>
                 <div class="text-muted" id="demographic-info">
-                    <span>{{ job.locationCity || 'Boston' }}</span>
-                    <span>, {{ job.locationState|| 'MA' }}</span>
-                    <span>| posted on {{ job.postedOn|| 'November 12, 2013' }}</span>
+                    <span>{{ institution.locationCity || 'Boston' }}</span>
+                    <span>, {{ institution.locationState|| 'MA' }}</span>
+                    <span>| posted on {{ institution.postedOn|| 'November 12, 2013' }}</span>
                 </div>
             </div>
             <table id="profile-card-table">
                 <tbody>
                 <tr id="overview-summary-specialty">
                     <th class="profile-card-table-th" scope="row">Degree Required</th>
-                    <td class="profile-card-table-td"><span>{{ job.degreeRequired|| 'MS in Information Technology' }}</span> <br />
-                        or <span>{{ job.degreeRequiredAlternative|| 'MS in related field' }}</span>
+                    <td class="profile-card-table-td"><span>{{ institution.degreeRequired|| 'MS in Information Technology' }}</span> <br />
+                        or <span>{{ institution.degreeRequiredAlternative|| 'MS in related field' }}</span>
                     </td>
                 </tr>
                 <tr id="overview-summary-education">
                     <td class="profile-card-table-th">Required Expertise</td>
-                    <td class="profile-card-table-td"><span>{{ job.requirementField1 || 'JAVA' }},</span>
-                        <span>{{ job.requirementField2 || 'SQL' }},</span> <span>{{ job.requirementField3 || 'HTML' }},</span>
-                        <span>{{ job.requirementField4 || 'information security' }},</span> <span>{{ job.requirementField5 || 'database management' }}.</span></td>
+                    <td class="profile-card-table-td"><span>{{ institution.requirementField1 || 'JAVA' }},</span>
+                        <span>{{ institution.requirementField2 || 'SQL' }},</span> <span>{{ institution.requirementField3 || 'HTML' }},</span>
+                        <span>{{ institution.requirementField4 || 'information security' }},</span> <span>{{ institution.requirementField5 || 'database management' }}.</span></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>
-                        <div ng-repeat="item in job.expertiseTags">
+                        <div ng-repeat="item in institution.expertiseTags">
                             {{ item||'tags go here' }}
                         </div>
                     </td>
@@ -75,23 +75,7 @@
         </div>
     </div>
 
-    <div class="list-group-item list-group-item-custom list-group-item-customize-left" style=" position: relative; padding-right: 0px; padding-top: 0px;padding-bottom: 20px; ">
-        <button class="btn btn-lg btn-primary edit-buttons " id="edit-badges" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px" ng-click="openBadgeEditModal()" >
-            <i class="fa fa-pencil-square-o fa-lg edit-buttons"></i></button>
 
-        <div class="badges-container" style="margin-top: 35px;">
-
-            <ul class="badge" style="padding-left: 0px;">
-                <li ng-repeat="badge in filteredBadges" class="badge-thumbnail">
-
-                    <img ng-src="/img/badges/{{badge}}.png" alt="" style="width: 45px!important;height: 45px!important;"/>
-                </li>
-            </ul>
-
-        </div>
-
-
-    </div>
 
 
 

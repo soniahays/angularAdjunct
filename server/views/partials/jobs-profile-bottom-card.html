@@ -1,0 +1,44 @@
+<div id="bottom-card" class="panel panel-default col-md-12">
+    <div class="panel-body profile-bottom-card">
+        <!--<div ng-controller="EditableFormCtrl2" id ="profile-details">-->
+        <div class="profile-details-content">
+            <form editable-form name="editableForm2">
+
+                <div id="summary-container">
+                     <span class=" lead job-summary lead" editable-textarea="job.summary" e-rows="12" e-cols="80">
+                         <br/>
+                         <p style="background-color: white;">{{job.summary || 'no description'}}</p>
+                     </span>
+                </div>
+
+
+
+                <div id="experience-container">
+                    <span editable-text="job.experience1Title"> <div id="headline">{{ job.experience1Title|| 'empty' }}</div></span>
+                    <span editable-text="job.experience1Institution"><div id="headline-institution">{{ job.experience1Institution || 'empty' }}</div></span>
+                    <span editable-text="job.experience1Location"><div id="headline-location"class="text-muted">{{ job.experience1Location || 'empty' }}</div></span>
+                    <span editable-select="job.status" e-ng-options="s.value as s.text for s in statuses"> {{ showStatus() }}</span>
+                    <span editable-text="job.experience1TimePeriodYear">{{}}</span>
+                    <!--<span editable-text="job.experience1TimePeriodYear">{{ job.experience1TimePeriodYear || 'empty' }}</span>-->
+                    <span editable-textarea="job.experience1Summary" e-rows="12" e-cols="80">
+                        <p id="headline-i"><em>{{job.experience1Summary || 'no description'}}</em></p>
+                    </span>
+                </div>
+
+
+                <!--<div class="profile-edit">-->
+                <!--&lt;!&ndash; button to show form &ndash;&gt;-->
+                <!--<button type="button" class="btn btn-xs btn-primary" ng-click="editBottomCard()">Edit Profile</button>-->
+                <!--&lt;!&ndash; buttons to submit / cancel form &ndash;&gt;-->
+                <!--<span ng-show="editableForm2.$visible">-->
+                <!--<button type="submit" class="btn btn-primary" ng-disabled="editableForm2.$waiting">Save</button>-->
+                <!--<button type="button" class="btn btn-default" ng-disabled="editableForm2.$waiting" ng-click="editableForm2.$hide()">Cancel</button>-->
+                <!--</span>-->
+                <!--</div>-->
+
+            </form>
+        </div>
+        <!--</div>-->
+    </div>
+    <button type="button" class="btn btn-md btn-primary edit-buttons"  id="edit-top-card"style="position:absolute; right: 0px ; bottom: 0px ;border-radius:3px 0px 3px 0px" ng-click="editBottomCard()"><i class="fa fa-pencil-square-o fa-lg"></i> Edit Profile</button>
+</div>

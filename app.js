@@ -9,6 +9,8 @@ var http = require('http'),
     aws = require('aws-sdk'),
     mongodb = require('mongodb'),
     userDb = require('./server/userDb.js')(bcrypt, mongodb),
+    jobDb = require ('./server/jobDb.js')(mongodb),
+    institutionDb = require ('./server/jobDb.js')(mongodb),
     pass = require('./server/passport.js')(userDb, passport, bcrypt, mongodb),
     countries = require('./server/api/countries.json'),
     months = require('./server/api/months.json'),
@@ -70,6 +72,28 @@ app.get('/api/users', function(req, res) {
         return res.json(users);
     });
 });
+app.get('/api/jobs', function(req, res) {
+    jobDb.getJobs(function (err, jobs) {
+        if (err) {
+            return res.send(500, "Error retrieving job");
+        }
+        if (!jobs) {
+            return res.send('Not found');
+        }
+        return res.json(jobs);
+    });
+});
+app.get('/api/institutions', function(req, res) {
+    institutionDb.getInstitutions(function (err, institutions) {
+        if (err) {
+            return res.send(500, "Error retrieving institution");
+        }
+        if (!institutions) {
+            return res.send('Not found');
+        }
+        return res.json(institutions);
+    });
+});
 
 app.get('/api/get-adjuncts-profile/:id', function (req, res) {
     var _id = req.params.id;
@@ -88,6 +112,46 @@ app.get('/api/get-adjuncts-profile/:id', function (req, res) {
         }
         delete user.password;
         return res.json(user);
+    });
+});
+
+app.get('/api/get-jobs-profile/:id', function (req, res) {
+    var _id = req.params.id;
+
+    if (!_id)
+        return res.send("ID required");
+
+    var job = {'_id': _id};
+
+    jobDb.getJob(user, function (err, job) {
+        if (err) {
+            return res.send(500, "Error retrieving user");
+        }
+        if (!job) {
+            return res.json({});
+        }
+
+        return res.json(job);
+    });
+});
+
+app.get('/api/get-institutions-profile/:id', function (req, res) {
+    var _id = req.params.id;
+
+    if (!_id)
+        return res.send("ID required");
+
+    var job = {'_id': _id};
+
+    institutionDb.getInstitution(user, function (err, institution) {
+        if (err) {
+            return res.send(500, "Error retrieving user");
+        }
+        if (!institution) {
+            return res.json({});
+        }
+
+        return res.json(institution);
     });
 });
 
@@ -221,3 +285,9 @@ userDb.connect(function () {
         console.log('Express server listening on port ' + app.get('port'));
     });
 });
+//jobDb.connect(function () {
+//    console.log('Connected to mongodb.');
+//    http.createServer(app).listen(app.get('port'), function () {
+//        console.log('Express server listening on port ' + app.get('port'));
+//    });
+//});

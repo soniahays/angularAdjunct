@@ -229,8 +229,42 @@ ol, ul{
     display: table-cell  ;
 
 }
+.no-institution-picture{
+    box-shadow: none;
+    width: 100%;
+    height: 250px;
+    background-color:#576169; ;
+    /*background: url("/img/placeholder3.png") no-repeat;*/
+    text-indent: 0;
+    text-align: center;
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 26px;
+    color: #fff;
+    z-index: 9;
+}
+.no-job-picture{
+    box-shadow: none;
+    width: 100%;
+    height: 250px;
+    background-color:#576169; ;
+    /*background: url("/img/placeholder3.png") no-repeat;*/
+    text-indent: 0;
+    text-align: center;
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 26px;
+    color: #fff;
+    z-index: 9;
 
-
+    /*background: url('../uploads/icon_add_photo_27x27_v1.png') no-repeat;*/
+}
 
 .no-picture{
     box-shadow: none;
