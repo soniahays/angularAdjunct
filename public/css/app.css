@@ -281,30 +281,14 @@ ol, ul{
     line-height: 26px;
     color: #fff;
     z-index: 9;
-
-    /*background: url('../uploads/icon_add_photo_27x27_v1.png') no-repeat;*/
 }
 .no-picture-mini{
-    box-shadow: none;
-    width: 100%;
     height: 100px;
     background: url("/img/placeholder3mini.png") no-repeat;
-    text-indent: 0;
-    text-align: center;
-    display: block;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 24px;
-    font-weight: normal;
-    line-height: 26px;
-    color: #fff;
-    z-index: 9;
-
-    /*background: url('../uploads/icon_add_photo_27x27_v1.png') no-repeat;*/
 }
+
 .addPictLink{
     padding-top: 90px;
-
 }
 .img-thumbnail{
     border-left-width: 0px;
@@ -661,10 +645,7 @@ body { font-family: Arial, sans-serif; }
 }
 
 .main-search-job-image{
-    padding-left: 0px;
-    padding-top: 0px;
-    padding-bottom: 15px;
-    padding-right:10px;
+
 }
 
 .tab-content{
@@ -1341,4 +1322,13 @@ tbody{
     color: #ffffff !important;
     background: #428bca !important;
     border-color: #357ebd !important;
+}
+
+.search-result-body {
+    height:50px;
+    width:120px;
+}
+
+.search-results-image {
+    width:110px;
 }
