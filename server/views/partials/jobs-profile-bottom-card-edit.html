@@ -1,0 +1,128 @@
+<div id="bottom-card" class="panel panel-default col-md-12" xmlns="http://www.w3.org/1999/html">
+    <div class="panel-body profile-bottom-card">
+        <!--<div ng-controller="EditableFormCtrl2" id ="profile-details">-->
+        <div class="profile-details-content">
+            <div id="experience-edit">
+                <form class="form-group">
+                    <ul>
+                        <li>
+                            <label for="">Your Summary</label>
+                            <div class="fieldgroup">
+                                <textarea name="institutionSummary" class="edit-experience" cols="80" rows="6" ng-model="institution.summary "></textarea>
+
+                            </div>
+                        </li>
+                        <li>
+                            <label for="">Institution Name <abbr title="Required" class="required">*</abbr></label>
+                            <div class="fieldgroup">
+                                <div class="institution">
+
+                                    <input type="text" class="form-control form-inline input-sm profile-forms"
+                                           name="experience1Institution" ng-model="user.experience1Institution " maxlength="100">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="">Title </label>
+                            <div class="fieldgroup">
+                                <div class="institution">
+
+                                    <input type="text" class="form-control form-inline input-sm profile-forms"
+                                           name="experience1Title" ng-model="user.experience1Title " maxlength="100">
+                                </div>
+                            </div>
+                        </li>
+                        <li >
+                            <label for="">Location <abbr title="Required" class="required">*</abbr></label>
+                            <div class="fieldgroup">
+                                <div class="institution">
+
+                                    <input type="text" class="form-control form-inline input-sm profile-forms"
+                                           name="experience1Location" ng-model="user.experience1Location  " maxlength="100">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="time-period" id="time-period">
+
+                            <fieldset>
+                                <legend>
+                                    <span>Time Period <abbr title="Required" class="required">*</abbr></span>
+                                </legend>
+                                <ul>
+                                    <li class="start-date">
+                                        <label for="">Month </label>
+                                        <select ng-model="user.month" class="edit-month" ng-options="m.name for m in months" class="input-xlarge" required>
+                                            <option value="">choose...</option></select>
+                                        <label for="" style="display:none;" >Year</label>
+                                        <input type="text" class="form-control form-inline input-sm profile-forms year"
+                                               name="experience1TimePeriodYear " ng-model="user.experience1TimePeriodYear" maxlength="4" placeholder="Year">
+                                        <span class="to">-</span>
+                                    </li>
+                                    <li class="end-date">
+                                        <div class="ended-position">
+                                            <label for="">Month </label>
+                                            <select ng-model="user.month" class="edit-month" ng-options="m.name for m in months" class="input-xlarge" required>
+                                                <option value="">choose...</option></select>
+                                            <label for="" style="display:none;" >Year</label>
+                                            <input type="text" class="form-control form-inline input-sm profile-forms year"
+                                                   name="experience1TimePeriodYear " ng-model="user.experience1TimePeriodYear"  maxlength="4" placeholder="Year">
+                                        </div>
+                                        <div class="current-position">Present</div>
+                                        <label class="checkbox" id="still-here">
+                                            <input type="checkbox" ng-model="user.stillHere">
+                                            I currently work here
+                                        </label>
+                                    </li>
+                                </ul>
+                            </fieldset>
+                        </li>
+                        <li id="experience-summary">
+                            <label for="">Description</label>
+                            <div class="fieldgroup">
+                                <textarea name="experience1Summary" class="edit-experience" cols="80" rows="6" ng-model="user.experience1Summary "></textarea>
+                            </div>
+                        </li>
+
+
+
+                    </ul>
+
+                </form>
+            </div>
+
+            <div class="profile-edit">
+                <!-- button to show form -->
+                <button type="button" class="btn btn-xs btn-primary" ng-click="saveBottomCard()">Save</button>
+                <!--<button type="button" class="btn btn-xs" ng-click="cancelBottomCard()">Cancel</button>-->
+                <a href=""> Add a position</a>
+                <!--<a href=""> Remove this position</a>-->
+
+            </div>
+
+            <!--</form>-->
+        </div>
+        <!--</div>-->
+    </div>
+</div>
+
+
+
+<!--<form editable-form name="editableForm2">-->
+
+<!--<div id="summary-container">-->
+<!--<span class=" lead user-summary lead" editable-textarea="user.summary" e-rows="12" e-cols="80">-->
+<!--<p style="background-color: white;">{{user.summary || 'no description'}}</p>-->
+<!--</span>-->
+<!--</div>-->
+
+<!--<div id="experience-container">-->
+<!--<span editable-text="user.experience1Title"> <div id="headline">{{ user.experience1Title|| 'empty' }}</div></span>-->
+<!--<span editable-text="user.experience1Institution"><div id="headline-institution">{{ user.experience1Institution || 'empty' }}</div></span>-->
+<!--<span editable-text="user.experience1Location"><div id="headline-location"class="text-muted">{{ user.experience1Location || 'empty' }}</div></span>-->
+<!--<span editable-select="user.status" e-ng-options="s.value as s.text for s in statuses"> {{ showStatus() }}</span>-->
+<!--<span editable-text="user.experience1TimePeriodYear">{{}}</span>-->
+<!--&lt;!&ndash;<span editable-text="user.experience1TimePeriodYear">{{ user.experience1TimePeriodYear || 'empty' }}</span>&ndash;&gt;-->
+<!--<span editable-textarea="user.experience1Summary" e-rows="12" e-cols="80">-->
+<!--<p id="headline-i"><em>{{user.experience1Summary || 'no description'}}</em></p>-->
+<!--</span>-->
+<!--</div>-->

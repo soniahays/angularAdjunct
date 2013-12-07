@@ -10,10 +10,13 @@ var http = require('http'),
     mongodb = require('mongodb'),
     userDb = require('./server/userDb.js')(bcrypt, mongodb),
     jobDb = require ('./server/jobDb.js')(mongodb),
-    institutionDb = require ('./server/jobDb.js')(mongodb),
+    institutionDb = require ('./server/institutionDb.js')(mongodb),
     pass = require('./server/passport.js')(userDb, passport, bcrypt, mongodb),
     countries = require('./server/api/countries.json'),
+    types = require('./server/api/types.json'),
     months = require('./server/api/months.json'),
+    contractTypes= require('./server/api/contractTypes.json'),
+    positionTypes = require('./server/api/positionTypes.json'),
     fieldGroup = require('./server/api/fieldGroup.json');
 
 var app = express();
@@ -54,11 +57,24 @@ app.get('/api/countries', function (req, res) {
     res.json(countries);
 });
 
+app.get('/api/types', function (req, res) {
+    res.json(types);
+});
+
+app.get('/api/contractTypes', function (req, res) {
+    res.json(contractTypes);
+});
+
 app.get('/api/months', function (req, res) {
     res.json(months);
 });
+
 app.get('/api/fieldGroup', function (req, res) {
     res.json(fieldGroup);
+});
+
+app.get('/api/positionTypes', function (req, res) {
+    res.json(positionTypes);
 });
 
 app.get('/api/users', function(req, res) {
@@ -123,7 +139,7 @@ app.get('/api/get-jobs-profile/:id', function (req, res) {
 
     var job = {'_id': _id};
 
-    jobDb.getJob(user, function (err, job) {
+    jobDb.getJob(job, function (err, job) {
         if (err) {
             return res.send(500, "Error retrieving user");
         }
@@ -141,9 +157,9 @@ app.get('/api/get-institutions-profile/:id', function (req, res) {
     if (!_id)
         return res.send("ID required");
 
-    var job = {'_id': _id};
+    var institution = {'_id': _id};
 
-    institutionDb.getInstitution(user, function (err, institution) {
+    institutionDb.getInstitution(institution, function (err, institution) {
         if (err) {
             return res.send(500, "Error retrieving user");
         }
@@ -165,6 +181,16 @@ app.get('/partial/adjuncts-profile',
 app.get('/partial/adjuncts-profile/:userId',
     function (req, res) {
         res.render(path.join(app.get('partials'), 'adjuncts-profile.html'), { locals: {'userId': req.params.userId}});
+    });
+
+app.get('/partial/jobs-profile/:jobId',
+    function (req, res) {
+        res.render(path.join(app.get('partials'), 'jobs-profile.html'), { locals: {'jobId': req.params.jobId}});
+    });
+
+app.get('/partial/institutions-profile/:institutionId',
+    function (req, res) {
+        res.render(path.join(app.get('partials'), 'institutions-profile.html'), { locals: {'institutionId': req.params.institutionId}});
     });
 
 app.get('/partial/:name',
@@ -229,9 +255,67 @@ app.post('/save-adjuncts-profile', function (req, res) {
     res.end();
 });
 
+app.post('/save-jobs-profile', function (req, res) {
+    if (req.body.job) {
+        jobDb.updateJob(req.body.job);
+    }
+    else {
+        console.log("req.body.job is null!");
+    }
+    res.end();
+});
+
+app.post('/save-institutions-profile', function (req, res) {
+    if (req.body.institution) {
+        institutionDb.updateInstitution(req.body.institution);
+    }
+    else {
+        console.log("req.body.institution is null!");
+    }
+    res.end();
+});
 
 
-app.post('/upload', function (req, res) {
+
+
+app.post('/upload-adjunct', function (req, res) {
+    upload(function(){
+        userDb.updateUserField(req.cookies._id, {'imageName': newFileName}, function() {
+            res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
+            });
+
+        });
+
+
+});
+
+
+app.post('/upload-institution/:id', function (req, res) {
+    upload(function(){
+        institutionDb.updateInstitutionField(req.params.id, {'imageName': newFileName}, function() {
+            res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
+        });
+
+    });
+
+
+});
+
+
+app.post('/upload-job/:id', function (req, res) {
+    upload(function(){
+        jobDb.updateJobField(req.params.id, {'imageName': newFileName}, function() {
+            res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
+        });
+
+    });
+
+
+});
+
+
+
+var upload = function(callback){
     setTimeout(
         function () {
             res.setHeader('Content-Type', 'text/html');
@@ -253,9 +337,7 @@ app.post('/upload', function (req, res) {
                             res.send(err);
                         }
                         else {
-                            userDb.updateUserField(req.cookies._id, {'imageName': newFileName}, function() {
-                                res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
-                            });
+                              callback();
                         }
                     });
                 }
@@ -266,7 +348,9 @@ app.post('/upload', function (req, res) {
         },
         (req.param('delay', 'yes') == 'yes') ? 2000 : -1
     );
-});
+}
+
+
 
 app.get('*', function (req, res) {
     if (req.user) { // user coming from valid passport authentication

@@ -1,0 +1,119 @@
+<div id="top-card-job" class="panel panel-default col-md-12"
+     style="padding-left:5px !important;padding-right:5px !important; padding-bottom: 0px !important; margin-bottom: 5px !important">
+    <div class="panel-body profile-top-card">
+
+
+        <!--<div class="profile-picture-container col-sm-4">-->
+        <!--<div class="profile-picture">-->
+        <!--<span ng-if="job.imageName" style="z-index: -1000;"><img class="img-thumbnail pull-left" ng-src="https://s3.amazonaws.com/Adjuncts/{{job.imageName}}" /></span>-->
+        <!--<div class="edit-photo">-->
+        <!--<a href="#" ng-click="openPictureUploadModal()">-->
+        <!--<span>Change photo</span></a>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div ng-if="!job.imageName" class="no-picture">-->
+        <!--<div class="addPictLink">-->
+        <!--<a href="#" ng-click="openPictureUploadModal()">-->
+        <!--<span style= "color: #fff;">-->
+        <!--<img src="/img/icon_add_photo_27x27_v1.png" /> Add a photo-->
+        <!--</span>-->
+        <!--</a>-->
+
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+<div class="profile-details-content">
+            <form>
+
+
+                <div id="name-container">
+
+                    <div class="form-group-institution">
+
+                        <ul>
+                            <li>
+                                <label for="">Job Position <abbr title="Required" class="required">*</abbr></label>
+                                <select ng-model="job.positionType" class="edit-positionType" ng-options="p.name for p in positionTypes" class="input-xlarge" required>
+                                    <option value="">choose...</option></select>
+                                - <label for="">Academic Discipline <abbr title="Required" class="required">*</abbr>  </label>
+                                <input type="text" class=" profile-forms " name="jobAcademicDiscipline" ng-model="job.academicDiscipline" maxlength="50">
+                            </li>
+                            <li>
+                                <label for="">Institution Name<abbr title="Required" class="required">*</abbr>  </label>
+                                <input type="text" class=" profile-forms " name="jobInstitution" ng-model="job.institution" maxlength="50">
+                                - <label for="">Contract Type <abbr title="Required" class="required">*</abbr></label>
+
+                                <select ng-model="job.contractType" class="edit-positionType" ng-options="c.name for c in contractTypes" class="input-xlarge" required>
+                                    <option value="">choose...</option></select>
+                            </li>
+                            <br/>
+                            <li>
+
+                                <div class="fieldgroup">
+                                        <label for="">Location:</label>
+                                        <label for="">Type:<abbr title="Required" class="required">*</abbr></label>
+                                        On Site <input type="checkbox" ng-model="onSite">
+                                        Remote <input type="checkbox" ng-model="remote">
+                                        <br/>
+                                        <label for="">Country <abbr title="Required" class="required">*</abbr></label>
+                                        <select ng-model="job.country" class="edit-positionType"  ng-options="c.name for c in countries" class="input-xlarge" required>
+                                            <option value="">choose...</option></select>
+                                        <label for="">City <abbr title="Required" class="required">*</abbr></label>
+                                        <input type="text" class="profile-forms" name="jobLocationCity" ng-model="job.locationCity" maxlength="50"> <br/>
+                                        <label for="">State <abbr title="Required" class="required">*</abbr></label>
+                                        <input type="text" class="profile-forms" name="jobLocationState" ng-model="job.locationState" maxlength="50">
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="fieldgroup">
+                                    <label for="">Job Requirements:</label> <br/>
+                                    <label for="">Minimum Educational Requirements<abbr title="Required" class="required">*</abbr>:</label>
+                                    <select ng-model="job.edDegree" class="edit-positionType"  ng-options="e.name for e in edDegrees" class="input-xlarge" required>
+                                    <option value="">choose...</option></select> in <input type="text" class=" profile-forms " name="jobDegreeDiscipline" ng-model="job.degreeDiscipline" maxlength="50"><br/> -or- <select ng-model="job.edDegree" class="edit-positionType"  ng-options="e.name for e in edDegrees" class="input-xlarge" required>
+                                    <option value="">choose...</option></select> in <input type="text" class=" profile-forms " name="jobDegreeDiscipline" ng-model="job.degreeDiscipline" maxlength="50"><a href=""><small> Add More </small></a>
+                                    <br/>
+                                    <label for="">Field of Expertise<abbr title="Required" class="required">*</abbr>:</label>
+                                    <div id="tags-container">
+                                        <tags-input ng-model="job.expertiseTags" ng-class="expertise-tags"></tags-input>
+                                    </div>
+                                    <!--job.requirementField1 -->
+
+                                </div>
+
+                            </li>
+                            <li>
+
+                            </li>
+                        </ul>
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+            </form>
+            <button type="button" class="btn btn-xs btn-primary" ng-click="saveTopCard()">
+                Save Profile
+            </button>
+
+            <!--</table>-->
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

@@ -1,3 +1,11 @@
+.form-group-institution{
+    line-height:2;
+}
+#briefcase{
+    font-size:10em;
+    margin-top: 25px;
+    margin-left: 45px;
+}
 .portfolio-form{
     width: 346px;
 }
@@ -234,23 +242,23 @@ ol, ul{
     width: 100%;
     height: 250px;
     background-color:#576169; ;
-    /*background: url("/img/placeholder3.png") no-repeat;*/
+    background: url("/img/institution-ghost.png") no-repeat;
     text-indent: 0;
-    text-align: center;
+    text-align: right;
     display: block;
     padding-left: 10px;
     padding-right: 10px;
     font-size: 24px;
-    font-weight: normal;
+    font-weight: bold;
     line-height: 26px;
-    color: #fff;
+    color: black;
     z-index: 9;
 }
 .no-job-picture{
     box-shadow: none;
     width: 100%;
     height: 250px;
-    background-color:#576169; ;
+    background-color:#595959 ;
     /*background: url("/img/placeholder3.png") no-repeat;*/
     text-indent: 0;
     text-align: center;
@@ -303,7 +311,7 @@ ol, ul{
     /*background: url('../uploads/icon_add_photo_27x27_v1.png') no-repeat;*/
 }
 .addPictLink{
-    padding-top: 90px;
+    padding-top: 116px;
 
 }
 .img-thumbnail{
@@ -460,6 +468,11 @@ ol, ul{
     /*-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);*/
     box-shadow:none !important;
     box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
+}
+
+#a-custom:hover{
+    color: #EB7737 !important;
+    text-decoration: underline;
 }
 
 /*-----------------POPOVER CUSTOM---------------------------*/
@@ -791,7 +804,8 @@ body { font-family: Arial, sans-serif; }
 
 
 .banner{
-    background: url("../img/BannerBackgroung.png") no-repeat;
+    /*background: url("../img/BannerBackgroung.png") no-repeat;*/
+    background-color: #F6F6F6;
     background-size: 100%;
     margin-top: -10px;
 }

@@ -1,0 +1,121 @@
+<div id="top-card-institution" class="panel panel-default col-md-12"
+     style="padding-left:5px !important;padding-right:5px !important; padding-bottom: 0px !important; margin-bottom: 5px !important">
+    <div class="panel-body profile-top-card">
+
+
+        <!--<div class="profile-picture-container col-sm-4">-->
+            <!--<div class="profile-picture">-->
+                <!--<span ng-if="institution.imageName" style="z-index: -1000;"><img class="img-thumbnail pull-left" ng-src="https://s3.amazonaws.com/Adjuncts/{{institution.imageName}}" /></span>-->
+                <!--<div class="edit-photo">-->
+                    <!--<a href="#" ng-click="openPictureUploadModal()">-->
+                        <!--<span>Change photo</span></a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div ng-if="!institution.imageName" class="no-picture">-->
+                <!--<div class="addPictLink">-->
+                    <!--<a href="#" ng-click="openPictureUploadModal()">-->
+                        <!--<span style= "color: #fff;">-->
+                            <!--<img src="/img/icon_add_photo_27x27_v1.png" /> Add a photo-->
+                        <!--</span>-->
+                    <!--</a>-->
+
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+            <div class="profile-details-content">
+            <form>
+
+                   
+                    <div id="name-container">
+                        
+                            <div class="form-group-institution">
+
+                                <ul>
+                                    <li>
+                                    <label for="">Your Summary</label>
+                                    <div class="fieldgroup">
+
+
+                                        <textarea name="userSummary" class="edit-experience" cols="80" rows="6" ng-model="user.summary "></textarea>
+
+                                    </div>
+                                    </li>
+                                    <li>
+                                        <label for="">Institution Name <abbr title="Required" class="required">*</abbr></label>
+                                        <div class="fieldgroup">
+                                            <div class="institution">
+
+                                                <input type="text" class="form-control form-inline input-sm profile-forms"
+                                                       name="institutionName" ng-model="institution.name" maxlength="100">
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="institution-type">
+                                        <label for="">Institution type </label>
+                                        <select ng-model="institution.type" class="edit-month" ng-options="t.name for t in types" class="input-xlarge" required>
+                                            <option value="">choose...</option></select>
+                                    </li>
+
+                                    <!--<li>-->
+                                        <!--<label for="">Educational Institution type <abbr title="Required" class="required">*</abbr></label>-->
+                                        <!--<div class="fieldgroup">-->
+                                            <!--<div class="institution">-->
+
+                                                <!--<input type="text" class="form-control form-inline input-sm profile-forms"-->
+                                                       <!--name="institutionType" ng-model="institution.type" maxlength="100">-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                    <li>
+                                        <label for="">Location <abbr title="Required" class="required">*</abbr></label>
+                                        <div class="fieldgroup">
+                                            <div class="institution">
+                                                <label for="">Country <abbr title="Required" class="required">*</abbr></label>
+                                                <select ng-model="institution.locationCountry" class="edit-country" ng-options="c.name for c in countries" class="input-xlarge" required>
+                                                    <option value="">choose...</option></select>
+                                                <br/>
+                                                <label for="">City <abbr title="Required" class="required">*</abbr></label>
+                                                <input type="text" class="form-control form-inline input-sm profile-forms"
+                                                       name="institutionLocationCity" ng-model="institution.locationCity" maxlength="50">
+                                                <br/>
+                                                <label for="">State <abbr title="Required" class="required">*</abbr></label>
+                                                <input type="text" class="form-control form-inline input-sm profile-forms"
+                                                       name="institutionLocationState" ng-model="institution.locationState" maxlength="50">
+
+
+
+                                            </div>
+                                            </div>
+
+                                    </li>
+                                    <li>
+
+                                    </li>
+                                    <li>
+
+                                    </li>
+                                </ul>
+                              
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+
+                           </div>
+                    </div>
+
+            </form>
+            <button type="button" class="btn btn-xs btn-primary" ng-click="saveTopCard()">
+                Save Profile
+            </button>
+
+            <!--</table>-->
+
+        </div>
+    </div>
+</div>

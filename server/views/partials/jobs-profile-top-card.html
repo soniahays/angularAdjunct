@@ -7,7 +7,7 @@
                 <img class="img-thumbnail pull-left" ng-src="https://s3.amazonaws.com/Adjuncts/{{job.imageName}}"/>
             </span>
             <div ng-if="!job.imageName" class="no-job-picture">
-                <i class="fa fa-briefcase" style="font-size:14em"></i>
+                <i class="fa fa-briefcase" id="briefcase" ></i>
                 <div class="addPictLink">
                     <a href="#" ng-click="openPictureUploadModal()">
                         <span style= "color: #fff;">
@@ -53,10 +53,13 @@
                     <td class="profile-card-table-td"><span>{{ job.requirementField1 || 'JAVA' }},</span>
                         <span>{{ job.requirementField2 || 'SQL' }},</span> <span>{{ job.requirementField3 || 'HTML' }},</span>
                         <span>{{ job.requirementField4 || 'information security' }},</span> <span>{{ job.requirementField5 || 'database management' }}.</span></td>
+
                 </tr>
                 <tr>
                     <td></td>
                     <td>
+                        //soft skills tags? or Badges.
+
                         <div ng-repeat="item in job.expertiseTags">
                             {{ item||'tags go here' }}
                         </div>
@@ -75,23 +78,23 @@
         </div>
     </div>
 
-    <div class="list-group-item list-group-item-custom list-group-item-customize-left" style=" position: relative; padding-right: 0px; padding-top: 0px;padding-bottom: 20px; ">
-        <button class="btn btn-lg btn-primary edit-buttons " id="edit-badges" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px" ng-click="openBadgeEditModal()" >
-            <i class="fa fa-pencil-square-o fa-lg edit-buttons"></i></button>
+    <!--<div class="list-group-item list-group-item-custom list-group-item-customize-left" style=" position: relative; padding-right: 0px; padding-top: 0px;padding-bottom: 20px; ">-->
+        <!--<button class="btn btn-lg btn-primary edit-buttons " id="edit-badges" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px" ng-click="openBadgeEditModal()" >-->
+            <!--<i class="fa fa-pencil-square-o fa-lg edit-buttons"></i></button>-->
 
-        <div class="badges-container" style="margin-top: 35px;">
+        <!--<div class="badges-container" style="margin-top: 35px;">-->
 
-            <ul class="badge" style="padding-left: 0px;">
-                <li ng-repeat="badge in filteredBadges" class="badge-thumbnail">
+            <!--<ul class="badge" style="padding-left: 0px;">-->
+                <!--<li ng-repeat="badge in filteredBadges" class="badge-thumbnail">-->
 
-                    <img ng-src="/img/badges/{{badge}}.png" alt="" style="width: 45px!important;height: 45px!important;"/>
-                </li>
-            </ul>
+                    <!--<img ng-src="/img/badges/{{badge}}.png" alt="" style="width: 45px!important;height: 45px!important;"/>-->
+                <!--</li>-->
+            <!--</ul>-->
 
-        </div>
+        <!--</div>-->
 
 
-    </div>
+    <!--</div>-->
 
 
 

@@ -36,25 +36,24 @@ module.exports = function (mongodb) {
             });
 
         },
-//        updateJob: function (job, callback) {
-//            var query = {'_id': job._id };
-//            this.getJob(query, function (err, u) {
-//                if (err) {
-//                    return console.error(err);
-//                }
-//                var collection = db.collection('jobs');
-//                job.password = u.password;
-//                var o_id = new BSON.ObjectID(u._id);
-//                delete job._id;
-//                collection.update({'_id': o_id}, job, function (err) {
-//                    if (err) {
-//                        return console.error(err);
-//                    }
-//                    if (callback)
-//                        callback(err, job);
-//                });
-//            });
-//        },
+        updateJob: function (job, callback) {
+            var query = {'_id': job._id };
+            this.getJob(query, function (err, u) {
+                if (err) {
+                    return console.error(err);
+                }
+                var collection = db.collection('jobs');
+                var o_id = new BSON.ObjectID(u._id);
+                delete job._id;
+                collection.update({'_id': o_id}, job, function (err) {
+                    if (err) {
+                        return console.error(err);
+                    }
+                    if (callback)
+                        callback(err, job);
+                });
+            });
+        },
         updateJobField: function (_id, field, callback) {
             var collection = db.collection('jobs');
             var o_id = new BSON.ObjectID(_id);

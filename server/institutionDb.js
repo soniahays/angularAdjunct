@@ -36,25 +36,24 @@ module.exports = function (mongodb) {
             });
 
         },
-//        updateInstitution: function (institution, callback) {
-//            var query = {'_id': institution._id };
-//            this.getInstitution(query, function (err, u) {
-//                if (err) {
-//                    return console.error(err);
-//                }
-//                var collection = db.collection('institutions');
-//                institution.password = u.password;
-//                var o_id = new BSON.ObjectID(u._id);
-//                delete institution._id;
-//                collection.update({'_id': o_id}, institution, function (err) {
-//                    if (err) {
-//                        return console.error(err);
-//                    }
-//                    if (callback)
-//                        callback(err, institution);
-//                });
-//            });
-//        },
+        updateInstitution: function (institution, callback) {
+            var query = {'_id': institution._id };
+            this.getInstitution(query, function (err, u) {
+                if (err) {
+                    return console.error(err);
+                }
+                var collection = db.collection('institutions');
+                var o_id = new BSON.ObjectID(u._id);
+                delete institution._id;
+                collection.update({'_id': o_id}, institution, function (err) {
+                    if (err) {
+                        return console.error(err);
+                    }
+                    if (callback)
+                        callback(err, institution);
+                });
+            });
+        },
         updateInstitutionField: function (_id, field, callback) {
             var collection = db.collection('institutions');
             var o_id = new BSON.ObjectID(_id);
