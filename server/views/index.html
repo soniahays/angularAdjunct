@@ -19,10 +19,10 @@
     <script src="/ngUpload/ng-upload.min.js"></script>
     <script src="/uri.js/src/URI.min.js"></script>
     <script src="/js/lib/ng-tags-input.min.js"></script>
-
-
     <script src="/js/app.js"></script>
+    <script src="/js/filters.js"></script>
     <script src="/js/services.js"></script>
+    <script src="/js/directives.js"></script>
     <script src="/js/controllers/index.js"></script>
     <script src="/js/controllers/adjuncts-profile.js"></script>
     <script src="/js/controllers/jobs-profile.js"></script>
@@ -34,8 +34,6 @@
     <script src="/js/controllers/signup.js"></script>
     <script src="/js/controllers/search-results.js"></script>
     <script src="/js/controllers/signin.js"></script>
-    <script src="/js/filters.js"></script>
-    <script src="/js/directives.js"></script>
 </head>
 <body ng-controller="IndexCtrl" style="margin-top:20px;">
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -46,11 +44,10 @@
                         <li><a class="navbar-brand" href="/"><img src="/img/logo.png" height="25"></a></li>
                     </div>
                     <li ng-class="{active: index == 0}" ng-click="index = 0"><a href="/">Home</a></li>
-                    <li ng-class="{active: index == 1}" ng-click="index = 1"><a ng-href="/profile">Adjuncts</a></li>
-                    <li ng-class="{active: index == 2}" ng-click="index = 2"><a ng-href="/institutions-profile">Institutions</a></li>
-                    <li ng-class="{active: index == 3}" ng-click="index = 3"><a href="/search-results">Network</a></li>
-                    <li ng-class="{active: index == 4}" ng-click="index = 4"><a href="/jobs-profile">Jobs</a></li>
-                    <li ng-class="{active: index == 5}" ng-click="index = 5"><a href="/contact">Contact</a></li>
+                    <li ng-class="{active: index == 1}" ng-click="index = 1" class="dropdown"><a ng-href="/profile" bs-dropdown="profileDropdown">Profile</a></li>
+                    <li ng-class="{active: index == 2}" ng-click="index = 2"><a href="/search-results">Network</a></li>
+                    <li ng-class="{active: index == 3}" ng-click="index = 3" class="dropdown"><a ng-href="/jobs" bs-dropdown="jobsDropdown">Jobs</a></li>
+                    <li ng-class="{active: index == 4}" ng-click="index = 4"><a href="/contact">Contact</a></li>
                 </ul>
                 <div class="nav navbar-nav navbar-right">
                     <button class="btn btn-custom btn-signin" ng-click="signout()" ng-show="isSignedIn">Sign Out</button>

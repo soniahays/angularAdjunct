@@ -1,4 +1,6 @@
-
+<% if (locals.institutionId) { %>
+<div id="institutionId" style="display:none"><%= locals.institutionId %></div>
+<% } %>
 <div class="container">
     <div class="panel col-md-9 custom-main-left-panel">
         <div ng-include="topCardInstitutionTemplateUrl" />

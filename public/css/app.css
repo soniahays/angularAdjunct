@@ -1347,3 +1347,27 @@ tbody{
 .search-results-image {
     width:110px;
 }
+
+ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    background-color: #333;
+}
+
+.dropdown-menu > li > a {
+    color: #ddd;
+}
+
+.dropdown-menu>li>a:hover {
+    color: #fff;
+    background-color: #333;
+}
+
+.dropdown-menu>li>a:focus {
+    color: #fff;
+    background-color: #333;
+    border-color: #333;
+    outline-color: #333;
+}
