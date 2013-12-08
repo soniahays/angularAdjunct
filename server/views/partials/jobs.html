@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="col-md-2 sidebar-offcanvas" id="sidebar1" role="navigation">
+            <div ng-include="sideSearchColumnUrl" />
+        </div>
+
+    <div class="result-col col-md-7">
+        <div id="result-container">
+            <div id="results" class="search-results list-group col-md-12" >
+                <a ng-href="/jobs-profile/{{job._id}}" class="list-group-item list-group-item-customized" ng-repeat="job in jobs">
+                    <table>
+                    <tr>
+                    <td>
+                    <div id="search-result-picture" class="align-horizontal search-results-image">
+                        <div ng-if="job.imageName" >
+                        <img class= "main-search-job-image" ng-src="https://s3.amazonaws.com/Adjuncts/{{job.imageName}}" width="100px" />
+                        </div>
+                        <div ng-if="!job.imageName" class="no-picture-mini"></div>
+                    </div>
+                    </td>
+                    <td>
+                    <div class="search-result-body align-horizontal">
+                        <span class="list-group-item-heading-customized ppl-also-name">
+                        {{job.firstName}} {{job.lastName}}
+                        </span>
+                        <p class="description">
+                            <span>{{ job.currentPosition || 'empty' }}</span>
+                            <span>at {{ job.institution|| 'empty' }}</span></br>
+                            <span> {{ job.city|| 'empty' }}</span>
+                            <span>| {{ job.department|| 'empty' }}</span>
+                        </p>
+                    </div>
+                    </td>
+                    </tr>
+                    </table>
+                </a>
+            </div>
+          </div>
+    </div>
+
+    <div class="col-md-3 sidebar-offcanvas" id="sidebar2" role="navigation">
+        <div ng-include="rightTopSideColumnUrl" />
+        <div ng-include="rightBottomSideColumnUrl" />
+    </div>
+</div>

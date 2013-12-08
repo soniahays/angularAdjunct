@@ -1,23 +1,22 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('InstitutionsProfileCtrl', ['$scope', '$http',  function ($scope, $http) {
+    .controller('InstitutionsProfileCtrl', ['$scope', '$http', 'WikiSummary',  function ($scope, $http, WikiSummary) {
 
         var institutionId = $('#institutionId').html();
 
         if (!institutionId) {
-//            return;
+            return;
         }
 
 //        $scope.users = [];
         $scope.institutions = [];
+        $scope.institution = {};
         $scope.topCardInstitutionTemplateUrl = '/partial/institutions-profile-top-card';
         $scope.bottomCardInstitutionTemplateUrl = '/partial/institutions-profile-bottom-card';
         $scope.rightTopSideColumnUrl = '/partial/adjuncts-profile-right-topSide-column';
         $scope.rightBottomSideColumnUrl = '/partial/adjuncts-profile-right-bottomSide-column';
         $scope.uploadPictureModalUrl = '/partial/upload-picture-modal';
-
-
 
         $http({
             url: '/api/get-institutions-profile/'+ institutionId,
@@ -25,6 +24,7 @@ angular.module('adjunct.controllers')
             headers: {'Content-Type': 'application/json'}
         }).success(function (data, status, headers, config) {
                 $scope.institution = data;
+                WikiSummary("Bay State College", function(wikiData) { $scope.institution.summary = wikiData; });
 
             }).error(function (data, status, headers, config) {
                 console.log("/api/get-institutions-profile didn't work");
@@ -63,10 +63,7 @@ angular.module('adjunct.controllers')
         $scope.openPictureUploadModal = function() {
             $('#upload-picture-modal').modal();
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.1'});
-
         }
-
-
 
         $scope.uploadComplete = function (content, completed) {
             console.log(content);
@@ -83,9 +80,6 @@ angular.module('adjunct.controllers')
                     console.log("get-institutions-profile-top-card didn't work");
                 });
         };
-
-
-
     }]);
 
 

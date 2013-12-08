@@ -8,4 +8,26 @@ angular.module('adjunct.controllers')
         }
 
         $scope.index = 0;
+
+        $scope.profileDropdown = [
+            {
+                "text": "Edit Profile",
+                "href": "/profile"
+            },
+            {
+                "text": "Saved Jobs",
+                "href": "#anotherAction"
+            }
+        ];
+
+        $scope.jobsDropdown = [
+            {
+                "text": "View jobs",
+                "href": "/jobs"
+            },
+            {
+                "text": "Post a new job",
+                "href": "/jobs"
+            }
+        ];
 }]);
