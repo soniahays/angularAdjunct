@@ -22,6 +22,7 @@ angular.module('adjunct.controllers')
         $scope.videoModalUrl = '/partial/video-modal';
         $scope.videoUrl = '';
 
+
         $http({
             url: '/api/get-adjuncts-profile/' + (userId ? userId : $cookies._id),
             method: 'GET',
@@ -37,6 +38,7 @@ angular.module('adjunct.controllers')
                     experience1Summary: 'write more about your experience here'
                 });
 
+                $scope.user.survey={};
                 $scope.filteredBadges = [];
 
                 for (var badge in $scope.user.badges) {
@@ -123,6 +125,29 @@ angular.module('adjunct.controllers')
             }).success(function (data, status, headers, config) {
                     console.log("save-adjunct-badge-card worked");
                     $scope.filteredBadges = [];
+
+                    var width = $scope.user.survey.syllabusDesign*20;
+                    $("#syllabusDesign").width(width+"%");
+                    $("#syllabusDesignPercent").text(width+"%");
+
+                    width = $scope.user.survey.technologyDesign*20;
+                    $("#technologyDesign").width(width+"%");
+                    $("#technologyDesignPercent").text(width+"%");
+
+                    width = $scope.user.survey.studFeedback*20;
+                    $("#studFeedback").width(width+"%");
+                    $("#studFeedbackPercent").text(width+"%");
+
+                    width = $scope.user.survey.sumFeedback*20;
+                    $("#sumFeedback").width(width+"%");
+                    $("#sumFeedbackPercent").text(width+"%");
+
+
+
+
+
+
+
 
                     for (var badge in $scope.user.badges) {
                         var val = $scope.user.badges[badge];

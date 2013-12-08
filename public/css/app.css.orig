@@ -1,7 +1,3 @@
-.modal-body-custom{
-    line-height: 2;
-}
-
 .form-group-institution{
     line-height:2;
 }
@@ -70,7 +66,7 @@ ol, ul{
 }
 /*-----------------BADGES FORM SECTION----------------------------*/
 #badges-form-wrapper {
-    width:480px;
+    width:358px;
     margin:0px auto;
 }
 #content {
@@ -192,8 +188,8 @@ ol, ul{
 }
 .modal-dialog-custom{
 
-  width:600px;
-  margin-top:0px;
+  width:380px;
+  margin-top:150px;
 }
 
 .wrap{
@@ -300,8 +296,12 @@ ol, ul{
 }
 
 .addPictLink{
+<<<<<<< HEAD
     padding-top: 116px;
 
+=======
+    padding-top: 90px;
+>>>>>>> c7ad7a99f513b41c201430a235b89a66daa90559
 }
 .img-thumbnail{
     border-left-width: 0px;
