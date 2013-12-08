@@ -17,8 +17,9 @@ angular.module('adjunct.controllers')
         $scope.rightBottomSideColumnUrl = '/partial/adjuncts-profile-right-bottomSide-column';
         $scope.badgeSectionUrl = '/partial/badge-section';
         $scope.badgeEditModallUrl = '/partial/badge-edit-modal';
-        $scope.portfolioEditModallUrl = '/partial/portfolio-edit-modal';
+        $scope.portfolioEditModalUrl = '/partial/portfolio-edit-modal';
         $scope.uploadPictureModalUrl = '/partial/upload-picture-modal';
+        $scope.uploadAttachmentModalUrl = '/partial/upload-attachment-competencies-modal';
         $scope.videoModalUrl = '/partial/video-modal';
         $scope.videoUrl = '';
 
@@ -65,10 +66,6 @@ angular.module('adjunct.controllers')
                     }
 
                 }
-
-
-
-
 
             }).error(function (data, status, headers, config) {
                 console.log("get-adjuncts-profile-top-card didn't work");
@@ -143,12 +140,6 @@ angular.module('adjunct.controllers')
                     $("#sumFeedbackPercent").text(width+"%");
 
 
-
-
-
-
-
-
                     for (var badge in $scope.user.badges) {
                         var val = $scope.user.badges[badge];
                         if (val != false) {
@@ -207,6 +198,12 @@ angular.module('adjunct.controllers')
         $scope.openPictureUploadModal = function() {
             $('#upload-picture-modal').modal();
                 $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.1'});
+
+        }
+
+        $scope.openAttachmentUploadModal = function() {
+            $('#upload-attachment-competencies-modal').modal();
+            $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.1'});
 
         }
 
