@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-.controller('IndexCtrl', ['$scope', '$cookies', function ($scope, $cookies) {
+    .controller('IndexCtrl', ['$scope', '$cookies', function ($scope, $cookies) {
         $scope.isSignedIn = $cookies._id != null;
         $scope.signout = function() {
             window.location.replace('/signout');
@@ -16,7 +16,7 @@ angular.module('adjunct.controllers')
             },
             {
                 "text": "Saved Jobs",
-                "href": "#anotherAction"
+                "href": "/profile/saved-jobs"
             }
         ];
 
@@ -27,7 +27,7 @@ angular.module('adjunct.controllers')
             },
             {
                 "text": "Post a new job",
-                "href": "/jobs"
+                "href": "/job-profile/add"
             }
         ];
-}]);
+    }]);

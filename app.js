@@ -8,16 +8,29 @@ var http = require('http'),
     bcrypt = require('bcrypt'),
     aws = require('aws-sdk'),
     mongodb = require('mongodb'),
-    userDb = require('./server/userDb.js')(bcrypt, mongodb),
-    jobDb = require ('./server/jobDb.js')(mongodb),
-    institutionDb = require ('./server/institutionDb.js')(mongodb),
-    pass = require('./server/passport.js')(userDb, passport, bcrypt, mongodb),
+    connect = require('./server/dbConnect.js')(bcrypt, mongodb),
     countries = require('./server/api/countries.json'),
     types = require('./server/api/types.json'),
     months = require('./server/api/months.json'),
     contractTypes= require('./server/api/contractTypes.json'),
     positionTypes = require('./server/api/positionTypes.json'),
     fieldGroup = require('./server/api/fieldGroup.json');
+var userDb, jobDb, institutionDb, pass;
+
+/**
+ * Connect to MongoDb then start Express server
+ */
+connect(function (err, db) {
+    console.log('Connected to mongodb.');
+    userDb = require('./server/userDb.js')(mongodb, db),
+        jobDb = require ('./server/jobDb.js')(mongodb, db),
+        institutionDb = require ('./server/institutionDb.js')(mongodb, db),
+        pass = require('./server/passport.js')(userDb, passport, bcrypt);
+
+    http.createServer(app).listen(app.get('port'), function () {
+        console.log('Express server listening on port ' + app.get('port'));
+    });
+});
 
 var app = express();
 
@@ -131,7 +144,7 @@ app.get('/api/get-adjuncts-profile/:id', function (req, res) {
     });
 });
 
-app.get('/api/get-jobs-profile/:id', function (req, res) {
+app.get('/api/get-job-profile/:id', function (req, res) {
     var _id = req.params.id;
 
     if (!_id)
@@ -183,9 +196,9 @@ app.get('/partial/adjuncts-profile/:userId',
         res.render(path.join(app.get('partials'), 'adjuncts-profile.html'), { locals: {'userId': req.params.userId}});
     });
 
-app.get('/partial/jobs-profile/:jobId',
+app.get('/partial/job-profile/:jobId',
     function (req, res) {
-        res.render(path.join(app.get('partials'), 'jobs-profile.html'), { locals: {'jobId': req.params.jobId}});
+        res.render(path.join(app.get('partials'), 'job-profile.html'), { locals: {'jobId': req.params.jobId}});
     });
 
 app.get('/partial/institutions-profile/:institutionId',
@@ -255,7 +268,7 @@ app.post('/save-adjuncts-profile', function (req, res) {
     res.end();
 });
 
-app.post('/save-jobs-profile', function (req, res) {
+app.post('/save-job-profile', function (req, res) {
     if (req.body.job) {
         jobDb.updateJob(req.body.job);
     }
@@ -282,9 +295,9 @@ app.post('/upload-adjunct', function (req, res) {
     upload(function(){
         userDb.updateUserField(req.cookies._id, {'imageName': newFileName}, function() {
             res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
-            });
-
         });
+
+    });
 
 
 });
@@ -337,7 +350,7 @@ var upload = function(callback){
                             res.send(err);
                         }
                         else {
-                              callback();
+                            callback();
                         }
                     });
                 }
@@ -360,18 +373,3 @@ app.get('*', function (req, res) {
 });
 
 
-/**
- * Start Server
- */
-userDb.connect(function () {
-    console.log('Connected to mongodb.');
-    http.createServer(app).listen(app.get('port'), function () {
-        console.log('Express server listening on port ' + app.get('port'));
-    });
-});
-//jobDb.connect(function () {
-//    console.log('Connected to mongodb.');
-//    http.createServer(app).listen(app.get('port'), function () {
-//        console.log('Express server listening on port ' + app.get('port'));
-//    });
-//});

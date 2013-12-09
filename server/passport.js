@@ -4,7 +4,7 @@ var LocalStrategy = require('passport-local').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
     GoogleStrategy = require('passport-google').Strategy;
 
-module.exports = function(db, passport, bcrypt, mongodb) {
+module.exports = function(db, passport, bcrypt) {
 
     var ROOT_URL = "http://localhost:3000";
     switch(process.env.NODE_ENV) {
@@ -86,8 +86,8 @@ module.exports = function(db, passport, bcrypt, mongodb) {
     ));
 
     passport.use(new GoogleStrategy({
-        returnURL: ROOT_URL + '/auth/google/callback',
-        realm: ROOT_URL
+            returnURL: ROOT_URL + '/auth/google/callback',
+            realm: ROOT_URL
         },
         function(identifier, profile, done) {
             var googleId = encodeURIComponent(identifier);

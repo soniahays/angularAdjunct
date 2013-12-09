@@ -1,9 +1,6 @@
-
-
-
-
-
-
+<% if (locals.jobId) { %>
+<div id="jobId" style="display:none"><%= locals.jobId %></div>
+<% } %>
 <div class="container">
     <div class="panel col-md-9 custom-main-left-panel">
         <div ng-include="topCardJobTemplateUrl" />

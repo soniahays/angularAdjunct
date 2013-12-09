@@ -14,8 +14,9 @@ angular.module('adjunct', [
     config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', function ($routeProvider, $locationProvider, $sceDelegateProvider) {
         $routeProvider.when('/', {templateUrl: '/partial/home', controller: 'HomeCtrl', accessLevel: 'public'});
         $routeProvider.when('/search-results', {templateUrl: '/partial/search-results', controller: 'SearchResultsCtrl', accessLevel: 'public'});
-        $routeProvider.when('/jobs-profile', {templateUrl: '/partial/jobs-profile', controller: 'JobsProfileCtrl', accessLevel: 'public'});
-        $routeProvider.when('/jobs-profile/:id', {templateUrl: function(params) {  return '/partial/jobs-profile/' + params.id; }, controller: 'JobsProfileCtrl', accessLevel: 'public'});
+        $routeProvider.when('/jobs', {templateUrl: '/partial/jobs', controller: 'JobsCtrl', accessLevel: 'public'});
+        $routeProvider.when('/job-profile/add', {templateUrl:  '/partial/job-profile', controller: 'JobProfileCtrl', accessLevel: 'public' });
+        $routeProvider.when('/job-profile/:id', {templateUrl: function(params) {  return '/partial/job-profile/' + params.id; }, controller: 'JobProfileCtrl', accessLevel: 'public'});
         $routeProvider.when('/institutions-profile', {templateUrl: '/partial/institutions-profile', controller: 'InstitutionsProfileCtrl', accessLevel: 'public'});
         $routeProvider.when('/institutions-profile/:id', {templateUrl: function(params) {  return '/partial/institutions-profile/' + params.id; }, controller: 'InstitutionsProfileCtrl', accessLevel: 'public'});
         $routeProvider.when('/profile/:id', {templateUrl: function(params) {  return '/partial/adjuncts-profile/' + params.id; }, controller: 'AdjunctsProfileCtrl', accessLevel: 'public'});

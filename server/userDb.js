@@ -1,29 +1,9 @@
 
-module.exports = function (bcrypt, mongodb) {
+module.exports = function (mongodb, db) {
 
-        var MongoClient = mongodb.MongoClient;
-
-    var MONGO_URL = "mongodb://localhost:27017/adjunct";
-    switch (process.env.NODE_ENV) {
-        case 'development':
-            MONGO_URL = "mongodb://nader:adj0nct@paulo.mongohq.com:10043/adjunct";
-            break;
-        case 'production':
-            MONGO_URL = "mongodb://nader:adj0nct@paulo.mongohq.com:10043/adjunct";
-            break;
-    }
-
-    var db, err;
     var BSON = mongodb.BSONPure;
 
     var self = {
-        connect: function (callback) {
-            MongoClient.connect(MONGO_URL, function (err_, db_) {
-                err = err_;
-                db = db_;
-                callback();
-            });
-        },
         insertUser: function (user, callback) {
             var collection = db.collection('users');
             if (user.password) {
@@ -65,12 +45,12 @@ module.exports = function (bcrypt, mongodb) {
                 var o_id = new BSON.ObjectID(u._id);
                 delete user._id;
                 collection.update({'_id': o_id}, user, function (err) {
-                        if (err) {
-                            return console.error(err);
-                        }
-                        if (callback)
-                            callback(err, user);
-                    });
+                    if (err) {
+                        return console.error(err);
+                    }
+                    if (callback)
+                        callback(err, user);
+                });
             });
         },
         updateUserField: function (_id, field, callback) {
