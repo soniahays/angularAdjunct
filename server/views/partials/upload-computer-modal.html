@@ -1,0 +1,14 @@
+<label>Title</label>
+<input type="text" class="portfolio-form" ng-model="portfolioLink.value" required>
+<div>
+    <label for="">Description</label>
+    <div class="fieldgroup">
+        <textarea name="jobDescription" class="" cols="60" rows="3" ng-model="job.description "></textarea>
+    </div>
+
+    <p>
+        <input type="file" name="file"/>
+    </p>
+
+    <div ng-bind-html-unsafe="uploadResponse"></div>
+</div>

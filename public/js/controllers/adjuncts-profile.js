@@ -22,6 +22,8 @@ angular.module('adjunct.controllers')
         $scope.uploadAttachmentModalUrl = '/partial/upload-attachment-competencies-modal';
         $scope.videoModalUrl = '/partial/video-modal';
         $scope.videoUrl = '';
+        $scope.computerUploadUrl = '/partial/upload-computer-modal';
+        $scope.urlAttachUrl = '/partial/upload-url-modal';
 
 
         $http({
@@ -201,9 +203,12 @@ angular.module('adjunct.controllers')
 
         }
 
-        $scope.openAttachmentUploadModal = function() {
+        $scope.openAttachmentUploadModal = function(competency) {
             $('#upload-attachment-competencies-modal').modal();
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.1'});
+
+            $scope.competency = competency;
+
 
         }
 
