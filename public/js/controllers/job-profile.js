@@ -18,88 +18,28 @@ angular.module('adjunct.controllers')
         $scope.rightTopSideColumnUrl = '/partial/adjuncts-profile-right-topSide-column';
         $scope.rightBottomSideColumnUrl = '/partial/adjuncts-profile-right-bottomSide-column';
 
-        $http({
-            url: '/api/get-job-profile/' + jobId,
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'}
-        }).success(function (data, status, headers, config) {
-                $scope.job = data;
-            }).error(function (data, status, headers, config) {
-                console.log("/api/get-job-profile didn't work");
-            });
+        $http.get('/api/positionTypes').then(function(response) { $scope.positionTypes = response.data; });
+        $http.get('/api/contractTypes').then(function(response) { $scope.contractTypes = response.data; });
+        $http.get('/api/countries').then(function(response) { $scope.countries = response.data; });
+        $http.get('/api/get-job-profile/' + jobId).then(function(response) { $scope.job = response.data; });
 
         $scope.editTopCard = function () {
-            console.log("from top card job edit");
             $scope.topCardJobTemplateUrl = '/partial/job-profile-top-card-edit';
         }
+
         $scope.editBottomCard = function () {
-            console.log("from bottom card job edit");
             $scope.bottomCardJobTemplateUrl = '/partial/job-profile-bottom-card-edit';
         }
 
         $scope.saveTopCard = function () {
             $scope.topCardJobTemplateUrl = '/partial/job-profile-top-card';
-
-            $http({
-                url: '/save-job-profile',
-                method: 'POST',
-                data: JSON.stringify({'job': $scope.job}),
-                headers: {'Content-Type': 'application/json'}
-            }).success(function (data, status, headers, config) {
-                    console.log("save-job-profile-top-card worked");
-                }).error(function (data, status, headers, config) {
-                    console.log("save-job-profile-top-card didn't work");
-                });
-
+            $http.post('/api/save-job-profile/', JSON.stringify({'job': $scope.job}));
         }
 
         $scope.saveBottomCard = function () {
             $scope.bottomCardJobTemplateUrl = '/partial/job-profile-bottom-card';
-
-            $http({
-                url: '/save-job-profile',
-                method: 'POST',
-                data: JSON.stringify({ 'job': $scope.job }),
-                headers: {'Content-Type': 'application/json'}
-            }).success(function (data, status, headers, config) {
-                    console.log("save-job-profile-bottom-card worked");
-                }).error(function (data, status, headers, config) {
-                    console.log("save-job-profile-bottom-card didn't work");
-                });
+            $http.post('/api/save-job-profile', JSON.stringify({'job': $scope.job}));
         }
-
-        $scope.positionTypes = [];
-        $http({
-            url: '/api/positionTypes',
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'}
-        }).success(function (data, status, headers, config) {
-                $scope.positionTypes = data;
-            }).error(function (data, status, headers, config) {
-                console.log("get positionTypes didn't work");
-            });
-
-        $scope.contractTypes = [];
-        $http({
-            url: '/api/contractTypes',
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'}
-        }).success(function (data, status, headers, config) {
-                $scope.contractTypes = data;
-            }).error(function (data, status, headers, config) {
-                console.log("get contractTypes didn't work");
-            });
-
-        $scope.countries = [];
-        $http({
-            url: '/api/countries',
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'}
-        }).success(function (data, status, headers, config) {
-                $scope.countries = data;
-            }).error(function (data, status, headers, config) {
-                console.log("get countries didn't work");
-            });
 
         $scope.openBadgeEditModal = function () {
             $('#badge-edit-modal').modal();

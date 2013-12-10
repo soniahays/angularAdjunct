@@ -25,7 +25,8 @@
     "angular-strap": "~0.7",
     "ngUpload": "~0.4",
     "uri.js": "~1.11",
-    "momentjs": "~2.4.0"
+    "momentjs": "~2.4.0",
+    "underscore": "~1.5.2"
   },
   "resolutions": {
     "angular": "~1.2.4",

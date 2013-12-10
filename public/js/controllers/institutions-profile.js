@@ -17,17 +17,10 @@ angular.module('adjunct.controllers')
         $scope.rightBottomSideColumnUrl = '/partial/adjuncts-profile-right-bottomSide-column';
         $scope.uploadPictureModalUrl = '/partial/upload-picture-modal';
 
-        $http({
-            url: '/api/get-institutions-profile/'+ institutionId,
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'}
-        }).success(function (data, status, headers, config) {
-                $scope.institution = data;
-                WikiSummary("Bay State College", function(wikiData) { $scope.institution.summary = wikiData; });
-
-            }).error(function (data, status, headers, config) {
-                console.log("/api/get-institutions-profile didn't work");
-            });
+        $http.get('/api/get-institutions-profile/' + institutionId).then(function(response) {
+            $scope.institution = response.data;
+            WikiSummary("Bay State College", function(wikiData) { $scope.institution.summary = wikiData; });
+        });
 
         $scope.editTopCard = function () {
             $scope.topCardInstitutionTemplateUrl = '/partial/institutions-profile-top-card-edit';
@@ -35,29 +28,10 @@ angular.module('adjunct.controllers')
 
         $scope.saveTopCard = function () {
             $scope.topCardTemplateUrl = '/partial/institutions-profile-top-card';
-
-            $http({
-                url: '/save-institutions-profile',
-                method: 'POST',
-                data: JSON.stringify({'institution': $scope.institution}),
-                headers: {'Content-Type': 'application/json'}
-            }).success(function (data, status, headers, config) {
-                    console.log("save-institutions-profile-top-card worked");
-                }).error(function (data, status, headers, config) {
-                    console.log("save-institutions-profile-top-card didn't work");
-                });
+            $http.post('/api/save-institutions-profile', JSON.stringify({'institution': $scope.institution}));
         }
 
-        $scope.types = [];
-        $http({
-            url: '/api/institutionTypes',
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'}
-        }).success(function (data, status, headers, config) {
-                $scope.types = data;
-            }).error(function (data, status, headers, config) {
-                console.log("get institution types didn't work");
-            });
+        $http.get('/api/institutionTypes').then(function(response) { $scope.institutionTypes = response.data; });
 
         $scope.openPictureUploadModal = function() {
             $('#upload-picture-modal').modal();
@@ -66,17 +40,10 @@ angular.module('adjunct.controllers')
 
         $scope.uploadComplete = function (content, completed) {
             console.log(content);
-
-            $http({
-                url: '/api/get-institutions-profile/' + institutionId,
-                method: 'GET',
-                headers: {'Content-Type': 'application/json'}
-            }).success(function (data, status, headers, config) {
-                    $scope.institution.imageName = data.imageName;
-                    $('#upload-picture-modal').modal('hide');
-                }).error(function (data, status, headers, config) {
-                    console.log("uploadComplete didn't work");
-                });
+            $http.get('/api/get-institutions-profile/' + institutionId).then(function(response) {
+                $scope.institution.imageName = data.imageName;
+                $('#upload-picture-modal').modal('hide');
+            });
         };
     }]);
 

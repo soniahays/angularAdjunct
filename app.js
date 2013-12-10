@@ -74,18 +74,6 @@ app.get('/api/users', function(req, res) {
     });
 });
 
-app.get('/api/:collectionName', function (req, res) {
-    metadataDb.get(req.params.collectionName, function(err, docs) {
-        if (err) {
-            return res.send(500, "Error retrieving " + req.params.collectionName);
-        }
-        if (!docs) {
-            return res.send('Not found');
-        }
-        return res.json(docs);
-    });
-});
-
 app.get('/api/get-adjuncts-profile/:id', function (req, res) {
     var _id = req.params.id;
 
@@ -145,6 +133,59 @@ app.get('/api/get-institutions-profile/:id', function (req, res) {
         return res.json(institution);
     });
 });
+
+app.get('/api/:collectionName', function (req, res) {
+    metadataDb.get(req.params.collectionName, function(err, docs) {
+        if (err) {
+            return res.send(500, "Error retrieving " + req.params.collectionName);
+        }
+        if (!docs) {
+            return res.send('Not found');
+        }
+        return res.json(docs);
+    });
+});
+
+app.post('/api/signup', function (req, res) {
+    userDb.insertUser(req.body.user);
+    res.end();
+});
+
+app.post('/save-adjuncts-profile', function (req, res) {
+    if (req.body.user) {
+        userDb.updateUser(req.body.user);
+    }
+    else {
+        console.log("req.body.user is null!");
+    }
+    res.end();
+});
+
+app.post('/api/save-job-profile', function (req, res) {
+    if (req.body.job) {
+        if (req.body.job._id) {
+            jobDb.updateJob(req.body.job);
+        }
+        else {
+            jobDb.insertJob(req.body.job);
+        }
+    }
+    else {
+        console.log("req.body.job is null!");
+    }
+    res.end();
+});
+
+app.post('/api/save-institutions-profile', function (req, res) {
+    if (req.body.institution) {
+        institutionDb.updateInstitution(req.body.institution);
+    }
+    else {
+        console.log("req.body.institution is null!");
+    }
+    res.end();
+});
+
 
 app.get('/partial/adjuncts-profile',
     ensureLoggedIn({ redirectTo: path.join(app.get('partials'), 'signin-popover.html'), customReturnTo: '/profile' }),
@@ -210,53 +251,10 @@ app.post('/signin-post',
         failureRedirect: '/signin' })
 );
 
-app.post('/signup', function (req, res) {
-    userDb.insertUser(req.body.user);
-    res.end();
-});
-
 app.post('/basic-profile', function (req, res) {
     userDb.updateUser(req.body.user);
     res.end();
 });
-
-app.post('/save-adjuncts-profile', function (req, res) {
-    if (req.body.user) {
-        userDb.updateUser(req.body.user);
-    }
-    else {
-        console.log("req.body.user is null!");
-    }
-    res.end();
-});
-
-app.post('/save-job-profile', function (req, res) {
-    if (req.body.job) {
-        if (req.body.job._id) {
-            jobDb.updateJob(req.body.job);
-        }
-        else {
-            jobDb.insertJob(req.body.job);
-        }
-    }
-    else {
-        console.log("req.body.job is null!");
-    }
-    res.end();
-});
-
-app.post('/save-institutions-profile', function (req, res) {
-    if (req.body.institution) {
-        institutionDb.updateInstitution(req.body.institution);
-    }
-    else {
-        console.log("req.body.institution is null!");
-    }
-    res.end();
-});
-
-
-
 
 app.post('/upload-adjunct', function (req, res) {
     upload(function(){
@@ -265,10 +263,7 @@ app.post('/upload-adjunct', function (req, res) {
         });
 
     });
-
-
 });
-
 
 app.post('/upload-institution/:id', function (req, res) {
     upload(function(){
@@ -277,10 +272,7 @@ app.post('/upload-institution/:id', function (req, res) {
         });
 
     });
-
-
 });
-
 
 app.post('/upload-job/:id', function (req, res) {
     upload(function(){
@@ -289,11 +281,7 @@ app.post('/upload-job/:id', function (req, res) {
         });
 
     });
-
-
 });
-
-
 
 var upload = function(callback){
     setTimeout(
@@ -329,8 +317,6 @@ var upload = function(callback){
         (req.param('delay', 'yes') == 'yes') ? 2000 : -1
     );
 }
-
-
 
 app.get('*', function (req, res) {
     if (req.user) { // user coming from valid passport authentication

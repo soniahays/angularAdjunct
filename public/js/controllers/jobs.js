@@ -1,20 +1,19 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('JobsCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('JobsCtrl', ['$scope', '$http', '$q', function ($scope, $http, $q) {
         $scope.users = [];
         $scope.sideSearchColumnUrl = '/partial/side-search-column';
         $scope.rightTopSideColumnUrl = '/partial/adjuncts-profile-right-topSide-column';
         $scope.rightBottomSideColumnUrl = '/partial/adjuncts-profile-right-bottomSide-column';
-        $http.get('/api/jobs').then(function(jobsResponse) {
-            $http.get('/api/positionTypes').then(function(positionTypesResponse) {
-                var positionTypes = positionTypesResponse.data;
-                var jobs = jobsResponse.data;
-                for (var i = 0; i < jobs.length; i++) {
-                    jobs[i].positionType = $.grep(positionTypes, function(e) { return e._id == jobs[i].positionType; })[0].name;
-                }
-
-                $scope.jobs = jobs;
+        var jobs = $http.get('/api/jobs');
+        var positionTypes = $http.get('/api/positionTypes');
+        $q.all([jobs, positionTypes]).then(function (values) {
+            var jobs = values[0].data;
+            var positionTypes = values[1].data;
+            $scope.jobs = _.map(jobs, function(job) {
+                job.positionType = _.findWhere(positionTypes, {_id: job.positionType}).name;
+                return job;
             });
         });
     }]);
