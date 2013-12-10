@@ -1,24 +1,17 @@
-<label>Title</label>
-<input type="text" class="portfolio-form" ng-model="portfolioLink.value" required>
-<div>
-    <label for="">Description</label>
-    <div class="fieldgroup">
-        <textarea name="jobDescription" class="" cols="60" rows="3" ng-model="job.description "></textarea>
-    </div>
-    <div id="video-form-wrapper">
-
-
-        <form name="portfolioForm">
-
-            <a href="" ng-click="addPortfolioLink()"><small>add a link</small></a>
-            <div ng-repeat="portfolioLink in user.portfolioLinks">
-                <select ng-model="portfolioLink.type">
-                    <option>video</option>
-                    <option>pdf</option>
-                </select>
-                <input type="text" class="portfolio-form" ng-model="portfolioLink.value" required>
-                <a href="" ng-click="removePortfolioLink(portfolioLink)">X</a>
-            </div>
-        </form>
-</div>
+<div id="video-form-wrapper">
+    <form name="portfolioForm">
+        <a href="" ng-click="addPortfolioLink()"><small>add a URL link</small></a>
+        <div ng-repeat="portfolioLink in user.portfolioLinks">
+            <label>Title</label>
+            <input type="text" class="portfolio-form" ng-model="portfolioLink.title" required><br/>
+            <label>Description</label></br>
+            <textarea class="" cols="60" rows="2" ng-model="portfolioLink.description"></textarea><br/>
+            <select ng-model="portfolioLink.type">
+                <option>video</option>
+                <option>pdf</option>
+            </select>
+            <input type="text" class="portfolio-form" ng-model="portfolioLink.value" required>
+            <a href="" ng-click="removePortfolioLink(portfolioLink)">X</a>
+        </div>
+    </form>
 </div>

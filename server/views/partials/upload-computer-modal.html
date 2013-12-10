@@ -1,14 +1,15 @@
-<label>Title</label>
-<input type="text" class="portfolio-form" ng-model="portfolioLink.value" required>
-<div>
-    <label for="">Description</label>
-    <div class="fieldgroup">
-        <textarea name="jobDescription" class="" cols="60" rows="3" ng-model="job.description "></textarea>
-    </div>
 
-    <p>
-        <input type="file" name="file"/>
-    </p>
-
-    <div ng-bind-html-unsafe="uploadResponse"></div>
+<div id="video-form-wrapper">
+    <form name="portfolioForm">
+        <a href="" ng-click="addPortfolioLink()"><small>add a File</small></a>
+        <div ng-repeat="portfolioLink in user.portfolioLinks">
+            <label>Title</label>
+            <input type="text" class="portfolio-form" ng-model="portfolioLink.title" required><br/>
+            <label>Description</label></br>
+            <textarea class="" cols="60" rows="2" ng-model="portfolioLink.description"></textarea><br/>
+            <input type="file" name="file"/>
+            <div ng-bind-html-unsafe="uploadResponse" ng-model="portfolioLink.value" required></div>
+            <a href="" ng-click="removePortfolioLink(portfolioLink)">X</a>
+        </div>
+    </form>
 </div>
