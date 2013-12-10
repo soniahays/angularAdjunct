@@ -20,6 +20,7 @@ angular.module('adjunct.controllers')
         $scope.portfolioEditModalUrl = '/partial/portfolio-edit-modal';
         $scope.uploadPictureModalUrl = '/partial/upload-picture-modal';
         $scope.uploadAttachmentModalUrl = '/partial/upload-attachment-competencies-modal';
+        $scope.competencyPortfolioModalUrl = '/partial/competency-portfolio-modal';
         $scope.videoModalUrl = '/partial/video-modal';
         $scope.videoUrl = '';
         $scope.computerUploadUrl = '/partial/upload-computer-modal';
@@ -210,6 +211,12 @@ angular.module('adjunct.controllers')
             $('#badge-edit-modal').modal();
                 $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
         }
+
+        $scope.openCompetencyPortfolioModal= function() {
+            $('#competency-portfolio-modal').modal();
+            $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
+        }
+
         $scope.openPortfolioEditModal= function() {
             $('#portfolio-edit-modal').modal();
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
