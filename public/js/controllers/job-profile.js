@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('JobProfileCtrl', ['$scope', '$http',  function ($scope, $http) {
-
+    .controller('JobProfileCtrl', ['$scope', '$http', function ($scope, $http) {
         var jobId = $('#jobId').html();
+
+        $scope.job = {};
 
         if (jobId) {
             $scope.topCardJobTemplateUrl = '/partial/job-profile-top-card';
@@ -29,16 +30,17 @@ angular.module('adjunct.controllers')
             });
 
         $scope.editTopCard = function () {
-            console.log("from top card job edit") ;
+            console.log("from top card job edit");
             $scope.topCardJobTemplateUrl = '/partial/job-profile-top-card-edit';
         }
         $scope.editBottomCard = function () {
-            console.log("from bottom card job edit") ;
+            console.log("from bottom card job edit");
             $scope.bottomCardJobTemplateUrl = '/partial/job-profile-bottom-card-edit';
         }
 
         $scope.saveTopCard = function () {
-            $scope.topCardJobTemplateUrl = '/partial/job-profile-top-card';
+            ///$scope.topCardJobTemplateUrl = '/partial/job-profile-top-card';
+            console.log($scope.job);
 
             $http({
                 url: '/save-job-profile',
@@ -51,13 +53,14 @@ angular.module('adjunct.controllers')
                     console.log("save-job-profile-top-card didn't work");
                 });
         }
+
         $scope.saveBottomCard = function () {
             $scope.bottomCardJobTemplateUrl = '/partial/job-profile-bottom-card';
 
             $http({
                 url: '/save-job-profile',
                 method: 'POST',
-                data: JSON.stringify({'job': $scope.job}),
+                data: JSON.stringify({ 'job': $scope.job }),
                 headers: {'Content-Type': 'application/json'}
             }).success(function (data, status, headers, config) {
                     console.log("save-job-profile-bottom-card worked");
@@ -99,7 +102,7 @@ angular.module('adjunct.controllers')
                 console.log("get countries didn't work");
             });
 
-        $scope.openBadgeEditModal= function() {
+        $scope.openBadgeEditModal = function () {
             $('#badge-edit-modal').modal();
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
         }

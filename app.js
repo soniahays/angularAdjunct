@@ -8,13 +8,7 @@ var http = require('http'),
     bcrypt = require('bcrypt'),
     aws = require('aws-sdk'),
     mongodb = require('mongodb'),
-    connect = require('./server/dbConnect.js')(bcrypt, mongodb),
-    countries = require('./server/api/countries.json'),
-    types = require('./server/api/types.json'),
-    months = require('./server/api/months.json'),
-    contractTypes= require('./server/api/contractTypes.json'),
-    positionTypes = require('./server/api/positionTypes.json'),
-    fieldGroup = require('./server/api/fieldGroup.json');
+    connect = require('./server/dbConnect.js')(bcrypt, mongodb);
 var userDb, jobDb, institutionDb, pass;
 
 /**
@@ -23,9 +17,10 @@ var userDb, jobDb, institutionDb, pass;
 connect(function (err, db) {
     console.log('Connected to mongodb.');
     userDb = require('./server/userDb.js')(mongodb, db),
-        jobDb = require ('./server/jobDb.js')(mongodb, db),
-        institutionDb = require ('./server/institutionDb.js')(mongodb, db),
-        pass = require('./server/passport.js')(userDb, passport, bcrypt);
+    jobDb = require ('./server/jobDb.js')(mongodb, db),
+    institutionDb = require ('./server/institutionDb.js')(mongodb, db),
+    metadataDb = require ('./server/metadataDb.js')(mongodb, db),
+    pass = require('./server/passport.js')(userDb, passport, bcrypt);
 
     http.createServer(app).listen(app.get('port'), function () {
         console.log('Express server listening on port ' + app.get('port'));
@@ -66,28 +61,8 @@ var s3 = new aws.S3();
 /**
  * Routes
  */
-app.get('/api/countries', function (req, res) {
-    res.json(countries);
-});
-
-app.get('/api/types', function (req, res) {
-    res.json(types);
-});
-
-app.get('/api/contractTypes', function (req, res) {
-    res.json(contractTypes);
-});
-
-app.get('/api/months', function (req, res) {
-    res.json(months);
-});
-
-app.get('/api/fieldGroup', function (req, res) {
-    res.json(fieldGroup);
-});
-
-app.get('/api/positionTypes', function (req, res) {
-    res.json(positionTypes);
+app.get('/api/:collectionName', function (req, res) {
+    metadataDb.get(req.params.collectionName, function(err, docs) { res.json(docs); });
 });
 
 app.get('/api/users', function(req, res) {
@@ -101,6 +76,7 @@ app.get('/api/users', function(req, res) {
         return res.json(users);
     });
 });
+
 app.get('/api/jobs', function(req, res) {
     jobDb.getJobs(function (err, jobs) {
         if (err) {
@@ -112,6 +88,7 @@ app.get('/api/jobs', function(req, res) {
         return res.json(jobs);
     });
 });
+
 app.get('/api/institutions', function(req, res) {
     institutionDb.getInstitutions(function (err, institutions) {
         if (err) {

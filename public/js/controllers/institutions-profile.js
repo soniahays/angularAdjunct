@@ -51,13 +51,13 @@ angular.module('adjunct.controllers')
 
         $scope.types = [];
         $http({
-            url: '/api/types',
+            url: '/api/institutionTypes',
             method: 'GET',
             headers: {'Content-Type': 'application/json'}
         }).success(function (data, status, headers, config) {
                 $scope.types = data;
             }).error(function (data, status, headers, config) {
-                console.log("get months didn't work");
+                console.log("get institution types didn't work");
             });
 
         $scope.openPictureUploadModal = function() {
@@ -70,14 +70,13 @@ angular.module('adjunct.controllers')
 
             $http({
                 url: '/api/get-institutions-profile/' + institutionId,
-//                _id
                 method: 'GET',
                 headers: {'Content-Type': 'application/json'}
             }).success(function (data, status, headers, config) {
                     $scope.institution.imageName = data.imageName;
                     $('#upload-picture-modal').modal('hide');
                 }).error(function (data, status, headers, config) {
-                    console.log("get-institutions-profile-top-card didn't work");
+                    console.log("uploadComplete didn't work");
                 });
         };
     }]);
