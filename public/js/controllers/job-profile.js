@@ -24,7 +24,6 @@ angular.module('adjunct.controllers')
             headers: {'Content-Type': 'application/json'}
         }).success(function (data, status, headers, config) {
                 $scope.job = data;
-
             }).error(function (data, status, headers, config) {
                 console.log("/api/get-job-profile didn't work");
             });
@@ -39,8 +38,7 @@ angular.module('adjunct.controllers')
         }
 
         $scope.saveTopCard = function () {
-            ///$scope.topCardJobTemplateUrl = '/partial/job-profile-top-card';
-            console.log($scope.job);
+            $scope.topCardJobTemplateUrl = '/partial/job-profile-top-card';
 
             $http({
                 url: '/save-job-profile',
@@ -52,6 +50,7 @@ angular.module('adjunct.controllers')
                 }).error(function (data, status, headers, config) {
                     console.log("save-job-profile-top-card didn't work");
                 });
+
         }
 
         $scope.saveBottomCard = function () {

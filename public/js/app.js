@@ -3,6 +3,7 @@
 angular.module('adjunct', [
         'ngRoute',
         'ngCookies',
+        'ngResource',
         '$strap.directives',
         'tags-input',
         'ngUpload',

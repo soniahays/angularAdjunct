@@ -61,9 +61,6 @@ var s3 = new aws.S3();
 /**
  * Routes
  */
-app.get('/api/:collectionName', function (req, res) {
-    metadataDb.get(req.params.collectionName, function(err, docs) { res.json(docs); });
-});
 
 app.get('/api/users', function(req, res) {
     userDb.getUsers(function (err, users) {
@@ -77,27 +74,15 @@ app.get('/api/users', function(req, res) {
     });
 });
 
-app.get('/api/jobs', function(req, res) {
-    jobDb.getJobs(function (err, jobs) {
+app.get('/api/:collectionName', function (req, res) {
+    metadataDb.get(req.params.collectionName, function(err, docs) {
         if (err) {
-            return res.send(500, "Error retrieving job");
+            return res.send(500, "Error retrieving " + req.params.collectionName);
         }
-        if (!jobs) {
+        if (!docs) {
             return res.send('Not found');
         }
-        return res.json(jobs);
-    });
-});
-
-app.get('/api/institutions', function(req, res) {
-    institutionDb.getInstitutions(function (err, institutions) {
-        if (err) {
-            return res.send(500, "Error retrieving institution");
-        }
-        if (!institutions) {
-            return res.send('Not found');
-        }
-        return res.json(institutions);
+        return res.json(docs);
     });
 });
 
@@ -247,7 +232,12 @@ app.post('/save-adjuncts-profile', function (req, res) {
 
 app.post('/save-job-profile', function (req, res) {
     if (req.body.job) {
-        jobDb.updateJob(req.body.job);
+        if (req.body.job._id) {
+            jobDb.updateJob(req.body.job);
+        }
+        else {
+            jobDb.insertJob(req.body.job);
+        }
     }
     else {
         console.log("req.body.job is null!");

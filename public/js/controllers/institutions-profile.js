@@ -9,7 +9,6 @@ angular.module('adjunct.controllers')
             return;
         }
 
-//        $scope.users = [];
         $scope.institutions = [];
         $scope.institution = {};
         $scope.topCardInstitutionTemplateUrl = '/partial/institutions-profile-top-card';

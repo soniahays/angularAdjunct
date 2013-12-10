@@ -20,15 +20,15 @@
             <div class="lead lead-custom masthead">
                 <div id="name-container">
                     <h2>
-                        <span>{{ job.field|| 'Information Technology' }}</span>
+                        <span>{{ job.field || 'Information Technology' }}</span>
                         -
-                        <span>{{ job.jobTitle|| 'Adjunct Faculty' }} </span>
+                        <span>{{ job.jobTitle || 'Adjunct Faculty' }} </span>
                     </h2>
                 </div>
                 <div id="headline-container">
                     <span>At {{ job.institution || 'Bay State College' }}</span>
                     -
-                    <span>{{ job.contractType || 'Part-time' }} position</span>
+                    <span>{{ job.contractType.name || 'Part-time' }} position</span>
                 </div>
                 <div class="text-muted" id="demographic-info">
                     <span>{{ job.locationCity || 'Boston' }}</span>
