@@ -8,13 +8,7 @@ var http = require('http'),
     bcrypt = require('bcrypt'),
     aws = require('aws-sdk'),
     mongodb = require('mongodb'),
-    connect = require('./server/dbConnect.js')(bcrypt, mongodb),
-    countries = require('./server/api/countries.json'),
-    types = require('./server/api/types.json'),
-    months = require('./server/api/months.json'),
-    contractTypes= require('./server/api/contractTypes.json'),
-    positionTypes = require('./server/api/positionTypes.json'),
-    fieldGroup = require('./server/api/fieldGroup.json');
+    connect = require('./server/dbConnect.js')(bcrypt, mongodb);
 var userDb, jobDb, institutionDb, pass;
 
 /**
@@ -23,9 +17,10 @@ var userDb, jobDb, institutionDb, pass;
 connect(function (err, db) {
     console.log('Connected to mongodb.');
     userDb = require('./server/userDb.js')(mongodb, db),
-        jobDb = require ('./server/jobDb.js')(mongodb, db),
-        institutionDb = require ('./server/institutionDb.js')(mongodb, db),
-        pass = require('./server/passport.js')(userDb, passport, bcrypt);
+    jobDb = require ('./server/jobDb.js')(mongodb, db),
+    institutionDb = require ('./server/institutionDb.js')(mongodb, db),
+    metadataDb = require ('./server/metadataDb.js')(mongodb, db),
+    pass = require('./server/passport.js')(userDb, passport, bcrypt);
 
     http.createServer(app).listen(app.get('port'), function () {
         console.log('Express server listening on port ' + app.get('port'));
@@ -66,29 +61,6 @@ var s3 = new aws.S3();
 /**
  * Routes
  */
-app.get('/api/countries', function (req, res) {
-    res.json(countries);
-});
-
-app.get('/api/types', function (req, res) {
-    res.json(types);
-});
-
-app.get('/api/contractTypes', function (req, res) {
-    res.json(contractTypes);
-});
-
-app.get('/api/months', function (req, res) {
-    res.json(months);
-});
-
-app.get('/api/fieldGroup', function (req, res) {
-    res.json(fieldGroup);
-});
-
-app.get('/api/positionTypes', function (req, res) {
-    res.json(positionTypes);
-});
 
 app.get('/api/users', function(req, res) {
     userDb.getUsers(function (err, users) {
@@ -101,26 +73,16 @@ app.get('/api/users', function(req, res) {
         return res.json(users);
     });
 });
-app.get('/api/jobs', function(req, res) {
-    jobDb.getJobs(function (err, jobs) {
+
+app.get('/api/:collectionName', function (req, res) {
+    metadataDb.get(req.params.collectionName, function(err, docs) {
         if (err) {
-            return res.send(500, "Error retrieving job");
+            return res.send(500, "Error retrieving " + req.params.collectionName);
         }
-        if (!jobs) {
+        if (!docs) {
             return res.send('Not found');
         }
-        return res.json(jobs);
-    });
-});
-app.get('/api/institutions', function(req, res) {
-    institutionDb.getInstitutions(function (err, institutions) {
-        if (err) {
-            return res.send(500, "Error retrieving institution");
-        }
-        if (!institutions) {
-            return res.send('Not found');
-        }
-        return res.json(institutions);
+        return res.json(docs);
     });
 });
 
@@ -270,7 +232,12 @@ app.post('/save-adjuncts-profile', function (req, res) {
 
 app.post('/save-job-profile', function (req, res) {
     if (req.body.job) {
-        jobDb.updateJob(req.body.job);
+        if (req.body.job._id) {
+            jobDb.updateJob(req.body.job);
+        }
+        else {
+            jobDb.insertJob(req.body.job);
+        }
     }
     else {
         console.log("req.body.job is null!");

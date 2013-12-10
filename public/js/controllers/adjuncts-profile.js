@@ -26,7 +26,6 @@ angular.module('adjunct.controllers')
         $scope.computerUploadUrl = '/partial/upload-computer-modal';
         $scope.urlAttachUrl = '/partial/upload-url-modal';
 
-
         $http({
             url: '/api/get-adjuncts-profile/' + (userId ? userId : $cookies._id),
             method: 'GET',
@@ -52,7 +51,6 @@ angular.module('adjunct.controllers')
                     }
                 }
 
-
                 if (!$scope.user.portfolioLinks)
                     $scope.user.portfolioLinks = [];
 
@@ -65,9 +63,7 @@ angular.module('adjunct.controllers')
                         var videoId = URI.parseQuery(URI.parse(portfolioLink.value).query).v;
                         console.log("videoId: ",videoId);
                         $scope.user.videoIds.push(videoId);
-
                     }
-
                 }
 
             }).error(function (data, status, headers, config) {
@@ -75,16 +71,10 @@ angular.module('adjunct.controllers')
             });
 
         $scope.months = [];
-        $http({
-            url: '/api/months',
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'}
-        }).success(function (data, status, headers, config) {
-                $scope.months = data;
-            }).error(function (data, status, headers, config) {
-                console.log("get months didn't work");
-            });
-
+        var count = 0;
+        while (count < 12) {
+            $scope.months.push(moment().month(count++).format("MMMM"));
+        }
 
         $scope.statuses = [
             {value: 1, text: 'fall'},
@@ -209,8 +199,6 @@ angular.module('adjunct.controllers')
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.1'});
 
             $scope.competency = competency;
-
-
         }
 
         $scope.openVideoModal = function(videoId) {

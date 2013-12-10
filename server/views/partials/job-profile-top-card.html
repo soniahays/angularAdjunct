@@ -1,6 +1,4 @@
-<div id="top-card" class="panel panel-default col-md-12"
-     style="position: relative;padding-left:5px !important;padding-right:5px !important; padding-bottom: 0px !important; margin-bottom: 5px !important">
-
+<div id="top-card" class="panel panel-default col-md-12" style="position: relative;padding-left:5px !important;padding-right:5px !important; padding-bottom: 0px !important; margin-bottom: 5px !important">
     <div class="panel-body profile-top-card">
         <div class="profile-picture">
             <span ng-if="job.imageName">
@@ -14,7 +12,6 @@
                             <img src="/img/icon_add_photo_27x27_v1.png" /> Add a photo
                         </span>
                     </a>
-                    <!--<button type="button" class="btn" bs-modal="'partial/upload-picture-modal'">...</button>-->
                 </div>
             </div>
         </div>
@@ -23,29 +20,28 @@
             <div class="lead lead-custom masthead">
                 <div id="name-container">
                     <h2>
-                        <span>{{ job.field|| 'Information Technology' }}</span>
+                        <span>{{ job.field || 'Information Technology' }}</span>
                         -
-                        <span>{{ job.jobTitle|| 'Adjunct Faculty' }} </span>
+                        <span>{{ job.jobTitle || 'Adjunct Faculty' }} </span>
                     </h2>
                 </div>
                 <div id="headline-container">
-                    <span>At {{ job.institution|| 'Bay State College' }}</span>
+                    <span>At {{ job.institution || 'Bay State College' }}</span>
                     -
-                    <span>{{ job.contractType || 'Part-time' }} position</span>
-
+                    <span>{{ job.contractType.name || 'Part-time' }} position</span>
                 </div>
                 <div class="text-muted" id="demographic-info">
                     <span>{{ job.locationCity || 'Boston' }}</span>
-                    <span>, {{ job.locationState|| 'MA' }}</span>
-                    <span>| posted on {{ job.postedOn|| 'November 12, 2013' }}</span>
+                    <span>, {{ job.locationState || 'MA' }}</span>
+                    <span>| posted on {{ job.postedOn || 'November 12, 2013' }}</span>
                 </div>
             </div>
             <table id="profile-card-table">
                 <tbody>
                 <tr id="overview-summary-specialty">
                     <th class="profile-card-table-th" scope="row">Degree Required</th>
-                    <td class="profile-card-table-td"><span>{{ job.degreeRequired|| 'MS in Information Technology' }}</span> <br />
-                        or <span>{{ job.degreeRequiredAlternative|| 'MS in related field' }}</span>
+                    <td class="profile-card-table-td"><span>{{ job.degreeRequired || 'MS in Information Technology' }}</span> <br />
+                        or <span>{{ job.degreeRequiredAlternative || 'MS in related field' }}</span>
                     </td>
                 </tr>
                 <tr id="overview-summary-education">
@@ -53,54 +49,20 @@
                     <td class="profile-card-table-td"><span>{{ job.requirementField1 || 'JAVA' }},</span>
                         <span>{{ job.requirementField2 || 'SQL' }},</span> <span>{{ job.requirementField3 || 'HTML' }},</span>
                         <span>{{ job.requirementField4 || 'information security' }},</span> <span>{{ job.requirementField5 || 'database management' }}.</span></td>
-
                 </tr>
                 <tr>
                     <td></td>
                     <td>
-
-
                         <div ng-repeat="item in job.expertiseTags">
-                            {{ item||'tags go here' }}
+                            {{ item ||'tags go here' }}
                         </div>
-                    </td>
-
-                    <!--soft skills tags? or Badges.-->
-                    <td>
-                    </td>
-                    <td>
-
-
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
-
-    <!--<div class="list-group-item list-group-item-custom list-group-item-customize-left" style=" position: relative; padding-right: 0px; padding-top: 0px;padding-bottom: 20px; ">-->
-        <!--<button class="btn btn-lg btn-primary edit-buttons " id="edit-badges" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px" ng-click="openBadgeEditModal()" >-->
-            <!--<i class="fa fa-pencil-square-o fa-lg edit-buttons"></i></button>-->
-
-        <!--<div class="badges-container" style="margin-top: 35px;">-->
-
-            <!--<ul class="badge" style="padding-left: 0px;">-->
-                <!--<li ng-repeat="badge in filteredBadges" class="badge-thumbnail">-->
-
-                    <!--<img ng-src="/img/badges/{{badge}}.png" alt="" style="width: 45px!important;height: 45px!important;"/>-->
-                <!--</li>-->
-            <!--</ul>-->
-
-        <!--</div>-->
-
-
-    <!--</div>-->
-
-
-
     <button type="button" class="btn btn-md btn-primary edit-buttons"  id="edit-top-card"style="position:absolute; right: 0px ; bottom: 0px ;border-radius:3px 0px 3px 0px" ng-click="editTopCard()"><i class="fa fa-pencil-square-o fa-lg"></i> Edit Profile</button>
-    <!--<button class="btn btn-lg btn-primary " id="edit-badges" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px" ng-click="openBadgeEditModal()" >-->
-    <!--<i class="fa fa-pencil-square-o fa-lg"></i></button>-->
 </div>
 
 

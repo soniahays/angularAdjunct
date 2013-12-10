@@ -14,7 +14,6 @@ module.exports = function (mongodb, db) {
                         callback(err, job);
                 }
             });
-
         },
         updateJob: function (job, callback) {
             var query = {'_id': job._id };

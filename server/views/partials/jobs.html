@@ -20,13 +20,12 @@
                     <td>
                     <div class="search-result-body align-horizontal">
                         <span class="list-group-item-heading-customized ppl-also-name">
-                        {{job.firstName}} {{job.lastName}}
+                        {{job.positionType}} of {{job.academicDiscipline}}
                         </span>
                         <p class="description">
-                            <span>{{ job.currentPosition || 'empty' }}</span>
-                            <span>at {{ job.institution|| 'empty' }}</span></br>
-                            <span> {{ job.city|| 'empty' }}</span>
-                            <span>| {{ job.department|| 'empty' }}</span>
+                            <span>at {{ job.institution || 'empty' }}</span></br>
+                            <span> {{ job.locationCity || 'empty' }}</span>
+                            <span>| {{ job.contractType.name || 'empty' }}</span>
                         </p>
                     </div>
                     </td>

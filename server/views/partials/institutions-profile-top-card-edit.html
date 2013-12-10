@@ -54,7 +54,7 @@
 
                                     <li class="institution-type">
                                         <label for="">Institution type </label>
-                                        <select ng-model="institution.type" class="edit-month" ng-options="t.name for t in types" class="input-xlarge" required>
+                                        <select ng-model="institution.institutionType" class="edit-month" ng-options="t._id as t.name for t in institutionTypes" class="input-xlarge" required>
                                             <option value="">choose...</option></select>
                                     </li>
 
