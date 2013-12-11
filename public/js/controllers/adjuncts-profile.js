@@ -26,6 +26,11 @@ angular.module('adjunct.controllers')
         $scope.computerUploadUrl = '/partial/upload-computer-modal';
         $scope.urlAttachUrl = '/partial/upload-url-modal';
 
+
+
+//        $http.get('/api/get-job-profile/' + jobId).then(function(response) { $scope.job = response.data; });
+
+
         $http({
             url: '/api/get-adjuncts-profile/' + (userId ? userId : $cookies._id),
             method: 'GET',
