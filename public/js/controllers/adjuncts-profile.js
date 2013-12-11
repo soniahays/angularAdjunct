@@ -25,6 +25,7 @@ angular.module('adjunct.controllers')
         $scope.videoUrl = '';
         $scope.computerUploadUrl = '/partial/upload-computer-modal';
         $scope.urlAttachUrl = '/partial/upload-url-modal';
+        $scope.canEdit = $cookies._id && !userId;
 
         $http({
             url: '/api/get-adjuncts-profile/' + (userId ? userId : $cookies._id),
