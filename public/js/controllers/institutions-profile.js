@@ -17,6 +17,8 @@ angular.module('adjunct.controllers')
         $scope.rightBottomSideColumnUrl = '/partial/adjuncts-profile-right-bottomSide-column';
         $scope.uploadPictureModalUrl = '/partial/upload-picture-modal';
 
+        //        $http.get('/api/get-job-profile/' + jobId).then(function(response) { $scope.job = response.data; });
+
         $http.get('/api/get-institutions-profile/' + institutionId).then(function(response) {
             $scope.institution = response.data;
             WikiSummary("Bay State College", function(wikiData) { $scope.institution.summary = wikiData; });
