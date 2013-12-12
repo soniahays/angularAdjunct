@@ -21,51 +21,25 @@
             <button ng-click="show=!show">toggle hide/show</button>
             <!--<div ng-show="show">div to hide/show</div>-->
             <!--<div ng-show="show">another div to hide/show</div>-->
-
-
-
             <div class="col-md-8" ng-show="show">
-            <iframe class="youtube-player" type="text/html" width="540" height="350" src="http://www.youtube.com/embed/zIEIvi2MuEk" allowfullscreen frameborder="0">
-            </iframe>
+                <iframe class="youtube-player" type="text/html" width="540" height="350" src="http://www.youtube.com/embed/zIEIvi2MuEk" allowfullscreen frameborder="0">
+                </iframe>
             </div>
-            <!--<div class="col-md-4">-->
-                <!--<table>-->
-                    <!--<tr>-->
-                        <!--<td><strong><small>Syllabus Design</small></strong></td>-->
-                        <!--<td style="width:50px;padding-left:10px;padding-right:10px;"><div id="syllabusDesignPercent">60%</div>-->
-                            <!--<div class="progress progress-custom">-->
-                                <!--<div id="syllabusDesign"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">-->
-                                    <!--<span class="sr-only">60% Complete</span>-->
-                                <!--</div>-->
-                            <!--</div></a></td>-->
-                        <!--<td style="width:100px;padding-left:10px;padding-right:10px;">-->
-                            <!--<div id="media-container media-container-mini" style="border-top: 4px solid #101010;border-bottom: 4px solid #101010;">-->
-                                 <!--<span>-->
-                                     <!--<ul class="video-thumbnails video-thumbnails-mini">-->
-                                        <!--<li ng-repeat="videoId in user.videoIds" class="video-thumbnail video-thumbnail-mini">-->
-                                            <!--<a ng-click="openVideoModal(videoId)"><img ng-src="http://img.youtube.com/vi/{{videoId}}/2.jpg" alt="" height=25px/></a>-->
-                                        <!--</li>-->
-                                     <!--</ul>-->
-                                    <!--<a href="/files/cv.pdf"><img src="/img/PortfolioIconResume.png" height=25px/></a>-->
-                                    <!--<a href="/files/syllabus.pdf"><img src="/img/PortfolioIconSyllabus.png" height=25px/></a>-->
-                                    <!--</span>-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                <!--</table>-->
-            <!--</div>-->
-            <div>
-                <table>
+
+            <ul class="list-group-custom-dashboard">
+                <li class="list-group-item-custom-dashboard">
+
+                </li>
+                <li class="list-group-item-custom-dashboard">
                     <tr>
-                        <td style="width:160px;padding-left:20px;padding-right:10px;" style="font-size:150%;"><strong>Syllabus Design</strong></td>
-                        <td style="width:350px;padding-left:10px;padding-right:10px;"><div id="syllabusDesignPercent" style="font-size:90%;">60%</div>
+                        <td style="width:350px;padding-left:10px;padding-right:10px;"><div id="syllabusDesignPercent" style="font-size:90%;"><strong>Syllabus Design</strong> 60%</div>
                             <div class="progress progress-custom">
-                                <div id="syllabusDesign"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                <div id="syllabusDesign"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;background-color:#11ce9a;">
                                     <span class="sr-only">60% Complete</span>
                                 </div>
                             </div></a></td>
                         <td style="width:300px;padding-left:10px;padding-right:10px;">
-                            <div id="media-container media-container-mini" style="border-top: 4px solid #101010;border-bottom: 4px solid #101010;">
+                            <div id="media-container media-container-mini" style="border-top: 4px solid #d3d3d3;border-bottom: 4px solid #d3d3d3;">
                                  <span>
                                      <ul class="video-thumbnails video-thumbnails-mini">
                                          <li ng-repeat="videoId in user.videoIds" class="video-thumbnail video-thumbnail-mini">
@@ -78,16 +52,17 @@
                             </div>
                         </td>
                     </tr>
+                </li>
+                <li class="list-group-item-custom-dashboard">
                     <tr>
-                        <td style="width:160px;padding-left:20px;padding-right:10px;" style="font-size:150%;"><strong>Syllabus Design</strong></td>
-                        <td style="width:350px;padding-left:10px;padding-right:10px;"><div id="syllabusDesignPercent" style="font-size:90%;">60%</div>
+                        <td style="width:350px;padding-left:10px;padding-right:10px;"><div id="technologyDesignPercent" style="font-size:90%;"><strong>Technology Enabled Instruction</strong> 60%</div>
                             <div class="progress progress-custom">
-                                <div id="syllabusDesign"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                <div id="technologyDesign"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;background-color:#FFDE00;">
                                     <span class="sr-only">60% Complete</span>
                                 </div>
                             </div></a></td>
                         <td style="width:300px;padding-left:10px;padding-right:10px;">
-                            <div id="media-container media-container-mini" style="border-top: 4px solid #101010;border-bottom: 4px solid #101010;">
+                            <div id="media-container media-container-mini" style="border-top: 4px solid #d3d3d3;border-bottom: 4px solid #d3d3d3;">
                                  <span>
                                      <ul class="video-thumbnails video-thumbnails-mini">
                                          <li ng-repeat="videoId in user.videoIds" class="video-thumbnail video-thumbnail-mini">
@@ -100,18 +75,106 @@
                             </div>
                         </td>
                     </tr>
-                </table>
-            </div>
-                <!--</div>-->
+                </li>
+                <li class="list-group-item-custom-dashboard">
+                    <tr>
+                        <td style="width:350px;padding-left:10px;padding-right:10px;"><div id="studFeedbackPercent" style="font-size:90%;"><strong>Student Centered Feedback</strong> 60%</div>
+                            <div class="progress progress-custom">
+                                <div id="studFeedback"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;background-color:#6599FF;">
+                                    <span class="sr-only">60% Complete</span>
+                                </div>
+                            </div></a></td>
+                        <td style="width:300px;padding-left:10px;padding-right:10px;">
+                            <div id="media-container media-container-mini" style="border-top: 4px solid #d3d3d3;border-bottom: 4px solid #d3d3d3;">
+                                 <span>
+                                     <ul class="video-thumbnails video-thumbnails-mini">
+                                         <li ng-repeat="videoId in user.videoIds" class="video-thumbnail video-thumbnail-mini">
+                                             <a ng-click="openVideoModal(videoId)"><img ng-src="http://img.youtube.com/vi/{{videoId}}/2.jpg" alt="" height=35px/></a>
+                                         </li>
+                                     </ul>
+                                    <a href="/files/cv.pdf"><img src="/img/PortfolioIconResume.png" height=35px/></a>
+                                    <a href="/files/syllabus.pdf"><img src="/img/PortfolioIconSyllabus.png" height=35px/></a>
+                                    </span>
+                            </div>
+                        </td>
+                    </tr>
+                </li>
+                <li class="list-group-item-custom-dashboard">
+                    <tr>
+                        <td style="width:350px;padding-left:10px;padding-right:10px;"><div id="sumFeedbackPercent" style="font-size:90%;"><strong>Summative Feedback</strong> 60%</div>
+                            <div class="progress progress-custom">
+                                <div id="sumFeedback"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;background-color:#FF9900;">
+                                    <span class="sr-only">60% Complete</span>
+                                </div>
+                            </div></a></td>
+                        <td style="width:300px;padding-left:10px;padding-right:10px;">
+                            <div id="media-container media-container-mini" style="border-top: 4px solid #d3d3d3;border-bottom: 4px solid #d3d3d3;">
+                                 <span>
+                                     <ul class="video-thumbnails video-thumbnails-mini">
+                                         <li ng-repeat="videoId in user.videoIds" class="video-thumbnail video-thumbnail-mini">
+                                             <a ng-click="openVideoModal(videoId)"><img ng-src="http://img.youtube.com/vi/{{videoId}}/2.jpg" alt="" height=35px/></a>
+                                         </li>
+                                     </ul>
+                                    <a href="/files/cv.pdf"><img src="/img/PortfolioIconResume.png" height=35px/></a>
+                                    <a href="/files/syllabus.pdf"><img src="/img/PortfolioIconSyllabus.png" height=35px/></a>
+                                    </span>
+                            </div>
+                        </td>
+                    </tr>
+                </li>
+                <li class="list-group-item-custom-dashboard">
+                    <tr>
+                    <td style="width:160px;padding-left:20px;padding-right:10px;" style="font-size:150%;"><strong>Learning Management Systems</strong></td>
+                    <td><ul class="badge" style="padding-left: 0px;">
+                        <li ng-repeat="badge in filteredBadges" class="badge-thumbnail">
 
+                            <img ng-src="/img/badges/{{badge}}.png" alt="" style="width: 45px!important;height: 45px!important;"/>
+                        </li>
+                    </ul></td>
+                    <td></td>
+                    </tr>
 
-
-
-
-    </div>
+                </li>
+                <li class="list-group-item-custom-dashboard">
+                    <tr>
+                        <td style="width:160px;padding-left:20px;padding-right:10px;" style="font-size:150%;"><strong>Instructional Design</strong></td>
+                        <td>YES</td>
+                        <td></td>
+                    </tr>
+                </li>
+            </ul>
 
 </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+
+<!--<div class="col-md-4">-->
+<!--<table>-->
+<!--<tr>-->
+<!--<td><strong><small>Syllabus Design</small></strong></td>-->
+<!--<td style="width:50px;padding-left:10px;padding-right:10px;"><div id="syllabusDesignPercent">60%</div>-->
+<!--<div class="progress progress-custom">-->
+<!--<div id="syllabusDesign"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">-->
+<!--<span class="sr-only">60% Complete</span>-->
+<!--</div>-->
+<!--</div></a></td>-->
+<!--<td style="width:100px;padding-left:10px;padding-right:10px;">-->
+<!--<div id="media-container media-container-mini" style="border-top: 4px solid #d3d3d3;border-bottom: 4px solid #d3d3d3;">-->
+<!--<span>-->
+<!--<ul class="video-thumbnails video-thumbnails-mini">-->
+<!--<li ng-repeat="videoId in user.videoIds" class="video-thumbnail video-thumbnail-mini">-->
+<!--<a ng-click="openVideoModal(videoId)"><img ng-src="http://img.youtube.com/vi/{{videoId}}/2.jpg" alt="" height=25px/></a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--<a href="/files/cv.pdf"><img src="/img/PortfolioIconResume.png" height=25px/></a>-->
+<!--<a href="/files/syllabus.pdf"><img src="/img/PortfolioIconSyllabus.png" height=25px/></a>-->
+<!--</span>-->
+<!--</div>-->
+<!--</td>-->
+<!--</tr>-->
+<!--</table>-->
+<!--</div>-->
 
 
 
