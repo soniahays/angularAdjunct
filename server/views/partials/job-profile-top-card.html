@@ -62,7 +62,9 @@
             </table>
         </div>
     </div>
-    <button type="button" class="btn btn-md btn-primary edit-buttons"  id="edit-top-card"style="position:absolute; right: 0px ; bottom: 0px ;border-radius:3px 0px 3px 0px" ng-click="editTopCard()"><i class="fa fa-pencil-square-o fa-lg"></i> Edit Profile</button>
+    <button ng-show="canApplyToJob" type="button" class="btn btn-md btn-primary edit-buttons" id="apply-to-job" style="position:absolute; right: 185px ; bottom: 0px ;border-radius:3px 0px 3px 0px" ng-click="applyToJob()"><i class="fa fa-pencil-square-o fa-lg"></i>Apply</button>
+    <button ng-show="canSaveJob" type="button" class="btn btn-md btn-primary edit-buttons" id="save-job" style="position:absolute; right: 100px ; bottom: 0px ;border-radius:3px 0px 3px 0px" ng-click="saveJob()"><i class="fa fa-pencil-square-o fa-lg"></i>Save</button>
+    <button type="button" class="btn btn-md btn-primary edit-buttons" id="edit-job" style="position:absolute; right: 0px ; bottom: 0px ;border-radius:3px 0px 3px 0px" ng-click="editTopCard()"><i class="fa fa-pencil-square-o fa-lg"></i>Edit Job</button>
 </div>
 
 

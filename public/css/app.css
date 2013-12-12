@@ -38,9 +38,9 @@
     background-color: transparent;
 }
 .edit-buttons{
-    /*background-color: #707070;*/
-    /*border-color:#707070;*/
-    /*color:white;*/
+    font-size: 0.85em !important;
+    line-height: 0.55em !important;
+    font-family: inherit !important;
     background-color: #D1D1D1;
     border-color:#D1D1D1;
     color:#272727;
@@ -128,12 +128,6 @@ ol, ul{
 
 /*-----------------BADGES FORM SECTION -END----------------------------*/
 
-
-#edit-top-card{
-    font-size: 0.85em !important;
-    line-height: 0.55em !important;
-    font-family: inherit !important;
-}
 
 #edit-badges{
     font-size: 1em !important;
