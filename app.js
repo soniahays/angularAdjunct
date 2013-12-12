@@ -58,6 +58,9 @@ app.use(function noCache(req, res, next) {
 aws.config.loadFromPath('./server/config/aws-config.json');
 var s3 = new aws.S3();
 
+// We use AWS SES to send emails
+var ses = new aws.SES({apiVersion: '2010-12-01'});
+
 /**
  * Routes
  */
@@ -283,7 +286,36 @@ app.post('/upload-job/:id', function (req, res) {
     });
 });
 
-var upload = function(callback){
+app.post('/send-email', function (req, res) {
+
+    // send to list
+    var to = ['naderchehab@gmail.com']
+
+    // this must relate to a verified SES account
+    var from = "naderchehab@gmail.com";
+
+    ses.sendEmail({
+        Source: from,
+        Destination: { ToAddresses: to },
+        Message: {
+            Subject: {
+                Data: '[adjunct] Email from ' + req.body.email.userName
+            },
+            Body: {
+                Text: {
+                    Data: "User email: " + req.body.email.userEmail + "\nUser Message: " + req.body.email.body
+                }
+            }
+        }
+    }, function (err, data) {
+        if (err) {
+            throw err;
+        }
+        console.log('Email sent:', data);
+    });
+});
+
+    var upload = function(callback){
     setTimeout(
         function () {
             res.setHeader('Content-Type', 'text/html');

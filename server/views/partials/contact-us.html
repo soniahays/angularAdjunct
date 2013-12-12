@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col-mid-4">
+            <div class="get-in-touch">
+                <h3 class="text-center">
+                    Get in Touch</h3>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="name" placeholder="Name" ng-model="email.userName" required/>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="Email" placeholder="Email" ng-model="email.userEmail" required/>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" rows="3" placeholder="Message" ng-model="email.body" required></textarea>
+                </div>
+                <button ng-click="send()" class="btn btn-danger btn-sm btn-block" role="button">Send it!</button>
+            </div>
+        </div>
+    </div>
+</div>

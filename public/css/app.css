@@ -1412,3 +1412,22 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
     border-color: #333;
     outline-color: #333;
 }
+
+
+
+.get-in-touch {
+    position: relative;
+    margin: 0 auto;
+    padding: 30px;
+    max-width: 370px;
+    border-radius: 2px;
+}
+
+.get-in-touch input[type=text],.get-in-touch input[type=email], .get-in-touch textarea {
+    background: rgb(235, 241, 245);
+    color: rgb(36, 39, 41);
+}
+.get-in-touch  input:focus, .get-in-touch  textarea:focus {
+    outline: 0;
+    background: #FFF;
+}
