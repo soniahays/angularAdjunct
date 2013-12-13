@@ -51,9 +51,15 @@ angular.module('adjunct.controllers')
                 $scope.user.portfolioLinks = [
                     {
                         "type" : "video",
-                        "value" : "http://www.youtube.com/embed/oy6NvWeVruY",
-                        "thumbnail": "http://img.youtube.com/vi/oy6NvWeVruY/2.jpg",
+                        "value" : "https://www.youtube.com/embed/YKulXXvK2TA",
+                        "thumbnail": "http://img.youtube.com/vi/YKulXXvK2TA/2.jpg",
                         "$$hashKey" : "02X"
+                    },
+                    {
+                        "type" : "video",
+                        "value" : "https://www.youtube.com/embed/F1QNHJ1N-p0",
+                        "thumbnail": "http://img.youtube.com/vi/F1QNHJ1N-p0/2.jpg",
+                        "$$hashKey" : "02Z"
                     },
                     {
                         "type" : "pdf",
