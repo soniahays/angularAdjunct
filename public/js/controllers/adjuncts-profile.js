@@ -47,7 +47,7 @@ angular.module('adjunct.controllers')
                     experience1Summary: 'write more about your experience here'
                 });
 
-                $scope.user.survey={};
+                $scope.user.survey = {};
                 $scope.filteredBadges = [];
 
                 for (var badge in $scope.user.badges) {
@@ -67,11 +67,9 @@ angular.module('adjunct.controllers')
                     var portfolioLink = $scope.user.portfolioLinks[index];
                     if (portfolioLink.type == 'video') {
                         var videoId = URI.parseQuery(URI.parse(portfolioLink.value).query).v;
-                        console.log("videoId: ",videoId);
                         $scope.user.videoIds.push(videoId);
                     }
                 }
-
             }).error(function (data, status, headers, config) {
                 console.log("get-adjuncts-profile-top-card didn't work");
             });
@@ -151,7 +149,6 @@ angular.module('adjunct.controllers')
         }
 
         $scope.savePortfolioCard = function () {
-            console.log($scope.user.portfolioLinks);
             $http({
                 url: '/save-adjuncts-profile',
                 method: 'POST',
@@ -185,8 +182,7 @@ angular.module('adjunct.controllers')
            $scope.user.portfolioLinks.push({type:'video', value:''});
         }
 
-        $scope.removePortfolioLink= function(portfolioLink)
-        {
+        $scope.removePortfolioLink= function(portfolioLink) {
             for(var i= 0, ii = $scope.user.portfolioLinks.length; i < ii; i++){
                 if(portfolioLink==$scope.user.portfolioLinks[i]){
                     $scope.user.portfolioLinks.splice(i, 1);
@@ -196,14 +192,12 @@ angular.module('adjunct.controllers')
 
         $scope.openPictureUploadModal = function() {
             $('#upload-picture-modal').modal();
-                $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.1'});
-
+            $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.1'});
         }
 
         $scope.openAttachmentUploadModal = function(competency) {
             $('#upload-attachment-competencies-modal').modal();
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.1'});
-
             $scope.competency = competency;
         }
 
@@ -215,7 +209,7 @@ angular.module('adjunct.controllers')
 
         $scope.openBadgeEditModal= function() {
             $('#badge-edit-modal').modal();
-                $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
+            $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
         }
 
         $scope.openCompetencyPortfolioModal= function() {
@@ -229,8 +223,6 @@ angular.module('adjunct.controllers')
         }
 
         $scope.uploadComplete = function (content, completed) {
-            console.log(content);
-
             $http({
                 url: '/api/get-adjuncts-profile/' + $cookies._id,
                 method: 'GET',
