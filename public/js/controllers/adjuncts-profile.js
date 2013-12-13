@@ -48,6 +48,7 @@ angular.module('adjunct.controllers')
                 });
 
                 $scope.user.survey={};
+//                $scope.user.width={};
                 $scope.filteredBadges = [];
 
                 for (var badge in $scope.user.badges) {
@@ -122,11 +123,12 @@ angular.module('adjunct.controllers')
                     console.log("save-adjunct-badge-card worked");
                     $scope.filteredBadges = [];
 
-                    var width = $scope.user.survey.syllabusDesign*20;
-                    $("#syllabusDesign").width(width+"%");
-                    $("#syllabusDesignPercent").text(width+"%");
+                    var syllabusDesignWidth = $scope.user.survey.syllabusDesign*20;
+                    $("#syllabusDesign").syllabusDesignWidth(syllabusDesignWidth+"%");
+                    $("#syllabusDesignPercent").text(syllabusDesignWidth+"%");
+                    console.log("width"+syllabusDesignWidth);
 
-                    width = $scope.user.survey.technologyDesign*20;
+                    var width = $scope.user.survey.technologyDesign*20;
                     $("#technologyDesign").width(width+"%");
                     $("#technologyDesignPercent").text(width+"%");
 

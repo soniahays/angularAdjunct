@@ -1,4 +1,6 @@
-
+.inline{
+    float:left;
+}
 
 .animate-show {
     -webkit-transition:all linear 0.5s;
@@ -148,6 +150,7 @@ ol, ul{
 .badge-form-thumb{
     width:35px
 }
+
 #checkbox {
     display: inline-block;
     height: 18px;

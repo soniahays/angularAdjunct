@@ -1,180 +1,113 @@
 
 <div id="competency-portfolio-modal" class="modal">
     <div class="modal-dialog modal-dialog-custom-competency-portfolio">
-        <div class="modal-content" style="height:550px;width:850px;margin-left:-110px;">
+        <div class="modal-content" style="height:550px;width:850px;margin-left:-110px; padding-left: 10px;padding-right: 25px;">
             <div class="modal-header">
                 <h4 class="modal-title">Syllabus Design: Syllabus Outline Fall 2012</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="col-md-4" style="margin-top:15px;">
+            <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left" style="padding-left: 0px;border-left:3px solid #11ce9a;">
 
+                <div style="padding-left:5px;"><small> Syllabus Design 60% <span ng-bind="syllabusDesignPercent"></span> </small></div>
+                <div class="progress progress-custom">
+                    <div id="syllabusDesign"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;background-color:#11ce9a;padding-left:-10px;">
+                        <span class="sr-only">60% Complete</span>
+                    </div>
+
+                </div></a>
+            <div style="background-color:#ddd;border-left:3px solid #11ce9a;">
+
+                <li ng-repeat="videoId in user.videoIds" class="video-thumbnail video-thumbnail-mini">
+                    <a ng-click="openVideoModal(videoId)"><img ng-src="http://img.youtube.com/vi/{{videoId}}/2.jpg" alt="" height=35px/></a>
+                </li>
+                </ul>
+                <a href="/files/cv.pdf"><img src="/img/PortfolioIconResume.png" height=35px/></a>
+                <a href="/files/syllabus.pdf"><img src="/img/PortfolioIconSyllabus.png" height=35px/></a>
+                <!--</span>-->
+            </div>
+            <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left" style="padding-left: 0px;border-left:3px solid #FFDE00;">
+                <div style="padding-left:5px;"><small>Technology Enabled Instruction 60% <span ng-bind="technologyDesignPercent"></span></small></div>
+                <div class="progress progress-custom">
+                    <div id="technologyDesign" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 60%;background-color:#FFDE00;">
+                        <span class="sr-only">80% Complete</span>
+                    </div>
+                </div></a>
+            <!--<a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left">-->
+                <div style="background-color:#ddd;border-left:3px solid #FFDE00;">
+
+                    <li ng-repeat="videoId in user.videoIds" class="video-thumbnail video-thumbnail-mini">
+                    <a ng-click="openVideoModal(videoId)"><img ng-src="http://img.youtube.com/vi/{{videoId}}/2.jpg" alt="" height=35px/></a>
+                    </li>
+                    </ul>
+                    <a href="/files/cv.pdf"><img src="/img/PortfolioIconResume.png" height=35px/></a>
+                    <a href="/files/syllabus.pdf"><img src="/img/PortfolioIconSyllabus.png" height=35px/></a>
+                    <!--</span>-->
+                    </div>
+           <!--</a>-->
+            <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left" style="padding-left: 0px;border-left:3px solid #6599FF;">
+                <div style="padding-left:5px;"><small>Student Centered Feedback 60% <span ng-bind="studFeedbackPercent"></span></small></div>
+                <div class="progress progress-custom ">
+                    <div id="studFeedback" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 60%;background-color:#6599FF;">
+                        <span class="sr-only">20% Complete</span>
+                    </div>
+                </div></a>
+            <div style="background-color:#ddd;border-left:3px solid #6599FF;">
+
+                <li ng-repeat="videoId in user.videoIds" class="video-thumbnail video-thumbnail-mini">
+                    <a ng-click="openVideoModal(videoId)"><img ng-src="http://img.youtube.com/vi/{{videoId}}/2.jpg" alt="" height=35px/></a>
+                </li>
+                </ul>
+                <a href="/files/cv.pdf"><img src="/img/PortfolioIconResume.png" height=35px/></a>
+                <a href="/files/syllabus.pdf"><img src="/img/PortfolioIconSyllabus.png" height=35px/></a>
+                <!--</span>-->
+            </div>
+            <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left" style="padding-left: 0px;border-left:3px solid #FF9900;">
+                <div style="padding-left:5px;"><small>Summative Feedback 60% <span ng-bind="sumFeedbackPercent"></span></small></div>
+                <div class="progress progress-custom">
+                    <div id="sumFeedback" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 100%;background-color:#FF9900;">
+                        <span class="sr-only">30% Complete</span>
+                    </div>
+                </div></a>
+            <div style="background-color:#ddd;border-left:3px solid #FF9900;">
+
+                <li ng-repeat="videoId in user.videoIds" class="video-thumbnail video-thumbnail-mini">
+                    <a ng-click="openVideoModal(videoId)"><img ng-src="http://img.youtube.com/vi/{{videoId}}/2.jpg" alt="" height=35px/></a>
+                </li>
+                </ul>
+                <a href="/files/cv.pdf"><img src="/img/PortfolioIconResume.png" height=35px/></a>
+                <a href="/files/syllabus.pdf"><img src="/img/PortfolioIconSyllabus.png" height=35px/></a>
+                <!--</span>-->
+            </div>
+            <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left" style="padding-left: 0px;">
+                <div style="padding-left:5px;"><small>Learning Management Systems: 60% <span ng-bind="sumFeedbackPercent"></span></small></div>
+                    <div style="background-color:#F6F6F6;height: 35px!important;">
+                        <li ng-repeat="badge in filteredBadges" style="float:left;width: 35px!important; height: 35px!important;list-style-type: none;">
+
+                            <img ng-src="/img/badges/{{badge}}.png" alt="" style="width: 35px!important;height: 35px!important;"/>
+                        </li>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left" style="padding-left: 0px;border-bottom-right-radius: 0px!important;border-bottom-left-radius: 0px!important;">
+                <div style="padding-left:5px;"><small>Instructional Design YES/NO <span ng-bind=""></span></small></div>
+            </a>
             </div>
 
-            <!--<iframe width="640" height="480" src="{{videoUrl}}" frameborder="" allowfullscreen style="margin-top: -31px;"></iframe>-->
-            <!--<iframe width="640" height="480" src="{{videoUrl}}" frameborder="" allowfullscreen style="margin-top: -31px;"></iframe>-->
-            <!--<div container>-->
-
-            <!--<strong>Are you proficient with Learning Management Systems?</strong><br/>-->
-            <!--<input type="radio" ng-model="user.survey.lMS" value="yes"> yes-->
-            <!--<input type="radio" ng-model="user.survey.lMS" value="no"> no-->
-
-            <!--<div ng-show="user.survey.lMS=='yes'">-->
-
-            <button ng-click="show=!show">toggle hide/show</button>
+            <!--<button ng-click="show=!show">toggle hide/show</button>-->
             <!--<div ng-show="show">div to hide/show</div>-->
             <!--<div ng-show="show">another div to hide/show</div>-->
-            <div class="col-md-8" ng-show="show">
+            <!--<div class="col-md-8" ng-show="show">-->
+            <div class="col-md-8" style="margin-top:12px;">
+                <div style="height:25px;">Syllabus Courses MATH101</div>
                 <iframe class="youtube-player" type="text/html" width="540" height="350" src="http://www.youtube.com/embed/zIEIvi2MuEk" allowfullscreen frameborder="0">
                 </iframe>
+                <div><p style="padding:5px 5px 0 0;"><small>This course was designed in the fall of 2012 to introduce the students to the principle of MATH101 one of the challenges I faced was to adapt the content to a student coming from a variety of
+                academic background</small></p></div>
             </div>
 
-            <ul class="list-group-custom-dashboard">
-                <li class="list-group-item-custom-dashboard">
-
-                </li>
-                <li class="list-group-item-custom-dashboard">
-                    <tr>
-                        <td style="width:350px;padding-left:10px;padding-right:10px;"><div id="syllabusDesignPercent" style="font-size:90%;"><strong>Syllabus Design</strong> 60%</div>
-                            <div class="progress progress-custom">
-                                <div id="syllabusDesign"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;background-color:#11ce9a;">
-                                    <span class="sr-only">60% Complete</span>
-                                </div>
-                            </div></a></td>
-                        <td style="width:300px;padding-left:10px;padding-right:10px;">
-                            <div id="media-container media-container-mini" style="border-top: 4px solid #d3d3d3;border-bottom: 4px solid #d3d3d3;">
-                                 <span>
-                                     <ul class="video-thumbnails video-thumbnails-mini">
-                                         <li ng-repeat="videoId in user.videoIds" class="video-thumbnail video-thumbnail-mini">
-                                             <a ng-click="openVideoModal(videoId)"><img ng-src="http://img.youtube.com/vi/{{videoId}}/2.jpg" alt="" height=35px/></a>
-                                         </li>
-                                     </ul>
-                                    <a href="/files/cv.pdf"><img src="/img/PortfolioIconResume.png" height=35px/></a>
-                                    <a href="/files/syllabus.pdf"><img src="/img/PortfolioIconSyllabus.png" height=35px/></a>
-                                    </span>
-                            </div>
-                        </td>
-                    </tr>
-                </li>
-                <li class="list-group-item-custom-dashboard">
-                    <tr>
-                        <td style="width:350px;padding-left:10px;padding-right:10px;"><div id="technologyDesignPercent" style="font-size:90%;"><strong>Technology Enabled Instruction</strong> 60%</div>
-                            <div class="progress progress-custom">
-                                <div id="technologyDesign"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;background-color:#FFDE00;">
-                                    <span class="sr-only">60% Complete</span>
-                                </div>
-                            </div></a></td>
-                        <td style="width:300px;padding-left:10px;padding-right:10px;">
-                            <div id="media-container media-container-mini" style="border-top: 4px solid #d3d3d3;border-bottom: 4px solid #d3d3d3;">
-                                 <span>
-                                     <ul class="video-thumbnails video-thumbnails-mini">
-                                         <li ng-repeat="videoId in user.videoIds" class="video-thumbnail video-thumbnail-mini">
-                                             <a ng-click="openVideoModal(videoId)"><img ng-src="http://img.youtube.com/vi/{{videoId}}/2.jpg" alt="" height=35px/></a>
-                                         </li>
-                                     </ul>
-                                    <a href="/files/cv.pdf"><img src="/img/PortfolioIconResume.png" height=35px/></a>
-                                    <a href="/files/syllabus.pdf"><img src="/img/PortfolioIconSyllabus.png" height=35px/></a>
-                                    </span>
-                            </div>
-                        </td>
-                    </tr>
-                </li>
-                <li class="list-group-item-custom-dashboard">
-                    <tr>
-                        <td style="width:350px;padding-left:10px;padding-right:10px;"><div id="studFeedbackPercent" style="font-size:90%;"><strong>Student Centered Feedback</strong> 60%</div>
-                            <div class="progress progress-custom">
-                                <div id="studFeedback"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;background-color:#6599FF;">
-                                    <span class="sr-only">60% Complete</span>
-                                </div>
-                            </div></a></td>
-                        <td style="width:300px;padding-left:10px;padding-right:10px;">
-                            <div id="media-container media-container-mini" style="border-top: 4px solid #d3d3d3;border-bottom: 4px solid #d3d3d3;">
-                                 <span>
-                                     <ul class="video-thumbnails video-thumbnails-mini">
-                                         <li ng-repeat="videoId in user.videoIds" class="video-thumbnail video-thumbnail-mini">
-                                             <a ng-click="openVideoModal(videoId)"><img ng-src="http://img.youtube.com/vi/{{videoId}}/2.jpg" alt="" height=35px/></a>
-                                         </li>
-                                     </ul>
-                                    <a href="/files/cv.pdf"><img src="/img/PortfolioIconResume.png" height=35px/></a>
-                                    <a href="/files/syllabus.pdf"><img src="/img/PortfolioIconSyllabus.png" height=35px/></a>
-                                    </span>
-                            </div>
-                        </td>
-                    </tr>
-                </li>
-                <li class="list-group-item-custom-dashboard">
-                    <tr>
-                        <td style="width:350px;padding-left:10px;padding-right:10px;"><div id="sumFeedbackPercent" style="font-size:90%;"><strong>Summative Feedback</strong> 60%</div>
-                            <div class="progress progress-custom">
-                                <div id="sumFeedback"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;background-color:#FF9900;">
-                                    <span class="sr-only">60% Complete</span>
-                                </div>
-                            </div></a></td>
-                        <td style="width:300px;padding-left:10px;padding-right:10px;">
-                            <div id="media-container media-container-mini" style="border-top: 4px solid #d3d3d3;border-bottom: 4px solid #d3d3d3;">
-                                 <span>
-                                     <ul class="video-thumbnails video-thumbnails-mini">
-                                         <li ng-repeat="videoId in user.videoIds" class="video-thumbnail video-thumbnail-mini">
-                                             <a ng-click="openVideoModal(videoId)"><img ng-src="http://img.youtube.com/vi/{{videoId}}/2.jpg" alt="" height=35px/></a>
-                                         </li>
-                                     </ul>
-                                    <a href="/files/cv.pdf"><img src="/img/PortfolioIconResume.png" height=35px/></a>
-                                    <a href="/files/syllabus.pdf"><img src="/img/PortfolioIconSyllabus.png" height=35px/></a>
-                                    </span>
-                            </div>
-                        </td>
-                    </tr>
-                </li>
-                <li class="list-group-item-custom-dashboard">
-                    <tr>
-                    <td style="width:160px;padding-left:20px;padding-right:10px;" style="font-size:150%;"><strong>Learning Management Systems</strong></td>
-                    <td><ul class="badge" style="padding-left: 0px;">
-                        <li ng-repeat="badge in filteredBadges" class="badge-thumbnail">
-
-                            <img ng-src="/img/badges/{{badge}}.png" alt="" style="width: 45px!important;height: 45px!important;"/>
-                        </li>
-                    </ul></td>
-                    <td></td>
-                    </tr>
-
-                </li>
-                <li class="list-group-item-custom-dashboard">
-                    <tr>
-                        <td style="width:160px;padding-left:20px;padding-right:10px;" style="font-size:150%;"><strong>Instructional Design</strong></td>
-                        <td>YES</td>
-                        <td></td>
-                    </tr>
-                </li>
-            </ul>
-
-</div><!-- /.modal-dialog -->
+</div><!-- /.modal-dialog -->                                                                        s
 </div><!-- /.modal -->
 
-
-
-<!--<div class="col-md-4">-->
-<!--<table>-->
-<!--<tr>-->
-<!--<td><strong><small>Syllabus Design</small></strong></td>-->
-<!--<td style="width:50px;padding-left:10px;padding-right:10px;"><div id="syllabusDesignPercent">60%</div>-->
-<!--<div class="progress progress-custom">-->
-<!--<div id="syllabusDesign"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">-->
-<!--<span class="sr-only">60% Complete</span>-->
-<!--</div>-->
-<!--</div></a></td>-->
-<!--<td style="width:100px;padding-left:10px;padding-right:10px;">-->
-<!--<div id="media-container media-container-mini" style="border-top: 4px solid #d3d3d3;border-bottom: 4px solid #d3d3d3;">-->
-<!--<span>-->
-<!--<ul class="video-thumbnails video-thumbnails-mini">-->
-<!--<li ng-repeat="videoId in user.videoIds" class="video-thumbnail video-thumbnail-mini">-->
-<!--<a ng-click="openVideoModal(videoId)"><img ng-src="http://img.youtube.com/vi/{{videoId}}/2.jpg" alt="" height=25px/></a>-->
-<!--</li>-->
-<!--</ul>-->
-<!--<a href="/files/cv.pdf"><img src="/img/PortfolioIconResume.png" height=25px/></a>-->
-<!--<a href="/files/syllabus.pdf"><img src="/img/PortfolioIconSyllabus.png" height=25px/></a>-->
-<!--</span>-->
-<!--</div>-->
-<!--</td>-->
-<!--</tr>-->
-<!--</table>-->
-<!--</div>-->
 
 
 
