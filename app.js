@@ -289,7 +289,7 @@ app.post('/upload-job/:id', function (req, res) {
 app.post('/send-email', function (req, res) {
 
     // send to list
-    var to = ['naderchehab@gmail.com']
+    var to = ['naderchehab@gmail.com', '7sonia@gmail.com']
 
     // this must relate to a verified SES account
     var from = "naderchehab@gmail.com";

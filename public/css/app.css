@@ -85,6 +85,13 @@
     border-color:#D1D1D1;
     color:#272727;
 }
+
+.edit-buttons i {
+    background-color: #D1D1D1;
+    border-color:#D1D1D1;
+    color:#272727;
+}
+
 .list-group-item-customize-left h6{
     color:#272727;
 }
