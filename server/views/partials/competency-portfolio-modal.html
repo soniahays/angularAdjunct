@@ -11,15 +11,15 @@
 
                 <div style="padding-left:5px;"><small> Syllabus Design 60% <span ng-bind="syllabusDesignPercent"></span> </small></div>
                 <div class="progress progress-custom">
-                    <div id="syllabusDesign"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;background-color:#11ce9a;padding-left:-10px;">
+                    <div id="syllabusDesign"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" ng-style="syllabusDesign" style="background-color:#11ce9a;">
                         <span class="sr-only">60% Complete</span>
                     </div>
 
                 </div></a>
             <div style="background-color:#ddd;border-left:3px solid #11ce9a;">
 
-                <li ng-repeat="videoId in user.videoIds" class="video-thumbnail video-thumbnail-mini">
-                    <a ng-click="openVideo(videoId)"> <img ng-src="http://img.youtube.com/vi/{{videoId}}/2.jpg" alt="" height=35px/></a>
+                <li ng-repeat="doc in user.portfolioLinks" class="video-thumbnail video-thumbnail-mini">
+                    <a ng-click="openDoc(doc.value, doc.type)"> <img ng-src="{{doc.thumbnail}}" alt="" height=35px/></a>
                 </li>
                 </ul>
                 <a href="/files/cv.pdf"><img src="/img/PortfolioIconResume.png" height=35px/></a>
@@ -29,7 +29,7 @@
             <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left" style="padding-left: 0px;border-left:3px solid #FFDE00;">
                 <div style="padding-left:5px;"><small>Technology Enabled Instruction 60% <span ng-bind="technologyDesignPercent"></span></small></div>
                 <div class="progress progress-custom">
-                    <div id="technologyDesign" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 60%;background-color:#FFDE00;">
+                    <div id="technologyDesign" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" ng-style="technologyDesign" style="background-color:#FFDE00;">
                         <span class="sr-only">80% Complete</span>
                     </div>
                 </div></a>
@@ -48,7 +48,7 @@
             <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left" style="padding-left: 0px;border-left:3px solid #6599FF;">
                 <div style="padding-left:5px;"><small>Student Centered Feedback 60% <span ng-bind="studFeedbackPercent"></span></small></div>
                 <div class="progress progress-custom ">
-                    <div id="studFeedback" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 60%;background-color:#6599FF;">
+                    <div id="studFeedback" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" ng-style="studFeedback" style="background-color:#6599FF;">
                         <span class="sr-only">20% Complete</span>
                     </div>
                 </div></a>
@@ -65,7 +65,7 @@
             <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left" style="padding-left: 0px;border-left:3px solid #FF9900;">
                 <div style="padding-left:5px;"><small>Summative Feedback 60% <span ng-bind="sumFeedbackPercent"></span></small></div>
                 <div class="progress progress-custom">
-                    <div id="sumFeedback" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 100%;background-color:#FF9900;">
+                    <div id="sumFeedback" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" ng-style="sumFeedback" style="background-color:#FF9900;">
                         <span class="sr-only">30% Complete</span>
                     </div>
                 </div></a>
@@ -99,7 +99,7 @@
             <!--<div class="col-md-8" ng-show="show">-->
             <div class="col-md-8" style="margin-top:12px;">
                 <div style="height:25px;">Syllabus Courses MATH101</div>
-                <iframe type="text/html" width="540" height="350" src="{{videoUrl}}" frameborder="" allowfullscreen style="margin-top: -31px;"></iframe>
+                <iframe type="text/html" ng-hide="showVid" width="540" height="350" src="{{frameUrl}}" frameborder="" allowfullscreen style="margin-top: -31px;"></iframe>
                 <!--<iframe class="youtube-player" type="text/html" width="540" height="350" src="http://www.youtube.com/embed/zIEIvi2MuEk" allowfullscreen frameborder="0">-->
                 <!--</iframe>-->
                 <div><p style="padding:5px 5px 0 0;"><small>This course was designed in the fall of 2012 to introduce the students to the principle of MATH101 one of the challenges I faced was to adapt the content to a student coming from a variety of

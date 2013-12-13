@@ -2,7 +2,7 @@
         <div class="list-group-item list-group-item-custom list-group-item-customize-left" style=" position: relative; padding-right: 0px; padding-top: 0px;padding-bottom: 20px; ">
             <button  ng-show="canEdit" class="btn btn-lg btn-primary edit-buttons" id="edit-badges" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px" ng-click="openBadgeEditModal()" >
                 <i class="fa fa-pencil-square-o fa-lg"></i></button>
-            <button class="btn btn-lg btn-primary edit-buttons" id="edit-badges2" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px" ng-click="openCompetencyPortfolioModal()" >
+            <button ng-hide="canEdit" class="btn btn-lg btn-primary edit-buttons" id="edit-badges2" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px" ng-click="openCompetencyPortfolioModal()" >
                 <i class="fa fa-search-plus fa-lg"></i></button>
 
             <div class="badges-container" style="margin-top: 35px;">
@@ -18,54 +18,35 @@
         </div>
 
     <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left">
-        <button ng-show="canEdit" class="btn btn-lg btn-primary edit-buttons"  ng-click="openAttachmentUploadModal('Syllabus Design')" id="edit-badges5 type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px; margin-right: -15px;
-        margin-top: -2px;"ng-click="" >
-        <i class="fa fa-plus-circle"></i></button>
-        <h6>Syllabus Design</h6> <div id="syllabusDesignPercent">60%</div>
+        Syllabus Design {{syllabusDesignWidth}}%
         <div class="progress progress-custom">
-            <div id="syllabusDesign"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+            <div id="syllabusDesign"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" ng-style="syllabusDesign">
                 <span class="sr-only">60% Complete</span>
             </div>
         </div></a>
     <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left">
-        <button ng-show="canEdit" class="btn btn-lg btn-primary edit-buttons "  ng-click="openAttachmentUploadModal('Technology Enabled Instruction')" id="edit-badges3" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px; margin-right: -15px;
-        margin-top: -2px;"ng-click="" >
-            <i class="fa fa-plus-circle"></i></button>
-        <h6>Technology Enabled Instruction</h6>  <div id="technologyDesignPercent">60%</div>
+        Technology Enabled Instruction {{technologyDesignWidth}}%
         <div class="progress progress-custom">
-            <div id="technologyDesign" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+            <div id="technologyDesign" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" ng-style="technologyDesign">
                 <span class="sr-only">80% Complete</span>
             </div>
         </div></a>
     <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left">
-        <button  ng-show="canEdit" class="btn btn-lg btn-primary edit-buttons"  ng-click="openAttachmentUploadModal('Student Centered Feedback')" id="edit-badges6" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px; margin-right: -15px;
-        margin-top: -2px;"ng-click="" >
-            <i class="fa fa-plus-circle"></i></button>
-        <h6>Student Centered Feedback</h6>  <div id="studFeedbackPercent">60%</div>
+        Student Centered Feedback {{studFeedbackWidth}}%
         <div class="progress progress-custom ">
-            <div id="studFeedback" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+            <div id="studFeedback" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"  ng-style="studFeedback">
                 <span class="sr-only">20% Complete</span>
             </div>
         </div></a>
     <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left">
-        <button ng-show="canEdit" class="btn btn-lg btn-primary edit-buttons "  ng-click="openAttachmentUploadModal('Summative Feedback')" id="edit-badges4" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px; margin-right: -15px;
-        margin-top: -2px;"ng-click="" >
-            <i class="fa fa-plus-circle"></i></button>
-        <h6>Summative Feedback</h6>     <div id="sumFeedbackPercent">60%</div>
+        Summative Feedback {{sumFeedbackWidth}}%
         <div class="progress progress-custom">
-            <div id="sumFeedback" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+            <div id="sumFeedback" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" ng-style="sumFeedback">
                 <span class="sr-only">30% Complete</span>
             </div>
         </div></a>
     <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left">
-        <button ng-show="canEdit" class="btn btn-lg btn-primary edit-buttons"  ng-click="openAttachmentUploadModal('Instructional Design')" id="edit-badges5" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px; margin-right: -15px;
-        margin-top: -2px;"ng-click="" >
-
-     <i class="fa fa-plus-circle"></i></button>
-        <h6>Instructional Design</h6>      0%
-        <div class="progress progress-custom ">
-            <div class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="05" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                <span class="sr-only">5% Complete</span>
-            </div>
-        </div></a>
+        Instructional Design:
+        <br/> {{user.survey.instructionalDesign}}
+       </a>
 </div>
