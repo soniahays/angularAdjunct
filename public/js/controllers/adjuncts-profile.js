@@ -63,7 +63,7 @@ angular.module('adjunct.controllers')
                     },
                     {
                         "type" : "pdf",
-                        "value" : "http://docs.google.com/gview?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true",
+                        "value" : "https://docs.google.com/gview?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true",
                         "thumbnail": "/img/PortfolioIconResume.png",
                         "$$hashKey" : "02Y"
                     }];
