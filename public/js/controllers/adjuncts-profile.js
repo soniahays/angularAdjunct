@@ -215,6 +215,11 @@ angular.module('adjunct.controllers')
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.4'});
         }
 
+        $scope.openVideo = function(videoId) {
+            $scope.videoUrl = "http://www.youtube.com/embed/" + videoId;
+//            $('#video-modal').modal();
+//            $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.4'});
+        }
         $scope.openBadgeEditModal= function() {
             $('#badge-edit-modal').modal();
                 $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
