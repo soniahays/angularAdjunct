@@ -1,3 +1,50 @@
+.dashboard-navigation-title{
+    padding-left: 3px;
+    color:black !important;
+}
+.dashboard-display-panel{
+    height:517px;
+    background-color: #F6F6F6;
+    margin-top:-3px!important;
+}
+.dashboard-navigation{
+    height:517px;
+    width:252px;
+}
+
+.progress-custom{
+    height:13px;
+    padding-bottom:0px;
+    margin-bottom:10px !important;
+
+}
+/*progress progress-custom*/
+/*progress-bar progress-bar-custom*/
+.progress-bar-custom{
+    height:13px;
+    margin-bottom: 0px;
+    background-color: #EB7737;
+}
+
+.progress-custom-dashboard{
+border-radius: 0px;
+    height: 13px;
+    margin-bottom: 0px;
+    width:248px;
+}
+
+
+.list-group-item-dashboard{
+    padding-bottom: 0px !important;
+    border-bottom-width: 0px !important;
+    padding-top: 9px!important;
+    border-right: 1px solid #ddd!important;
+    background-color: white !important;
+}
+.portfolio-attachment-display-box{
+    border-right: 1px solid #ddd !important;
+
+}
 .inline{
     float:left;
 }
@@ -408,9 +455,11 @@ ol, ul{
 }
 
 
+
 .progress-custom{
     height:13px;
-    margin-bottom: 10px;
+    padding-bottom:5px;
+
 }
 
 .progress-bar-custom{

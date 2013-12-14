@@ -52,17 +52,23 @@ angular.module('adjunct.controllers')
                     {
                         "type" : "video",
                         "value" : "https://www.youtube.com/embed/YKulXXvK2TA",
+                        "title":"Course Welcome Fall 2012",
+                        "description":"video description goes here",
                         "thumbnail": "http://img.youtube.com/vi/YKulXXvK2TA/2.jpg",
                         "$$hashKey" : "02X"
                     },
                     {
                         "type" : "video",
                         "value" : "https://www.youtube.com/embed/F1QNHJ1N-p0",
+                        "title":"Homework review Winter 2009",
+                        "description":"video description goes here",
                         "thumbnail": "http://img.youtube.com/vi/F1QNHJ1N-p0/2.jpg",
                         "$$hashKey" : "02Z"
                     },
                     {
                         "type" : "pdf",
+                        "title":"PDF title goes here",
+                        "description":"PDF description goes here",
                         "value" : "https://docs.google.com/gview?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true",
                         "thumbnail": "/img/PortfolioIconResume.png",
                         "$$hashKey" : "02Y"
@@ -194,8 +200,10 @@ angular.module('adjunct.controllers')
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.4'});
         }
 
-        $scope.openDoc = function(url, docType) {
+        $scope.openDoc = function(url, docType, docTitle, docDescription) {
             $scope.frameUrl = url;
+            $scope.docTitle= docTitle;
+            $scope.docDescription= docDescription;
 
         }
         $scope.openBadgeEditModal= function() {
@@ -204,6 +212,9 @@ angular.module('adjunct.controllers')
         }
 
         $scope.openCompetencyPortfolioModal= function() {
+            $scope.frameUrl = "https://www.youtube.com/embed/YKulXXvK2TA";
+            $scope.docTitle="Course Welcome Fall 2012";
+            $scope.docDescription= "video description goes here",
             $('#competency-portfolio-modal').modal();
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
         }
