@@ -22,14 +22,11 @@ angular.module('adjunct.controllers')
         $scope.uploadAttachmentModalUrl = '/partial/upload-attachment-competencies-modal';
         $scope.competencyPortfolioModalUrl = '/partial/competency-portfolio-modal';
         $scope.videoModalUrl = '/partial/video-modal';
-        $scope.videoUrl = '';
         $scope.computerUploadUrl = '/partial/upload-computer-modal';
         $scope.urlAttachUrl = '/partial/upload-url-modal';
         $scope.canEdit = $cookies._id && !userId;
 
 
-
-//        $http.get('/api/get-job-profile/' + jobId).then(function(response) { $scope.job = response.data; });
 
 
         $http({
@@ -47,30 +44,36 @@ angular.module('adjunct.controllers')
                     experience1Summary: 'write more about your experience here'
                 });
 
-                $scope.user.survey = {};
-//                $scope.user.width={};
-                $scope.filteredBadges = [];
 
-                for (var badge in $scope.user.badges) {
-                    var val = $scope.user.badges[badge];
-                    if (val != false) {
-                        $scope.filteredBadges.push(val);
-                    }
-                }
+               calculateSurvey();
+
+                // this is for testing only.
+                $scope.user.portfolioLinks = [
+                    {
+                        "type" : "video",
+                        "value" : "http://www.youtube.com/embed/oy6NvWeVruY",
+                        "thumbnail": "http://img.youtube.com/vi/oy6NvWeVruY/2.jpg",
+                        "$$hashKey" : "02X"
+                    },
+                    {
+                        "type" : "pdf",
+                        "value" : "http://docs.google.com/gview?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true",
+                        "thumbnail": "/img/PortfolioIconResume.png",
+                        "$$hashKey" : "02Y"
+                    }];
+                // the above is for testing only.
 
                 if (!$scope.user.portfolioLinks)
                     $scope.user.portfolioLinks = [];
 
-                $scope.user.videoIds = [];
-
-                    console.log($scope.user.portfolioLinks);
                 for (var index in $scope.user.portfolioLinks){
                     var portfolioLink = $scope.user.portfolioLinks[index];
                     if (portfolioLink.type == 'video') {
                         var videoId = URI.parseQuery(URI.parse(portfolioLink.value).query).v;
-                        $scope.user.videoIds.push(videoId);
+                        $scope.user.portfolioLinks[index].id = videoId;
                     }
                 }
+                console.log($scope.user.portfolioLinks);
             }).error(function (data, status, headers, config) {
                 console.log("get-adjuncts-profile-top-card didn't work");
             });
@@ -119,36 +122,12 @@ angular.module('adjunct.controllers')
                 headers: {'Content-Type': 'application/json'}
             }).success(function (data, status, headers, config) {
                     console.log("save-adjunct-badge-card worked");
-                    $scope.filteredBadges = [];
-
-                    var syllabusDesignWidth = $scope.user.survey.syllabusDesign*20;
-                    $("#syllabusDesign").syllabusDesignWidth(syllabusDesignWidth+"%");
-                    $("#syllabusDesignPercent").text(syllabusDesignWidth+"%");
-                    console.log("width"+syllabusDesignWidth);
-
-                    var width = $scope.user.survey.technologyDesign*20;
-                    $("#technologyDesign").width(width+"%");
-                    $("#technologyDesignPercent").text(width+"%");
-
-                    width = $scope.user.survey.studFeedback*20;
-                    $("#studFeedback").width(width+"%");
-                    $("#studFeedbackPercent").text(width+"%");
-
-                    width = $scope.user.survey.sumFeedback*20;
-                    $("#sumFeedback").width(width+"%");
-                    $("#sumFeedbackPercent").text(width+"%");
-
-
-                    for (var badge in $scope.user.badges) {
-                        var val = $scope.user.badges[badge];
-                        if (val != false) {
-                            $scope.filteredBadges.push(val);
-                        }
-                    }
+                    calculateSurvey();
                 }).error(function (data, status, headers, config) {
                     console.log("save-adjunct-badge-card didn't work");
                 });
         }
+
 
         $scope.savePortfolioCard = function () {
             $http({
@@ -204,11 +183,15 @@ angular.module('adjunct.controllers')
         }
 
         $scope.openVideoModal = function(videoId) {
-            $scope.videoUrl = "http://www.youtube.com/embed/" + videoId;
+            $scope.frameUrl = "http://www.youtube.com/embed/" + videoId;
             $('#video-modal').modal();
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.4'});
         }
 
+        $scope.openDoc = function(url, docType) {
+            $scope.frameUrl = url;
+
+        }
         $scope.openBadgeEditModal= function() {
             $('#badge-edit-modal').modal();
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
@@ -236,4 +219,29 @@ angular.module('adjunct.controllers')
                     console.log("get-adjuncts-profile-top-card didn't work");
                 });
         };
+
+        function calculateSurvey(){
+            $scope.filteredBadges = [];
+
+            $scope.syllabusDesignWidth = $scope.user.survey.syllabusDesign*20;
+            $scope.syllabusDesign= {'width':$scope.syllabusDesignWidth+"%"};
+
+            $scope.technologyDesignWidth = $scope.user.survey.technologyDesign*20;
+            $scope.technologyDesign= {'width':$scope.technologyDesignWidth+"%"};
+
+            $scope.studFeedbackWidth = $scope.user.survey.studFeedback*20;
+            $scope.studFeedback= {'width':$scope.studFeedbackWidth+"%"};
+
+            $scope.sumFeedbackWidth = $scope.user.survey.sumFeedback*20;
+            $scope.sumFeedback= {'width':$scope.sumFeedbackWidth+"%"};
+
+
+
+            for (var badge in $scope.user.badges) {
+                var val = $scope.user.badges[badge];
+                if (val != false) {
+                    $scope.filteredBadges.push(val);
+                }
+            }
+        }
     }]);

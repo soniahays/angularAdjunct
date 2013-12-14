@@ -12,7 +12,7 @@ angular.module('adjunct', [
         'adjunct.directives',
         'adjunct.controllers'
     ]).
-    config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', function ($routeProvider, $locationProvider, $sceDelegateProvider) {
+    config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', '$sceProvider', function ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvider) {
         $routeProvider.when('/', {templateUrl: '/partial/home', controller: 'HomeCtrl', accessLevel: 'public'});
         $routeProvider.when('/search-results', {templateUrl: '/partial/search-results', controller: 'SearchResultsCtrl', accessLevel: 'public'});
         $routeProvider.when('/jobs', {templateUrl: '/partial/jobs', controller: 'JobsCtrl', accessLevel: 'public'});
@@ -28,7 +28,8 @@ angular.module('adjunct', [
         $routeProvider.when('/confirm-email', {templateUrl: '/partial/confirm-email', controller: 'ConfirmEmailCtrl', accessLevel: 'public'});
         $routeProvider.otherwise({redirectTo: '/'});
         $locationProvider.html5Mode(true);
-        $sceDelegateProvider.resourceUrlWhitelist(["http://www.youtube.com/embed/*", "self"]);
+        $sceDelegateProvider.resourceUrlWhitelist(["http://www.youtube.com/embed/*", "self", "https://docs.google.com/*", "http://infolab.stanford.edu/*"]);
+        $sceProvider.enabled(false);
     }]);
 
 angular.module('adjunct.filters', []);
