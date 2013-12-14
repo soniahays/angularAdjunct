@@ -97,11 +97,7 @@ border-radius: 0px;
 .form-group-institution{
     line-height:2;
 }
-#briefcase{
-    font-size:10em;
-    margin-top: 25px;
-    margin-left: 45px;
-}
+
 .portfolio-form{
     width: 346px;
 }
@@ -368,8 +364,6 @@ ol, ul{
     line-height: 26px;
     color: #fff;
     z-index: 9;
-
-    /*background: url('../uploads/icon_add_photo_27x27_v1.png') no-repeat;*/
 }
 
 .no-picture{
@@ -1489,4 +1483,18 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 .get-in-touch  input:focus, .get-in-touch  textarea:focus {
     outline: 0;
     background: #FFF;
+}
+
+.briefcase{
+    font-size:9em;
+    margin-left:35px;
+    margin-top: 5px;
+    color: white;
+}
+
+.no-picture-job-mini {
+    background-color:  #595959;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
 }
