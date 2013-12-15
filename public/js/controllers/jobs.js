@@ -12,8 +12,11 @@ angular.module('adjunct.controllers')
             var jobs = values[0].data;
             var positionTypes = values[1].data;
             $scope.jobs = _.map(jobs, function(job) {
-                job.positionType = _.findWhere(positionTypes, {_id: job.positionType}).name;
+                var positionType = _.findWhere(positionTypes, {_id: job.positionType});
+                if (positionType) {
+                    job.positionType = positionType.name;
+                }
                 return job;
             });
         });
-    }]);
+}]);

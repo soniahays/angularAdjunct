@@ -419,6 +419,8 @@ ol, ul{
     margin-top: 10px;
     background-color: #D06D12 !important;
     color: #fff;
+    border-radius:1px!important;
+    height:38px !important;
 }
 .need-help
 {
@@ -491,14 +493,18 @@ ol, ul{
     border: 1px solid #cccccc;
 }
 
-
 .form-signin
 {
     max-width: 330px;
     padding: 0px;
     margin: 20px auto;
-    /*margin-top: 15px;*/
 }
+.form-signup
+{
+    max-width: 330px;
+    padding: 0px;
+}
+
 .form-signin .form-signin-heading, .form-signin .checkbox
 {
     margin-bottom: 10px;

@@ -1,6 +1,6 @@
 <div id="upload-picture-modal" class="modal">
     <div class="modal-dialog modal-dialog-custom">
-        <form id="profile-pic-upload" ng-upload method="POST" action="/upload?delay=yes">
+        <form id="profile-pic-upload" ng-upload method="POST" action="/upload-adjunct?delay=yes">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -22,7 +22,7 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <input upload-submit="uploadComplete(content)" type="submit" class="btn btn-primary" data-dismiss="modal" value="Save"/>
             </div>
-        </div><!-- /.modal-content -->
+        </div>
         </form>
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+</div>

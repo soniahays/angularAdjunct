@@ -44,8 +44,10 @@ angular.module('adjunct.controllers')
                     experience1Summary: 'write more about your experience here'
                 });
 
+                if (!$scope.user.survey)
+                    $scope.user.survey = {};
 
-               calculateSurvey();
+                calculateSurvey();
 
                 // this is for testing only.
                 $scope.user.portfolioLinks = [

@@ -1,5 +1,5 @@
 
-module.exports = function (mongodb, db) {
+module.exports = function (mongodb, db, bcrypt) {
 
     var BSON = mongodb.BSONPure;
 

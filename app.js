@@ -16,7 +16,7 @@ var userDb, jobDb, institutionDb, pass;
  */
 connect(function (err, db) {
     console.log('Connected to mongodb.');
-    userDb = require('./server/userDb.js')(mongodb, db),
+    userDb = require('./server/userDb.js')(mongodb, db, bcrypt),
     jobDb = require ('./server/jobDb.js')(mongodb, db),
     institutionDb = require ('./server/institutionDb.js')(mongodb, db),
     metadataDb = require ('./server/metadataDb.js')(mongodb, db),
@@ -260,9 +260,9 @@ app.post('/basic-profile', function (req, res) {
 });
 
 app.post('/upload-adjunct', function (req, res) {
-    upload(function(){
+    upload(req, res, function(newFileName, fileName){
         userDb.updateUserField(req.cookies._id, {'imageName': newFileName}, function() {
-            res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
+            res.send({ msg: '<b>"' + fileName + '"</b> uploaded.' });
         });
 
     });
@@ -312,10 +312,11 @@ app.post('/send-email', function (req, res) {
             throw err;
         }
         console.log('Email sent:', data);
+        res.send({msg: 'Email sent'});
     });
 });
 
-    var upload = function(callback){
+    var upload = function(req, res, callback){
     setTimeout(
         function () {
             res.setHeader('Content-Type', 'text/html');
@@ -337,7 +338,7 @@ app.post('/send-email', function (req, res) {
                             res.send(err);
                         }
                         else {
-                            callback();
+                            callback(newFileName, file.name);
                         }
                     });
                 }
