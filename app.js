@@ -8,7 +8,9 @@ var http = require('http'),
     bcrypt = require('bcrypt'),
     aws = require('aws-sdk'),
     mongodb = require('mongodb'),
-    connect = require('./server/dbConnect.js')(bcrypt, mongodb);
+    connect = require('./server/dbConnect.js')(bcrypt, mongodb),
+    elasticsearch = require('es')(),
+    es = require ('./server/elasticsearch.js')(elasticsearch);
 var userDb, jobDb, institutionDb, pass;
 
 /**
@@ -73,6 +75,7 @@ app.get('/api/users', function(req, res) {
         if (!users) {
             return res.send('Not found');
         }
+        es.index(users);
         return res.json(users);
     });
 });
@@ -189,6 +192,101 @@ app.post('/api/save-institutions-profile', function (req, res) {
     res.end();
 });
 
+app.post('/upload-adjunct', function (req, res) {
+    upload(req, res, function(newFileName, fileName){
+        userDb.updateUserField(req.cookies._id, {'imageName': newFileName}, function() {
+            res.send({ msg: '<b>"' + fileName + '"</b> uploaded.' });
+        });
+
+    });
+});
+
+app.post('/upload-institution/:id', function (req, res) {
+    upload(function(){
+        institutionDb.updateInstitutionField(req.params.id, {'imageName': newFileName}, function() {
+            res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
+        });
+
+    });
+});
+
+app.post('/upload-job/:id', function (req, res) {
+    upload(function(){
+        jobDb.updateJobField(req.params.id, {'imageName': newFileName}, function() {
+            res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
+        });
+
+    });
+});
+
+app.post('/send-email', function (req, res) {
+
+    // send to list
+    var to = ['naderchehab@gmail.com', '7sonia@gmail.com']
+
+    // this must relate to a verified SES account
+    var from = "naderchehab@gmail.com";
+
+    ses.sendEmail({
+        Source: from,
+        Destination: { ToAddresses: to },
+        Message: {
+            Subject: {
+                Data: '[adjunct] Email from ' + req.body.email.userName
+            },
+            Body: {
+                Text: {
+                    Data: "User email: " + req.body.email.userEmail + "\nUser Message: " + req.body.email.body
+                }
+            }
+        }
+    }, function (err, data) {
+        if (err) {
+            throw err;
+        }
+        console.log('Email sent:', data);
+        res.send({msg: 'Email sent'});
+    });
+});
+
+var upload = function(req, res, callback){
+    setTimeout(
+        function () {
+            res.setHeader('Content-Type', 'text/html');
+            if (req.files.length == 0 || req.files.file.size == 0)
+                res.send({ 'msg': 'No file uploaded.' });
+            else {
+                var file = req.files.file;
+                var newFileName = uuid.v1() + path.extname(file.path);
+                try {
+                    var s3object = {
+                        'Bucket': 'Adjuncts',
+                        'Key': newFileName,
+                        'Body': fs.createReadStream(file.path),
+                        'ACL': 'public-read'
+                    };
+                    s3.putObject(s3object, function (err, data) {
+                        if (err) {
+                            console.log(err);
+                            res.send(err);
+                        }
+                        else {
+                            callback(newFileName, file.name);
+                        }
+                    });
+                }
+                catch (e) {
+                    res.send({ 'msg': '<b>"' + file.name + '"</b> NOT uploaded. ' + e });
+                }
+            }
+        },
+        (req.param('delay', 'yes') == 'yes') ? 2000 : -1
+    );
+};
+
+app.post('/api/search', function (req, res) {
+    es.search({'query': {'match': {'_all': req.body.query}}}, function(err, result) {res.json(result);});
+});
 
 app.get('/partial/adjuncts-profile',
     ensureLoggedIn({ redirectTo: path.join(app.get('partials'), 'signin-popover.html'), customReturnTo: '/profile' }),
@@ -258,98 +356,6 @@ app.post('/basic-profile', function (req, res) {
     userDb.updateUser(req.body.user);
     res.end();
 });
-
-app.post('/upload-adjunct', function (req, res) {
-    upload(req, res, function(newFileName, fileName){
-        userDb.updateUserField(req.cookies._id, {'imageName': newFileName}, function() {
-            res.send({ msg: '<b>"' + fileName + '"</b> uploaded.' });
-        });
-
-    });
-});
-
-app.post('/upload-institution/:id', function (req, res) {
-    upload(function(){
-        institutionDb.updateInstitutionField(req.params.id, {'imageName': newFileName}, function() {
-            res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
-        });
-
-    });
-});
-
-app.post('/upload-job/:id', function (req, res) {
-    upload(function(){
-        jobDb.updateJobField(req.params.id, {'imageName': newFileName}, function() {
-            res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
-        });
-
-    });
-});
-
-app.post('/send-email', function (req, res) {
-
-    // send to list
-    var to = ['naderchehab@gmail.com', '7sonia@gmail.com']
-
-    // this must relate to a verified SES account
-    var from = "naderchehab@gmail.com";
-
-    ses.sendEmail({
-        Source: from,
-        Destination: { ToAddresses: to },
-        Message: {
-            Subject: {
-                Data: '[adjunct] Email from ' + req.body.email.userName
-            },
-            Body: {
-                Text: {
-                    Data: "User email: " + req.body.email.userEmail + "\nUser Message: " + req.body.email.body
-                }
-            }
-        }
-    }, function (err, data) {
-        if (err) {
-            throw err;
-        }
-        console.log('Email sent:', data);
-        res.send({msg: 'Email sent'});
-    });
-});
-
-    var upload = function(req, res, callback){
-    setTimeout(
-        function () {
-            res.setHeader('Content-Type', 'text/html');
-            if (req.files.length == 0 || req.files.file.size == 0)
-                res.send({ 'msg': 'No file uploaded.' });
-            else {
-                var file = req.files.file;
-                var newFileName = uuid.v1() + path.extname(file.path);
-                try {
-                    var s3object = {
-                        'Bucket': 'Adjuncts',
-                        'Key': newFileName,
-                        'Body': fs.createReadStream(file.path),
-                        'ACL': 'public-read'
-                    };
-                    s3.putObject(s3object, function (err, data) {
-                        if (err) {
-                            console.log(err);
-                            res.send(err);
-                        }
-                        else {
-                            callback(newFileName, file.name);
-                        }
-                    });
-                }
-                catch (e) {
-                    res.send({ 'msg': '<b>"' + file.name + '"</b> NOT uploaded. ' + e });
-                }
-            }
-        },
-        (req.param('delay', 'yes') == 'yes') ? 2000 : -1
-    );
-}
 
 app.get('*', function (req, res) {
     if (req.user) { // user coming from valid passport authentication

@@ -7,10 +7,14 @@ angular.module('adjunct.controllers')
 
 
         $scope.search = function () {
-            //$http.post('/search', JSON.stringify({'query': $scope.query})).then(function(){});
+            $http.post('/api/search', JSON.stringify({'query': $scope.searchBox})).then(function(response){
+                if (response.data.hits.total > 0) {
+                    console.log(response.data.hits.hits[0]._source);
+                }
+            });
         };
 
-        $scope.init= function(){
+        $scope.init = function(){
 
         };
         $scope.facebookAuth = function () {

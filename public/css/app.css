@@ -435,13 +435,12 @@ ol, ul{
 }
 .img-thumbnail{
     border-left-width: 0px;
+    background-size: cover;
     padding-left: 0px;
     padding-right: 0px;
     padding-bottom: 0px;
     border-top-width: 0px;
     padding-top: 0px;
-    height: 211px;
-    width: 211px;
     z-index:-1;
 }
 /* app css stylesheet */

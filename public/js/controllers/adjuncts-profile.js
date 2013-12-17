@@ -88,7 +88,6 @@ angular.module('adjunct.controllers')
                         $scope.user.portfolioLinks[index].id = videoId;
                     }
                 }
-                console.log($scope.user.portfolioLinks);
             }).error(function (data, status, headers, config) {
                 console.log("get-adjuncts-profile-top-card didn't work");
             });

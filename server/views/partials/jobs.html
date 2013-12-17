@@ -1,6 +1,6 @@
 <div class="container">
     <div class="col-md-2 sidebar-offcanvas" id="sidebar1" role="navigation">
-            <div ng-include="sideSearchColumnUrl" />
+            <div ng-include="'/partial/side-search-column'" />
         </div>
 
     <div class="result-col col-md-7">
@@ -11,7 +11,7 @@
                     <tr>
                     <td>
                     <div id="search-result-picture" class="align-horizontal search-results-image">
-                        <div ng-if="job.imageName" >
+                        <div ng-if="job.imageName">
                         <img class= "main-search-job-image" ng-src="https://s3.amazonaws.com/Adjuncts/{{job.imageName}}" width="100px" />
                         </div>
                         <div ng-if="!job.imageName" class="no-picture-job-mini">
@@ -39,7 +39,7 @@
     </div>
 
     <div class="col-md-3 sidebar-offcanvas" id="sidebar2" role="navigation">
-        <div ng-include="rightTopSideColumnUrl" />
-        <div ng-include="rightBottomSideColumnUrl" />
+        <div ng-include="'/partial/adjuncts-profile-right-topSide-column'" />
+        <div ng-include="'/partial/adjuncts-profile-right-bottomSide-column'" />
     </div>
 </div>

@@ -1,15 +1,15 @@
-
-<div class="well ">
+<div class="well">
     <ul class="nav" style="margin: -20px;">
-        <button role="button" class="background-label btn" data-toggle="collapse" data-target="#demo" style="width: 50px">
+        <button role="button" class="background-label btn" data-toggle="collapse" data-target="#demo"
+                style="width: 50px">
             <span class="glyphicon glyphicon-search"></span>
         </button>
 
         <br/>
         <li style="padding:10px">
-        <small>University:&#9;</small>
-        <input type="text" style="width:100px; height:20px;"/>
-        <br/>
+            <small>University:&#9;</small>
+            <input type="text" style="width:100px; height:20px;" ng-model="user.university"/>
+            <br/>
         </li>
         <li style="padding:10px">
             <small>Discipline:&#9;</small>
@@ -38,7 +38,5 @@
         </li>
     </ul>
     <br/><br/>
-    <button class="btn btn-sm btn-custom"   onclick="window.location.href = '/profile';">Search</button>
-
-
+    <button class="btn btn-sm btn-custom" ng-click="search()">Search</button>
 </div>
