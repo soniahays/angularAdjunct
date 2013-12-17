@@ -1,20 +1,19 @@
 
-<div ng-init="init()" class="jumbotron banner col-md-12 main-banner" style="height:430px;margin-top: -25px;">
-    <div class="container bannerText">
-        <div class="col-md-10 col-md-offset-1 banner-text" style="margin-top:90px;">
-            <!--<h1 class="lead" style="color:#121e1e">Need to find qualified adjunct professors?</h1>-->
-            <!--<h2>Looking for a wonderful place to teach?</h2>-->
-            <!--<p style="color:#333333">We're here to make the match. The tenure track hiring process in higher education has become obsolete. Universities employ 75% of their teaching staff in an adjunct capacity.-->
-                <!--Universities often have a short time frame to find qualified instructors and traditional career websites are ill-suited for academia. We're here to match universities with qualified -->
-                <!--adjunct faculty.</p>-->
-            <h2>Adjuncts is a job marketplace custom-tailored to the needs of Academia.</h2>
+<div ng-init="init()" class="jumbotron banner " style="height:521px;margin-top: -25px;">
+    <div class="container">
+        <div class="home-banner-left" style="margin-top:130px;width:500px;float:left;">
+            <h2 style="font-size:21px;margin-bottom: 40px" >Adjuncts is a job marketplace custom-tailored to the needs of Academia.</h2>
             <div class="input-group">
                 <input type="text" class="form-control" ng-model="searchBox" placeholder="Search by university, discipline, qualification, location and more...">
                       <span class="input-group-btn">
                           <button class="btn btn-default btn-custom" type="button" ng-click="search()">Go!</button>
                       </span>
             </div>
+
           </div>
+        <div class="home-banner-right" style="width:320px; padding-right:5px; float:right;margin-top:40px;">
+        <div ng-include="bannerSignupFormUrl" />
+        </div>
       </div>
 </div>
 
