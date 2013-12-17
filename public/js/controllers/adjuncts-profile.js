@@ -178,6 +178,11 @@ angular.module('adjunct.controllers')
            $scope.user.portfolioLinks.push({type:'video', value:''});
         }
 
+        $scope.addPortfolioUpload= function(){
+            console.log("from addPortfolioUpload",$scope.user.portfolioLinks);
+            $scope.user.portfolioLinks.push({type:'pdf', value:''});
+        }
+
         $scope.removePortfolioLink= function(portfolioLink) {
             for(var i= 0, ii = $scope.user.portfolioLinks.length; i < ii; i++){
                 if(portfolioLink==$scope.user.portfolioLinks[i]){

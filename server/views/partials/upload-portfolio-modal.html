@@ -101,14 +101,51 @@
             <div class="col-md-8 dashboard-upload-panel" style="padding-left:0px;margin-top:0px;">
                 <div style="height:25px;padding:15px 5px 0 0;">{{docTitle}}</div>
                 <div class=""style="margin-left: 50px;">
+
+                    <!--<strong>Select a type of file:</strong><br/>-->
+
+
+                    <!--<div ng-include="computerUploadUrl" />-->
                     <strong>Select a category:</strong><br/>
-                    <strong>Select a type of file:</strong><br/>
+                    <select ng-model="portfolio.category">
+                        <option>syllabus design</option>
+                        <option>technology enabled instruction</option>
+                        <option>student centered feedback</option>
+                        <option>summative feedback</option>
+                        <option>instructional design</option>
+                        <option>scholarly and professional contribution</option>
+                    </select>
+                    <br/>
+                    <br/>
                     <strong>Add Media from:</strong><br/>
+                    <strong>A URL</strong></br>
+                    <!--<div ng-include="urlAttachUrl" />-->
+                    <form name="portfolioForm">
+                        <label>Paste in the link of your Youtube video:</label></br>
+                        [<a href="" ng-click="addPortfolioLink()">add</a>]
+                        <div ng-repeat="portfolioLink in user.portfolioLinks">
+                            <select ng-model="portfolioLink.type">
+                                <option>video</option>
+                                <option>pdf</option>
+                            </select>
+                            <input type="text" class="portfolio-form" ng-model="portfolioLink.value" required>
+                            [<a href="" ng-click="removePortfolioLink(portfolioLink)">X</a>]
+                        </div>
+                    </form>
                     <br/>
                     <strong>Your Computer</strong></br>
-                    <div ng-include="computerUploadUrl" />
-                    <strong>A URL</strong></br>
-                    <div ng-include="urlAttachUrl" />
+                    <form name="portfolioForm">
+                        <a href="" ng-click="addPortfolioUpload()">[add]</a>
+                        <div ng-repeat="portfolioUpload in user.portfolioUploads">
+                            <label>Title</label>
+                            <input type="text" class="portfolio-form" ng-model="portfolioUpload.title" required><br/>
+                            <label>Description</label></br>
+                            <textarea class="" cols="60" rows="2" ng-model="portfolioUpload.description"></textarea><br/>
+                            <input type="file" name="file"/>
+                            <div ng-bind-html-unsafe="uploadResponse" ng-model="portfolioUpload.value" required></div>
+                            <a href="" ng-click="removePortfolioUpload(portfolioUpload)">[X]</a>
+                        </div>
+                    </form>
 
 
 
