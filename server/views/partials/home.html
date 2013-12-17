@@ -9,9 +9,9 @@
                 <!--adjunct faculty.</p>-->
             <h2>Adjuncts is a job marketplace custom-tailored to the needs of Academia.</h2>
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search by university, discipline, qualification, location and more...">
+                <input type="text" class="form-control" ng-model="searchBox" placeholder="Search by university, discipline, qualification, location and more...">
                       <span class="input-group-btn">
-                          <button class="btn btn-default btn-custom" type="button" onclick="location.href='/search-results'">Go!</button>
+                          <button class="btn btn-default btn-custom" type="button" ng-click="search()">Go!</button>
                       </span>
             </div>
           </div>
