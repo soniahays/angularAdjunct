@@ -1,3 +1,45 @@
+#or{
+    width:40px !important;
+    margin-left: 142.5px !important;
+}
+.section-title{
+    border-top: solid 2px #eaeaea;
+}
+.section-title h3{
+   margin-top: -7px;
+   text-align: center;
+   color:#bbb;
+   font-weight: bold;
+   background-color:#F6F6F6;
+   font-size: 11px;
+   width:90px;
+   position: relative;
+   margin-left: 117.5px;
+   text-transform: uppercase;
+}
+
+.form-control-signup-home-page{
+    height: 31px;
+    border-radius:3px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+#email{
+    margin-top:0 !important;
+    padding-top: 35px !important;
+}
+#password{
+    padding-top:2px;
+}
+
+#first-name{
+    float:left;
+    width:130px;
+}
+#last-name{
+    float:right;
+    margin-bottom: 5px;
+}
 .dashboard-navigation-title{
     padding-left: 3px;
     color:black !important;
@@ -220,7 +262,7 @@ ol, ul{
 /*-----------------BADGES FORM SECTION -END----------------------------*/
 
 
-#edit-badges{
+.edit-badges{
     font-size: 1em !important;
     line-height: 0.95em !important;
     background-clip: border-box;
@@ -799,6 +841,21 @@ body { font-family: Arial, sans-serif; }
     margin-bottom:10px;
     margin-bottom:10px;
 }
+.btn-social-google-home-page{
+    width:93px!important;
+    font-size: 12px;
+    line-height: 1;
+    border-radius: 3px;
+    padding-top: 8px;
+    padding-bottom: 0;
+    background-color: #919191;
+    border-color: #863523;
+    height: 29px;
+    padding-left: 5px;
+    margin-bottom:10px;
+    margin-right:10px;
+    margin-left:10px;
+}
 .btn-signin {
     margin-top: 10px;
 }
@@ -816,6 +873,21 @@ body { font-family: Arial, sans-serif; }
     margin-bottom:10px;
 
 }
+.btn-social-facebook-home-page{
+    width:93px!important;
+    font-size: 12px;
+    line-height: 1;
+    border-radius: 3px;
+    padding-top: 8px;
+    padding-bottom: 0;
+    background-color: #919191;
+    border-color: #4e5f9e;
+    height: 29px;
+    padding-left: 5px;
+    margin-bottom:10px;
+    margin-right:10px;
+
+}
 .btn-social-linkedin{
     width:80px!important;
     font-size: 12px;
@@ -827,6 +899,20 @@ body { font-family: Arial, sans-serif; }
     border-color: #E0E7EC;
     height: 29px;
     padding-left: 5px;
+}
+.btn-social-linkedin-home-page{
+    width:88px!important;
+    font-size: 12px;
+    line-height: 1;
+    border-radius: 3px;
+    padding-top: 8px;
+    padding-bottom: 0;
+    background-color: #919191;
+    border-color: #007bb6;
+    height: 29px;
+    padding-left: 5px;
+    margin-bottom:10px;
+    margin-left:10px;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
@@ -866,11 +952,8 @@ body { font-family: Arial, sans-serif; }
     margin-top:20px ;
 }
 
-/*.banner-text h2{*/
-/*line-height: 1;*/
-/*}*/
 
-.banner-text {
+.home-banner-left {
     margin: 15px;
     font-size:0.7em;
 }
@@ -888,8 +971,9 @@ body { font-family: Arial, sans-serif; }
 .banner{
     /*background: url("../img/BannerBackgroung.png") no-repeat;*/
     background-color: #F6F6F6;
-    background-size: 100%;
+    /*background-size: 100%;*/
     margin-top: -10px;
+
 }
 
 

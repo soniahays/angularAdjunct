@@ -1,0 +1,49 @@
+<div>
+    <form class="form-signup">
+        <div class="" style="font-size:12px;" >
+        <h4 class="form-signin-heading">Sign up to adjuncts - Get Started</h4>
+        <p style="margin-bottom: 15px;">Registration takes less than 2 minutes</p>
+            <div class="section-title">
+
+                <h3>Sign up with</h3>
+
+            </div>
+         <ul>
+            <li style="float:left">
+                <a class="btn btn-lg btn-primary btn-social-facebook-home-page" type="submit" ng-click="facebookAuth()" >
+                    <i class="fa fa-facebook fa-lg fa-facebook-custom "></i> Facebook</a>
+            <li style="float:left">
+                <a class="btn btn-lg btn-primary btn-social-google-home-page" type="submit" ng-click="googleAuth()" >
+                    <i class="fa fa-google-plus fa-lg fa-linkedin-custom"></i> Google+</a>
+            </li>
+            <li>
+                <a class="btn btn-lg btn-primary btn-social-linkedin-home-page" type="submit" ng-click="linkedinAuth()" >
+                    <i class="fa fa-linkedin fa-lg fa-linkedin-custom"></i> LinkedIn</a>
+            </li>
+        </ul>
+            <div class="section-title">
+
+                <h3 id="or">Or</h3>
+
+            </div>
+        <ul>
+            <li id="first-name">
+        <input type="text" class="form-control form-control-signup-home-page" placeholder="First Name" ng-model="user.firstName"  autofocus/>
+            </li>
+            <li id="last-name">
+        <input type="text" class="form-control form-control-signup-home-page" placeholder="Last Name" ng-model="user.lastName" placeholder="" />
+            </li>
+            <li id="email">
+        <input type="text" class="form-control form-control-signup-home-page" placeholder="Email" ng-model="user.email" placeholder=""  />
+            </li>
+            <li id="password">
+        <input type="password" class="form-control form-control-signup-home-page" placeholder="Password" ng-model="user.password" placeholder="" />
+            </li>
+        </ul>
+            <button class="btn btn-primary btn-sm btn-block" style="background-color: #D06D12;
+    border-color:  #D06D12;" ng-click= "joinNow()">Join now</button>
+        </div>
+    </form>
+
+
+</div>

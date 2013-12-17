@@ -16,11 +16,12 @@ angular.module('adjunct.controllers')
         $scope.rightTopSideColumnUrl = '/partial/adjuncts-profile-right-topSide-column';
         $scope.rightBottomSideColumnUrl = '/partial/adjuncts-profile-right-bottomSide-column';
         $scope.badgeSectionUrl = '/partial/badge-section';
-        $scope.badgeEditModallUrl = '/partial/badge-edit-modal';
+        $scope.badgeEditModalUrl = '/partial/badge-edit-modal';
         $scope.portfolioEditModalUrl = '/partial/portfolio-edit-modal';
         $scope.uploadPictureModalUrl = '/partial/upload-picture-modal';
         $scope.uploadAttachmentModalUrl = '/partial/upload-attachment-competencies-modal';
         $scope.competencyPortfolioModalUrl = '/partial/competency-portfolio-modal';
+        $scope.uploadPortfolioModalUrl = '/partial/upload-portfolio-modal';
         $scope.videoModalUrl = '/partial/video-modal';
         $scope.computerUploadUrl = '/partial/upload-computer-modal';
         $scope.urlAttachUrl = '/partial/upload-url-modal';
@@ -218,6 +219,11 @@ angular.module('adjunct.controllers')
             $scope.docTitle="Course Welcome Fall 2012";
             $scope.docDescription= "video description goes here",
             $('#competency-portfolio-modal').modal();
+            $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
+        }
+        $scope.openUploadPortfolioModal= function() {
+            console.log("from open upload portfolio")
+            $('#upload-portfolio-modal').modal();
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
         }
 
