@@ -118,7 +118,7 @@
                     <br/>
                     <br/>
                     <strong>Add Media from:</strong><br/>
-                    <strong>A URL</strong></br>
+                    <strong>-A URL</strong></br>
                     <!--<div ng-include="urlAttachUrl" />-->
                     <form name="portfolioForm">
                         <label>Paste in the link of your Youtube video:</label></br>
@@ -133,19 +133,33 @@
                         </div>
                     </form>
                     <br/>
-                    <strong>Your Computer</strong></br>
-                    <form name="portfolioForm">
-                        <a href="" ng-click="addPortfolioUpload()">[add]</a>
-                        <div ng-repeat="portfolioUpload in user.portfolioUploads">
-                            <label>Title</label>
-                            <input type="text" class="portfolio-form" ng-model="portfolioUpload.title" required><br/>
-                            <label>Description</label></br>
-                            <textarea class="" cols="60" rows="2" ng-model="portfolioUpload.description"></textarea><br/>
-                            <input type="file" name="file"/>
-                            <div ng-bind-html-unsafe="uploadResponse" ng-model="portfolioUpload.value" required></div>
-                            <a href="" ng-click="removePortfolioUpload(portfolioUpload)">[X]</a>
+                    <strong>-Your Computer</strong></br>
+                    <a href="" ng-click="">[add]</a>
+                        <div>
+
+                            <p>
+                                <label>Select a profile pdf file:</label>
+                                <input type="file" name="file"/>
+                            </p>
+
+                            <div ng-bind-html-unsafe="uploadResponse"></div>
                         </div>
-                    </form>
+
+                        <input upload-submit="uploadComplete(content)" type="submit" class="btn btn-primary btn-sm " data-dismiss="modal" value="Save"/>
+
+
+                    <!--<form name="portfolioForm">-->
+                        <!--<a href="" ng-click="addPortfolioUpload()">[add]</a>-->
+                        <!--<div ng-repeat="portfolioUpload in user.portfolioUploads">-->
+                            <!--<label>Title</label>-->
+                            <!--<input type="text" class="portfolio-form" ng-model="portfolioUpload.title" required><br/>-->
+                            <!--<label>Description</label></br>-->
+                            <!--<textarea class="" cols="60" rows="2" ng-model="portfolioUpload.description"></textarea><br/>-->
+                            <!--<input type="file" name="file"/>-->
+                            <!--<div ng-bind-html-unsafe="uploadResponse" ng-model="portfolioUpload.value" required></div>-->
+                            <!--<a href="" ng-click="removePortfolioUpload(portfolioUpload)">[X]</a>-->
+                        <!--</div>-->
+                    <!--</form>-->
 
 
 
