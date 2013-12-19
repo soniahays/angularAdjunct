@@ -1,5 +1,5 @@
 <div class="list-group col-md-12" >
-        <div class="list-group-item list-group-item-custom list-group-item-customize-left" style=" position: relative; padding-right: 0px; padding-top: 0px;padding-bottom: 20px; ">
+        <div class="list-group-item list-group-item-custom" style=" position: relative; padding-right: 0px; padding-top: 0px;padding-bottom: 20px; ">
             <button  ng-show="canEdit" class="btn btn-lg btn-primary edit-buttons edit-badges" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px" ng-click="openBadgeEditModal()" >
                 <i class="fa fa-pencil-square-o fa-lg"></i></button>
             <button ng-show="canEdit" class="btn btn-lg btn-primary edit-buttons edit-badges"  type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px" ng-click="openUploadPortfolioModal()" >
@@ -19,28 +19,28 @@
             </div>
         </div>
 
-    <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left"">
+    <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left">
         Syllabus Design {{syllabusDesignWidth}}%
-        <div class="progress progress-custom">
+        <div class="progress progress-custom progress-custom-badge-section">
             <div id="syllabusDesign"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" ng-style="syllabusDesign">
                 <!--<span class="sr-only">60% Complete</span>-->
             </div>
         </div></a>
     <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left">
         Technology Enabled Instruction {{technologyDesignWidth}}%
-        <div class="progress progress-custom">
+        <div class="progress progress-custom progress-custom-badge-section">
             <div id="technologyDesign" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" ng-style="technologyDesign">
             </div>
         </div></a>
     <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left">
         Student Centered Feedback {{studFeedbackWidth}}%
-        <div class="progress progress-custom ">
+        <div class="progress progress-custom progress-custom-badge-section">
             <div id="studFeedback" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"  ng-style="studFeedback">
             </div>
         </div></a>
     <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left">
         Summative Feedback {{sumFeedbackWidth}}%
-        <div class="progress progress-custom">
+        <div class="progress progress-custom progress-custom-badge-section">
             <div id="sumFeedback" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" ng-style="sumFeedback">
             </div>
         </div></a>

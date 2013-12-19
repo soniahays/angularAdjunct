@@ -14,7 +14,7 @@
     <script src="/angular/angular.min.js"></script>
     <script src="/angular-route/angular-route.min.js"></script>
     <script src="/angular-cookies/angular-cookies.min.js"></script>
-    <!--<script src="/angular-resource/angular-resource.min.js"></script>-->
+
     <script src="/underscore/underscore-min.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/angular-strap/dist/angular-strap.min.js"></script>
@@ -40,6 +40,7 @@
     <script src="/js/controllers/jobs.js"></script>
     <script src="/js/controllers/contact-us.js"></script>
 </head>
+
 <body ng-controller="IndexCtrl" style="margin-top:20px;">
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="margin-bottom: 0px">
     <div class="container">
@@ -54,15 +55,20 @@
                 <li ng-class="{active: index == 3}" ng-click="index = 3" class="dropdown"><a ng-href="/jobs" bs-dropdown="jobsDropdown">Jobs</a></li>
                 <li ng-class="{active: index == 4}" ng-click="index = 4"><a href="/contact-us">Contact Us</a></li>
             </ul>
-            <div class="nav navbar-nav navbar-right">
-                <button class="btn btn-custom btn-signin" ng-click="signout()" ng-show="isSignedIn">Sign Out</button>
-                <button class="btn  btn-primary-custom btn-custom btn-signin" data-placement="bottom" data-title="" bs-popover="'/partial/signin-popover'" ng-show="!isSignedIn">Sign In</button>
-            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="pull-left search-image" ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}" width="35px">{{user.firstName||'username'}}<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="pull-right"a>Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
+
 <div ng-view>
 </div>
+
 <hr class="featurette-divider">
 <footer>
     <p class="pull-right"><a href="#">Back to top</a></p>

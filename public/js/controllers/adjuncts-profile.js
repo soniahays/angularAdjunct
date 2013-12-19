@@ -41,8 +41,8 @@ angular.module('adjunct.controllers')
                     experience1Title: 'Instructor',
                     experience1Location: 'Fall 2013, Kochville, Michigan',
                     status: 1,
-                    experience1TimePeriodYear: '2013',
-                    experience1Summary: 'write more about your experience here'
+                    experience1TimePeriodYear: '2013'
+
                 });
 
                 if (!$scope.user.survey)

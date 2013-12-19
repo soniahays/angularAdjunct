@@ -1,0 +1,28 @@
+<div id="upload-job-picture-modal" class="modal">
+    <div class="modal-dialog modal-dialog-custom">
+        <form id="profile-job-pic-upload" ng-upload method="POST" action="/upload-job?delay=yes">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+
+                        <p>
+                            <label>Select a institution picture:</label>
+                            <input type="file" name="file"/>
+                        </p>
+
+                        <div ng-bind-html-unsafe="uploadResponse"></div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input upload-submit="uploadComplete(content)" type="submit" class="btn btn-primary" data-dismiss="modal" value="Save"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
