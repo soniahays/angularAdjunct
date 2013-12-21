@@ -13,7 +13,7 @@ var http = require('http'),
         server : {
             host : 'spruce-9191479.us-east-1.bonsai.io',
             auth: '7jrpodo2:pg40ubsoo8ebvaqg',
-            //port : '',
+            port : '',
             secure: false
         }
     }),
