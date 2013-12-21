@@ -9,7 +9,7 @@ var http = require('http'),
     aws = require('aws-sdk'),
     mongodb = require('mongodb'),
     connect = require('./server/dbConnect.js')(bcrypt, mongodb),
-    elasticsearch = require('es')(),
+    elasticsearch = require('es')({ server : { host : process.env.BONSAI_URL || 'localhost',  port : 9200 }}),
     es = require ('./server/elasticsearch.js')(elasticsearch);
 var userDb, jobDb, institutionDb, pass;
 
@@ -77,6 +77,18 @@ app.get('/api/users', function(req, res) {
         }
         es.index(users);
         return res.json(users);
+    });
+});
+
+app.get('/api/index-search', function(req, res) {
+    userDb.getUsers(function (err, users) {
+        if (err) {
+            return res.send(500, "Error retrieving user");
+        }
+        if (!users) {
+            return res.send('Not found');
+        }
+        return res.json(es.index(users));
     });
 });
 
