@@ -9,7 +9,7 @@ var http = require('http'),
     aws = require('aws-sdk'),
     mongodb = require('mongodb'),
     connect = require('./server/dbConnect.js')(bcrypt, mongodb),
-    elasticsearch = require('es')({ server : { host : process.env.BONSAI_URL || 'localhost',  port : 9200 }}),
+    elasticsearch = require('es')({ server : { host : process.env.BONSAI_URL,  port : '' }}),
     es = require ('./server/elasticsearch.js')(elasticsearch);
 var userDb, jobDb, institutionDb, pass;
 
