@@ -221,9 +221,8 @@ border-radius: 0px;
 
 #top-card{
     background-color: #FaFaFa;
-    /*border-bottom-right-radius: 0px !important;*/
-    border-bottom-left-radius: 0px !important;
-    border-top-right-radius: 0px !important;
+    border-radius: 2px 0 0 0 !important;
+
 
 }
 .edit-experience{
