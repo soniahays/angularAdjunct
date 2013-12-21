@@ -7,11 +7,7 @@ angular.module('adjunct.controllers')
 
 
         $scope.search = function () {
-            $http.post('/api/search', JSON.stringify({'query': $scope.searchBox})).then(function(response){
-                if (response.data.hits.total > 0) {
-                    console.log(response.data.hits.hits[0]._source);
-                }
-            });
+            window.location.href = '/search-results/' + $scope.searchBox;
         };
 
         $scope.init = function(){

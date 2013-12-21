@@ -310,6 +310,12 @@ app.get('/partial/institutions-profile/:institutionId',
         res.render(path.join(app.get('partials'), 'institutions-profile.html'), { locals: {'institutionId': req.params.institutionId}});
     });
 
+app.get('/partial/search-results/:searchTerm',
+    function (req, res) {
+        res.render(path.join(app.get('partials'), 'search-results.html'), { locals: {'searchTerm': req.params.searchTerm}});
+    });
+
+
 app.get('/partial/:name',
     function (req, res) {
         var name = req.params.name;
@@ -363,5 +369,3 @@ app.get('*', function (req, res) {
     }
     res.render(path.join(app.get('views'), 'index.html'));
 });
-
-

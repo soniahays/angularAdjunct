@@ -14,7 +14,7 @@ angular.module('adjunct', [
     ]).
     config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', '$sceProvider', function ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvider) {
         $routeProvider.when('/', {templateUrl: '/partial/home', controller: 'HomeCtrl', accessLevel: 'public'});
-        $routeProvider.when('/search-results', {templateUrl: '/partial/search-results', controller: 'SearchResultsCtrl', accessLevel: 'public'});
+        $routeProvider.when('/search-results/:searchTerm', {templateUrl: function(params) {  return '/partial/search-results/' + params.searchTerm; }, controller: 'SearchResultsCtrl', accessLevel: 'public'});
         $routeProvider.when('/jobs', {templateUrl: '/partial/jobs', controller: 'JobsCtrl', accessLevel: 'public'});
         $routeProvider.when('/contact-us', {templateUrl: '/partial/contact-us', controller: 'ContactUsCtrl', accessLevel: 'public'});
         $routeProvider.when('/job-profile/add', {templateUrl:  '/partial/job-profile', controller: 'JobProfileCtrl', accessLevel: 'public' });
