@@ -12,9 +12,9 @@ var http = require('http'),
     elasticsearch = require('es')({
         server : {
             host : 'spruce-9191479.us-east-1.bonsai.io',
-            user: '7jrpodo2',
-            pass: 'pg40ubsoo8ebvaqg',
-            port : ''
+            auth: '7jrpodo2:pg40ubsoo8ebvaqg',
+            //port : '',
+            secure: false
         }
     }),
     es = require ('./server/elasticsearch.js')(elasticsearch);
