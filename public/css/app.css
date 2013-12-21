@@ -1,8 +1,35 @@
+.badge-section-hr{
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+.percentage-title-badge-section{
+   text-align:right;
+   right:5px;
+   position:absolute;
+   font-size:14px;
+   margin-top:2px;
+}
+.list-item-badge-section{
+    padding-right: 0px !important;
+    padding-bottom: 0px !important;
+    padding-top: 9px !important;
+}
+.competency-title-badge-section{
+    margin-left: 2px;
+    display:inline;
+    font-size: 12px;
+    color: #333;
+}
 .progress-custom-badge-section{
-    border-radius:0;
-    margin-top: 6px;
-    margin-bottom: 0 !important;
-    margin-bottom:0px !important;
+
+    /*padding-left: 2px !important;*/
+    border-radius: 0px;
+    height: 13px;
+    margin-top: 3px;
+    margin-bottom: 0px;
+    /*width: 212px;*/
+    width: 100%;
+    background-color: #fafafa;
 }
 
 .list-group-item-customize-left{
@@ -57,7 +84,7 @@
 }
 .dashboard-display-panel{
     height:517px;
-    background-color: #F6F6F6;
+    background-color: #FaFaFa;
     margin-top:-3px!important;
 }
 .dashboard-navigation{
@@ -193,7 +220,7 @@ border-radius: 0px;
 }
 
 #top-card{
-    background-color: #F6F6F6;
+    background-color: #FaFaFa;
     /*border-bottom-right-radius: 0px !important;*/
     border-bottom-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
@@ -490,7 +517,7 @@ ol, ul{
 
 }
 .list-group-item-customize-left{
-    background-color:#F6F6F6;
+    background-color:#FaFaFa;
     border-top-right-radius: 0px !important;
     border-top-left-radius: 0px !important;
 /*padding: 2px 15px 5px 12px; !important*/

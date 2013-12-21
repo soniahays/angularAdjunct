@@ -28,6 +28,7 @@ angular.module('adjunct.controllers')
                 $scope.hide();
         }
         $scope.googleAuth = function () {
+//            window.open('/auth/google');
             window.location.href = '/auth/google';
             if ($scope.hide)
                 $scope.hide();

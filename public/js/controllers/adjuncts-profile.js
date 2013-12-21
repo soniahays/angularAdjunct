@@ -27,6 +27,8 @@ angular.module('adjunct.controllers')
         $scope.urlAttachUrl = '/partial/upload-url-modal';
         $scope.canEdit = $cookies._id && !userId;
 
+        $http.get('/api/countries').then(function(response) { $scope.countries = response.data; });
+
 
 
 
@@ -76,10 +78,14 @@ angular.module('adjunct.controllers')
                         "thumbnail": "/img/PortfolioIconResume.png",
                         "$$hashKey" : "02Y"
                     }];
+
                 // the above is for testing only.
 
                 if (!$scope.user.portfolioLinks)
                     $scope.user.portfolioLinks = [];
+
+                if (!$scope.user.fieldOfExpertises)
+                    $scope.user.fieldOfExpertises = [];
 
                 for (var index in $scope.user.portfolioLinks){
                     var portfolioLink = $scope.user.portfolioLinks[index];
@@ -186,6 +192,22 @@ angular.module('adjunct.controllers')
             for(var i= 0, ii = $scope.user.portfolioLinks.length; i < ii; i++){
                 if(portfolioLink==$scope.user.portfolioLinks[i]){
                     $scope.user.portfolioLinks.splice(i, 1);
+                }
+            }
+        }
+
+
+        $scope.addAFieldOfExpertise= function(){
+            console.log("from addAFieldOfExpertise",$scope.fieldOfExpertises);
+            $scope.user.fieldOfExpertises.push({value:''});
+        }
+
+
+
+        $scope.removeAFieldOfExpertise= function(portfolioLink) {
+            for(var i= 0, ii = $scope.user.fieldOfExpertises.length; i < ii; i++){
+                if(fieldOfExpertise==$scope.user.fieldOfExpertises[i]){
+                    $scope.user.fieldOfExpertises.splice(i, 1);
                 }
             }
         }
