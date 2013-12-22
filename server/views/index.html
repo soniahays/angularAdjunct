@@ -44,6 +44,9 @@
 <body ng-controller="IndexCtrl" style="margin-top:20px;">
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="margin-bottom: 0px">
     <div class="container">
+
+
+
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <div class="navbar-header">
@@ -59,14 +62,17 @@
                 <span ng-if="!isSignedIn">
                 <button class="btn  btn-primary-custom btn-custom btn-signin" data-placement="bottom" data-title="" bs-popover="'/partial/signin-popover'" data-original-title="" title="">Sign In</button>
                 </span>
-                    <li ng-if="isSignedIn" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="pull-left search-image" ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}" width="35px">{{user.firstName||'username'}}<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href ng-click="signout()" > Sign Out</a></li>
-                        </ul>
-                    </li>
+                <li ng-if="isSignedIn" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="pull-left search-image" ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}" width="35px">{{user.firstName||'username'}}<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href ng-click="signout()" > Sign Out</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
+
+
+
 </div>
 
 <div ng-view>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('AdjunctsProfileCtrl', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
+    .controller('AdjunctsProfileCtrl', ['$scope', '$http', '$cookies','$q', function ($scope, $http, $cookies,$q) {
 
         var userId = $('#userId').html();
 
@@ -29,74 +29,85 @@ angular.module('adjunct.controllers')
 
         $http.get('/api/countries').then(function(response) { $scope.countries = response.data; });
 
+        $http.get('/api/get-adjuncts-profile/'+ (userId ? userId : $cookies._id)).then(function(response){
 
+            $scope.user = response.data;
+            angular.extend($scope.user, {
+                experience1Institution: 'Saginaw Valley State University',
+                experience1Title: 'Instructor',
+                experience1Location: 'Fall 2013, Kochville, Michigan',
+                status: 1,
+                experience1TimePeriodYear: '2013'
 
+            });
 
-        $http({
-            url: '/api/get-adjuncts-profile/' + (userId ? userId : $cookies._id),
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'}
-        }).success(function (data, status, headers, config) {
-                $scope.user = data;
-                angular.extend($scope.user, {
-                    experience1Institution: 'Saginaw Valley State University',
-                    experience1Title: 'Instructor',
-                    experience1Location: 'Fall 2013, Kochville, Michigan',
-                    status: 1,
-                    experience1TimePeriodYear: '2013'
-
+                var countries = $http.get('/api/countries');
+                $q.all([countries]).then(function (values) {
+                    var countries = values[0].data;
                 });
 
-                if (!$scope.user.survey)
-                    $scope.user.survey = {};
 
-                calculateSurvey();
 
-                // this is for testing only.
-                $scope.user.portfolioLinks = [
-                    {
-                        "type" : "video",
-                        "value" : "https://www.youtube.com/embed/YKulXXvK2TA",
-                        "title":"Course Welcome Fall 2012",
-                        "description":"video description goes here",
-                        "thumbnail": "http://img.youtube.com/vi/YKulXXvK2TA/2.jpg",
-                        "$$hashKey" : "02X"
-                    },
-                    {
-                        "type" : "video",
-                        "value" : "https://www.youtube.com/embed/F1QNHJ1N-p0",
-                        "title":"Homework review Winter 2009",
-                        "description":"video description goes here",
-                        "thumbnail": "http://img.youtube.com/vi/F1QNHJ1N-p0/2.jpg",
-                        "$$hashKey" : "02Z"
-                    },
-                    {
-                        "type" : "pdf",
-                        "title":"PDF title goes here",
-                        "description":"PDF description goes here",
-                        "value" : "https://docs.google.com/gview?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true",
-                        "thumbnail": "/img/PortfolioIconResume.png",
-                        "$$hashKey" : "02Y"
-                    }];
+            $scope.user.countryName = _.findWhere($scope.countries, {_id: $scope.user.country}).name;
 
-                // the above is for testing only.
+            if (!$scope.user.survey)
+                $scope.user.survey = {};
 
-                if (!$scope.user.portfolioLinks)
-                    $scope.user.portfolioLinks = [];
+            calculateSurvey();
 
-                if (!$scope.user.fieldOfExpertises)
-                    $scope.user.fieldOfExpertises = [];
+            // this is for testing only.
+            $scope.user.portfolioLinks = [
+                {
+                    "type" : "video",
+                    "value" : "https://www.youtube.com/embed/YKulXXvK2TA",
+                    "title":"Course Welcome Fall 2012",
+                    "description":"video description goes here",
+                    "thumbnail": "http://img.youtube.com/vi/YKulXXvK2TA/2.jpg",
+                    "$$hashKey" : "02X"
+                },
+                {
+                    "type" : "video",
+                    "value" : "https://www.youtube.com/embed/F1QNHJ1N-p0",
+                    "title":"Homework review Winter 2009",
+                    "description":"video description goes here",
+                    "thumbnail": "http://img.youtube.com/vi/F1QNHJ1N-p0/2.jpg",
+                    "$$hashKey" : "02Z"
+                },
+                {
+                    "type" : "pdf",
+                    "title":"PDF title goes here",
+                    "description":"PDF description goes here",
+                    "value" : "https://docs.google.com/gview?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true",
+                    "thumbnail": "/img/PortfolioIconResume.png",
+                    "$$hashKey" : "02Y"
+                }];
 
-                for (var index in $scope.user.portfolioLinks){
-                    var portfolioLink = $scope.user.portfolioLinks[index];
-                    if (portfolioLink.type == 'video') {
-                        var videoId = URI.parseQuery(URI.parse(portfolioLink.value).query).v;
-                        $scope.user.portfolioLinks[index].id = videoId;
-                    }
+            // the above is for testing only.
+
+            if (!$scope.user.portfolioLinks)
+                $scope.user.portfolioLinks = [];
+
+            if (!$scope.user.fieldOfExpertises)
+                $scope.user.fieldOfExpertises = [];
+
+            if (!$scope.user.educationDegrees)
+                $scope.user.educationDegrees = [];
+
+            for (var index in $scope.user.portfolioLinks){
+                var portfolioLink = $scope.user.portfolioLinks[index];
+                if (portfolioLink.type == 'video') {
+                    var videoId = URI.parseQuery(URI.parse(portfolioLink.value).query).v;
+                    $scope.user.portfolioLinks[index].id = videoId;
                 }
-            }).error(function (data, status, headers, config) {
+            }
+        },
+
+            function(error){
                 console.log("get-adjuncts-profile-top-card didn't work");
-            });
+
+
+
+        });
 
         $scope.months = [];
         var count = 0;
@@ -196,15 +207,26 @@ angular.module('adjunct.controllers')
             }
         }
 
-
+//        $scope.expertise-tags-custom =
         $scope.addAFieldOfExpertise= function(){
             console.log("from addAFieldOfExpertise",$scope.fieldOfExpertises);
             $scope.user.fieldOfExpertises.push({value:''});
         }
 
+        $scope.addAEducationDegree= function(){
+            console.log("from addAEducationDegree",$scope.educationDegrees);
+            $scope.user.educationDegrees.push({value:''});
+        }
 
+        $scope.removeAEducationDegree= function(educationDegree) {
+            for(var i= 0, ii = $scope.user.educationDegrees.length; i < ii; i++){
+                if(educationDegree==$scope.user.educationDegrees[i]){
+                    $scope.user.educationDegrees.splice(i, 1);
+                }
+            }
+        }
 
-        $scope.removeAFieldOfExpertise= function(portfolioLink) {
+        $scope.removeAFieldOfExpertise= function(fieldOfExpertise) {
             for(var i= 0, ii = $scope.user.fieldOfExpertises.length; i < ii; i++){
                 if(fieldOfExpertise==$scope.user.fieldOfExpertises[i]){
                     $scope.user.fieldOfExpertises.splice(i, 1);

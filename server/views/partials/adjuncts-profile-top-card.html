@@ -27,19 +27,19 @@
                 </div>
                 <div id="headline-container">
                     <span>{{ user.currentPosition || 'empty' }}</span>
-                    <span>at {{ user.institution|| 'empty' }}</span>
+                    <span>at {{ user.currentInstitution|| 'empty' }}</span>
                 </div>
                 <div class="text-muted" id="demographic-info">
-                    <span>{{ user.city || 'empty' }}</span>
-                    <span>, {{ user.generalArea|| 'empty' }}</span>
-                    <span>| {{ user.department|| 'empty' }}</span>
+                    <span>{{ user.locationCity || 'empty' }}</span>
+                    <span>, {{ user.countryName || 'empty' }}</span>
+                    <span>| {{ user.generalDiscipline|| 'empty' }}</span>
                 </div>
             </div>
             <table id="profile-card-table">
                 <tbody>
                 <tr id="overview-summary-specialty">
                     <th class="profile-card-table-th" scope="row">Expertise</th>
-                    <td class="profile-card-table-td"><span>{{ user.specialty1 || 'empty' }}</span>
+                    <td class="profile-card-table-td"><span>{{ user.fieldOfExpertise || 'empty' }}</span>
                         <span>{{ user.specialty2 || 'empty' }}</span>
                         </br>
                         <span>{{ user.specialty3 || 'empty' }}</span>
@@ -47,7 +47,7 @@
                 </tr>
                 <tr id="overview-summary-education">
                     <td class="profile-card-table-th">Education</td>
-                    <td class="profile-card-table-td"><span>{{ user.educationLevel || 'educationempty' }}</span></td>
+                    <td class="profile-card-table-td"><span>{{ user.educationDegree || 'educationempty' }}</span></td>
                 </tr>
                 <!--<tr>-->
                     <!--<td></td>-->
@@ -55,24 +55,19 @@
                         <!--Profile-->
                     <!--</button></td>-->
                 <!--</tr>-->
-                <tr>
-                    <td></td>
-                    <td>
-                        <div ng-repeat="item in user.expertiseTags">
-                            {{ item||'tags go here' }}
-                        </div>
-                    </td>
 
 
-                    <td>
-                    </td>
-                    <td>
 
 
-                    </td>
-                </tr>
+
+
                 </tbody>
             </table>
+
+
+            <div class="" ng-repeat="item in user.expertiseTags">
+                <span class="tags">{{ item||'tags go here' }}</span>
+            </div>
         </div>
     </div>
 

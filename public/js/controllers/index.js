@@ -6,9 +6,7 @@ angular.module('adjunct.controllers')
 
         var userId = $('#userId').html();
 
-        if (!$cookies._id && !userId) {
-            return;
-        }
+
 
 
         $scope.isSignedIn = $cookies._id != null;
