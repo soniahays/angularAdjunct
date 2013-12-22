@@ -118,7 +118,7 @@
                     </div>
                     <div id="name-container">
                         <h6>
-                            <div class="form-group">
+                            <div class="form-group-institution">
 
 
                             <ul>
@@ -130,58 +130,46 @@
 
 
                                  <li>
-                                 <input type="text" class="profile-forms" name="currentPosition" name="user.currentPosition" maxlength="50" placeholder="Position Title">
-                                 - at <input type="text" class="profile-forms" name="currentInstitution" name="user.currentInstitution" maxlength="50" placeholder="Institution Name">
+                                 <input type="text" class="profile-forms" name="currentPosition" ng-model="user.currentPosition" maxlength="50" placeholder="Position Title">
+                                 - at <input type="text" class="profile-forms" name="currentInstitution" ng-model="user.currentInstitution" maxlength="50" placeholder="Institution Name">
                                  </li>
                                  <li>
                                      <input type="text" class="profile-forms" name="locationCity" ng-model="user.locationCity" maxlength="50" placeholder="City"> ,
-                                     <select ng-model="user.country" class="edit-positionType"  ng-options="c._id as c.name for c in countries" class="input-xlarge" required>
+                                     <select ng-model="user.country" class=""  ng-options="c._id as c.name for c in countries" style="width: 108px;" required>
                                      <option value="">Select Country</option></select> |
                                      <input type="text" class="profile-forms" name="generalDiscipline" ng-model="user.generalDiscipline" maxlength="50" placeholder="General Discipline">
                                  </li>
                                 <li>
+
                                     <label for="">Expertise:</label>
                                     <input type="text" class="profile-forms" name="fieldOfExpertise" ng-model="user.fieldOfExpertise" maxlength="50" placeholder="Field of Expertise">
                                     [<a href="" ng-click="addAFieldOfExpertise()">add a field</a>]
                                     <div ng-repeat="fieldOfExpertise in user.fieldOfExpertises">
-                                        <input type="text" class="portfolio-form" ng-model="fieldOfExpertise.value" required>
+                                        <input type="text" class="profile-forms" ng-model="fieldOfExpertise.value" maxlength="50" placeholder="Field of Expertise" required>
                                         [<a href="" ng-click="removeAFieldOfExpertise(fieldOfExpertise)">X</a>]
                                     </div>
                                 </li>
-
-                                <!--<form name="portfolioForm">-->
-                                    <!--<label>Paste in the link of your Youtube video:</label></br>-->
-                                    <!--[<a href="" ng-click="addPortfolioLink()">add</a>]-->
-                                    <!--<div ng-repeat="portfolioLink in user.portfolioLinks">-->
-                                        <!--<select ng-model="portfolioLink.type">-->
-                                            <!--<option>video</option>-->
-                                            <!--<option>pdf</option>-->
-                                        <!--</select>-->
-                                        <!--<input type="text" class="portfolio-form" ng-model="portfolioLink.value" required>-->
-                                        <!--[<a href="" ng-click="removePortfolioLink(portfolioLink)">X</a>]-->
-                                    <!--</div>-->
-                                <!--</form>-->
-
-                     <li>
-                     <div class="fieldgroup">
-                     <label for="">Job Requirements:</label> <br/>
-                     <label for="">Minimum Educational Requirements<abbr title="Required" class="required">*</abbr>:</label>
-                     <select ng-model="job.edDegree" class="edit-positionType"  ng-options="e._id as e.name for e in edDegrees" class="input-xlarge" required>
-                     <option value="">choose...</option></select> in <input type="text" class=" profile-forms " name="jobDegreeDiscipline" ng-model="job.degreeDiscipline" maxlength="50"><br/> -or- <select ng-model="job.edDegree" class="edit-positionType"  ng-options="e._id as e.name for e in edDegrees" class="input-xlarge" required>
-                     <option value="">choose...</option></select> in <input type="text" class=" profile-forms " name="jobDegreeDiscipline" ng-model="job.degreeDiscipline" maxlength="50"><a href=""><small> Add More </small></a>
-                     <br/>
-                     <label for="">Field of Expertise<abbr title="Required" class="required">*</abbr>:</label>
-                     <div id="tags-container">
-                     <tags-input ng-model="job.expertiseTags" ng-class="expertise-tags"></tags-input>
-                     </div>
-                     <!--job.requirementField1 -->
-
-                                </div>
-
+                                <li>
+                                    <label for="">Education:</label>
+                                    <input type="text" class="profile-forms" name="educationDegree" ng-model="user.educationDegree" maxlength="50" placeholder="Education Degree">
+                                    [<a href="" ng-click="addAEducationDegree()">add a field</a>]
+                                    <div ng-repeat="educationDegree in user.educationDegrees">
+                                        <input type="text" class="profile-forms" ng-model="educationDegree.value" maxlength="50" placeholder="Education Degree" required>
+                                        [<a href="" ng-click="removeAEducationDegree(educationDegree)">X</a>]
+                                    </div>
                                 </li>
                                 <li>
+                                    <div id="tags-container">
+                                        <label for="">Add tags to your profile:</label>
 
+                                        <tags-input ng-model="user.expertiseTags" ng-class="expertise-tags expertise-tags-custom" style="background-color: #B8D5EE !important;"></tags-input>
+
+
+
+                                    </div>
                                 </li>
+
+
                                 </ul>
 
 
@@ -191,74 +179,6 @@
 
 
 
-
-
-                                <!--<table>-->
-
-                                        <!--<th>Your professional headline:</th>-->
-                                    <!--</tr>-->
-                                    <!--<tr>-->
-                                        <!--<td><input type="text" class="form-control form-inline input-sm profile-forms"-->
-                                                   <!--name="currentPosition" ng-model="user.currentPosition"></td>-->
-                                        <!--<td><input type="text" class="form-control form-inline input-sm profile-forms"-->
-                                                   <!--name="department" ng-model="user.department"></td>-->
-                                    <!--</tr>-->
-                                    <!--<tr>-->
-                                        <!--<th>Educational institution:</th>-->
-                                    <!--</tr>-->
-                                    <!--<tr>-->
-                                        <!--<td><input type="text"-->
-                                                   <!--class="form-control form-inline input-sm profile-forms col-xs-5 "-->
-                                                   <!--name="institution" ng-model="user.institution"></td>-->
-                                    <!--</tr>-->
-                                    <!--<tr>-->
-                                        <!--<th>Location:</th>-->
-                                    <!--</tr>-->
-                                    <!--<tr>-->
-                                        <!--<td><input type="text" class="form-control form-inline input-sm profile-forms"-->
-                                                   <!--name="city" ng-model="user.city"></td>-->
-                                        <!--<td><input type="text" class="form-control form-inline input-sm profile-forms"-->
-                                                   <!--name="generalArea" ng-model="user.generalArea"></td>-->
-                                    <!--</tr>-->
-                                <!--</table>-->
-                                <!--<table id="profile-card-table" style="margin-left: 0px; margin-top: 0px;">-->
-                                    <!--<tbody>-->
-                                    <!--<tr id="overview-summary-specialty">-->
-                                        <!--<th class="profile-card-table-th" scope="row">Expertise</th>-->
-                                        <!--<td class="profile-card-table-td"><span><input type="text"-->
-                                                                                       <!--class="form-control form-inline input-sm profile-forms"-->
-                                                                                       <!--name="Specialty1"-->
-                                                                                       <!--ng-model="user.specialty1"></span>-->
-                                            <!--<span><input type="text"-->
-                                                         <!--class="form-control form-inline input-sm profile-forms"-->
-                                                         <!--name="Specialty2" ng-model="user.specialty2"></span>-->
-
-                                            <!--<span><input type="text"-->
-                                                         <!--class="form-control form-inline input-sm profile-forms"-->
-                                                         <!--name="Specialty3" ng-model="user.specialty3"></span>-->
-                                        <!--</td>-->
-                                    <!--</tr>-->
-                                    <!--<tr id="overview-summary-education">-->
-                                        <!--<td class="profile-card-table-th">Education</td>-->
-                                        <!--<td class="profile-card-table-td">-->
-                                            <!--<span><input type="text"-->
-                                                         <!--class="form-control form-inline input-sm profile-forms"-->
-                                                         <!--name="educationLevel" ng-model="user.educationLevel"></span>-->
-                                        <!--</td>-->
-
-                                    <!--</tr>-->
-                                    <!--<tr>-->
-                                    <!--<td></td>-->
-                                    <!--<td>-->
-                                        <!--<div id="tags-container">-->
-                                            <!--<tags-input ng-model="user.expertiseTags" ng-class="expertise-tags"></tags-input>-->
-                                        <!--</div>-->
-                                    <!--</td>-->
-                                    <!--<br/>-->
-                                    <!--<br/>-->
-                                    <!--<td>-->
-                                    <!--</td>-->
-                                    <!--<td>-->
                                         <button type="button" class="btn btn-xs btn-primary" ng-click="saveTopCard()">
                                             Save Profile
                                         </button>
