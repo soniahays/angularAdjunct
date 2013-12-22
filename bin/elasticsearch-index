@@ -6,7 +6,7 @@ function elasticsearchIndex() {
     var options = {
         hostname: 'adjuncts-dev.herokuapp.com',
         port: 80,
-        path: '/elasticsearch-index',
+        path: '/api/elasticsearch-index',
         method: 'POST'
     };
 
