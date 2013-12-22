@@ -82,7 +82,6 @@ app.get('/api/users', function(req, res) {
         if (!users) {
             return res.send('Not found');
         }
-        es.index(users);
         return res.json(users);
     });
 });
