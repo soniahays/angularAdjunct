@@ -7,14 +7,12 @@
                 <img class="img-thumbnail pull-left" ng-src="https://s3.amazonaws.com/Adjuncts/{{institution.imageName}}"/>
             </span>
             <div ng-if="!institution.imageName" class="no-institution-picture">
-                <!--<i class="fa fa-shield" style="font-size:8em"></i>-->
                 <div class="addPictLink">
                     <a href="#" id="a-custom"ng-click="openPictureUploadModal()">
                         <span style= "color: #070000;">
                             <img src="/img/icon_add_photo_27x27_v1.png" /> Add a photo
                         </span>
                     </a>
-                    <!--<button type="button" class="btn" bs-modal="'partial/upload-picture-modal'">...</button>-->
                 </div>
             </div>
         </div>
@@ -46,14 +44,7 @@
 
         </div>
     </div>
-
-
-
-
-
     <button type="button" class="btn btn-md btn-primary edit-buttons"  id="edit-top-card"style="position:absolute; right: 0px ; bottom: 0px ;border-radius:3px 0px 3px 0px" ng-click="editTopCard()"><i class="fa fa-pencil-square-o fa-lg"></i> Edit Profile</button>
-    <!--<button class="btn btn-lg btn-primary " id="edit-badges" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px" ng-click="openBadgeEditModal()" >-->
-    <!--<i class="fa fa-pencil-square-o fa-lg"></i></button>-->
 </div>
 
 

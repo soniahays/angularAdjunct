@@ -39,10 +39,12 @@
                 <tbody>
                 <tr id="overview-summary-specialty">
                     <th class="profile-card-table-th" scope="row">Expertise</th>
-                    <td class="profile-card-table-td"><span>{{ user.fieldOfExpertise || 'empty' }}</span>
-                        <span>{{ user.specialty2 || 'empty' }}</span>
-                        </br>
-                        <span>{{ user.specialty3 || 'empty' }}</span>
+                    <td class="profile-card-table-td">
+
+                        <div ng-repeat="fieldOfExpertise in user.fieldOfExpertises">
+                            <span>{{ fieldOfExpertise.value || 'empty' }}</span>
+                        </div>
+
                     </td>
                 </tr>
                 <tr id="overview-summary-education">

@@ -1,15 +1,14 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('IndexCtrl', ['$scope', '$http', '$cookies', function ($scope,$http, $cookies) {
-
-
-        var userId = $('#userId').html();
-
-
-
+    .controller('IndexCtrl', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
 
         $scope.isSignedIn = $cookies._id != null;
+
+        if ($scope.isSignedIn) {
+            $http.get('/api/get-adjuncts-profile/' + $cookies._id).then(function(response) { $scope.user = response.data; });
+        }
+
         $scope.signout = function() {
             window.location.replace('/signout');
         }
@@ -37,19 +36,4 @@ angular.module('adjunct.controllers')
                 "href": "/job-profile/add"
             }
         ];
-
-
-        $http({
-            url: '/api/get-adjuncts-profile/' + (userId ? userId : $cookies._id),
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'}
-        }).success(function (data, status, headers, config) {
-                $scope.user = data;
-                angular.extend($scope.user, {
-
-                });
-
-            }).error(function (data, status, headers, config) {
-                console.log("get-adjuncts-profile-top-card didn't work");
-            });
     }]);

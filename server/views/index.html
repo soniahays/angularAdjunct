@@ -58,21 +58,19 @@
                 <li ng-class="{active: index == 3}" ng-click="index = 3" class="dropdown"><a ng-href="/jobs" bs-dropdown="jobsDropdown">Jobs</a></li>
                 <li ng-class="{active: index == 4}" ng-click="index = 4"><a href="/contact-us">Contact Us</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <span ng-if="!isSignedIn">
-                <button class="btn  btn-primary-custom btn-custom btn-signin" data-placement="bottom" data-title="" bs-popover="'/partial/signin-popover'" data-original-title="" title="">Sign In</button>
-                </span>
-                <li ng-if="isSignedIn" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="pull-left search-image" ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}" width="35px">{{user.firstName||'username'}}<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href ng-click="signout()" > Sign Out</a></li>
-                    </ul>
-                </li>
-            </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-if="!isSignedIn">
+                        <button class="btn  btn-primary-custom btn-custom btn-signin" data-placement="bottom" data-title="" bs-popover="'/partial/signin-popover'" data-original-title="" title="">Sign In</button>
+                    </li>
+                    <li ng-if="user.imageName" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img class="pull-left search-image" ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}" width="35px">{{user.firstName||'username'}}<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href ng-click="signout()"> Sign Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
         </div>
     </div>
-
-
-
 </div>
 
 <div ng-view>

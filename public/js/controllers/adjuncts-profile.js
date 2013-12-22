@@ -10,7 +10,6 @@ angular.module('adjunct.controllers')
         }
 
         $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
-        $scope.middleCardTemplateUrl = '/partial/adjuncts-profile-middle-card';
         $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card';
         $scope.sideSearchColumnUrl = '/partial/side-search-column';
         $scope.rightTopSideColumnUrl = '/partial/adjuncts-profile-right-topSide-column';
@@ -19,7 +18,6 @@ angular.module('adjunct.controllers')
         $scope.badgeEditModalUrl = '/partial/badge-edit-modal';
         $scope.portfolioEditModalUrl = '/partial/portfolio-edit-modal';
         $scope.uploadPictureModalUrl = '/partial/upload-picture-modal';
-        $scope.uploadAttachmentModalUrl = '/partial/upload-attachment-competencies-modal';
         $scope.competencyPortfolioModalUrl = '/partial/competency-portfolio-modal';
         $scope.uploadPortfolioModalUrl = '/partial/upload-portfolio-modal';
         $scope.videoModalUrl = '/partial/video-modal';
@@ -27,31 +25,30 @@ angular.module('adjunct.controllers')
         $scope.urlAttachUrl = '/partial/upload-url-modal';
         $scope.canEdit = $cookies._id && !userId;
 
-        $http.get('/api/countries').then(function(response) { $scope.countries = response.data; });
+        var adjunctProfile = $http.get('/api/get-adjuncts-profile/'+ (userId ? userId : $cookies._id));
+        var countries = $http.get('/api/countries');
+        $q.all([adjunctProfile, countries]).then(function(values) {
+            $scope.user = values[0].data;
+            $scope.countries = values[1].data;
 
-        $http.get('/api/get-adjuncts-profile/'+ (userId ? userId : $cookies._id)).then(function(response){
-
-            $scope.user = response.data;
             angular.extend($scope.user, {
                 experience1Institution: 'Saginaw Valley State University',
                 experience1Title: 'Instructor',
                 experience1Location: 'Fall 2013, Kochville, Michigan',
                 status: 1,
                 experience1TimePeriodYear: '2013'
-
             });
 
-                var countries = $http.get('/api/countries');
-                $q.all([countries]).then(function (values) {
-                    var countries = values[0].data;
-                });
-
-
-
-            $scope.user.countryName = _.findWhere($scope.countries, {_id: $scope.user.country}).name;
+            if ($scope.user.country)
+                $scope.user.countryName = _.findWhere($scope.countries, {_id: $scope.user.country}).name;
 
             if (!$scope.user.survey)
                 $scope.user.survey = {};
+
+
+            if (!$scope.user.expertiseTags) {
+                $scope.user.expertiseTags = [];
+            }
 
             calculateSurvey();
 
@@ -101,12 +98,8 @@ angular.module('adjunct.controllers')
                 }
             }
         },
-
-            function(error){
-                console.log("get-adjuncts-profile-top-card didn't work");
-
-
-
+        function(error){
+            console.log("get-adjuncts-profile-top-card didn't work");
         });
 
         $scope.months = [];
@@ -208,8 +201,8 @@ angular.module('adjunct.controllers')
         }
 
 //        $scope.expertise-tags-custom =
+
         $scope.addAFieldOfExpertise= function(){
-            console.log("from addAFieldOfExpertise",$scope.fieldOfExpertises);
             $scope.user.fieldOfExpertises.push({value:''});
         }
 
