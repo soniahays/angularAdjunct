@@ -87,7 +87,7 @@ app.get('/api/users', function(req, res) {
     });
 });
 
-app.get('/api/index-search', function(req, res) {
+app.post('/api/index-search', function(req, res) {
     userDb.getUsers(function (err, users) {
         if (err) {
             return res.send(500, "Error retrieving user");
