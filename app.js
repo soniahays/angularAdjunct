@@ -10,11 +10,9 @@ var http = require('http'),
     mongodb = require('mongodb'),
     connect = require('./server/dbConnect.js')(bcrypt, mongodb),
     elasticsearch = require('es')({
-        server : {
-            host : 'spruce-9191479.us-east-1.bonsai.io',
+        server: {
             auth: '7jrpodo2:pg40ubsoo8ebvaqg',
-            port : '',
-            secure: false
+            host: 'spruce-9191479.us-east-1.bonsai.io'
         }
     }),
     es = require ('./server/elasticsearch.js')(elasticsearch);
@@ -55,6 +53,7 @@ app.use(express.static(app.get('bowerPath')));
 app.use(express.session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 // Kill the cache because Internet Explorer doesn't do caching properly
 app.use(function noCache(req, res, next) {

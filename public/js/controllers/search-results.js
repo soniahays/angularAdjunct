@@ -12,7 +12,12 @@ angular.module('adjunct.controllers')
         }
 
         $http.post('/api/search', JSON.stringify({'query': searchTerm})).then(function(response){
-            $scope.users = _.pluck(response.data.hits.hits, '_source');
+            if (response.data) {
+                $scope.users = _.pluck(response.data.hits.hits, '_source');
+            }
+            else {
+                $scope.message = "Search server is unreachable";
+            }
         });
 
         $scope.search = function() {
