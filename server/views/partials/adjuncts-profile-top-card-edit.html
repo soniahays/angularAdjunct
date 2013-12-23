@@ -76,10 +76,7 @@
                                     </li>
                                     <li>
                                         <label>Education:</label>
-                                        <input type="text" class="profile-forms" name="educationDegree"
-                                               ng-model="user.educationDegree" maxlength="50"
-                                               placeholder="Education Degree">
-                                        [<a href="" ng-click="addAEducationDegree()">add a field</a>]
+                                        [<a href="" ng-click="addAEducationDegree()">add a degree</a>]
                                         <div ng-repeat="educationDegree in user.educationDegrees">
                                             <input type="text" class="profile-forms" ng-model="educationDegree.value"
                                                    maxlength="50" placeholder="Education Degree" required>
