@@ -37,6 +37,7 @@ angular.module('adjunct.controllers')
                 experience1Location: 'Fall 2013, Kochville, Michigan',
                 status: 1,
                 experience1TimePeriodYear: '2013'
+
             });
 
             if ($scope.user.country)
@@ -45,6 +46,11 @@ angular.module('adjunct.controllers')
             if (!$scope.user.survey)
                 $scope.user.survey = {};
 
+            if (!$scope.user.fieldOfExpertises || $scope.user.fieldOfExpertises.length == 0)
+                $scope.user.fieldOfExpertises = [{ value:''}];
+
+            if (!$scope.user.educationDegrees || $scope.user.educationDegrees.length == 0)
+                    $scope.user.educationDegrees = [{ value:''}];
 
             if (!$scope.user.expertiseTags) {
                 $scope.user.expertiseTags = [];
@@ -207,7 +213,6 @@ angular.module('adjunct.controllers')
         }
 
         $scope.addAEducationDegree= function(){
-            console.log("from addAEducationDegree",$scope.educationDegrees);
             $scope.user.educationDegrees.push({value:''});
         }
 

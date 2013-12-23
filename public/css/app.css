@@ -1,3 +1,11 @@
+.bottom-card-panel{
+    padding-left: 7px;
+    padding-right: 7px;
+}
+.bottom-card-panel-body{
+    padding-left: 5px;
+    padding-right: 5px;
+}
 .expertise-tags-custom li{
     color: #0C0A0A !important;
     background-color: #B8D5EE !important;
@@ -254,7 +262,7 @@ border-radius: 0px;
 
 }
 .edit-experience{
-    width:390px;
+    width:430px;
 }
 .edit-year{
     width:90px;
