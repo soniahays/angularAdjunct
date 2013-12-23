@@ -1,5 +1,8 @@
 #! /app/bin/node
 
+
+// This script will call the /api/index-search api which indexes the mongo db into the elastic search db
+
 var http = require('http');
 
 function indexSearch() {
