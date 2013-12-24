@@ -1,19 +1,18 @@
-<div id="bottom-card" class="panel panel-default col-md-12">
+<div id="bottom-card" class="panel panel-default bottom-card-panel col-md-12">
     <div class="panel-body profile-bottom-card">
         <!--<div ng-controller="EditableFormCtrl2" id ="profile-details">-->
         <div class="profile-details-content">
             <form editable-form name="editableForm2">
 
                 <div id="summary-container">
-                     <span class=" lead user-summary lead" editable-textarea="user.summary" e-rows="12" e-cols="80">
-                         <br/>
-                         <p style="background-color: white;">{{user.summary || 'no description'}}</p>
+                     <span class=" lead user-summary lead" editable-textarea="user.summary" e-rows="12" e-cols="80" >
+                         <h6><span style="margin-top: 7px; margin-bottom:7px;"><i class="fa fa-user fa-lg"></i> Summary</span></h6>
+                         <p style="background-color: white;">{{user.summary}}</p>
                      </span>
                 </div>
 
-
-
                 <div id="experience-container">
+                    <h6><span style="margin-top: 7px; margin-bottom:7px;"><i class="fa fa-clipboard fa-lg"></i> Experience</span></h6>
                     <span editable-text="user.experience1Title"> <div id="headline">{{ user.experience1Title|| 'empty' }}</div></span>
                     <span editable-text="user.experience1Institution"><div id="headline-institution">{{ user.experience1Institution || 'empty' }}</div></span>
                     <span editable-text="user.experience1Location"><div id="headline-location"class="text-muted">{{ user.experience1Location || 'empty' }}</div></span>

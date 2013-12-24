@@ -50,7 +50,11 @@ angular.module('adjunct.controllers')
                 $scope.user.fieldOfExpertises = [{ value:''}];
 
             if (!$scope.user.educationDegrees || $scope.user.educationDegrees.length == 0)
-                    $scope.user.educationDegrees = [{ value:''}];
+               $scope.user.educationDegrees = [{ value:''}];
+
+            if (!$scope.user.resumePositions || $scope.user.resumePositions.length == 0)
+               $scope.user.resumePositions = [{ value:''}];
+
 
             if (!$scope.user.expertiseTags) {
                 $scope.user.expertiseTags = [];
@@ -216,6 +220,10 @@ angular.module('adjunct.controllers')
             $scope.user.educationDegrees.push({value:''});
         }
 
+        $scope.addAResumePosition= function(){
+            $scope.user.resumePositions.push({value:''});
+        }
+
         $scope.removeAEducationDegree= function(educationDegree) {
             for(var i= 0, ii = $scope.user.educationDegrees.length; i < ii; i++){
                 if(educationDegree==$scope.user.educationDegrees[i]){
@@ -228,6 +236,13 @@ angular.module('adjunct.controllers')
             for(var i= 0, ii = $scope.user.fieldOfExpertises.length; i < ii; i++){
                 if(fieldOfExpertise==$scope.user.fieldOfExpertises[i]){
                     $scope.user.fieldOfExpertises.splice(i, 1);
+                }
+            }
+        }
+        $scope.removeAResumePosition= function(resumePosition) {
+            for(var i= 0, ii = $scope.user.resumePositions.length; i < ii; i++){
+                if(resumePosition==$scope.user.resumePositions[i]){
+                    $scope.user.resumePositions.splice(i, 1);
                 }
             }
         }

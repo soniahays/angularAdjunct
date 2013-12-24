@@ -1,10 +1,10 @@
 <div id="top-card" class="panel panel-default col-md-12"
-     style="position: relative;padding-left:5px !important;padding-right:5px !important; padding-bottom: 0px !important; margin-bottom: 5px !important">
+     style="position: relative;padding-left:0px !important;padding-right:5px !important; padding-bottom: 0px !important; margin-bottom: 5px !important">
 
     <div class="panel-body profile-top-card">
         <div class="profile-picture">
             <span ng-if="user.imageName">
-                <img class="img-thumbnail pull-left" ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}"/>
+                <img class="pull-left"  style="width: 207px;"ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}"/>
             </span>
             <div ng-if="!user.imageName" class="no-picture">
                 <div ng-show="canEdit" class="addPictLink">
