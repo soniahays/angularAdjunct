@@ -33,24 +33,39 @@
                                     <span>Time Period <abbr title="Required" class="required">*</abbr></span>
                                 </legend>
                                 <ul>
-                                    <li class="start-date">
-                                        <label for="">Month </label>
-                                        <select ng-model="user.month" class="edit-month" ng-options="m for m in months" class="input-xlarge" required>
+
+
+
+
+
+
+
+
+
+
+                                    <li class="start-date"style="display:inline!important;">
+                                        <select ng-model="user.month" class="edit-month" ng-options="m for m in months" class=""style="display:inline!important;" required>
                                             <option value="">choose...</option></select>
                                         <label for="" style="display:none;" >Year</label>
                                         <input type="text" class="form-control form-inline input-sm profile-forms year"
-                                               name="experience1TimePeriodYear " ng-model="user.experience1TimePeriodYear" maxlength="4" placeholder="Year">
+                                               name="experience1TimePeriodYear " ng-model="user.experience1TimePeriodYear" maxlength="4" placeholder="Year"style="display:inline!important;">
                                         <span class="to">-</span>
                                     </li>
-                                    <li class="end-date">
-                                        <div class="ended-position">
-                                            <label for="">Month </label>
-                                            <select ng-model="user.month" class="edit-month" ng-options="m for m in months" class="input-xlarge" required>
+                                    <li class="end-date"style="display:inline!important;">
+                                        <div class="ended-position"style="display:inline!important;">
+                                            <span ng-hide="user.stillHere">
+                                            <select ng-model="user.month" class="edit-month" ng-options="m for m in months" class=""style="display:inline!important;" required>
                                                 <option value="">choose...</option></select>
                                             <label for="" style="display:none;" >Year</label>
                                             <input type="text" class="form-control form-inline input-sm profile-forms year"
-                                                   name="experience1TimePeriodYear " ng-model="user.experience1TimePeriodYear"  maxlength="4" placeholder="Year">
+                                                   name="experience1TimePeriodYear " ng-model="user.experience1TimePeriodYear"  maxlength="4" placeholder="Year"style="display:inline!important;">
+                                            </span>
+                                            <span ng-show="user.stillHere">to present</spanstyle="display:inline!important;">
                                         </div>
+                                        <label class="checkbox" id="still-here">
+                                            <input type="checkbox" ng-model="user.stillHere" style="display:inline!important;">
+                                            I currently work here
+                                        </label>
 
                                     </li>
                                 </ul>

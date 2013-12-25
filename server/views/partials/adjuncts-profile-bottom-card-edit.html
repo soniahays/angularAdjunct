@@ -1,6 +1,5 @@
-<div id="bottom-card" class="panel panel-default bottom-card-panel col-md-12" xmlns="http://www.w3.org/1999/html">
+<div id="bottom-card" class="panel panel-default bottom-card-panel col-md-12">
     <div class="panel-body bottom-card-panel-body">
-        <!--<div ng-controller="EditableFormCtrl2" id ="profile-details">-->
         <div class="profile-details-content">
                         <div id="experience-edit">
                             <form class="form-group">
@@ -73,7 +72,7 @@
                                                                name="experience1TimePeriodYear " ng-model="user.resumePosition.endYear"  maxlength="4" placeholder="Year" style="display:inline!important;"></span>
                                                         <span ng-show="user.stillHere">to present</span>
                                                         </div>
-                                                        <div class="current-position">Present</div>
+
                                                         <label class="checkbox" id="still-here">
                                                         <input type="checkbox" ng-model="user.stillHere">
                                                             I currently work here
@@ -114,25 +113,3 @@
         <!--</div>-->
     </div>
 </div>
-
-
-
-<!--<form editable-form name="editableForm2">-->
-
-<!--<div id="summary-container">-->
-<!--<span class=" lead user-summary lead" editable-textarea="user.summary" e-rows="12" e-cols="80">-->
-<!--<p style="background-color: white;">{{user.summary || 'no description'}}</p>-->
-<!--</span>-->
-<!--</div>-->
-
-<!--<div id="experience-container">-->
-<!--<span editable-text="user.experience1Title"> <div id="headline">{{ user.experience1Title|| 'empty' }}</div></span>-->
-<!--<span editable-text="user.experience1Institution"><div id="headline-institution">{{ user.experience1Institution || 'empty' }}</div></span>-->
-<!--<span editable-text="user.experience1Location"><div id="headline-location"class="text-muted">{{ user.experience1Location || 'empty' }}</div></span>-->
-<!--<span editable-select="user.status" e-ng-options="s.value as s.text for s in statuses"> {{ showStatus() }}</span>-->
-<!--<span editable-text="user.experience1TimePeriodYear">{{}}</span>-->
-<!--&lt;!&ndash;<span editable-text="user.experience1TimePeriodYear">{{ user.experience1TimePeriodYear || 'empty' }}</span>&ndash;&gt;-->
-<!--<span editable-textarea="user.experience1Summary" e-rows="12" e-cols="80">-->
-<!--<p id="headline-i"><em>{{user.experience1Summary || 'no description'}}</em></p>-->
-<!--</span>-->
-<!--</div>-->

@@ -263,7 +263,9 @@ border-radius: 0px;
     padding-right:0px! important;
 }
 .custom-main-left-panel{
+    padding-left: 0px !important;
     padding-right: 0px !important;
+
 }
 .badge{
     padding-left: 0px;

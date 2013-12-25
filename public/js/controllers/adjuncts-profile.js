@@ -11,6 +11,7 @@ angular.module('adjunct.controllers')
 
         $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
         $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card';
+        $scope.middleCardTemplateUrl = '/partial/adjuncts-profile-middle-card';
         $scope.sideSearchColumnUrl = '/partial/side-search-column';
         $scope.rightTopSideColumnUrl = '/partial/adjuncts-profile-right-topSide-column';
         $scope.rightBottomSideColumnUrl = '/partial/adjuncts-profile-right-bottomSide-column';
@@ -133,6 +134,10 @@ angular.module('adjunct.controllers')
             $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card-edit';
         }
 
+        $scope.editMiddleCard = function () {
+            $scope.middleCardTemplateUrl = '/partial/adjuncts-profile-middle-card-edit';
+        }
+
         $scope.saveTopCard = function () {
             $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
 
@@ -147,6 +152,22 @@ angular.module('adjunct.controllers')
                     console.log("save-adjuncts-profile-top-card didn't work");
                 });
         }
+        $scope.saveMiddleCard = function () {
+            $scope.middleCardTemplateUrl = '/partial/adjuncts-profile-middle-card';
+
+            $http({
+                url: '/save-adjuncts-profile',
+                method: 'POST',
+                data: JSON.stringify({'user': $scope.user}),
+                headers: {'Content-Type': 'application/json'}
+            }).success(function (data, status, headers, config) {
+                    console.log("save-adjuncts-profile-top-card worked");
+                }).error(function (data, status, headers, config) {
+                    console.log("save-adjuncts-profile-top-card didn't work");
+                });
+        }
+
+
 
         $scope.saveBadgeCard = function () {
             $http({
@@ -288,10 +309,10 @@ angular.module('adjunct.controllers')
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
         }
 
-        $scope.openPortfolioEditModal= function() {
-            $('#portfolio-edit-modal').modal();
-            $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
-        }
+//        $scope.openPortfolioEditModal= function() {
+//            $('#portfolio-edit-modal').modal();
+//            $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
+//        }
 
         $scope.uploadComplete = function (content, completed) {
             $http({

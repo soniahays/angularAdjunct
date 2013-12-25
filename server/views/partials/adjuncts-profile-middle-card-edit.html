@@ -1,0 +1,57 @@
+<div id="middle-card" class="panel-group middle-card  col-md-12" id="accordion"
+     style="padding-left:0px !important;padding-right:0px !important;">
+    <div class="panel panel-default" style="padding: 0 0 0 0 !important; border-radius: 0px!important;">
+
+
+
+
+
+
+
+
+                    <!--<div class="modal-header">-->
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                    <!--</div>-->
+                    <!--<div class="modal-body" style="padding-left:10px;padding-right:10px;" >-->
+                        <div id="video-form-wrapper" style="margin: 20px 20px;">
+
+
+                            <form name="portfolioForm">
+                                <label>Paste in the link of your Youtube video:</label></br>
+                                [<a href="" ng-click="addPortfolioLink()">add</a>]
+                                <div ng-repeat="portfolioLink in user.portfolioLinks">
+                                    <select ng-model="portfolioLink.type">
+                                        <option>video</option>
+                                        <option>pdf</option>
+                                    </select>
+                                    <input type="text" class="portfolio-forms" ng-model="portfolioLink.value" required style="width: 354px;font-size: 12px;">
+                                    [<a href="" ng-click="removePortfolioLink(portfolioLink)">X</a>]
+                                </div>
+                            </form>
+                            <button type="button" class="btn btn-xs btn-primary" ng-click="saveMiddleCard()">
+                                Save Profile
+                            </button>
+
+
+
+                            <!--style="width:406px"-->
+
+                        </div>
+                    <!--</div>-->
+                    <!--<div class="modal-footer">-->
+                        <!--<button type="button" class="btn btn-xs btn-primary" data-dismiss="modal" ng-click="savePortfolioCard()">Save</button>-->
+                        <!--<button type="button" class="btn btn-xs" data-dismiss="modal">Cancel</button>-->
+
+                    <!--</div>-->
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>

@@ -2,13 +2,15 @@
     <div id="userId" style="display:none"><%= locals.userId %></div>
 <% } %>
 <div class="container">
+
     <div class="panel col-md-10 custom-main-left-panel">
         <div ng-include="topCardTemplateUrl" />
         <div class="panel-group col-md-3" style="padding-left:0px !important;padding-right:0px !important;">
             <div ng-include="badgeSectionUrl" />
         </div>
         <div class="panel-group col-md-9" style="padding-left:0px !important;padding-right:0px !important;">
-            <div ng-include="'/partial/adjuncts-profile-middle-card'" />
+            <!--<div ng-include="'/partial/adjuncts-profile-middle-card'" />-->
+            <div ng-include="middleCardTemplateUrl" />
             <div ng-include="bottomCardTemplateUrl" />
         </div>
     </div>
@@ -16,6 +18,7 @@
         <div ng-include="rightTopSideColumnUrl" />
         <div ng-include="rightBottomSideColumnUrl" />
     </div>
+
 </div>
 
 <div ng-include="uploadPictureModalUrl" />
