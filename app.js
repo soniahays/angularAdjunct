@@ -1,4 +1,5 @@
 var http = require('http'),
+    https = require('https'),
     path = require('path'),
     fs = require('fs'),
     uuid = require('node-uuid'),
@@ -8,6 +9,7 @@ var http = require('http'),
     bcrypt = require('bcryptjs'),
     aws = require('aws-sdk'),
     mongodb = require('mongodb'),
+    url = require('url'),
     connect = require('./server/dbConnect.js')(bcrypt, mongodb),
     elasticsearch = require('es')({
         server: {
@@ -15,7 +17,8 @@ var http = require('http'),
             host: 'spruce-9191479.us-east-1.bonsai.io'
         }
     }),
-    es = require ('./server/elasticsearch.js')(elasticsearch);
+    es = require('./server/elasticsearch.js')(elasticsearch),
+    linkedinAuth = require('./server/linkedinAuth.js')(http, https);
 
 var userDb, jobDb, institutionDb, pass;
 
@@ -155,18 +158,6 @@ app.get('/api/get-institutions-profile/:id', function (req, res) {
         }
 
         return res.json(institution);
-    });
-});
-
-app.get('/api/:collectionName', function (req, res) {
-    metadataDb.get(req.params.collectionName, function(err, docs) {
-        if (err) {
-            return res.send(500, "Error retrieving " + req.params.collectionName);
-        }
-        if (!docs) {
-            return res.send('Not found');
-        }
-        return res.json(docs);
     });
 });
 
@@ -376,9 +367,48 @@ app.post('/signin-post',
         failureRedirect: '/signin' })
 );
 
+app.get('/api/linkedInAuth', function (req, res) {
+// If we have the access_token in the cookie skip the Oauth Dance and go straight to Step 3
+    if (req.cookies.linkedInAccessToken){
+        // STEP 3 - Get LinkedIn API Data
+         console.log("we have the cookie value" + req.cookies.linkedInAccessToken);
+        linkedinAuth.oauthStep3(req, res, req.cookies.linkedInAccessToken, linkedinAuth.APICalls['skills']);
+    } else {
+        var queryObject = url.parse(req.url, true).query;
+
+        if (!queryObject.code) {
+            // STEP 1 - If this is the first run send them to LinkedIn for Auth
+            linkedinAuth.oauthStep1(req, res);
+        } else {
+            // STEP 2 - If they have given consent and are at the callback do the final token request
+            linkedinAuth.oauthStep2(req, res, queryObject.code);
+        }
+    }
+
+    res.end();
+});
+
+app.get('/api/linkedInAuthCallback', function (req, res) {
+    var queryObject = url.parse(req.url, true).query;
+    linkedinAuth.oauthStep2(req, res, queryObject.code);
+    //res.end();
+});
+
 app.post('/basic-profile', function (req, res) {
     userDb.updateUser(req.body.user);
     res.end();
+});
+
+app.get('/api/:collectionName', function (req, res) {
+    metadataDb.get(req.params.collectionName, function(err, docs) {
+        if (err) {
+            return res.send(500, "Error retrieving " + req.params.collectionName);
+        }
+        if (!docs) {
+            return res.send('Not found');
+        }
+        return res.json(docs);
+    });
 });
 
 app.get('*', function (req, res) {

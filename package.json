@@ -13,7 +13,8 @@
     "passport-local": "0.1.x",
     "node-uuid": "~1.4",
     "aws-sdk": "~1.12",
-    "es": "~0.3.14"
+    "es": "~0.3.14",
+    "linkedin-js": "~0.1.4"
   },
   "engines": {
     "node": "0.10.x",
