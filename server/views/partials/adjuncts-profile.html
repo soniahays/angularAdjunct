@@ -6,7 +6,7 @@
     <div class="panel col-md-10 custom-main-left-panel">
         <div ng-include="topCardTemplateUrl" />
         <div class="panel-group col-md-3" style="padding-left:0px !important;padding-right:0px !important;">
-            <div ng-include="badgeSectionUrl" />
+            <div ng-include="'/partial/badge-section'" />
         </div>
         <div class="panel-group col-md-9" style="padding-left:0px !important;padding-right:0px !important;">
             <!--<div ng-include="'/partial/adjuncts-profile-middle-card'" />-->
@@ -15,18 +15,18 @@
         </div>
     </div>
     <div class="col-md-2 sidebar-offcanvas" id="sidebar2" role="navigation" style="padding-left: 7px;">
-        <div ng-include="rightTopSideColumnUrl" />
-        <div ng-include="rightBottomSideColumnUrl" />
+        <div ng-include="'/partial/adjuncts-profile-right-topSide-column'" />
+        <div ng-include="'/partial/adjuncts-profile-right-bottomSide-column'" />
     </div>
 
 </div>
 
-<div ng-include="uploadPictureModalUrl" />
+<div ng-include="'/partial/upload-picture-modal'" />
 
-<div ng-include="videoModalUrl" />
-<div ng-include="badgeEditModalUrl" />
-<div ng-include="portfolioEditModalUrl" />
-<div ng-include="competencyPortfolioModalUrl" />
-<div ng-include="uploadPortfolioModalUrl" />
+<div ng-include="'/partial/video-modal'" />
+<div ng-include="'/partial/badge-edit-modal'" />
+<div ng-include="'/partial/portfolio-edit-modal'" />
+<div ng-include="'/partial/competency-portfolio-modal'" />
+<div ng-include="'/partial/upload-portfolio-modal'" />
 
 

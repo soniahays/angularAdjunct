@@ -15,8 +15,6 @@ angular.module('adjunct.controllers')
             $scope.bottomCardJobTemplateUrl = '/partial/job-profile-bottom-card-edit';
         }
 
-        $scope.rightTopSideColumnUrl = '/partial/adjuncts-profile-right-topSide-column';
-        $scope.rightBottomSideColumnUrl = '/partial/adjuncts-profile-right-bottomSide-column';
         $scope.uploadJobPictureModalUrl = '/partial/upload-job-picture-modal';
 
         $http.get('/api/positionTypes').then(function(response) { $scope.positionTypes = response.data; });

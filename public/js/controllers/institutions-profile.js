@@ -13,9 +13,6 @@ angular.module('adjunct.controllers')
         $scope.institution = {};
         $scope.topCardInstitutionTemplateUrl = '/partial/institutions-profile-top-card';
         $scope.bottomCardInstitutionTemplateUrl = '/partial/institutions-profile-bottom-card';
-        $scope.rightTopSideColumnUrl = '/partial/adjuncts-profile-right-topSide-column';
-        $scope.rightBottomSideColumnUrl = '/partial/adjuncts-profile-right-bottomSide-column';
-        $scope.uploadPictureModalUrl = '/partial/upload-picture-modal';
 
         //        $http.get('/api/get-job-profile/' + jobId).then(function(response) { $scope.job = response.data; });
 

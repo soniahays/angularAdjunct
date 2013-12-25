@@ -371,7 +371,6 @@ app.get('/api/linkedInAuth', function (req, res) {
 // If we have the access_token in the cookie skip the Oauth Dance and go straight to Step 3
     if (req.cookies.linkedInAccessToken){
         // STEP 3 - Get LinkedIn API Data
-         console.log("we have the cookie value" + req.cookies.linkedInAccessToken);
         linkedinAuth.oauthStep3(req, res, req.cookies.linkedInAccessToken, linkedinAuth.APICalls['skills']);
     } else {
         var queryObject = url.parse(req.url, true).query;

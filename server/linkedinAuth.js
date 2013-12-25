@@ -6,21 +6,14 @@ module.exports = function (http, https) {
     var APIVersion = "v1";
 
     // These are all of the scope variables. Remove them based on your needs
-    var APIScope = 'r_basicprofile r_fullprofile r_emailaddress r_network r_contactinfo rw_nus rw_groups w_messages';
-    //var APIScope = 'r_basicprofile';
-
-//////////////////////////////////////////////////////////////
-// Some Example API Calls - Change in Step 3 accordingly
-// More information can be found here: http://developer.linkedin.com/rest
-
-
+    var APIScope = 'r_fullprofile r_emailaddress r_network r_contactinfo';
 
     var self = {
         APICalls: [],
 
         setAPICalls: function() {
-// My Profile and My Data APIS
-            self.APICalls['skills'] = 'people/~:(skills)';
+// My Profile and My Data APIs
+            self.APICalls['mySkills'] = 'people/~:(skills)';
             self.APICalls['myProfile'] = 'people/~:(first-name,last-name,headline,picture-url)';
             self.APICalls['myConnections'] = 'people/~/connections';
             self.APICalls['myNetworkShares'] = 'people/~/shares';
@@ -129,12 +122,7 @@ module.exports = function (http, https) {
         oauthStep3: function (request, response, access_token, APICall, callback) {
 
             console.log("Step3");
-
-            if (APICall.indexOf("?") >= 0) {
-                var JSONformat = "&format=json";
-            } else {
-                var JSONformat = "?format=json";
-            }
+            var JSONformat = APICall.indexOf("?") >= 0 ? "&format=json" : "?format=json";
 
             var options = {
                 host: 'api.linkedin.com',
@@ -143,13 +131,9 @@ module.exports = function (http, https) {
             };
 
             var req = https.request(options, function (res) {
-                console.log("statusCode: ", res.statusCode);
-                console.log("headers: ", res.headers);
-
                 res.on('data', function (d) {
                     // We have LinkedIn data!  Process it and continue with your application here
-                    // apiResponse =JSON.parse(d)
-                    process.stdout.write(d);
+                    callback(d);
                 });
             });
 
