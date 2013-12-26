@@ -27,7 +27,7 @@
                                         <div class="fieldgroup">
                                             <div class="institution">
                                                     <input type="text" class="form-control form-inline input-sm profile-forms position-edit-form"
-                                                    name="experience1Institution" ng-model="user.resumePosition.institution" maxlength="100">
+                                                    name="experience1Institution" ng-model="resumePosition.institution" maxlength="100">
                                             </div>
                                         </div>
                                     </li>
@@ -36,7 +36,7 @@
                                         <div class="fieldgroup">
                                             <div class="institution">
                                                 <input type="text" class="form-control form-inline input-sm profile-forms position-edit-form"
-                                                       name="experience1Title" ng-model="user.resumePosition.title " maxlength="100">
+                                                       name="experience1Title" ng-model="resumePosition.title " maxlength="100">
                                             </div>
                                         </div>
                                     </li>
@@ -45,7 +45,7 @@
                                         <div class="fieldgroup">
                                             <div class="institution">
                                                 <input type="text" class="form-control form-inline input-sm profile-forms position-edit-form"
-                                                       name="experience1Location" ng-model="user.resumePosition.location  " maxlength="100">
+                                                       name="experience1Location" ng-model="resumePosition.location  " maxlength="100">
                                             </div>
                                         </div>
                                     </li>
@@ -56,25 +56,25 @@
                                                 </legend>
                                                 <ul>
                                                     <li class="start-date" style="display:inline!important;">
-                                                        <span><select ng-model="user.resumePosition.startMonth" class="edit-month" ng-options="m for m in months" class="" required style="display:inline!important;">
+                                                        <span><select ng-model="resumePosition.startMonth" class="edit-month" ng-options="m for m in months" class="" required style="display:inline!important;">
                                                         <option value="">choose...</option></select>
                                                         <label for="" style="display:none;" >Year</label>
                                                         <input type="text" class="form-control form-inline input-sm profile-forms year"
-                                                        name="experience1TimePeriodYear " ng-model="user.resumePosition.startYear" maxlength="4" placeholder="Year"style="display:inline!important;">
+                                                        name="experience1TimePeriodYear " ng-model="resumePosition.startYear" maxlength="4" placeholder="Year"style="display:inline!important;">
                                                         <span class="to">-</span></span>
                                                     </li>
                                                     <li class="end-date"  style="display:inline!important;">
                                                         <div class="ended-position" style="display:inline!important;">
-                                                        <span ng-hide="user.stillHere"><select ng-model="user.resumePosition.endMonth" class="edit-month" ng-options="m for m in months" class="" required style="display:inline!important;">
+                                                        <span ng-hide="resumePosition.stillHere"><select ng-model="resumePosition.endMonth" class="edit-month" ng-options="m for m in months" class="" required style="display:inline!important;">
                                                             <option value="">choose...</option></select>
                                                         <label for="" style="display:none;" >Year</label>
                                                         <input type="text" class="form-control form-inline input-sm profile-forms year"
-                                                               name="experience1TimePeriodYear " ng-model="user.resumePosition.endYear"  maxlength="4" placeholder="Year" style="display:inline!important;"></span>
-                                                        <span ng-show="user.stillHere">to present</span>
+                                                               name="experience1TimePeriodYear " ng-model="resumePosition.endYear"  maxlength="4" placeholder="Year" style="display:inline!important;"></span>
+                                                        <span ng-show="resumePosition.stillHere">to present</span>
                                                         </div>
 
                                                         <label class="checkbox" id="still-here">
-                                                        <input type="checkbox" ng-model="user.stillHere">
+                                                        <input type="checkbox" ng-model="resumePosition.stillHere">
                                                             I currently work here
                                                         </label>
                                                     </li>
@@ -84,7 +84,7 @@
                                             <li id="experience-summary">
                                                 <label for="">Description</label>
                                                 <div class="fieldgroup">
-                                                    <textarea name="experience1Summary" class="edit-experience" cols="80" rows="6" ng-model="user.resumePosition.description "></textarea>
+                                                    <textarea name="experience1Summary" class="edit-experience" cols="80" rows="6" ng-model="resumePosition.description "></textarea>
                                                 </div>
                                                 <button type="button" class="btn btn-xs btn-primary" ng-click="saveBottomCard()">Save</button>
                                                 <button type="button" class="btn btn-xs btn-primary" ng-click="saveBottomCard()">Cancel</button>

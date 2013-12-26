@@ -293,7 +293,7 @@ border-radius: 0px;
 }
 
 #top-card{
-    background-color: #FaFaFa;
+    /*background-color: #FaFaFa;*/
     border-radius: 2px 0 0 0 !important;
 
 
@@ -1495,7 +1495,7 @@ mfp-container-custom{
 
 #name-container,#name-container > h2{
     line-height: 0.2;
-    font-size: 0.90em !important;
+
     margin-left:12px;
 }
 

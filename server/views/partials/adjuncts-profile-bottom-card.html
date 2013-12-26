@@ -13,15 +13,28 @@
 
                 <div id="experience-container">
                     <h6><span style="margin-top: 7px; margin-bottom:7px;"><i class="fa fa-clipboard fa-lg"></i> Experience</span></h6>
-                    <span editable-text="user.experience1Title"> <div id="headline">{{ user.experience1Title|| 'empty' }}</div></span>
-                    <span editable-text="user.experience1Institution"><div id="headline-institution">{{ user.experience1Institution || 'empty' }}</div></span>
-                    <span editable-text="user.experience1Location"><div id="headline-location"class="text-muted">{{ user.experience1Location || 'empty' }}</div></span>
-                    <span editable-select="user.status" e-ng-options="s.value as s.text for s in statuses"> {{ showStatus() }}</span>
-                    <span editable-text="user.experience1TimePeriodYear">{{}}</span>
-                    <!--<span editable-text="user.experience1TimePeriodYear">{{ user.experience1TimePeriodYear || 'empty' }}</span>-->
-                    <span editable-textarea="user.experience1Summary" e-rows="12" e-cols="80">
-                        <p id="headline-i"><em>{{user.experience1Summary || 'no description'}}</em></p>
-                    </span>
+                    <div ng-repeat="resumePosition in user.resumePositions">
+                        <div>{{ resumePosition.title || 'empty' }}</div>
+                        <div>{{ resumePosition.institution || 'empty' }}</div>
+                        <div><small>{{ resumePosition.description || 'empty' }}</small></div>
+                        <div>{{ resumePosition.location || 'empty' }}</div>
+                        <div>{{ resumePosition.stillHere || 'empty' }}</div>
+                        <div>{{ resumePosition.startMonth || 'empty' }}</div>
+                        <div>{{ resumePosition.startYear || 'empty' }}</div>
+                    </div>
+
+
+
+
+                    <!--<span editable-text="user.experience1Title"> <div id="headline">{{ user.experience1Title|| 'empty' }}</div></span>-->
+                    <!--<span editable-text="user.experience1Institution"><div id="headline-institution">{{ user.experience1Institution || 'empty' }}</div></span>-->
+                    <!--<span editable-text="user.experience1Location"><div id="headline-location"class="text-muted">{{ user.experience1Location || 'empty' }}</div></span>-->
+                    <!--<span editable-select="user.status" e-ng-options="s.value as s.text for s in statuses"> {{ showStatus() }}</span>-->
+                    <!--<span editable-text="user.experience1TimePeriodYear">{{}}</span>-->
+                    <!--&lt;!&ndash;<span editable-text="user.experience1TimePeriodYear">{{ user.experience1TimePeriodYear || 'empty' }}</span>&ndash;&gt;-->
+                    <!--<span editable-textarea="user.experience1Summary" e-rows="12" e-cols="80">-->
+                        <!--<p id="headline-i"><em>{{user.experience1Summary || 'no description'}}</em></p>-->
+                    <!--</span>-->
                 </div>
             </form>
         </div>

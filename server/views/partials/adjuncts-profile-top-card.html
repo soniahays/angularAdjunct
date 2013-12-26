@@ -17,10 +17,10 @@
             </div>
         </div>
 
-        <div class="profile-overview-content">
+        <div class="profile-overview-content" style="margin-top: 30px;">
             <div class="lead lead-custom masthead">
-                <div id="name-container">
-                    <h2>
+                <div id="name-container" >
+                    <h2 style="font-weight:bold; font-size: 22px;">
                         <span>{{ user.firstName || 'empty' }}</span>
                         <span>{{ user.lastName || 'empty' }}</span>
                     </h2>
@@ -49,7 +49,10 @@
                 </tr>
                 <tr id="overview-summary-education">
                     <td class="profile-card-table-th">Education</td>
-                    <td class="profile-card-table-td"><span>{{ user.educationDegree || 'educationempty' }}</span></td>
+                    <td class="profile-card-table-td">
+                        <div ng-repeat="educationDegree in user.educationDegrees">
+                            <span>{{ educationDegree.value || 'empty' }}</span>
+                        </div>
                 </tr>
                 <!--<tr>-->
                     <!--<td></td>-->
