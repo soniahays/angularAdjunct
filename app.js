@@ -369,28 +369,28 @@ app.post('/signin-post',
 
 app.get('/api/linkedInAuth', function (req, res) {
 // If we have the access_token in the cookie skip the Oauth Dance and go straight to Step 3
-    if (req.cookies.linkedInAccessToken){
-        // STEP 3 - Get LinkedIn API Data
-        linkedinAuth.oauthStep3(req, res, req.cookies.linkedInAccessToken, linkedinAuth.APICalls['skills']);
+    if (req.cookies.linkedinAccessToken){
+        linkedinAuth.oauthStep3(req, res, req.cookies.linkedinAccessToken, linkedinAuth.APICalls['mySkills'], function(data) {
+            req.session.linkedinData = data;
+            res.writeHead(302, { 'Location': 'http://localhost:3000/profile' });
+            res.end();
+        });
     } else {
-        var queryObject = url.parse(req.url, true).query;
-
-        if (!queryObject.code) {
-            // STEP 1 - If this is the first run send them to LinkedIn for Auth
-            linkedinAuth.oauthStep1(req, res);
-        } else {
-            // STEP 2 - If they have given consent and are at the callback do the final token request
-            linkedinAuth.oauthStep2(req, res, queryObject.code);
-        }
+        linkedinAuth.oauthStep1(req, res);
     }
-
-    res.end();
 });
 
 app.get('/api/linkedInAuthCallback', function (req, res) {
     var queryObject = url.parse(req.url, true).query;
-    linkedinAuth.oauthStep2(req, res, queryObject.code);
-    //res.end();
+    linkedinAuth.oauthStep2(req, res, queryObject.code, function(data) {
+        req.session.linkedinData = data;
+        res.writeHead(302, { 'Location': 'http://localhost:3000/profile' });
+        res.end();
+    });
+});
+
+app.get('/api/getLinkedinData', function (req, res) {
+    res.send(req.session.linkedinData);
 });
 
 app.post('/basic-profile', function (req, res) {

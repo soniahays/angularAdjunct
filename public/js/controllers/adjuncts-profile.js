@@ -16,10 +16,12 @@ angular.module('adjunct.controllers')
 
         var adjunctProfile = $http.get('/api/get-adjuncts-profile/' + (userId ? userId : $cookies._id));
         var countries = $http.get('/api/countries');
+        var linkedinData = $http.get('/api/getLinkedinData');
 
-        $q.all([adjunctProfile, countries]).then(function (values) {
+        $q.all([adjunctProfile, countries, linkedinData]).then(function (values) {
                 $scope.user = values[0].data;
                 $scope.countries = values[1].data;
+                var linkedinData = values[2].data;
 
                 angular.extend($scope.user, {
                     experience1Institution: 'Saginaw Valley State University',
@@ -52,6 +54,12 @@ angular.module('adjunct.controllers')
 
                 if (!$scope.user.expertiseTags) {
                     $scope.user.expertiseTags = [];
+                }
+
+                if ($scope.user.expertiseTags.length == 0 && linkedinData.skills) {
+                    var skills = _.pluck(_.pluck(linkedinData.skills.values, 'skill'), 'name');
+                    console.log(skills);
+                    $scope.user.expertiseTags = skills;
                 }
 
                 calculateSurvey();
@@ -138,8 +146,7 @@ angular.module('adjunct.controllers')
         }
 
         $scope.importLinkedin = function () {
-            $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
-            $http.post('/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
+            window.location.replace("http://localhost:3000/api/linkedInAuth");
         }
 
         $scope.saveMiddleCard = function () {
@@ -256,7 +263,7 @@ angular.module('adjunct.controllers')
         }
 
         $scope.uploadComplete = function (content, completed) {
-            $http.post('/save-adjuncts-profile/' + $cookies._id).then(function () {
+            $http.get('/api/get-adjuncts-profile/' + $cookies._id).success(function (data) {
                 $scope.user.imageName = data.imageName;
             });
         };
