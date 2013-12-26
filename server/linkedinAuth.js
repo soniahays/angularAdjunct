@@ -65,18 +65,17 @@ module.exports = function (http, https) {
 //////////////////////////////////////////////////////////////
 // Oauth Step 1 - Redirect end-user for authorization
         oauthStep1: function (req, response) {
-
             console.log("Step1");
-
             response.writeHead(302, {
-                'Location': 'https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=' + APIKey + '&scope=' + APIScope + '&state=RNDM_' + self.randomState(18) + '&redirect_uri=' + callbackURL
+                'Location': 'https://www.linkedin.com/uas/oauth2/authorization?response_type=code' +
+                    '&client_id=' + APIKey + '&scope=' + APIScope + '&state=RNDM_' + self.randomState(18) + '&redirect_uri=' + callbackURL
             });
             response.end();
         },
 
 //////////////////////////////////////////////////////////////
 // Oauth Step 2 - The callback post authorization
-        oauthStep2: function (request, response, code) {
+        oauthStep2: function (request, response, code, callback) {
 
             console.log("Step2");
 
@@ -86,34 +85,26 @@ module.exports = function (http, https) {
                 path: "/uas/oauth2/accessToken?grant_type=authorization_code&code=" + code + "&redirect_uri=" + callbackURL + "&client_id=" + APIKey + "&client_secret=" + APIKeySecret
             };
 
-            var req = https.request(options, function (res) {
-                console.log("statusCode: ", res.statusCode);
-                console.log("headers: ", res.headers);
-
-                res.on('data', function (d) {
-                    // STEP 3 - Get LinkedIn API Data
-                    // We have successfully completed Oauth and have received our access_token.  Congrats!
-                    // Now let's make a real API call (Example API call referencing APICalls['peopleSearchWithKeywords'] below)
-                    // See more example API Calls at the end of this file
-                    console.log("d: ", d);
-                    access_token = JSON.parse(d).access_token;
-
-                    var ExpiresIn29days = new Date();
-                    ExpiresIn29days.setDate(ExpiresIn29days.getDate() + 29);
-
-                    response.writeHead(200, {
-                        'Set-Cookie': 'linkedInAccessToken=' + access_token + '; Expires=' + ExpiresIn29days
-                    });
-
-                    self.oauthStep3(request, response, access_token, APICalls['peopleSearchWithKeywords']);
+            https.get(options, function (resource) {
+                console.log("in step 2 request");
+                var chunks = [];
+                resource.on('data', function (chunk) {
+                    chunks.push(chunk);
                 });
-            });
+                resource.on('end', function () {
+                    console.log("in step 2 end");
+                    var d = chunks.join('');
+                    var access_token = JSON.parse(d).access_token;
+                    response.cookie('linkedinAccessToken', access_token);
 
-            req.on('error', function (e) {
+                    self.oauthStep3(request, response, access_token, self.APICalls['mySkills'], function(data) {
+                        callback(data);
+                    });
+                });
+            }).on('error', function (e) {
                 console.error("There was an error with our Oauth Call in Step 2: " + e);
                 response.end("There was an error with our Oauth Call in Step 2");
             });
-            req.end();
         },
 
 //////////////////////////////////////////////////////////////
@@ -130,18 +121,19 @@ module.exports = function (http, https) {
                 path: '/' + APIVersion + '/' + APICall + JSONformat + "&oauth2_access_token=" + access_token
             };
 
-            var req = https.request(options, function (res) {
-                res.on('data', function (d) {
-                    // We have LinkedIn data!  Process it and continue with your application here
-                    callback(d);
+            https.get(options, function (resource) {
+                var chunks = [];
+                resource.on('data', function (chunk) {
+                    chunks.push(chunk);
                 });
-            });
-
-            req.on('error', function (e) {
+                resource.on('end', function () {
+                    var data = chunks.join('');
+                    callback(data);
+                });
+            }).on('error', function (e) {
                 console.error("There was an error with our LinkedIn API Call in Step 3: " + e);
                 response.end("There was an error with our LinkedIn API Call in Step 3");
             });
-            req.end();
         }
     }
     self.setAPICalls();
