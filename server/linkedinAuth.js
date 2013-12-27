@@ -6,46 +6,9 @@ module.exports = function (http, https) {
     var APIVersion = "v1";
 
     // These are all of the scope variables. Remove them based on your needs
-    var APIScope = 'r_fullprofile r_emailaddress r_network r_contactinfo';
+    var APIScope = 'r_basicprofile';
 
     var self = {
-        APICalls: [],
-
-        setAPICalls: function() {
-// My Profile and My Data APIs
-            self.APICalls['mySkills'] = 'people/~:(skills)';
-            self.APICalls['myProfile'] = 'people/~:(first-name,last-name,headline,picture-url)';
-            self.APICalls['myConnections'] = 'people/~/connections';
-            self.APICalls['myNetworkShares'] = 'people/~/shares';
-            self.APICalls['myNetworksUpdates'] = 'people/~/network/updates';
-            self.APICalls['myNetworkUpdates'] = 'people/~/network/updates?scope=self';
-
-// PEOPLE SEARCH APIS
-// Be sure to change the keywords or facets accordingly
-            self.APICalls['peopleSearchWithKeywords'] = 'people-search:(people:(id,first-name,last-name,picture-url,headline),num-results,facets)?keywords=Hacker+in+Residence';
-            self.APICalls['peopleSearchWithFacets'] = 'people-search:(people,facets)?facet=location,us:84';
-
-// GROUPS APIS
-// Be sure to change the GroupId accordingly
-            self.APICalls['myGroups'] = 'people/~/group-memberships?membership-state=member';
-            self.APICalls['groupSuggestions'] = 'people/~/suggestions/groups';
-            self.APICalls['groupPosts'] = 'groups/12345/posts:(title,summary,creator)?order=recency';
-            self.APICalls['groupDetails'] = 'groups/12345:(id,name,short-description,description,posts)';
-
-// COMPANY APIS
-// Be sure to change the CompanyId or facets accordingly
-            self.APICalls['myFollowingCompanies'] = 'people/~/following/companies';
-            self.APICalls['myFollowCompanySuggestions'] = 'people/~/suggestions/to-follow/companies';
-            self.APICalls['companyDetails'] = 'companies/1337:(id,name,description,industry,logo-url)';
-            self.APICalls['companySearch'] = 'company-search:(companies,facets)?facet=location,us:84';
-
-// JOBS APIS
-// Be sure to change the JobId or facets accordingly
-            self.APICalls['myJobSuggestions'] = 'people/~/suggestions/job-suggestions';
-            self.APICalls['myJobBookmarks'] = 'people/~/job-bookmarks';
-            self.APICalls['jobDetails'] = 'jobs/1452577:(id,company:(name),position:(title))';
-            self.APICalls['jobSearch'] = 'job-search:(jobs,facets)?facet=location,us:84';
-        },
         randomState: function (howLong) {
 
             howLong = parseInt(howLong);
@@ -75,7 +38,7 @@ module.exports = function (http, https) {
 
 //////////////////////////////////////////////////////////////
 // Oauth Step 2 - The callback post authorization
-        oauthStep2: function (request, response, code, callback) {
+        oauthStep2: function (request, response, code, APICall, callback) {
 
             console.log("Step2");
 
@@ -97,7 +60,7 @@ module.exports = function (http, https) {
                     var access_token = JSON.parse(d).access_token;
                     response.cookie('linkedinAccessToken', access_token);
 
-                    self.oauthStep3(request, response, access_token, self.APICalls['mySkills'], function(data) {
+                    self.oauthStep3(request, response, access_token, APICall, function(data) {
                         callback(data);
                     });
                 });
@@ -136,6 +99,5 @@ module.exports = function (http, https) {
             });
         }
     }
-    self.setAPICalls();
     return self;
 }
