@@ -7,20 +7,23 @@
                 <div id="summary-container">
                      <span class=" lead user-summary lead" editable-textarea="user.summary" e-rows="12" e-cols="80" >
                          <h6><span style="margin-top: 7px; margin-bottom:7px;"><i class="fa fa-user fa-lg"></i> Summary</span></h6>
-                         <p style="background-color: white;">{{user.summary}}</p>
+                         <p style="background-color: white;margin-bottom: 30px;">{{user.summary}}</p>
                      </span>
                 </div>
 
                 <div id="experience-container">
                     <h6><span style="margin-top: 7px; margin-bottom:7px;"><i class="fa fa-clipboard fa-lg"></i> Experience</span></h6>
                     <div ng-repeat="resumePosition in user.resumePositions">
-                        <div>{{ resumePosition.title || 'empty' }}</div>
-                        <div>{{ resumePosition.institution || 'empty' }}</div>
-                        <div><small>{{ resumePosition.description || 'empty' }}</small></div>
-                        <div>{{ resumePosition.location || 'empty' }}</div>
-                        <div>{{ resumePosition.stillHere || 'empty' }}</div>
-                        <div>{{ resumePosition.startMonth || 'empty' }}</div>
-                        <div>{{ resumePosition.startYear || 'empty' }}</div>
+                        <ul>
+                            <li>{{ resumePosition.title || 'empty' }}</li>
+                            <li>{{ resumePosition.institution || 'empty' }}</li>
+                            <li>{{ resumePosition.startMonth || 'empty' }} {{ resumePosition.startYear || 'empty' }}-{{ resumePosition.stillHere || 'empty' }}|{{ resumePosition.location || 'empty' }}</li>
+                            <li><small>{{ resumePosition.description || 'empty' }}</small></li>
+                            <li></li></ul>
+                        <div></div>
+
+
+
                     </div>
 
 
