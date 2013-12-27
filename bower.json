@@ -17,19 +17,20 @@
   ],
   "dependencies": {
     "jquery": "~1.10",
-    "angular": "~1.2.4",
-    "angular-route": "~1.2.4",
-    "angular-cookies": "~1.2.4",
-    "angular-resource": "~1.2.4",
+    "angular": "~1.2.6",
+    "angular-route": "~1.2.6",
+    "angular-cookies": "~1.2.6",
+    "angular-resource": "~1.2.6",
     "bootstrap": "~3.0",
     "angular-strap": "~0.7",
     "ngUpload": "~0.4",
     "uri.js": "~1.11",
     "momentjs": "~2.4.0",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "stringjs": "~1.7.0"
   },
   "resolutions": {
-    "angular": "~1.2.4",
+    "angular": "~1.2.6",
     "bootstrap": "~3.0"
   }
 }

@@ -368,23 +368,24 @@ app.post('/signin-post',
 );
 
 app.get('/api/linkedInAuth', function (req, res) {
+
 // If we have the access_token in the cookie skip the Oauth Dance and go straight to Step 3
     if (req.cookies.linkedinAccessToken){
-        linkedinAuth.oauthStep3(req, res, req.cookies.linkedinAccessToken, linkedinAuth.APICalls['mySkills'], function(data) {
+        linkedinAuth.oauthStep3(req, res, req.cookies.linkedinAccessToken, 'people/~:(positions,skills,connections,shares,network)', function(data) {
             req.session.linkedinData = data;
-            res.writeHead(302, { 'Location': 'http://localhost:3000/profile' });
+            res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile/edit' });
             res.end();
         });
     } else {
         linkedinAuth.oauthStep1(req, res);
     }
 });
-
+// The user has successfully entered their linkedin username/password, now we proceed to step 2
 app.get('/api/linkedInAuthCallback', function (req, res) {
     var queryObject = url.parse(req.url, true).query;
     linkedinAuth.oauthStep2(req, res, queryObject.code, function(data) {
         req.session.linkedinData = data;
-        res.writeHead(302, { 'Location': 'http://localhost:3000/profile' });
+        res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile/edit' });
         res.end();
     });
 });

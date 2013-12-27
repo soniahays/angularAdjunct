@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('AdjunctsProfileCtrl', ['$scope', '$http', '$cookies', '$q', function ($scope, $http, $cookies, $q) {
+    .controller('AdjunctsProfileCtrl', ['$scope', '$http', '$cookies', '$q', '$location', function ($scope, $http, $cookies, $q, $location) {
 
         var userId = $('#userId').html();
 
@@ -9,10 +9,13 @@ angular.module('adjunct.controllers')
             return;
         }
 
-        $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
-        $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card';
-        $scope.middleCardTemplateUrl = '/partial/adjuncts-profile-middle-card';
         $scope.canEdit = $cookies._id && !userId;
+
+        var isEditMode = S($location.path()).endsWith('/edit') && $scope.canEdit;
+
+        $scope.topCardTemplateUrl = isEditMode ?  '/partial/adjuncts-profile-top-card-edit': '/partial/adjuncts-profile-top-card';
+        $scope.bottomCardTemplateUrl = isEditMode ? '/partial/adjuncts-profile-bottom-card-edit' : '/partial/adjuncts-profile-bottom-card';
+        $scope.middleCardTemplateUrl = isEditMode ? '/partial/adjuncts-profile-middle-card-edit' : '/partial/adjuncts-profile-middle-card';
 
         var adjunctProfile = $http.get('/api/get-adjuncts-profile/' + (userId ? userId : $cookies._id));
         var countries = $http.get('/api/countries');
@@ -22,6 +25,7 @@ angular.module('adjunct.controllers')
                 $scope.user = values[0].data;
                 $scope.countries = values[1].data;
                 var linkedinData = values[2].data;
+                //console.log(linkedinData);
 
                 angular.extend($scope.user, {
                     experience1Institution: 'Saginaw Valley State University',
@@ -58,8 +62,24 @@ angular.module('adjunct.controllers')
 
                 if ($scope.user.expertiseTags.length == 0 && linkedinData.skills) {
                     var skills = _.pluck(_.pluck(linkedinData.skills.values, 'skill'), 'name');
-                    console.log(skills);
                     $scope.user.expertiseTags = skills;
+                }
+
+                if (linkedinData.positions) {
+                    var positions = linkedinData.positions.values;
+                    $scope.user.resumePositions = _.map(positions, function(position) {
+                        return {
+                            title: position.title,
+                            institution: position.company.name,
+                            startMonth: position.startDate.month,
+                            startYear: position.startDate.year,
+                            stillHere: position.isCurrent,
+                            endMonth: position.isCurrent ? null : position.endDate.month,
+                            endYear: position.isCurrent ? null : position.endDate.year,
+                            location: position.location,
+                            description: position.summary
+                        }
+                    });
                 }
 
                 calculateSurvey();
@@ -146,7 +166,7 @@ angular.module('adjunct.controllers')
         }
 
         $scope.importLinkedin = function () {
-            window.location.replace("http://localhost:3000/api/linkedInAuth");
+            window.location.replace(window.location.origin + "/api/linkedInAuth");
         }
 
         $scope.saveMiddleCard = function () {
@@ -168,12 +188,10 @@ angular.module('adjunct.controllers')
         }
 
         $scope.addPortfolioLink = function () {
-            console.log("from addPortfolioLink", $scope.user.portfolioLinks);
             $scope.user.portfolioLinks.push({type: 'video', value: ''});
         }
 
         $scope.addPortfolioUpload = function () {
-            console.log("from addPortfolioUpload", $scope.user.portfolioLinks);
             $scope.user.portfolioLinks.push({type: 'pdf', value: ''});
         }
 
@@ -257,7 +275,6 @@ angular.module('adjunct.controllers')
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
         }
         $scope.openUploadPortfolioModal = function () {
-            console.log("from open upload portfolio")
             $('#upload-portfolio-modal').modal();
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
         }
