@@ -371,7 +371,7 @@ app.get('/api/linkedInAuth', function (req, res) {
 
 // If we have the access_token in the cookie skip the Oauth Dance and go straight to Step 3
     if (req.cookies.linkedinAccessToken){
-        linkedinAuth.oauthStep3(req, res, req.cookies.linkedinAccessToken, 'people/~:(positions,skills,connections,shares,network)', function(data) {
+        linkedinAuth.oauthStep3(req, res, req.cookies.linkedinAccessToken, 'people/~:(summary,positions,skills,connections,shares,network)', function(data) {
             req.session.linkedinData = data;
             res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile/edit' });
             res.end();

@@ -25,7 +25,7 @@ angular.module('adjunct.controllers')
                 $scope.user = values[0].data;
                 $scope.countries = values[1].data;
                 var linkedinData = values[2].data;
-                //console.log(linkedinData);
+//                console.log(linkedinData);
 
                 angular.extend($scope.user, {
                     experience1Institution: 'Saginaw Valley State University',
@@ -63,6 +63,10 @@ angular.module('adjunct.controllers')
                 if ($scope.user.expertiseTags.length == 0 && linkedinData.skills) {
                     var skills = _.pluck(_.pluck(linkedinData.skills.values, 'skill'), 'name');
                     $scope.user.expertiseTags = skills;
+                }
+
+                if(linkedinData.summary){
+                    $scope.user.personalSummary = linkedinData.summary;
                 }
 
                 if (linkedinData.positions) {
@@ -114,8 +118,10 @@ angular.module('adjunct.controllers')
 
                 // the above is for testing only.
 
+                $scope.isSummaryShown=$scope.user.personalSummary != null;
                 if (!$scope.user.portfolioLinks)
                     $scope.user.portfolioLinks = [];
+                console.log($scope.user.personalSummary);
 
                 if (!$scope.user.fieldOfExpertises)
                     $scope.user.fieldOfExpertises = [];
@@ -205,6 +211,10 @@ angular.module('adjunct.controllers')
 
         $scope.addAFieldOfExpertise = function () {
             $scope.user.fieldOfExpertises.push({value: ''});
+        }
+
+        $scope.addAPersonalSummary = function(){
+           $scope.isSummaryShown = !$scope.isSummaryShown;
         }
 
         $scope.addAEducationDegree = function () {
