@@ -71,7 +71,9 @@ angular.module('adjunct.controllers')
 
                 if (linkedinData.positions) {
                     var positions = linkedinData.positions.values;
+                    console.log(positions);
                     $scope.user.resumePositions = _.map(positions, function(position) {
+
                         return {
                             title: position.title,
                             institution: position.company.name,
@@ -81,10 +83,15 @@ angular.module('adjunct.controllers')
                             endMonth: position.isCurrent ? null : position.endDate.month,
                             endYear: position.isCurrent ? null : position.endDate.year,
                             location: position.location,
-                            description: position.summary
+                            description: position.summary,
+                            termsDate: getUniversityTerm(position.startDate.month, position.startDate.year,position.endDate,position.isCurrent)
+
                         }
+
                     });
+
                 }
+
 
                 calculateSurvey();
 
@@ -121,7 +128,7 @@ angular.module('adjunct.controllers')
                 $scope.isSummaryShown=$scope.user.personalSummary != null;
                 if (!$scope.user.portfolioLinks)
                     $scope.user.portfolioLinks = [];
-                console.log($scope.user.personalSummary);
+
 
                 if (!$scope.user.fieldOfExpertises)
                     $scope.user.fieldOfExpertises = [];
@@ -316,5 +323,61 @@ angular.module('adjunct.controllers')
                     $scope.filteredBadges.push(val);
                 }
             }
+        }
+
+        function getUniversityTerm(startMonth, startYear, endDate, isStillHere){
+            var universityTermStart;
+            var universityTermEnd;
+            switch(startMonth){
+                case 1:
+                case 2:
+                    universityTermStart="winter";
+                    break;
+                case 3:
+                case 4:
+                case 5:
+                    universityTermStart="spring";
+                    break;
+                case 6:
+                case 7:
+                case 8:
+                    universityTermStart="summer";
+                    break;
+                case 9 :
+                case 10 :
+                case 11 :
+                case 12 :
+                    universityTermStart="fall";
+                    break;
+
+            }
+            if(!isStillHere){
+                switch(endDate.month){
+                    case 1:
+                    case 2:
+                    case 3:
+                        universityTermEnd="winter";
+                        break;
+                    case 4:
+                    case 5:
+                    case 6:
+                        universityTermEnd="spring";
+                        break;
+                    case 7:
+                    case 8:
+                        universityTermEnd="summer";
+                        break;
+                    case 9 :
+                    case 10 :
+                    case 11 :
+                    case 12 :
+                        universityTermEnd="fall";
+                        break;
+
+                }
+            }
+
+            return isStillHere ? universityTermStart +" "+ startYear + " - Present" : universityTermStart +" "+ startYear + " - " + universityTermEnd +" "+ endDate.year ;
+
         }
     }]);
