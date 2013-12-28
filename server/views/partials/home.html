@@ -5,7 +5,7 @@
         <div class="home-banner-left" style="margin-top:130px;width:500px;float:left;">
             <h2 style="font-size:21px;margin-bottom: 40px" >Adjuncts is a job marketplace custom-tailored to the needs of Academia.</h2>
             <div class="input-group">
-                <input type="text" class="form-control" ng-model="searchBox" placeholder="Search by university, discipline, qualification, location and more...">
+                <input type="text" class="form-control" ng-enter="search()" ng-model="searchBox" placeholder="Search by university, discipline, qualification, location and more...">
                       <span class="input-group-btn">
                           <button class="btn btn-default btn-custom" type="button" ng-click="search()">Go!</button>
                       </span>

@@ -8,13 +8,13 @@
     <div class="result-col col-md-7">
         <div id="result-container">
             {{message}}
-            <div id="results" class="search-results list-group col-md-12" >
-                <a ng-href="/profile/{{user._id}}" class="list-group-item list-group-item-customized" ng-repeat="user in users">
+            <div id="results" class="search-results list-group col-md-12" ng-repeat="user in users">
+                <a ng-href="/profile/{{user._id}}" class="list-group-item list-group-item-customized">
                     <table>
                     <tr>
                     <td>
                     <div id="search-result-picture" class="align-horizontal search-results-image">
-                        <div ng-if="user.imageName" >
+                        <div ng-if="user.imageName">
                         <img class= "main-search-job-image" ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}" width="100px" />
                         </div>
                         <div ng-if="!user.imageName" class="no-picture-mini"></div>
@@ -27,9 +27,9 @@
                         </span>
                         <p class="description">
                             <span>{{ user.currentPosition || 'empty' }}</span>
-                            <span>at {{ user.institution|| 'empty' }}</span></br>
-                            <span> {{ user.city|| 'empty' }}</span>
-                            <span>| {{ user.department|| 'empty' }}</span>
+                            <span>at {{ user.institution || 'empty' }}</span></br>
+                            <span> {{ user.city || 'empty' }}</span>
+                            <span>| {{ user.department || 'empty' }}</span>
                         </p>
                     </div>
                     </td>

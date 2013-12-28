@@ -13,14 +13,13 @@ angular.module('adjunct.controllers')
 
         $http.post('/api/search', JSON.stringify({'query': searchTerm})).then(function(response){
             if (response.data) {
-                $scope.users = _.pluck(response.data.hits.hits, '_source');
+                $scope.users = _.map(response.data.hits.hits, function(user) {
+                    angular.extend(user, user._source);
+                    return user;
+                });
             }
             else {
                 $scope.message = "Search server is unreachable";
             }
         });
-
-        $scope.search = function() {
-
-        }
     }]);

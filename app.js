@@ -89,7 +89,20 @@ app.get('/api/users', function(req, res) {
     });
 });
 
+// elastic search indexing
 app.post('/api/index-search', function(req, res) {
+    userDb.getUsers(function (err, users) {
+        if (err) {
+            return res.send(500, "Error retrieving user");
+        }
+        if (!users) {
+            return res.send('Not found');
+        }
+        return res.json(es.index(users));
+    });
+});
+
+app.get('/api/index-search', function(req, res) {
     userDb.getUsers(function (err, users) {
         if (err) {
             return res.send(500, "Error retrieving user");
