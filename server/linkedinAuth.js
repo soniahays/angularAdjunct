@@ -2,10 +2,8 @@ module.exports = function (http, https) {
 
     var APIKey = "mw29t6wc4cfa";
     var APIKeySecret = "Chw82KgUKBgteXNh";
-    var callbackURL = "http://localhost:3000/api/linkedInAuthCallback";
+    var callbackURL = "/api/linkedInAuthCallback";
     var APIVersion = "v1";
-
-    // These are all of the scope variables. Remove them based on your needs
     var APIScope = 'r_basicprofile r_fullprofile';
 
     var self = {
@@ -31,7 +29,7 @@ module.exports = function (http, https) {
             console.log("Step1");
             response.writeHead(302, {
                 'Location': 'https://www.linkedin.com/uas/oauth2/authorization?response_type=code' +
-                    '&client_id=' + APIKey + '&scope=' + APIScope + '&state=RNDM_' + self.randomState(18) + '&redirect_uri=' + callbackURL
+                    '&client_id=' + APIKey + '&scope=' + APIScope + '&state=RNDM_' + self.randomState(18) + '&redirect_uri=' +  "http://" + req.headers.host + callbackURL
             });
             response.end();
         },
@@ -45,7 +43,7 @@ module.exports = function (http, https) {
             var options = {
                 host: 'api.linkedin.com',
                 port: 443,
-                path: "/uas/oauth2/accessToken?grant_type=authorization_code&code=" + code + "&redirect_uri=" + callbackURL + "&client_id=" + APIKey + "&client_secret=" + APIKeySecret
+                path: "/uas/oauth2/accessToken?grant_type=authorization_code&code=" + code + "&redirect_uri=" + "http://" + req.headers.host + callbackURL + "&client_id=" + APIKey + "&client_secret=" + APIKeySecret
             };
 
             https.get(options, function (resource) {
