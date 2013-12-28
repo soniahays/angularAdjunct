@@ -25,7 +25,7 @@ angular.module('adjunct.controllers')
                 $scope.user = values[0].data;
                 $scope.countries = values[1].data;
                 var linkedinData = values[2].data;
-//                console.log(linkedinData);
+                console.log(linkedinData);
 
                 angular.extend($scope.user, {
                     experience1Institution: 'Saginaw Valley State University',
@@ -71,7 +71,6 @@ angular.module('adjunct.controllers')
 
                 if (linkedinData.positions) {
                     var positions = linkedinData.positions.values;
-                    console.log(positions);
                     $scope.user.resumePositions = _.map(positions, function(position) {
 
                         return {
@@ -85,13 +84,10 @@ angular.module('adjunct.controllers')
                             location: position.location,
                             description: position.summary,
                             termsDate: getUniversityTerm(position.startDate.month, position.startDate.year,position.endDate,position.isCurrent)
-
                         }
 
                     });
-
                 }
-
 
                 calculateSurvey();
 

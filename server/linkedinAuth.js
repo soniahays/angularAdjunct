@@ -6,7 +6,7 @@ module.exports = function (http, https) {
     var APIVersion = "v1";
 
     // These are all of the scope variables. Remove them based on your needs
-    var APIScope = 'r_basicprofile';
+    var APIScope = 'r_basicprofile r_fullprofile';
 
     var self = {
         randomState: function (howLong) {
@@ -49,13 +49,11 @@ module.exports = function (http, https) {
             };
 
             https.get(options, function (resource) {
-                console.log("in step 2 request");
                 var chunks = [];
                 resource.on('data', function (chunk) {
                     chunks.push(chunk);
                 });
                 resource.on('end', function () {
-                    console.log("in step 2 end");
                     var d = chunks.join('');
                     var access_token = JSON.parse(d).access_token;
                     response.cookie('linkedinAccessToken', access_token);

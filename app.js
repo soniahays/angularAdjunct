@@ -396,7 +396,7 @@ app.get('/api/linkedInAuth', function (req, res) {
 // The user has successfully entered their linkedin username/password, now we proceed to step 2
 app.get('/api/linkedInAuthCallback', function (req, res) {
     var queryObject = url.parse(req.url, true).query;
-    linkedinAuth.oauthStep2(req, res, queryObject.code, function(data) {
+    linkedinAuth.oauthStep2(req, res, queryObject.code, 'people/~:(summary,positions,skills,connections,shares,network)', function(data) {
         req.session.linkedinData = data;
         res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile/edit' });
         res.end();
