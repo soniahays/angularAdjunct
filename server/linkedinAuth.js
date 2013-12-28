@@ -43,7 +43,7 @@ module.exports = function (http, https) {
             var options = {
                 host: 'api.linkedin.com',
                 port: 443,
-                path: "/uas/oauth2/accessToken?grant_type=authorization_code&code=" + code + "&redirect_uri=" + "http://" + req.headers.host + callbackURL + "&client_id=" + APIKey + "&client_secret=" + APIKeySecret
+                path: "/uas/oauth2/accessToken?grant_type=authorization_code&code=" + code + "&redirect_uri=" + "http://" + request.headers.host + callbackURL + "&client_id=" + APIKey + "&client_secret=" + APIKeySecret
             };
 
             https.get(options, function (resource) {
