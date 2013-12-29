@@ -192,6 +192,12 @@ app.post('/api/save-job-profile', function (req, res) {
     res.end();
 });
 
+app.post('/api/save-job-for-user', function (req, res) {
+    userDb.addUserJob(req.cookies._id, {'jobs': req.body.jobId}, function() {
+        res.end();
+    });
+});
+
 app.post('/api/save-institutions-profile', function (req, res) {
     if (req.body.institution) {
         institutionDb.updateInstitution(req.body.institution);
@@ -207,25 +213,22 @@ app.post('/upload-adjunct', function (req, res) {
         userDb.updateUserField(req.cookies._id, {'imageName': newFileName}, function() {
             res.send({ msg: '<b>"' + fileName + '"</b> uploaded.' });
         });
-
     });
 });
 
 app.post('/upload-institution/:id', function (req, res) {
-    upload(function(){
+    upload(req, res, function(newFileName, fileName){
         institutionDb.updateInstitutionField(req.params.id, {'imageName': newFileName}, function() {
-            res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
+            res.send({ msg: '<b>"' + fileName + '"</b> uploaded.' });
         });
-
     });
 });
 
 app.post('/upload-job/:id', function (req, res) {
-    upload(function(){
+    upload(req, res, function(newFileName, fileName){
         jobDb.updateJobField(req.params.id, {'imageName': newFileName}, function() {
-            res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
+            res.send({ msg: '<b>"' + fileName + '"</b> uploaded.' });
         });
-
     });
 });
 

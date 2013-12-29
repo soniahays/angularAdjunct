@@ -27,14 +27,6 @@ angular.module('adjunct.controllers')
                 var linkedinData = values[2] ? values[2].data : null;
                 //console.log(linkedinData);
 
-                angular.extend($scope.user, {
-                    experience1Institution: 'Saginaw Valley State University',
-                    experience1Title: 'Instructor',
-                    experience1Location: 'Fall 2013, Kochville, Michigan',
-                    status: 1,
-                    experience1TimePeriodYear: '2013'
-                });
-
                 if ($scope.user.country)
                     $scope.user.countryName = _.findWhere($scope.countries, {_id: $scope.user.country}).name;
 
@@ -63,6 +55,24 @@ angular.module('adjunct.controllers')
                 if ($scope.user.expertiseTags.length == 0 && linkedinData && linkedinData.skills) {
                     var skills = _.pluck(_.pluck(linkedinData.skills.values, 'skill'), 'name');
                     $scope.user.expertiseTags = skills;
+                }
+
+                if ($scope.user.jobs) {
+                    var jobPromises = [$http.get('/api/positionTypes')];
+                    for (var i = 0; i < $scope.user.jobs.length; i++) {
+                        jobPromises.push($http.get('/api/get-job-profile/' + $scope.user.jobs[i]));
+                    }
+                    $q.all(jobPromises).then(function(values) {
+                        var positionTypes = values[0].data;
+                        var jobs = _.pluck(values.slice(1), 'data');
+                        $scope.user.jobs = _.map(jobs, function(job) {
+                            var positionType = _.findWhere(positionTypes, {_id: job.positionType});
+                            if (positionType) {
+                                job.positionType = positionType.name;
+                            }
+                            return job;
+                        });
+                    });
                 }
 
                 if (linkedinData && linkedinData.summary) {
@@ -121,7 +131,8 @@ angular.module('adjunct.controllers')
 
                 // the above is for testing only.
 
-                $scope.isSummaryShown=$scope.user.personalSummary != null;
+                $scope.isSummaryShown = $scope.user.personalSummary != null;
+
                 if (!$scope.user.portfolioLinks)
                     $scope.user.portfolioLinks = [];
 
@@ -141,7 +152,7 @@ angular.module('adjunct.controllers')
                 }
             },
             function (error) {
-                console.log("get-adjuncts-profile-top-card didn't work");
+                console.log("get-adjuncts-profile-top-card didn't work", error);
             });
 
         $scope.months = [];

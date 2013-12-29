@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('JobProfileCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('JobProfileCtrl', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
         var jobId = $('#jobId').html();
 
         $scope.job = {};
+        $scope.canSaveJob = $cookies._id;
 
         if (jobId) {
             $scope.topCardJobTemplateUrl = '/partial/job-profile-top-card';
@@ -32,6 +33,9 @@ angular.module('adjunct.controllers')
 
         $scope.openJobPictureUploadModal = function() {
             $('#upload-job-picture-modal').modal();
+            var action = $('#upload-job-picture-modal form').attr('action');
+            action = action.replace('/upload-job', '/upload-job/' + jobId);
+            $('#upload-job-picture-modal form').attr('action', action);
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.1'});
         }
 
@@ -51,17 +55,15 @@ angular.module('adjunct.controllers')
         }
 
         $scope.uploadComplete = function (content, completed) {
-            $http({
-                url: '/api/get-job-profile/' + $cookies._id,
-                method: 'GET',
-                headers: {'Content-Type': 'application/json'}
-            }).success(function (data, status, headers, config) {
-                    $scope.user.imageName = data.imageName;
-                    $('#upload-job-picture-modal').modal('hide');
-                }).error(function (data, status, headers, config) {
-                    console.log("get-job-profile-top-card didn't work");
-                });
+            $http.get('/api/get-job-profile/' + jobId).success(function(data) {
+                $scope.user.imageName = data.imageName;
+                $('#upload-job-picture-modal').modal('hide');
+            });
         };
+
+        $scope.saveJobForUser = function () {
+            $http.post('/api/save-job-for-user', JSON.stringify({'jobId': jobId}));
+        }
     }]);
 
 
