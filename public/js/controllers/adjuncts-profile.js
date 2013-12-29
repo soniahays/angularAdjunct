@@ -18,14 +18,14 @@ angular.module('adjunct.controllers')
         $scope.middleCardTemplateUrl = isEditMode ? '/partial/adjuncts-profile-middle-card-edit' : '/partial/adjuncts-profile-middle-card';
 
         var adjunctProfile = $http.get('/api/get-adjuncts-profile/' + (userId ? userId : $cookies._id));
-        var countries = $http.get('/api/countries');
-        var linkedinData = $http.get('/api/getLinkedinData');
+        var countries = $scope.canEdit ? $http.get('/api/countries') : null;
+        var linkedinData = $scope.canEdit ? $http.get('/api/getLinkedinData') : null;
 
         $q.all([adjunctProfile, countries, linkedinData]).then(function (values) {
                 $scope.user = values[0].data;
-                $scope.countries = values[1].data;
-                var linkedinData = values[2].data;
-                console.log(linkedinData);
+                $scope.countries = values[1] ? values[1].data : null;
+                var linkedinData = values[2] ? values[2].data : null;
+                //console.log(linkedinData);
 
                 angular.extend($scope.user, {
                     experience1Institution: 'Saginaw Valley State University',
@@ -60,16 +60,16 @@ angular.module('adjunct.controllers')
                     $scope.user.expertiseTags = [];
                 }
 
-                if ($scope.user.expertiseTags.length == 0 && linkedinData.skills) {
+                if ($scope.user.expertiseTags.length == 0 && linkedinData && linkedinData.skills) {
                     var skills = _.pluck(_.pluck(linkedinData.skills.values, 'skill'), 'name');
                     $scope.user.expertiseTags = skills;
                 }
 
-                if(linkedinData.summary){
+                if (linkedinData && linkedinData.summary) {
                     $scope.user.personalSummary = linkedinData.summary;
                 }
 
-                if (linkedinData.positions) {
+                if (linkedinData && linkedinData.positions) {
                     var positions = linkedinData.positions.values;
                     $scope.user.resumePositions = _.map(positions, function(position) {
 
