@@ -1,69 +1,64 @@
 <div id="bottom-card" class="panel panel-default col-md-12" xmlns="http://www.w3.org/1999/html">
     <div class="panel-body profile-bottom-card">
-        <!--<div ng-controller="EditableFormCtrl2" id ="profile-details">-->
         <div class="profile-details-content">
             <div id="experience-edit">
                 <form class="form-group">
                     <ul>
                         <li>
-                            <label for="">Job Description</label>
+                            <label>Job Description</label>
                             <div class="fieldgroup">
-                                <textarea name="jobDescription" class="" cols="100" rows="6" ng-model="job.description "></textarea>
-
+                                <textarea name="jobDescription" class="" cols="100" rows="6" ng-model="job.description"></textarea>
                             </div>
                         </li>
                         <li>
-                            <label for="">Job Requirements</label>
+                            <label>Job Requirements</label>
                             <div class="fieldgroup">
-                                <textarea name="jobRequirement" class="" cols="100" rows="6" ng-model="job.requirement "></textarea>
-
+                                <textarea name="jobRequirement" class="" cols="100" rows="6" ng-model="job.requirement"></textarea>
                             </div>
                         </li>
                         <li>
-                            <label for="">Addtional Assets</label>
+                            <label>Addtional Assets</label>
                             <div class="fieldgroup">
-                                <textarea name="jobAssets" class="" cols="100" rows="6" ng-model="job.assets"></textarea>
-
+                                <textarea name="jobAssets" cols="100" rows="6" ng-model="job.assets"></textarea>
                             </div>
                         </li>
                         <li class="time-period" id="time-period">
-
                             <fieldset>
                                 <legend>
                                     <span>Time Period <abbr title="Required" class="required">*</abbr></span>
                                 </legend>
                                 <ul>
-
-
-
-
-
-
-
-
-
-
-                                    <li class="start-date"style="display:inline!important;">
-                                        <select ng-model="user.month" class="edit-month" ng-options="m for m in months" class=""style="display:inline!important;" required>
-                                            <option value="">choose...</option></select>
-                                        <label for="" style="display:none;" >Year</label>
+                                    <li class="start-date" style="display:inline !important;">
+                                        <select ng-model="user.month" class="edit-month" ng-options="m for m in months" style="display:inline!important;" required>
+                                            <option value="">choose...</option>
+                                        </select>
+                                        <label style="display:none;">Year</label>
                                         <input type="text" class="form-control form-inline input-sm profile-forms year"
-                                               name="experience1TimePeriodYear " ng-model="user.experience1TimePeriodYear" maxlength="4" placeholder="Year"style="display:inline!important;">
+                                               name="experience1TimePeriodYear "
+                                               ng-model="user.experience1TimePeriodYear" maxlength="4"
+                                               placeholder="Year" style="display:inline!important;">
                                         <span class="to">-</span>
                                     </li>
-                                    <li class="end-date"style="display:inline!important;">
-                                        <div class="ended-position"style="display:inline!important;">
+                                    <li class="end-date" style="display:inline!important;">
+                                        <div class="ended-position" style="display:inline!important;">
                                             <span ng-hide="user.stillHere">
-                                            <select ng-model="user.month" class="edit-month" ng-options="m for m in months" class=""style="display:inline!important;" required>
-                                                <option value="">choose...</option></select>
-                                            <label for="" style="display:none;" >Year</label>
-                                            <input type="text" class="form-control form-inline input-sm profile-forms year"
-                                                   name="experience1TimePeriodYear " ng-model="user.experience1TimePeriodYear"  maxlength="4" placeholder="Year"style="display:inline!important;">
+                                            <select ng-model="user.month" class="edit-month"
+                                                    ng-options="m for m in months" class=""
+                                                    style="display:inline!important;" required>
+                                                <option value="">choose...</option>
+                                            </select>
+                                            <label style="display:none;">Year</label>
+                                            <input type="text"
+                                                   class="form-control form-inline input-sm profile-forms year"
+                                                   name="experience1TimePeriodYear "
+                                                   ng-model="user.experience1TimePeriodYear" maxlength="4"
+                                                   placeholder="Year" style="display:inline!important;">
                                             </span>
-                                            <span ng-show="user.stillHere">to present</spanstyle="display:inline!important;">
+                                            <span ng-show="user.stillHere">to present</span>
                                         </div>
                                         <label class="checkbox" id="still-here">
-                                            <input type="checkbox" ng-model="user.stillHere" style="display:inline!important;">
+                                            <input type="checkbox" ng-model="user.stillHere"
+                                                   style="display:inline!important;">
                                             I currently work here
                                         </label>
 
@@ -71,24 +66,13 @@
                                 </ul>
                             </fieldset>
                         </li>
-
-
-
                     </ul>
-
                 </form>
             </div>
-
             <div class="profile-edit">
-                <!-- button to show form -->
                 <button type="button" class="btn btn-xs btn-primary" ng-click="saveBottomCard()">Save</button>
-                <!--<button type="button" class="btn btn-xs" ng-click="cancelBottomCard()">Cancel</button>-->
-
             </div>
-
-            <!--</form>-->
         </div>
-        <!--</div>-->
     </div>
 </div>
 

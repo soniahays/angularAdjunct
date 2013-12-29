@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('JobProfileCtrl', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
+    .controller('JobProfileCtrl', ['$scope', '$http', '$cookies', '$q', function ($scope, $http, $cookies, $q) {
         var jobId = $('#jobId').html();
 
         $scope.job = {};
@@ -18,10 +18,27 @@ angular.module('adjunct.controllers')
 
         $scope.uploadJobPictureModalUrl = '/partial/upload-job-picture-modal';
 
-        $http.get('/api/positionTypes').then(function(response) { $scope.positionTypes = response.data; });
+        var jobPromise;
+
+        if (jobId) {
+            jobPromise = $http.get('/api/get-job-profile/' + jobId);
+        }
+
+        var positionTypesPromise = $http.get('/api/positionTypes');
+
+        $q.all([jobPromise, positionTypesPromise]).then(function(values) {
+            $scope.job = values[0].data;
+            $scope.positionTypes = values[1].data;
+            if ($scope.job) {
+                var positionType = _.findWhere($scope.positionTypes, {_id: $scope.job.positionTypeId});
+                if (positionType) {
+                    $scope.job.positionTypeDesc = positionType.name;
+                }
+            }
+        });
+
         $http.get('/api/contractTypes').then(function(response) { $scope.contractTypes = response.data; });
         $http.get('/api/countries').then(function(response) { $scope.countries = response.data; });
-        $http.get('/api/get-job-profile/' + jobId).then(function(response) { $scope.job = response.data; });
 
         $scope.editTopCard = function () {
             $scope.topCardJobTemplateUrl = '/partial/job-profile-top-card-edit';

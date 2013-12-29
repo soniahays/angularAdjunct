@@ -66,9 +66,9 @@ angular.module('adjunct.controllers')
                         var positionTypes = values[0].data;
                         var jobs = _.pluck(values.slice(1), 'data');
                         $scope.user.jobs = _.map(jobs, function(job) {
-                            var positionType = _.findWhere(positionTypes, {_id: job.positionType});
+                            var positionType = _.findWhere(positionTypes, {_id: job.positionTypeId});
                             if (positionType) {
-                                job.positionType = positionType.name;
+                                job.positionTypeDesc = positionType.name;
                             }
                             return job;
                         });
