@@ -6,10 +6,10 @@
 
     <div class="panel col-md-10 custom-main-left-panel">
         <div ng-include="topCardTemplateUrl" />
-        <div class="panel-group col-md-3" style="padding-left:0px !important;padding-right:0px !important;">
+        <div id="profile-left-panel" class="panel-group col-md-3" style="padding-left:0px !important;padding-right:0px !important;height:100%;">
             <div ng-include="'/partial/badge-section'" />
         </div>
-        <div class="panel-group col-md-9" style="padding-left:0px !important;padding-right:0px !important;">
+        <div id="profile-middle-panel" class="panel-group col-md-9" style="padding-left:0px !important;padding-right:0px !important;">
             <!--<div ng-include="'/partial/adjuncts-profile-middle-card'" />-->
             <div ng-include="middleCardTemplateUrl" />
             <div ng-include="bottomCardTemplateUrl" />

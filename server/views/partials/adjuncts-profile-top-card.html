@@ -1,5 +1,5 @@
 <div id="top-card" class="panel panel-default col-md-12"
-     style="position: relative;padding-left:0px !important;padding-right:5px !important; padding-bottom: 0px !important; margin-bottom: 5px !important">
+     style="position: relative;padding-left:0px !important;padding-right:0px !important; padding-bottom: 0px !important; margin-bottom: 5px !important;border-color: #5e5e67;">
 
     <div class="panel-body profile-top-card">
         <div class="profile-picture">
@@ -76,7 +76,21 @@
         </div>
     </div>
 
-    <button type="button" ng-show="canEdit" class="btn btn-md btn-primary edit-buttons"  id="edit-top-card"style="position:absolute; right: 0px ; bottom: 0px ;border-radius:3px 0px 3px 0px" ng-click="editTopCard()"><i class="fa fa-pencil-square-o fa-lg"></i> Edit Profile</button>
+    <div class="top-card-profile-actions" style="border-top: 1px dashed #5e5e67;background: #f6f6f6;height:35px;">
+        <ul style="display: table-cell; padding: 0 0 8px;float:left;">
+            <li style="padding-top: 8px; padding-bottom: 2px; padding-left: 0px; padding-right: 12px; font-size: 11px; line-height: 1.2em;">
+
+            </li>
+        </ul>
+        <div class="top-card-profile-right-actions" style="display: table-cell;border-left: 1px solid #ccc;padding: 8px 10px 7px 10px; background-color: #ececec;
+        background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);font-size: 13px;vertical-align: middle; cursor: pointer;float:right;">
+            <i class="fa fa-pencil-square-o fa-lg"></i> Edit Profile
+          <!--<button type="button" ng-show="canEdit" class="btn btn-md btn-primary edit-buttons"  id="edit-top-card"style="position:absolute; right: 0px ; bottom: 0px ;border-radius:2px 0px 0px 0px" ng-click="editTopCard()">-->
+           <!--<i class="fa fa-pencil-square-o fa-lg"></i> Edit Profile</button>-->
+        </div>
+    </div>
+
+
     <!--<button class="btn btn-lg btn-primary " id="edit-badges" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px" ng-click="openBadgeEditModal()" >-->
         <!--<i class="fa fa-pencil-square-o fa-lg"></i></button>-->
 </div>
