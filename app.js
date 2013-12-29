@@ -102,18 +102,6 @@ app.post('/api/index-search', function(req, res) {
     });
 });
 
-app.get('/api/index-search', function(req, res) {
-    userDb.getUsers(function (err, users) {
-        if (err) {
-            return res.send(500, "Error retrieving user");
-        }
-        if (!users) {
-            return res.send('Not found');
-        }
-        return res.json(es.index(users));
-    });
-});
-
 app.get('/api/get-adjuncts-profile/:id', function (req, res) {
     var _id = req.params.id;
 
@@ -204,6 +192,12 @@ app.post('/api/save-job-profile', function (req, res) {
     res.end();
 });
 
+app.post('/api/save-job-for-user', function (req, res) {
+    userDb.addUserJob(req.cookies._id, {'jobs': req.body.jobId}, function() {
+        res.end();
+    });
+});
+
 app.post('/api/save-institutions-profile', function (req, res) {
     if (req.body.institution) {
         institutionDb.updateInstitution(req.body.institution);
@@ -219,25 +213,22 @@ app.post('/upload-adjunct', function (req, res) {
         userDb.updateUserField(req.cookies._id, {'imageName': newFileName}, function() {
             res.send({ msg: '<b>"' + fileName + '"</b> uploaded.' });
         });
-
     });
 });
 
 app.post('/upload-institution/:id', function (req, res) {
-    upload(function(){
+    upload(req, res, function(newFileName, fileName){
         institutionDb.updateInstitutionField(req.params.id, {'imageName': newFileName}, function() {
-            res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
+            res.send({ msg: '<b>"' + fileName + '"</b> uploaded.' });
         });
-
     });
 });
 
 app.post('/upload-job/:id', function (req, res) {
-    upload(function(){
+    upload(req, res, function(newFileName, fileName){
         jobDb.updateJobField(req.params.id, {'imageName': newFileName}, function() {
-            res.send({ msg: '<b>"' + file.name + '"</b> uploaded.' });
+            res.send({ msg: '<b>"' + fileName + '"</b> uploaded.' });
         });
-
     });
 });
 
@@ -382,7 +373,7 @@ app.post('/signin-post',
 
 app.get('/api/linkedInAuth', function (req, res) {
 
-// If we have the access_token in the cookie skip the Oauth Dance and go straight to Step 3
+// If we have the access_token in the cookie skip the Oauth Dance and go straight to Step 3 (which is calling the linkedIn API)
     if (req.cookies.linkedinAccessToken){
         linkedinAuth.oauthStep3(req, res, req.cookies.linkedinAccessToken, 'people/~:(summary,positions,skills,connections,shares,network)', function(data) {
             req.session.linkedinData = data;
@@ -393,10 +384,11 @@ app.get('/api/linkedInAuth', function (req, res) {
         linkedinAuth.oauthStep1(req, res);
     }
 });
+
 // The user has successfully entered their linkedin username/password, now we proceed to step 2
 app.get('/api/linkedInAuthCallback', function (req, res) {
     var queryObject = url.parse(req.url, true).query;
-    linkedinAuth.oauthStep2(req, res, queryObject.code, function(data) {
+    linkedinAuth.oauthStep2(req, res, queryObject.code, 'people/~:(summary,positions,skills,connections,shares,network)', function(data) {
         req.session.linkedinData = data;
         res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile/edit' });
         res.end();

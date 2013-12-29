@@ -64,6 +64,17 @@ module.exports = function (mongodb, db, bcrypt) {
                     callback(err, user);
             });
         },
+        addUserJob: function (_id, field, callback) {
+            var collection = db.collection('users');
+            var o_id = new BSON.ObjectID(_id);
+            collection.update({'_id': o_id}, {'$push': field}, function (err, user) {
+                if (err) {
+                    return console.error(err);
+                }
+                if (callback)
+                    callback(err, user);
+            });
+        },
         getUser: function (user, callback) {
             var collection = db.collection('users');
             if (user._id) {

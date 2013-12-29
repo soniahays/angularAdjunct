@@ -18,22 +18,14 @@ angular.module('adjunct.controllers')
         $scope.middleCardTemplateUrl = isEditMode ? '/partial/adjuncts-profile-middle-card-edit' : '/partial/adjuncts-profile-middle-card';
 
         var adjunctProfile = $http.get('/api/get-adjuncts-profile/' + (userId ? userId : $cookies._id));
-        var countries = $http.get('/api/countries');
-        var linkedinData = $http.get('/api/getLinkedinData');
+        var countries = $scope.canEdit ? $http.get('/api/countries') : null;
+        var linkedinData = $scope.canEdit ? $http.get('/api/getLinkedinData') : null;
 
         $q.all([adjunctProfile, countries, linkedinData]).then(function (values) {
                 $scope.user = values[0].data;
-                $scope.countries = values[1].data;
-                var linkedinData = values[2].data;
-//                console.log(linkedinData);
-
-                angular.extend($scope.user, {
-                    experience1Institution: 'Saginaw Valley State University',
-                    experience1Title: 'Instructor',
-                    experience1Location: 'Fall 2013, Kochville, Michigan',
-                    status: 1,
-                    experience1TimePeriodYear: '2013'
-                });
+                $scope.countries = values[1] ? values[1].data : null;
+                var linkedinData = values[2] ? values[2].data : null;
+                //console.log(linkedinData);
 
                 if ($scope.user.country)
                     $scope.user.countryName = _.findWhere($scope.countries, {_id: $scope.user.country}).name;
@@ -60,18 +52,35 @@ angular.module('adjunct.controllers')
                     $scope.user.expertiseTags = [];
                 }
 
-                if ($scope.user.expertiseTags.length == 0 && linkedinData.skills) {
+                if ($scope.user.expertiseTags.length == 0 && linkedinData && linkedinData.skills) {
                     var skills = _.pluck(_.pluck(linkedinData.skills.values, 'skill'), 'name');
                     $scope.user.expertiseTags = skills;
                 }
 
-                if(linkedinData.summary){
+                if ($scope.user.jobs) {
+                    var jobPromises = [$http.get('/api/positionTypes')];
+                    for (var i = 0; i < $scope.user.jobs.length; i++) {
+                        jobPromises.push($http.get('/api/get-job-profile/' + $scope.user.jobs[i]));
+                    }
+                    $q.all(jobPromises).then(function(values) {
+                        var positionTypes = values[0].data;
+                        var jobs = _.pluck(values.slice(1), 'data');
+                        $scope.user.jobs = _.map(jobs, function(job) {
+                            var positionType = _.findWhere(positionTypes, {_id: job.positionType});
+                            if (positionType) {
+                                job.positionType = positionType.name;
+                            }
+                            return job;
+                        });
+                    });
+                }
+
+                if (linkedinData && linkedinData.summary) {
                     $scope.user.personalSummary = linkedinData.summary;
                 }
 
-                if (linkedinData.positions) {
+                if (linkedinData && linkedinData.positions) {
                     var positions = linkedinData.positions.values;
-                    console.log(positions);
                     $scope.user.resumePositions = _.map(positions, function(position) {
 
                         return {
@@ -85,13 +94,10 @@ angular.module('adjunct.controllers')
                             location: position.location,
                             description: position.summary,
                             termsDate: getUniversityTerm(position.startDate.month, position.startDate.year,position.endDate,position.isCurrent)
-
                         }
 
                     });
-
                 }
-
 
                 calculateSurvey();
 
@@ -125,7 +131,8 @@ angular.module('adjunct.controllers')
 
                 // the above is for testing only.
 
-                $scope.isSummaryShown=$scope.user.personalSummary != null;
+                $scope.isSummaryShown = $scope.user.personalSummary != null;
+
                 if (!$scope.user.portfolioLinks)
                     $scope.user.portfolioLinks = [];
 
@@ -145,7 +152,7 @@ angular.module('adjunct.controllers')
                 }
             },
             function (error) {
-                console.log("get-adjuncts-profile-top-card didn't work");
+                console.log("get-adjuncts-profile-top-card didn't work", error);
             });
 
         $scope.months = [];

@@ -7,10 +7,9 @@ module.exports = function (elasticsearch) {
 
     var self = {
         index: function (users) {
-            elasticsearch.deleteByQuery(options, {'query': {'match_all': {}}}, function(err, data) {
-                console.log(err, data);
+            elasticsearch.deleteByQuery(options, {'match_all': {}}, function(err, data) {
                 elasticsearch.bulkIndex(options, users, function (err, data) {
-                    console.log(err, data);
+                    //console.log(err, data);
                 });
             });
         },
