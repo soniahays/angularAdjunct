@@ -1,6 +1,26 @@
 <div id="bottom-card" class="panel panel-default bottom-card-panel col-md-12" style="padding: 0 0 0 0;">
     <div class="panel-body profile-bottom-card" style="padding: 0 0 0 0;">
-        <div class="list-group-item"style="border-bottom: 1px solid #5e5e67;border-radius: 0;border-top: 0;border-right: 0;border-left: 0;padding: 5px 15px; margin-bottom: 25px;background-color: #d1d1d3;"><h6><span style="margin-top: 7px; margin-bottom:7px;"><i class="fa fa-user fa-lg"></i> Summary</span></h6></div>
+
+
+
+        <div class="bottom-card-profile-actions" style="border-bottom: 1px solid #5e5e67;background-color: #e1e1e1;height:43px;margin-bottom:25px;">
+            <ul style="display: table-cell; padding: 5px 15px;float:left;">
+                <li style="padding-top: 0; padding-bottom: 2px; padding-left: 0px; padding-right: 12px; font-size: 11px; line-height: 1.2em;">
+                    <h6><span style="margin-top: 7px;margin-bottom: 7px;}"><i class="fa fa-user fa-lg"></i> Summary</span></h6>
+                </li>
+            </ul>
+
+            <div ng-show="canEdit" ng-click="saveTopCard()" class="top-card-profile-right-actions" style="display: table-cell;border-left: 1px solid #ccc;padding: 12px 15px 7px 15px; background-color: #ececec;
+        background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);height:42px;font-size: 13px;vertical-align: middle; cursor: pointer;float:right;">
+                <i class="fa fa-pencil-square-o fa-lg"></i> Edit
+                <!--<span style="color:#dc4c26; font-weight:bold;"><i class="fa fa-pencil "></i> Edit</span>-->
+            </div>
+
+        </div>
+
+
+
+        <!--<div class="list-group-item"style="border-bottom: 1px solid #5e5e67;border-radius: 0;border-top: 0;border-right: 0;border-left: 0;padding: 5px 15px; margin-bottom: 25px;background-color: #d1d1d3;"><h6><span style="margin-top: 7px; margin-bottom:7px;"><i class="fa fa-user fa-lg"></i> Summary</span></h6></div>-->
         <!--<div class="profile-details-content">-->
 
 
@@ -9,8 +29,22 @@
                          <p style="background-color: white;margin-bottom: 25px; padding:0 10px">{{user.personalSummary}}</p>
                      </span>
                 </div>
-        <div class="list-group-item"style="border-radius: 0;border-right: 0;border-left: 0;padding: 5px 15px; margin-bottom: 25px;background-color: #e1e1e1;">
-            <h6><span style="margin-top: 7px; margin-bottom:7px;"><i class="fa fa-clipboard fa-lg"></i> Experience</span></h6>
+        <!--<div class="list-group-item"style="border-radius: 0;border-right: 0;border-left: 0;padding: 5px 15px; margin-bottom: 25px;background-color: #e1e1e1;">-->
+            <!--<h6><span style="margin-top: 7px; margin-bottom:7px;"><i class="fa fa-clipboard fa-lg"></i> Experience</span></h6>-->
+        <!--</div>-->
+
+        <div class="bottom-card-profile-actions" style="border-bottom: 1px solid #5e5e67;background-color: #e1e1e1;height:43px;margin-bottom:25px;">
+            <ul style="display: table-cell; padding: 5px 15px;float:left;">
+                <li style="padding-top: 0; padding-bottom: 2px; padding-left: 0px; padding-right: 12px; font-size: 11px; line-height: 1.2em;">
+                    <h6><span style="margin-top: 7px;margin-bottom: 7px;}"><i class="fa fa-clipboard fa-lg"></i> Experience</span>></h6>
+                </li>
+            </ul>
+
+            <div ng-show="canEdit" ng-click="saveTopCard()" class="top-card-profile-right-actions" style="display: table-cell;border-left: 1px solid #ccc;padding: 12px 15px 7px 15px; background-color: #ececec;
+        background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);height:42px;font-size: 13px;vertical-align: middle; cursor: pointer;float:right;">
+                <i class="fa fa-pencil-square-o fa-lg"></i> Edit
+            </div>
+
         </div>
                 <div id="experience-container" class="col-md-12">
 
