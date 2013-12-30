@@ -1,0 +1,71 @@
+<% if (locals.userId) { %>
+<div id="userId" style="display:none"><%= locals.userId %></div>
+<% } %>
+
+<<<<<<< HEAD
+<div class="container">
+    <div class="col-md-10 custom-main-left-panel">
+        <div ng-include="topCardTemplateUrl"/>
+
+        <div class="adj-table">
+            <div class="adj-row">
+                <div ng-include="'/partial/badge-section'" class="panel-group col-md-3 adj-cell" style="padding:0;border:1px solid #ddd;border-right:0;float: none"/>
+                <div ng-include="bottomCardTemplateUrl" class="panel-group col-md-9 adj-cell" style="padding:0;float:none;border:1px solid #ddd"/>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-2 sidebar-offcanvas" role="navigation" style="padding-left: 7px;">
+        <div ng-include="'/partial/adjuncts-saved-jobs-column'"/>
+        <div ng-include="'/partial/adjuncts-profile-right-bottomSide-column'"/>
+    </div>
+=======
+<div class="container" >
+
+
+
+        <div class="panel col-md-10 custom-main-left-panel" >
+
+
+            <div ng-include="topCardTemplateUrl" />
+
+
+                     <div id="profile-left-panel" class="panel-group col-md-3" style="padding-left:0px !important;padding-right:0px !important;">
+                         <div ng-include="'/partial/badge-section'" />
+                     </div>
+
+
+                    <div id="profile-middle-panel" class="panel-group col-md-9" style="padding-left:0px !important;padding-right:0px !important;display:table-cell;">
+                        <!--<div ng-include="'/partial/adjuncts-profile-middle-card'" />-->
+                        <!--<div ng-include="middleCardTemplateUrl" />-->
+                        <div ng-include="bottomCardTemplateUrl" />
+                    </div>
+
+        </div>
+
+
+
+
+
+        <div class="col-md-2 sidebar-offcanvas" id="sidebar2" role="navigation" style="padding-left: 7px;">
+
+            <div ng-include="'/partial/adjuncts-saved-jobs-column'" />
+            <div ng-include="'/partial/adjuncts-profile-right-bottomSide-column'" />
+
+
+        </div>
+
+
+>>>>>>> 8bff133de38422ae32b1f6ccedbadf125db33a73
+
+</div>
+
+<div ng-include="'/partial/upload-picture-modal'"/>
+<div ng-include="'/partial/video-modal'"/>
+<div ng-include="'/partial/badge-edit-modal'"/>
+<div ng-include="'/partial/portfolio-edit-modal'"/>
+<div ng-include="'/partial/competency-portfolio-modal'"/>
+<div ng-include="'/partial/upload-portfolio-modal'"/>
+
+
