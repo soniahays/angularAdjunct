@@ -1726,3 +1726,15 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 .toolbar-image {
     width: 52px;
 }
+
+.adj-table {
+    display: table;
+}
+
+.adj-row {
+    display: table-row;
+}
+
+.adj-cell {
+    display: table-cell;
+}

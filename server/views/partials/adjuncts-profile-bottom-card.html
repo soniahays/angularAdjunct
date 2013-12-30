@@ -1,44 +1,42 @@
-<div id="bottom-card" class="panel panel-default bottom-card-panel col-md-12" style="padding: 0 0 0 0;">
-    <div class="panel-body profile-bottom-card" style="padding: 0 0 0 0;">
-        <div class="list-group-item"style="border-bottom: 1px solid #5e5e67;border-radius: 0;border-top: 0;border-right: 0;border-left: 0;padding: 5px 15px; margin-bottom: 25px;background-color: #d1d1d3;"><h6><span style="margin-top: 7px; margin-bottom:7px;"><i class="fa fa-user fa-lg"></i> Summary</span></h6></div>
-        <!--<div class="profile-details-content">-->
-
-
-                <div id="summary-container" style="margin: 5px 35px 0 35px;">
-                     <span class=" lead user-summary lead" e-rows="12" e-cols="80" >
-                         <p style="background-color: white;margin-bottom: 25px; padding:0 10px">{{user.personalSummary}}</p>
-                     </span>
-                </div>
-        <div class="list-group-item"style="border-radius: 0;border-right: 0;border-left: 0;padding: 5px 15px; margin-bottom: 25px;background-color: #e1e1e1;">
-            <h6><span style="margin-top: 7px; margin-bottom:7px;"><i class="fa fa-clipboard fa-lg"></i> Experience</span></h6>
+<div class="panel-default bottom-card-panel col-md-12" style="padding:0;border:0;position:relative;top:-30px;">
+    <div class="panel-body profile-bottom-card" style="padding:0">
+        <div style="padding:5px 15px;margin-bottom:25px;background-color:#d1d1d3;">
+            <h6><span style="margin-top: 7px; margin-bottom:7px;"><i class="fa fa-user fa-lg"></i> Summary</span></h6>
         </div>
-                <div id="experience-container" class="col-md-12">
+        <div id="summary-container" style="margin: 5px 35px 0 35px;">
+                     <span class=" lead user-summary lead" e-rows="12" e-cols="80">
+                         <p style="background-color: white;margin-bottom: 25px; padding:0 10px">
+                             {{user.personalSummary}}</p>
+                     </span>
+        </div>
+        <div class="list-group-item"
+             style="border-radius: 0;border-right: 0;border-left: 0;padding: 5px 15px; margin-bottom: 25px;background-color: #e1e1e1;">
+            <h6><span style="margin-top: 7px; margin-bottom:7px;"><i
+                    class="fa fa-clipboard fa-lg"></i> Experience</span></h6>
+        </div>
+        <div id="experience-container" class="col-md-12">
 
-                    <div ng-repeat="resumePosition in user.resumePositions" style="margin: 7px 0 7px 0;">
+            <div ng-repeat="resumePosition in user.resumePositions" style="margin: 7px 0 7px 0;">
 
-                        <div class="col-md-7" style="padding: 0 0 0 0;">
-                            <span class="resume-position-institution" style="font-weight:bold;">{{ resumePosition.institution || 'empty' }}</span>
-                            <div class="">
-                                <i class="fa fa-briefcase" style="color: #999;display:inline;line-height: 1.428571429 !important; float: left;margin-left:3px;padding-right: 3px;padding-top:5px;font-size:0.7em;"> </i>
-                                {{ resumePosition.title || ' ' }}
-                            </div>
-                        </div>
-                        <div class="col-md-5" style="text-align:right;padding: 0 0 0 0;">
-                            <div>&nbsp;</div>
-                            <!--<div>{{ resumePosition.startMonth || 'empty' }} {{ resumePosition.startYear || 'empty' }}-{{ resumePosition.stillHere || 'empty' }}|{{ resumePosition.location || 'empty' }}</div>-->
-                            {{resumePosition.termsDate}}
+                <div class="col-md-7" style="padding: 0 0 0 0;">
+                    <span class="resume-position-institution" style="font-weight:bold;">{{ resumePosition.institution || 'empty' }}</span>
 
-
-                        </div>
-                        <div class="col-md-12" style="padding: 0 0 0 0;">
-                            <div><small>{{ resumePosition.description || ' ' }}</small></div>
+                    <div class="">
+                        <i class="fa fa-briefcase"
+                           style="color: #999;display:inline;line-height: 1.428571429 !important; float: left;margin-left:3px;padding-right: 3px;padding-top:5px;font-size:0.7em;"> </i>
+                        {{ resumePosition.title || ' ' }}
                     </div>
-
                 </div>
-
+                <div class="col-md-5" style="text-align:right;padding: 0 0 0 0;">
+                    <div>&nbsp;</div>
+                    {{resumePosition.termsDate}}
                 </div>
-
-    <!--</div>-->
-        <!--<button type="button" ng-show="canEdit" class="btn btn-md btn-primary edit-buttons"  id="edit-top-card"style="position:absolute; right: 0px ; bottom: 0px ;border-radius:3px 0px 3px 0px" ng-click="editBottomCard()"><i class="fa fa-pencil-square-o fa-lg"></i> Edit Profile</button>-->
+                <div class="col-md-12" style="padding: 0 0 0 0;">
+                    <div>
+                        <small>{{ resumePosition.description || ' ' }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
