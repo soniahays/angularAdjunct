@@ -42,10 +42,12 @@ margin-right: -12px;
     padding-right: 5px;
 }
 .expertise-tags-custom li{
-    color: #0C0A0A !important;
-    background-color: #B8D5EE !important;
+    color: #75757c!important;
+    background-color: #cccccf !important;
     border-color: #357ebd !important;
     font-weight: bold!important;
+    border-radius: 2px!important;
+
 }
 .tags{
 margin-top: 8px !important;
@@ -772,6 +774,8 @@ ol, ul{
 .container {
     max-width: none !important;
     width: 970px;
+    /*display:table;*/
+
 }
 /*-----------------NAVBAR CUSTOM--------------------*/
 /* Always float the navbar header */
@@ -1652,9 +1656,10 @@ tbody{
 
 
 .expertise-tags li {
-    color: #ffffff !important;
-    background: #428bca !important;
-    border-color: #357ebd !important;
+    color:#75757c !important;
+    background-color: #cccccf !important;
+    background: #cccccf !important;
+    border-color:#5e5e67!important;
 }
 
 .search-result-body {

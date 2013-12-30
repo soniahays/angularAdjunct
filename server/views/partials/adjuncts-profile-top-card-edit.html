@@ -1,5 +1,5 @@
 <div id="top-card" class="panel panel-default col-md-12"
-     style="padding-left:5px !important;padding-right:5px !important; padding-bottom: 0px !important; margin-bottom: 5px !important">
+     style="padding-left:0px !important;padding-right:0px !important; padding-bottom: 0px !important; margin-bottom: 5px !important">
     <div class="panel-body profile-top-card">
 
         <div class="profile-picture-container col-sm-4">
@@ -25,11 +25,11 @@
         <div class="profile-overview-content-edit col-sm-8"
              style="margin-left: 0px; padding-left: 15px;padding-right: 0px;">
             <form>
-                <div class="lead lead-custom masthead">
+                <div class="">
                     <div class="account-icons">
                     </div>
                     <div id="name-container">
-                        <h6>
+
                             <div class="form-group-institution">
 
 
@@ -54,7 +54,7 @@
                                         <input type="text" class="profile-forms" name="locationCity"
                                                ng-model="user.locationCity" maxlength="50" placeholder="City"> ,
                                         <select ng-model="user.country" class=""
-                                                ng-options="c._id as c.name for c in countries" style="width: 108px;"
+                                                ng-options="c._id as c.name for c in countries" style="width: 108px;font-size:12px;"
                                                 required>
                                             <option value="">Select Country</option>
                                         </select> |
@@ -90,17 +90,32 @@
                                         </div>
                                     </li>
                                 </ul>
-                                <button type="button" class="btn btn-xs btn-primary" ng-click="importLinkedin()">
-                                    Import from LinkedIn
-                                </button>
-                                <button type="button" class="btn btn-xs btn-primary" ng-click="saveTopCard()">
-                                    Save Profile
-                                </button>
+
                             </div>
-                        </h6>
+
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+    <div class="top-card-profile-actions" style="border-top: 1px dashed #5e5e67;background: #f6f6f6;height:35px;">
+        <ul style="display: table-cell; padding: 0 0 8px;float:left;">
+            <li style="padding-top: 8px; padding-bottom: 2px; padding-left: 0px; padding-right: 12px; font-size: 11px; line-height: 1.2em;">
+
+            </li>
+        </ul>
+
+        <div ng-show="canEdit" ng-click="saveTopCard()" class="top-card-profile-right-actions" style="display: table-cell;border-left: 1px solid #ccc;padding: 8px 10px 7px 10px; background-color: #ececec;
+        background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);font-size: 13px;vertical-align: middle; cursor: pointer;float:right;">
+            <i class="fa fa-check-square-o fa-lg"></i> Save Changes
+            <!--<button type="button" ng-show="canEdit" class="btn btn-md btn-primary edit-buttons"  id="edit-top-card"style="position:absolute; right: 0px ; bottom: 0px ;border-radius:2px 0px 0px 0px" ng-click="editTopCard()">-->
+            <!--<i class="fa fa-pencil-square-o fa-lg"></i> Edit Profile</button>-->
+        </div>
+        <div ng-show="canEdit" ng-click="importLinkedin()" class="top-card-profile-right-actions" style="display: table-cell;border-left: 1px solid #ccc;padding: 8px 10px 7px 10px; background-color: #ececec;
+        background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);font-size: 13px;vertical-align: middle; cursor: pointer;float:right;">
+            <i class="fa fa-download fa-lg"></i> Import from LinkedIn
+            <!--<button type="button" ng-show="canEdit" class="btn btn-md btn-primary edit-buttons"  id="edit-top-card"style="position:absolute; right: 0px ; bottom: 0px ;border-radius:2px 0px 0px 0px" ng-click="editTopCard()">-->
+            <!--<i class="fa fa-pencil-square-o fa-lg"></i> Edit Profile</button>-->
         </div>
     </div>
 </div>

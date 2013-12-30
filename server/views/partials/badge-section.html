@@ -1,68 +1,66 @@
-<div class="list-group col-md-12" style="padding-right: 4px;">
-    <div class="list-group-item-custom list-item-badge-section" style=";position: relative; padding: 0 0 20px 0">
-        <div class="badges-container" style="margin-top: 35px;">
-            <h6 id="h6-text" style="font-weight: normal; font-size: 12px;margin-right:0;padding-left: 3px;">Learning Management Systems:</h6>
-            <ul class="badge" style="padding-left:0px;">
-                <li ng-repeat="badge in filteredBadges" class="badge-thumbnail">
-                    <img ng-src="/img/badges/{{badge}}.png" style="width:45px;height:45px"/>
-                </li>
-            </ul>
+<div class="list-group col-md-12" style="padding-right: 4px;padding-top:4px;">
+    <div class="top-card-profile-actions" style="border-top: 1px solid #ddd!important;background-color: #ececec;
+        background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);height:35px;border: 1px solid #5e5e67;">
+        <div class="top-card-profile-right-actions" style="display: table-cell;border-left: 0 solid #ccc;padding: 8px 10px 7px 10px; background-color: #ececec;
+        background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);font-size: 13px;vertical-align: middle; cursor: pointer;float:left;">
+            <i class="fa fa-eye fa-lg"></i> Multimedia Resume
+            <!--<button type="button" ng-show="canEdit" class="btn btn-md btn-primary edit-buttons"  id="edit-top-card"style="position:absolute; right: 0px ; bottom: 0px ;border-radius:2px 0px 0px 0px" ng-click="editTopCard()">-->
+            <!--<i class="fa fa-pencil-square-o fa-lg"></i> Edit Profile</button>-->
         </div>
     </div>
-    <div class="list-group-item-custom list-group-item-customize-left list-item-badge-section">
-        <div class="competency-title-badge-section"><span style="">Syllabus Design</span></div>
-        <div class="competency-title-badge-section"><span class="percentage-title-badge-section">{{syllabusDesignWidth}}%</span>
-        </div>
-        <div class="progress progress-custom progress-custom-badge-section">
-            <div id="syllabusDesign" class="progress-bar progress-bar-custom" role="progressbar"
-                 aria-valuemin="0" aria-valuemax="100" ng-style="syllabusDesign">
+
+        <div class="list-group-item list-group-item-custom list-item-badge-section" style="border-color: #5e5e67; border-top: 1px solid white;position: relative; padding-right: 0px; padding-top: 0px;padding-left: 0px;padding-bottom: 20px;border-top-right-radius: 0px;
+border-top-left-radius: 0px;padding-top: 0px!important;">
+            <!--<button  ng-show="canEdit" class="btn btn-lg btn-primary edit-buttons edit-badges" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 0px 0px 3px" ng-click="openBadgeEditModal()" >-->
+                <!--<i class="fa fa-pencil-square-o fa-lg"></i></button>-->
+            <!--<button ng-show="canEdit" class="btn btn-lg btn-primary edit-buttons edit-badges"  type="submit" style="position: relative; float:right; clear:both; border-radius:0px 0px 0px 3px" ng-click="openUploadPortfolioModal()" >-->
+                <!--<i class="fa fa-search-plus fa-lg"></i></button>-->
+            <!--<button ng-hide="canEdit" class="btn btn-lg btn-primary edit-buttons" id="edit-badges2" type="submit" style="position: relative; float:right; clear:both; border-radius:0px 3px 0px 3px" ng-click="openCompetencyPortfolioModal()" >-->
+                <!--<i class="fa fa-search-plus fa-lg"></i></button>-->
+
+            <div class="badges-container" style="margin-top: 35px;">
+                <h6 id="h6-text" style="font-weight: normal; font-size: 12px;margin-right:0;padding-left: 3px;">Learning Management Systems:</h6>
+                <ul class="badge" style="padding-left: 0px;">
+                    <li ng-repeat="badge in filteredBadges" class="badge-thumbnail">
+
+                        <img ng-src="/img/badges/{{badge}}.png" alt="" style="width: 45px!important;height: 45px!important;"/>
+                    </li>
+                </ul>
+
             </div>
         </div>
-    </div>
-    <div class="list-group-item-custom list-group-item-customize-left list-item-badge-section">
-        <div class="competency-title-badge-section"><span>Technology Enabled Instruction</span></div>
-        <div class="competency-title-badge-section"><span class="percentage-title-badge-section">{{technologyDesignWidth}}%</span>
-        </div>
+
+    <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left list-item-badge-section">
+        <!--<div class="competency-title-badge-section">Syllabus Design <span class="percentage-title-badge-section text-right" >{{syllabusDesignWidth}}%</span></div>-->
+        <div class="competency-title-badge-section"><span style="">Syllabus Design</span></div><div class="competency-title-badge-section"><span class="percentage-title-badge-section">{{syllabusDesignWidth}}%</span></div>
         <div class="progress progress-custom progress-custom-badge-section">
-            <div id="technologyDesign" class="progress-bar progress-bar-custom" role="progressbar"
-                 aria-valuemin="0" aria-valuemax="100" ng-style="technologyDesign">
+            <div id="syllabusDesign"class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" ng-style="syllabusDesign">
+                <!--<span class="sr-only">60% Complete</span>-->
             </div>
-        </div>
-    </div>
-    <div class="list-group-item-custom list-group-item-customize-left list-item-badge-section">
-        <div class="competency-title-badge-section">
-            <span>Student Centered Feedback</span>
-        </div>
-        <div class="competency-title-badge-section">
-            <span class="percentage-title-badge-section">{{studFeedbackWidth}}%</span>
-        </div>
+        </div></a>
+    <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left list-item-badge-section">
+        <div class="competency-title-badge-section"><span>Technology Enabled Instruction</span></div><div class="competency-title-badge-section"><span class="percentage-title-badge-section"> {{technologyDesignWidth}}%</span></div>
         <div class="progress progress-custom progress-custom-badge-section">
-            <div id="studFeedback" class="progress-bar progress-bar-custom" role="progressbar"
-                 aria-valuemin="0" aria-valuemax="100" ng-style="studFeedback">
+            <div id="technologyDesign" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" ng-style="technologyDesign">
             </div>
-        </div>
-    </div>
-    <div class="list-group-item-custom list-group-item-customize-left list-item-badge-section">
-        <div class="competency-title-badge-section">
-            <span>Summative Feedback</span>
-        </div>
-        <div class="competency-title-badge-section">
-            <span class="percentage-title-badge-section">{{sumFeedbackWidth}}%</span>
-        </div>
+        </div></a>
+    <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left list-item-badge-section">
+        <div class="competency-title-badge-section"><span>Student Centered Feedback</span></div><div class="competency-title-badge-section"><span class="percentage-title-badge-section">{{studFeedbackWidth}}%</span></div>
         <div class="progress progress-custom progress-custom-badge-section">
-            <div id="sumFeedback" class="progress-bar progress-bar-custom" role="progressbar"
-                 aria-valuemin="0" aria-valuemax="100" ng-style="sumFeedback">
+            <div id="studFeedback" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"  ng-style="studFeedback">
             </div>
-        </div>
-    </div>
-    <div class="list-group-item-custom list-group-item-customize-left list-item-badge-section">
-        <div class="competency-title-badge-section">Instructional Design:</div>
-        <hr class="badge-section-hr">
+        </div></a>
+    <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left list-item-badge-section">
+        <div class="competency-title-badge-section"><span>Summative Feedback</span></div><div class="competency-title-badge-section"><span class="percentage-title-badge-section">{{sumFeedbackWidth}}%</span></div>
+        <div class="progress progress-custom progress-custom-badge-section">
+            <div id="sumFeedback" class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" ng-style="sumFeedback">
+            </div>
+        </div></a>
+    <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left list-item-badge-section">
+        <div class="competency-title-badge-section">Instructional Design:</div><hr class="badge-section-hr">
         <div class="competency-title-badge-section">{{user.survey.instructionalDesign}}</div>
-    </div>
-    <div class="list-group-item-custom list-group-item-customize-left list-item-badge-section">
-        <div class="competency-title-badge-section">Scholarly &amp; Professional Contribution:</div>
-        <hr class="badge-section-hr">
+       </a>
+    <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left list-item-badge-section" style="border-bottom: 1px solid #5e5e67!important;border-bottom-left-radius:2px;border-bottom-right-radius:0px;">
+        <div class="competency-title-badge-section">Scholarly &amp; Professional contribution :</div><hrclass="badge-section-hr">
         <div class="competency-title-badge-section">{{user.survey.instructionalDesign}}</div>
-    </div>
 </div>
