@@ -26,8 +26,12 @@
              style="border-bottom: 1px solid #5e5e67;background-color: #e1e1e1;height:43px;margin-bottom:25px;">
             <ul style="display: table-cell; padding: 5px 15px;float:left;">
                 <li style="padding-top: 0; padding-bottom: 2px; padding-left: 0px; padding-right: 12px; font-size: 11px; line-height: 1.2em;">
+<<<<<<< HEAD
+                    <h6><span style="margin-top: 7px;margin-bottom: 7px;}"><i class="fa fa-clipboard fa-lg"></i> Experience</span></h6>
+=======
                     <h6><span style="margin-top: 7px;margin-bottom: 7px;}"><i class="fa fa-clipboard fa-lg"></i> Experience</span>
                     </h6>
+>>>>>>> 793bf31ff0dda562f4bf6b933f111959e2bf6256
                 </li>
             </ul>
 
