@@ -27,6 +27,7 @@
     "uri.js": "~1.11",
     "momentjs": "~2.4.0",
     "underscore": "~1.5.2",
+    "angular-elastic": "~2.3.0",
     "stringjs": "~1.7.0"
   },
   "resolutions": {

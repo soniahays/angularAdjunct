@@ -3,8 +3,8 @@
     <div class="panel-body profile-top-card">
 
         <div class="profile-picture-container col-sm-4">
-            <div class="profile-picture">
-                <span ng-if="user.imageName" style="z-index: -1000;"><img class="img-thumbnail pull-left" ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}"/></span>
+            <div class="profile-picture" style="padding-bottom: 10px;!important">
+                <span ng-if="user.imageName" style="z-index: -1000;"><img class="img-thumbnail pull-left" style="margin-bottom:7px;" ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}"/></span>
                 <div class="edit-photo">
                     <a href="#" ng-click="openPictureUploadModal()">
                         <span>Change photo</span>
@@ -30,7 +30,7 @@
                     </div>
                     <div id="name-container">
 
-                            <div class="form-group-institution">
+                            <div class="form-group-institution" style="padding-top: 20px;padding-left:15px;">
 
 
                                 <ul>
@@ -64,30 +64,26 @@
                                     </li>
                                     <li>
 
-                                        <label>Expertise:</label>
-                                        [<a href="" ng-click="addAFieldOfExpertise()">add a field</a>]
+                                        <label>Expertise  [<a href="" ng-click="addAFieldOfExpertise()">add a field</a>]:</label>
+
                                         <div ng-repeat="fieldOfExpertise in user.fieldOfExpertises">
                                             <input type="text" class="profile-forms" ng-model="fieldOfExpertise.value"
                                                    maxlength="50" placeholder="Field of Expertise" required>
-                                            [<a href="" ng-click="removeAFieldOfExpertise(fieldOfExpertise)">X</a>]
+                                            <a href="" ng-click="removeAFieldOfExpertise(fieldOfExpertise)"style="font-size: 11px;text-decoration: underline;">remove</a>
                                         </div>
                                     </li>
                                     <li>
-                                        <label>Education:</label>
-                                        [<a href="" ng-click="addAEducationDegree()">add a degree</a>]
+                                        <label style="margin-bottom: 0px;margin-top: 10px;"><i class="fa fa-bookmark-o" ></i>
+                                            Education (<a href="" ng-click="addAEducationDegree()" style="font-size: 12px;">add a degree</a>):</label>
+
                                         <div ng-repeat="educationDegree in user.educationDegrees">
                                             <input type="text" class="profile-forms" ng-model="educationDegree.value"
                                                    maxlength="50" placeholder="Education Degree" required style="width:200px;">
-                                            [<a href="" ng-click="removeAEducationDegree(educationDegree)">X</a>]
+                                            <a href="" ng-click="removeAEducationDegree(educationDegree)" style="font-size: 11px;text-decoration: underline;">remove</a>
                                         </div>
                                     </li>
                                     <li>
-                                        <div id="tags-container">
-                                            <label>Add tags to your profile:</label>
-                                            <tags-input ng-model="user.expertiseTags"
-                                                        class="expertise-tags expertise-tags-custom"
-                                                        style="background-color: #B8D5EE !important;"></tags-input>
-                                        </div>
+
                                     </li>
                                 </ul>
 
@@ -97,7 +93,16 @@
                 </div>
             </form>
         </div>
+        <div >
+            <div id="tags-container" style="float: left; padding-left: 15px; padding-bottom: 15px;">
+                <label style="margin-bottom: 0px;margin-top: 5px;"><i class="fa fa-tag fa-lg" ></i> Skills, and specializations (comma separated):</i></label>
+                <tags-input ng-model="user.expertiseTags"
+                            class="expertise-tags expertise-tags-custom"
+                            style="background-color: #B8D5EE !important;"></tags-input>
+            </div>
+        </div>
     </div>
+
     <div class="top-card-profile-actions" style="border-top: 1px dashed #5e5e67;background: #f6f6f6;height:35px;">
         <ul style="display: table-cell; padding: 0 0 8px;float:left;">
             <li style="padding-top: 8px; padding-bottom: 2px; padding-left: 0px; padding-right: 12px; font-size: 11px; line-height: 1.2em;">

@@ -1,27 +1,48 @@
-<div class="panel-default bottom-card-panel col-md-12" style="padding:0;border:0">
+<div class="panel-default bottom-card-panel col-md-12" style="padding:0;border:0;top:-16px;">
     <div class="panel-body profile-bottom-card" style="padding:0">
 
-        <div class="bottom-card-profile-actions"
-             style="border-bottom: 1px solid #5e5e67;background-color: #e1e1e1;height:43px;margin-bottom:25px;position:relative;top:-8px">
-            <ul style="display: table-cell; padding: 5px 15px;float:left;">
-                <li style="padding-top: 0; padding-bottom: 2px; padding-left: 0px; padding-right: 12px; font-size: 11px; line-height: 1.2em;">
-                    <h6><span style="margin-top: 7px;margin-bottom: 7px;}"><i
-                            class="fa fa-user fa-lg"></i> Summary</span></h6>
+        <div class="bottom-card-profile-actions">
+            <ul>
+                <li>
+                    <h6><span><i class="fa fa-user fa-lg"></i> Summary</span></h6>
                 </li>
             </ul>
-
-            <div ng-show="canEdit" ng-click="saveTopCard()" class="top-card-profile-right-actions" style="display: table-cell;border-left: 1px solid #ccc;padding: 12px 15px 7px 15px; background-color: #ececec;
-       background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);height:42px;font-size: 13px;vertical-align: middle; cursor: pointer;float:right;">
+            <button ng-show="isEditMode" ng-click="showPersonalSummaryEdit()" ng-disabled="isPersonalSummaryShown" class="bottom-card-profile-right-actions">
                 <i class="fa fa-pencil-square-o fa-lg"></i> Edit
-            </div>
-
+            </button>
         </div>
-        <div id="summary-container" style="margin: 5px 35px 0 35px;">
+        <div class="fieldgroup" ng-show="isPersonalSummaryShown" ng-hide="!isPersonalSummaryShown">
+                <textarea msd-elastic="\n" name="userSummary" class="edit-experience" cols="80" rows="6" ng-model="user.personalSummary" ng-show="isSummaryShown" style="padding-top: 5px; padding-bottom:5px;margin-top: 1px;
+                font-size:13px;margin-bottom: 15px;width:560px;padding-left: 10px;padding-right: 10px;"placeholder=" Edit your summary here."></textarea>
+
+            <div class="bottom-card-profile-actions-edit">
+                <ul>
+                    <li style="padding-top: 8px; padding-bottom: 2px; padding-left: 0px; padding-right: 12px; font-size: 11px; line-height: 1.2em;">
+                    </li>
+                </ul>
+                <div ng-show="isEditMode" ng-click="savePersonalSummary()" class="top-card-profile-right-actions" style="display: table-cell;border-left: 1px solid #ccc;padding: 8px 10px 7px 10px; background-color: #ececec;
+                    background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);font-size: 13px;vertical-align: middle; cursor: pointer;float:right;">
+                    <i class="fa fa-check fa-lg"></i> Save Changes
+                    <!--<button type="button" ng-show="canEdit" class="btn btn-md btn-primary edit-buttons"  id="edit-top-card"style="position:absolute; right: 0px ; bottom: 0px ;border-radius:2px 0px 0px 0px" ng-click="editTopCard()">-->
+                    <!--<i class="fa fa-pencil-square-o fa-lg"></i> Edit Profile</button>-->
+                </div>
+                <div ng-show="isEditMode" ng-click="restorePreviousPersonalSummary()" class="top-card-profile-right-actions" style="display: table-cell;border-left: 1px solid #ccc;padding: 8px 10px 7px 10px; background-color: #ececec;
+                     background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);font-size: 13px;vertical-align: middle; cursor: pointer;float:right;">
+                    <i class="fa fa-undo fa-lg"></i> Cancel
+                    <!--<button type="button" ng-show="canEdit" class="btn btn-md btn-primary edit-buttons"  id="edit-top-card"style="position:absolute; right: 0px ; bottom: 0px ;border-radius:2px 0px 0px 0px" ng-click="editTopCard()">-->
+                    <!--<i class="fa fa-pencil-square-o fa-lg"></i> Edit Profile</button>-->
+                </div>
+            </div>
+        </div>
+
+
+        <div id="summary-container" style="margin: 5px 35px 0 35px;" ng-hide="isPersonalSummaryShown" ng-show="!isPersonalSummaryShown">
                      <span class=" lead user-summary lead" e-rows="12" e-cols="80">
                          <p style="background-color: white;margin-bottom: 25px; padding:0 10px">
                              {{user.personalSummary}}</p>
                      </span>
         </div>
+
         <div class="bottom-card-profile-actions"
              style="border-bottom: 1px solid #5e5e67;background-color: #e1e1e1;height:43px;margin-bottom:25px;">
             <ul style="display: table-cell; padding: 5px 15px;float:left;">
@@ -31,7 +52,7 @@
                 </li>
             </ul>
 
-            <div ng-show="canEdit" ng-click="saveTopCard()" class="top-card-profile-right-actions" style="display: table-cell;border-left: 1px solid #ccc;padding: 12px 15px 7px 15px; background-color: #ececec;
+            <div ng-show="isEditMode" ng-click="saveTopCard()" class="top-card-profile-right-actions" style="display: table-cell;border-left: 1px solid #ccc;padding: 12px 15px 7px 15px; background-color: #ececec;
         background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);height:42px;font-size: 13px;vertical-align: middle; cursor: pointer;float:right;">
                 <i class="fa fa-pencil-square-o fa-lg"></i> Edit
             </div>

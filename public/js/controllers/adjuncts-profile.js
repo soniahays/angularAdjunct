@@ -11,11 +11,14 @@ angular.module('adjunct.controllers')
 
         $scope.canEdit = $cookies._id && !userId;
 
-        var isEditMode = S($location.path()).endsWith('/edit') && $scope.canEdit;
+        $scope.isEditMode = false;
 
-        $scope.topCardTemplateUrl = isEditMode ?  '/partial/adjuncts-profile-top-card-edit': '/partial/adjuncts-profile-top-card';
-        $scope.bottomCardTemplateUrl = isEditMode ? '/partial/adjuncts-profile-bottom-card-edit' : '/partial/adjuncts-profile-bottom-card';
-        $scope.middleCardTemplateUrl = isEditMode ? '/partial/adjuncts-profile-middle-card-edit' : '/partial/adjuncts-profile-middle-card';
+
+        var isEditModeUrl = S($location.path()).endsWith('/edit') && $scope.canEdit;
+
+        $scope.topCardTemplateUrl = isEditModeUrl ?  '/partial/adjuncts-profile-top-card-edit': '/partial/adjuncts-profile-top-card';
+        $scope.bottomCardTemplateUrl = isEditModeUrl ? '/partial/adjuncts-profile-bottom-card-edit' : '/partial/adjuncts-profile-bottom-card';
+        $scope.middleCardTemplateUrl = isEditModeUrl ? '/partial/adjuncts-profile-middle-card-edit' : '/partial/adjuncts-profile-middle-card';
 
         var adjunctProfile = $http.get('/api/get-adjuncts-profile/' + (userId ? userId : $cookies._id));
         var countries = $scope.canEdit ? $http.get('/api/countries') : null;
@@ -170,10 +173,19 @@ angular.module('adjunct.controllers')
 
         $scope.editTopCard = function () {
             $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card-edit';
+            $scope.isEditMode=true;
         }
 
         $scope.editBottomCard = function () {
             $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card-edit';
+        }
+        $scope.showPersonalSummaryEdit = function(){
+           $scope.restorePersonalSummary = $scope.user.personalSummary;
+           $scope.isPersonalSummaryShown = !$scope.isPersonalSummaryShown;
+        }
+
+        $scope.restorePreviousPersonalSummary = function(){
+           $scope.user.personalSummary = $scope.restorePersonalSummary;
         }
 
         $scope.editMiddleCard = function () {
@@ -183,6 +195,7 @@ angular.module('adjunct.controllers')
         $scope.saveTopCard = function () {
             $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
             $http.post('/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
+            $scope.isEditMode=false;
         }
 
         $scope.importLinkedin = function () {
@@ -205,6 +218,11 @@ angular.module('adjunct.controllers')
         $scope.saveBottomCard = function () {
             $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card';
             $http.post('/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
+        }
+
+        $scope.savePersonalSummary = function (){
+            $http.post('/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
+            $scope.isPersonalSummaryShown = !$scope.isPersonalSummaryShown;
         }
 
         $scope.addPortfolioLink = function () {

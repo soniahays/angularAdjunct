@@ -1,3 +1,57 @@
+.bottom-card-profile-actions-edit ul{
+    display: table-cell;
+    padding: 0 0 8px;
+    float:left;
+}
+
+.bottom-card-profile-actions-edit{
+    border-top: 1px dashed #5e5e67;
+    background: #fbede5;height:35px;
+}
+.bottom-card-profile-right-actions{
+    display: table-cell;
+    border-left: 1px solid #ccc;padding: 12px 15px 7px 15px;
+    background-color: #ececec;
+    background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);
+    height:42px;font-size: 13px;
+    vertical-align: middle;
+    cursor: pointer;
+    float:right;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-top-width: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.bottom-card-profile-actions{
+    border-bottom: 1px solid #5e5e67;
+    background-color: #e1e1e1;
+    height:43px;
+    margin-bottom:25px;
+    position:relative;
+}
+
+.bottom-card-profile-actions ul{
+    display: table-cell;
+    padding: 5px 15px;
+    float:left;
+}
+
+.bottom-card-profile-actions li{
+    padding-top: 0;
+    padding-bottom: 2px;
+    padding-left: 0px;
+    padding-right: 12px;
+    font-size: 11px;
+    line-height: 1.2em;
+}
+
+.bottom-card-profile-actions h6{
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
 #experience-containter-edit{
 margin-top: 15px;
 margin-bottom: 20px;
@@ -774,7 +828,8 @@ ol, ul{
 .container {
     max-width: none !important;
     width: 970px;
-    /*display:table;*/
+    padding-right: 0px;
+    padding-left: 0px;
 
 }
 /*-----------------NAVBAR CUSTOM--------------------*/
@@ -1201,12 +1256,10 @@ body { font-family: Arial, sans-serif; }
     color: rgb(0, 0, 0);
     display: block;
     font-family: Arial, sans-serif;
-    font-size: 14px;
+    font-size: 11px;
     font-style: normal;
     font-variant: normal;
     font-weight: bold;
-    height: 16px;
-    line-height: 16px;
     margin-bottom: 0px;
     margin-left: 0px;
     margin-right: 0px;
@@ -1218,7 +1271,8 @@ body { font-family: Arial, sans-serif; }
     padding-left: 0px;
     padding-right: 0px;
     vertical-align: baseline;
-    width: 215px;
+    text-align: justify;
+
 }
 .ppl-also {
     border-bottom-color: rgb(51, 51, 51);
@@ -1268,51 +1322,10 @@ body { font-family: Arial, sans-serif; }
 }
 
 .ppl-also-name {
-    border-bottom-color: rgb(0, 119, 181);
-    border-bottom-style: none;
-    border-bottom-width: 0px;
-    border-image-outset: 0px;
-    border-image-repeat: stretch;
-    border-image-slice: 100%;
-    border-image-source: none;
-    border-image-width: 1;
-    border-left-color: rgb(0, 119, 181);
-    border-left-style: none;
-    border-left-width: 0px;
-    border-right-color: rgb(0, 119, 181);
-    border-right-style: none;
-    border-right-width: 0px;
-    border-top-color: rgb(0, 119, 181);
-    border-top-style: none;
-    border-top-width: 0px;
     color: rgb(0, 119, 181);
-    cursor: auto;
-    display: inline;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    font-style: normal;
-    font-variant: normal;
+    text-align: center;
     font-weight: bold;
-    height: auto;
-    line-height: 17px;
-    list-style-image: none;
-    list-style-position: outside;
-    list-style-type: none;
-    margin-bottom: 0px;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-top: 0px;
-    outline-color: rgb(0, 119, 181);
-    outline-style: none;
-    outline-width: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 0px;
-    text-align: left;
-    text-decoration: none;
-    vertical-align: baseline;
-    width: auto;
+    font-size: 11px;
 }
 .ppl-also-name-mini {
     color: rgb(0, 119, 181);

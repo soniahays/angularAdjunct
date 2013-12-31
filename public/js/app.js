@@ -2,6 +2,7 @@
 
 angular.module('adjunct', [
         'ngRoute',
+        'monospaced.elastic',
         'ngCookies',
         //'ngResource',
         '$strap.directives',

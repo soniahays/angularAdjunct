@@ -1,15 +1,15 @@
-<div class="list-group col-md-12" >
+<div class="list-group col-md-12" style="padding-right: 0px;">
     <div class="list-group-item list-group-item-customized-inside-right" style="border-top-right-radius: 2px;">
         <h6>SAVED JOBS</h6>
     </div>
 
-    <a ng-href="/job-profile/{{job._id}}"  class="list-group-item list-group-item-customized" ng-repeat="job in user.jobs">
+    <a ng-href="/job-profile/{{job._id}}"  class="list-group-item list-group-item-customized" style="padding: 5px 0;" ng-repeat="job in user.jobs">
         <table>
             <tr>
-                <td>
-                    <div id="search-result-picture" class="toolbar-image">
+                <td style="padding-right:5px;" >
+                    <div id="search-result-picture" class="toolbar-image" style="width:35px; ">
                         <div ng-if="job.imageName">
-                            <img class= "main-search-job-image" ng-src="https://s3.amazonaws.com/Adjuncts/{{job.imageName}}" width="50px" />
+                            <img class= "main-search-job-image" ng-src="https://s3.amazonaws.com/Adjuncts/{{job.imageName}}" width="35px" />
                         </div>
                         <div ng-if="!job.imageName" class="no-picture-job-mini">
                             <i class="fa fa-briefcase briefcase"></i>
@@ -22,9 +22,7 @@
                         {{job.positionTypeDesc}} of {{job.academicDiscipline}}
                         </span>
                         <p class="description">
-                            <span>at {{ job.institution || 'empty' }}</span></br>
                             <span> {{ job.locationCity || 'empty' }}</span>
-                            <span>| {{ job.contractType.name || 'empty' }}</span>
                         </p>
                     </div>
                 </td>
