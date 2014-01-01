@@ -3,7 +3,17 @@
     padding: 0 0 8px;
     float:left;
 }
-
+.bottom-card-profile-right-actions-edit{
+    display: table-cell;
+    border-left: 1px solid #ccc;
+    padding: 8px 10px 7px 10px;
+    background-color: #ececec;
+    background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);
+    font-size: 13px;
+    vertical-align: middle;
+    cursor: pointer;
+    float:right;
+}
 .bottom-card-profile-actions-edit{
     border-top: 1px dashed #5e5e67;
     background: #fbede5;height:35px;
