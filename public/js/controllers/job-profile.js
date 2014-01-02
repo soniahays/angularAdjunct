@@ -27,12 +27,14 @@ angular.module('adjunct.controllers')
         var positionTypesPromise = $http.get('/api/positionTypes');
 
         $q.all([jobPromise, positionTypesPromise]).then(function(values) {
-            $scope.job = values[0].data;
-            $scope.positionTypes = values[1].data;
-            if ($scope.job) {
-                var positionType = _.findWhere($scope.positionTypes, {_id: $scope.job.positionTypeId});
-                if (positionType) {
-                    $scope.job.positionTypeDesc = positionType.name;
+            if (values[0]) {
+                $scope.job = values[0].data;
+                $scope.positionTypes = values[1].data;
+                if ($scope.job) {
+                    var positionType = _.findWhere($scope.positionTypes, {_id: $scope.job.positionTypeId});
+                    if (positionType) {
+                        $scope.job.positionTypeDesc = positionType.name;
+                    }
                 }
             }
         });

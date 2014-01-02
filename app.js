@@ -410,7 +410,7 @@ app.get('/api/:collectionName', function (req, res) {
             return res.send(500, "Error retrieving " + req.params.collectionName);
         }
         if (!docs) {
-            return res.send('Not found');
+            return res.send("[]");
         }
         return res.json(docs);
     });

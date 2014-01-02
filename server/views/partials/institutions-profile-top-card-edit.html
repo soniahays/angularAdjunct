@@ -33,7 +33,7 @@
 
                                 <ul>
                                     <li>
-                                    <label for="">Your Summary</label>
+                                    <label>Your Summary</label>
                                     <div class="fieldgroup">
 
 
@@ -42,7 +42,7 @@
                                     </div>
                                     </li>
                                     <li>
-                                        <label for="">Institution Name <abbr title="Required" class="required">*</abbr></label>
+                                        <label>Institution Name <abbr title="Required" class="required">*</abbr></label>
                                         <div class="fieldgroup">
                                             <div class="institution">
 
@@ -53,13 +53,13 @@
                                     </li>
 
                                     <li class="institution-type">
-                                        <label for="">Institution type </label>
+                                        <label>Institution type </label>
                                         <select ng-model="institution.institutionType" class="edit-month" ng-options="t._id as t.name for t in institutionTypes" class="input-xlarge" required>
                                             <option value="">choose...</option></select>
                                     </li>
 
                                     <!--<li>-->
-                                        <!--<label for="">Educational Institution type <abbr title="Required" class="required">*</abbr></label>-->
+                                        <!--<label>Educational Institution type <abbr title="Required" class="required">*</abbr></label>-->
                                         <!--<div class="fieldgroup">-->
                                             <!--<div class="institution">-->
 
@@ -69,18 +69,18 @@
                                         <!--</div>-->
                                     <!--</li>-->
                                     <li>
-                                        <label for="">Location <abbr title="Required" class="required">*</abbr></label>
+                                        <label>Location <abbr title="Required" class="required">*</abbr></label>
                                         <div class="fieldgroup">
                                             <div class="institution">
-                                                <label for="">Country <abbr title="Required" class="required">*</abbr></label>
+                                                <label>Country <abbr title="Required" class="required">*</abbr></label>
                                                 <select ng-model="institution.locationCountry" class="edit-country" ng-options="c.name for c in countries" class="input-xlarge" required>
                                                     <option value="">choose...</option></select>
                                                 <br/>
-                                                <label for="">City <abbr title="Required" class="required">*</abbr></label>
+                                                <label>City <abbr title="Required" class="required">*</abbr></label>
                                                 <input type="text" class="form-control form-inline input-sm profile-forms"
                                                        name="institutionLocationCity" ng-model="institution.locationCity" maxlength="50">
                                                 <br/>
-                                                <label for="">State <abbr title="Required" class="required">*</abbr></label>
+                                                <label>State <abbr title="Required" class="required">*</abbr></label>
                                                 <input type="text" class="form-control form-inline input-sm profile-forms"
                                                        name="institutionLocationState" ng-model="institution.locationState" maxlength="50">
 

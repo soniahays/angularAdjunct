@@ -3,6 +3,7 @@
 angular.module('adjunct.controllers')
     .controller('JobsCtrl', ['$scope', '$http', '$q', function ($scope, $http, $q) {
         $scope.users = [];
+        $scope.jobs = [];
         var jobs = $http.get('/api/jobs');
         var positionTypes = $http.get('/api/positionTypes');
         $q.all([jobs, positionTypes]).then(function (values) {

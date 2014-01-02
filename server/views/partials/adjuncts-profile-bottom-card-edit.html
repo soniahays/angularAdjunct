@@ -23,10 +23,10 @@
                                        </p>
                                     <div id="experience-containter-edit" ng-repeat="resumePosition in user.resumePositions">
                                         [<a href class="" ng-click="removeAResumePosition(resumePosition)">
-                                        <span class="">X</span>
-                                    </a>]
+                                            <span class="">X</span>
+                                        </a>]
                                     <li>
-                                        <label for="">Institution Name <abbr title="Required" class="required">*</abbr></label>
+                                        <label>Institution Name <abbr title="Required" class="required">*</abbr></label>
                                         <div class="fieldgroup">
                                             <div class="institution">
                                                     <input type="text" class="form-control form-inline input-sm profile-forms position-edit-form"
@@ -35,7 +35,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <label for="">Title </label>
+                                        <label>Title </label>
                                         <div class="fieldgroup">
                                             <div class="institution">
                                                 <input type="text" class="form-control form-inline input-sm profile-forms position-edit-form"
@@ -44,7 +44,7 @@
                                         </div>
                                     </li>
                                     <li >
-                                        <label for="">Location <abbr title="Required" class="required">*</abbr></label>
+                                        <label>Location <abbr title="Required" class="required">*</abbr></label>
                                         <div class="fieldgroup">
                                             <div class="institution">
                                                 <input type="text" class="form-control form-inline input-sm profile-forms position-edit-form"
@@ -61,7 +61,7 @@
                                                     <li class="start-date" style="display:inline!important;">
                                                         <span><select ng-model="resumePosition.startMonth" class="edit-month" ng-options="m for m in months" class="" required style="display:inline!important;">
                                                         <option value="">choose...</option></select>
-                                                        <label for="" style="display:none;" >Year</label>
+                                                        <label style="display:none;" >Year</label>
                                                         <input type="text" class="form-control form-inline input-sm profile-forms year"
                                                         name="experience1TimePeriodYear " ng-model="resumePosition.startYear" maxlength="4" placeholder="Year"style="display:inline!important;">
                                                         <span class="to">-</span></span>
@@ -70,7 +70,7 @@
                                                         <div class="ended-position" style="display:inline!important;">
                                                         <span ng-hide="resumePosition.stillHere"><select ng-model="resumePosition.endMonth" class="edit-month" ng-options="m for m in months" class="" required style="display:inline!important;">
                                                             <option value="">choose...</option></select>
-                                                        <label for="" style="display:none;" >Year</label>
+                                                        <label style="display:none;" >Year</label>
                                                         <input type="text" class="form-control form-inline input-sm profile-forms year"
                                                                name="experience1TimePeriodYear " ng-model="resumePosition.endYear"  maxlength="4" placeholder="Year" style="display:inline!important;"></span>
                                                         <span ng-show="resumePosition.stillHere">to present</span>
@@ -85,7 +85,7 @@
                                             </fieldset>
                                             </li>
                                             <li id="experience-summary">
-                                                <label for="">Description</label>
+                                                <label>Description</label>
                                                 <div class="fieldgroup">
                                                     <textarea name="experience1Summary" class="edit-experience" cols="80" rows="6" ng-model="resumePosition.description "></textarea>
                                                 </div>
