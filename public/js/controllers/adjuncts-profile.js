@@ -184,6 +184,10 @@ angular.module('adjunct.controllers')
            $scope.isPersonalSummaryShown = !$scope.isPersonalSummaryShown;
         }
 
+        $scope.showPositionEdit = function(){
+
+        }
+
         $scope.showResumeSectionEdit = function (){
             $scope.isResumeSectionShown = !$scope.isResumeSectionShown;
         }
