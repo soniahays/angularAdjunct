@@ -62,9 +62,21 @@
             </table>
         </div>
     </div>
-    <button ng-show="canApplyToJob" type="button" class="btn btn-md btn-primary edit-buttons" id="apply-to-job" style="position:absolute; right: 185px ; bottom: 0px ;border-radius:3px 0px 3px 0px" ng-click="applyToJob()"><i class="fa fa-pencil-square-o fa-lg"></i>Apply</button>
-    <button ng-show="canSaveJob" type="button" class="btn btn-md btn-primary edit-buttons" style="position:absolute; right: 100px ; bottom: 0px ;border-radius:3px 0px 3px 0px" ng-click="saveJobForUser()"><i class="fa fa-pencil-square-o fa-lg"></i>Save</button>
-    <button type="button" class="btn btn-md btn-primary edit-buttons" style="position:absolute; right: 0px ; bottom: 0px ;border-radius:3px 0px 3px 0px" ng-click="editTopCard()"><i class="fa fa-pencil-square-o fa-lg"></i>Edit Job</button>
+    <div class="top-card-profile-actions" style="border-top: 1px dashed #5e5e67;background: #f6f6f6;height:35px;">
+        <ul style="display: table-cell; padding: 0 0 8px;float:left;">
+            <li style="padding-top: 8px; padding-bottom: 2px; padding-left: 0px; padding-right: 12px; font-size: 11px; line-height: 1.2em;">
+            </li>
+        </ul>
+        <div ng-show="canEdit" ng-click="editTopCard()" class="action-bar-right">
+            <i class="fa fa-pencil-square-o fa-lg"></i> Edit Profile
+        </div>
+        <div ng-show="!canEdit" ng-click="saveJobForUser()" class="action-bar-right">
+            <i class="fa fa-folder-open fa-lg"></i> Save Job
+        </div>
+    </div>
+    <!--<button ng-show="canApplyToJob" type="button" class="btn btn-md btn-primary edit-buttons" id="apply-to-job" style="position:absolute; right: 185px ; bottom: 0px ;border-radius:3px 0px 3px 0px" ng-click="applyToJob()"><i class="fa fa-pencil-square-o fa-lg"></i>Apply</button>-->
+    <!--<button ng-show="canSaveJob" type="button" class="btn btn-md btn-primary edit-buttons" style="position:absolute; right: 100px ; bottom: 0px ;border-radius:3px 0px 3px 0px" ng-click="saveJobForUser()"><i class="fa fa-pencil-square-o fa-lg"></i>Save</button>-->
+    <!--<button type="button" class="btn btn-md btn-primary edit-buttons" style="position:absolute; right: 0px ; bottom: 0px ;border-radius:3px 0px 3px 0px" ng-click="editTopCard()"><i class="fa fa-pencil-square-o fa-lg"></i>Edit Job</button>-->
 </div>
 
 

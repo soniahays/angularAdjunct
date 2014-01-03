@@ -1,0 +1,34 @@
+<div id="alert-modal" class="modal">
+    <div class="modal-dialog modal-dialog-custom">
+        <form id="profile-pic-upload" ng-upload method="POST" action="/upload-adjunct?delay=yes">
+            <div class="modal-content" style="border-radius:1px;">
+                <div class="modal-header" style="background-color: #222;
+                border-color: #080808;color:white;padding-bottom: 8px;
+padding-top: 9px;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h5 class="modal-title">Remove position</h5>
+                </div>
+                <div class="modal-body" style="padding-right: 0px;padding-bottom: 15px;padding-left: 15px;">
+                               Are you sure you want to remove the {{selectedResumePosition.institution}} position?<br/>
+                </div>
+
+                    <div class="top-card-profile-actions" style="border-top: 1px dashed #5e5e67;background: #f6f6f6;height:35px;">
+                        <ul style="display: table-cell; padding: 0 0 8px;float:left;">
+                            <li style="padding-top: 8px; padding-bottom: 2px; padding-left: 0px; padding-right: 12px; font-size: 11px; line-height: 1.2em;">
+
+                            </li>
+                        </ul>
+
+                        <div ng-show="canEdit" ng-click="" class="action-bar">
+                            Cancel
+                        </div>
+                        <div ng-show="canEdit" ng-click="removeAResumePosition(selectedResumePosition)" class="action-bar">
+                            Yes, remove it
+                        </div>
+                    </div>
+
+
+            </div>
+        </form>
+    </div>
+</div>

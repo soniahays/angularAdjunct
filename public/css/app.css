@@ -1,7 +1,42 @@
+.action-bar-right{
+    display: table-cell;
+    border-left: 1px solid #ccc;
+    padding: 8px 10px 7px 10px;
+    background-color: #ececec;
+    background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);
+    font-size: 13px;
+    vertical-align: middle;
+    cursor: pointer;
+    float:right;
+}
+/*//combine both*/
+.action-bar{
+    display: table-cell;
+    border-left: 1px solid #ccc;
+    padding: 8px 10px 7px 10px;
+    background-color: #ececec;
+    background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);
+    font-size: 13px;
+    vertical-align: middle;
+    cursor: pointer;
+    float:right;
+}
+.resumes-container{
+    margin: 7px 0;
+}
+.profile-bottom-card{
+    padding:0;
+}
 .bottom-card-profile-actions-edit ul{
     display: table-cell;
     padding: 0 0 8px;
     float:left;
+}
+
+.bottom-card-profile-actions-edit li{
+    padding: 8px 12px 2px 0;
+    font-size: 11px;
+    line-height: 1.2em;"
 }
 .bottom-card-profile-right-actions-edit{
     display: table-cell;
@@ -96,10 +131,10 @@ border-width: 1px 0;
     border: 1px dashed #ddd;
 }
 .bottom-card-panel{
-    padding-left: 7px;
-    padding-right: 7px;
     border-radius: 0!important;
     margin-top: 3px;
+    padding:0;
+    top:-16px;
 }
 .bottom-card-panel-body{
     padding-left: 5px;
@@ -375,6 +410,13 @@ border-radius: 0px;
 
 
 }
+.edit-personal-summary{
+    padding: 5px 10px;
+    margin: 1px 21px  15px;
+    font-size: 13px;
+    width: 561px;
+}
+
 .edit-experience{
     width:430px;
 }
@@ -1625,7 +1667,15 @@ tbody{
 }
 
 #summary-container{
-    margin: 0 auto;
+    margin: 5px 35px 0 35px;
+
+}
+
+#summary-container p{
+    background-color: white;
+    margin-bottom: 25px;
+    padding:0 10px;
+
 }
 .user-summary{
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;

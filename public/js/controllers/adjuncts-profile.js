@@ -12,6 +12,8 @@ angular.module('adjunct.controllers')
         $scope.canEdit = $cookies._id && !userId;
 
         $scope.isEditMode = false;
+        $scope.isPositionShown = false;
+
 
 
         var isEditModeUrl = S($location.path()).endsWith('/edit') && $scope.canEdit;
@@ -158,6 +160,8 @@ angular.module('adjunct.controllers')
                 console.log("get-adjuncts-profile-top-card didn't work", error);
             });
 
+        $scope.activePositionIndex;
+
         $scope.months = [];
         var count = 0;
         while (count < 12) {
@@ -179,13 +183,20 @@ angular.module('adjunct.controllers')
         $scope.editBottomCard = function () {
             $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card-edit';
         }
+
         $scope.showPersonalSummaryEdit = function(){
            $scope.restorePersonalSummary = $scope.user.personalSummary;
            $scope.isPersonalSummaryShown = !$scope.isPersonalSummaryShown;
         }
 
-        $scope.showPositionEdit = function(){
+        $scope.showResumePositionEdit = function(index) {
+//            $scope.restoreResumePosition = $scope.user.resumePosition;
+            $scope.activePositionIndex = index;
+        }
 
+        $scope.isResumePositionShown = function(index){
+            var shouldShow = $scope.activePositionIndex === index;
+            return shouldShow;
         }
 
         $scope.showResumeSectionEdit = function (){
@@ -194,6 +205,10 @@ angular.module('adjunct.controllers')
 
         $scope.restorePreviousPersonalSummary = function(){
            $scope.user.personalSummary = $scope.restorePersonalSummary;
+        }
+
+        $scope.restorePreviousResumePosition = function(){
+            $scope.user.resumePosition = $scope.restoreResumePosition;
         }
 
         $scope.editMiddleCard = function () {
@@ -233,6 +248,11 @@ angular.module('adjunct.controllers')
             $scope.isPersonalSummaryShown = !$scope.isPersonalSummaryShown;
         }
 
+        $scope.saveResumePositionEdit = function(){
+            $http.post('/save-adjuncts-profile', JSON.stringify({'user':$scope.user}));
+            $scope.activePositionIndex = -1;
+        }
+
         $scope.addPortfolioLink = function () {
             $scope.user.portfolioLinks.push({type: 'video', value: ''});
         }
@@ -262,6 +282,7 @@ angular.module('adjunct.controllers')
         }
 
         $scope.addAResumePosition = function () {
+
             $scope.user.resumePositions.push({value: ''});
         }
 
@@ -279,6 +300,12 @@ angular.module('adjunct.controllers')
                     $scope.user.fieldOfExpertises.splice(i, 1);
                 }
             }
+        }
+
+        $scope.removePositionAlert= function(resumePosition){
+            console.log(resumePosition);
+            $scope.selectedResumePosition = resumePosition;
+            $('#alert-modal').modal();
         }
 
         $scope.removeAResumePosition = function (resumePosition) {
