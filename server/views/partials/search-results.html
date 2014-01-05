@@ -1,6 +1,9 @@
 <% if (locals.searchTerm) { %>
 <div id="searchTerm" style="display:none"><%= locals.searchTerm %></div>
 <% } %>
+<% if (locals.all) { %>
+<div id="all" style="display:none"><%= locals.all %></div>
+<% } %>
 <div class="container">
     <div class="col-md-2 sidebar-offcanvas" id="sidebar1" role="navigation">
             <div ng-include="'/partial/side-search-column'" />
