@@ -2,7 +2,9 @@
     <div class="panel-body profile-bottom-card">
         <div class="profile-details-content">
             <div id="experience-edit">
+
                 <form class="form-group">
+
                     <ul>
                         <li>
                             <label>Job Description</label>
@@ -69,10 +71,22 @@
                     </ul>
                 </form>
             </div>
-            <div class="profile-edit">
-                <button type="button" class="btn btn-xs btn-primary" ng-click="saveBottomCard()">Save</button>
+
+            <div class="top-card-profile-actions" style="border-top: 1px dashed #5e5e67;background: #f6f6f6;height:35px;">
+                <ul style="display: table-cell; padding: 0 0 8px;float:left;">
+                    <li style="padding-top: 8px; padding-bottom: 2px; padding-left: 0px; padding-right: 12px; font-size: 11px; line-height: 1.2em;">
+                    </li>
+                </ul>
+                <div ng-show="canSaveJob" ng-click="saveBottomCard()" class="action-bar-right">
+                    <i class="fa fa-bullhorn fa-lg"></i> Publish Job
+                </div>
+                <div ng-click="editTopCard()" class="action-bar-right">
+                    <i class="fa fa-check fa-lg"></i> Save Edits
+                </div>
+
             </div>
         </div>
     </div>
+
 </div>
 

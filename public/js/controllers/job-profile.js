@@ -42,11 +42,8 @@ angular.module('adjunct.controllers')
         $http.get('/api/contractTypes').then(function(response) { $scope.contractTypes = response.data; });
         $http.get('/api/countries').then(function(response) { $scope.countries = response.data; });
 
-        $scope.editTopCard = function () {
+        $scope.editJobProfile = function () {
             $scope.topCardJobTemplateUrl = '/partial/job-profile-top-card-edit';
-        }
-
-        $scope.editBottomCard = function () {
             $scope.bottomCardJobTemplateUrl = '/partial/job-profile-bottom-card-edit';
         }
 

@@ -1,3 +1,13 @@
+
+.profiles-panel{
+    position: relative;
+    padding-left:0px !important;
+    padding-right:0px !important;
+    padding-bottom: 0px !important;
+    margin-bottom: 5px !important;
+    border-color:#ddd;
+    /*border-color: #5e5e67;*/
+}
 .action-bar-right{
     display: table-cell;
     border-left: 1px solid #ccc;
@@ -403,7 +413,7 @@ border-radius: 0px;
     color:#272727;
 }
 
-#top-card{
+#top-card,#top-card-job{
     /*background-color: #FaFaFa;*/
     border-radius: 2px 0 0 0 !important;
     padding-right:0px!important;
@@ -1207,7 +1217,7 @@ body { font-family: Arial, sans-serif; }
 
 .banner{
     /*background: url("../img/BannerBackgroung.png") no-repeat;*/
-    background-color: #F6F6F6;
+    background-color: white;
     /*background-size: 100%;*/
     margin-top: -10px;
 

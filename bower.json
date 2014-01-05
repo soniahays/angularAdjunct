@@ -28,7 +28,8 @@
     "momentjs": "~2.4.0",
     "underscore": "~1.5.2",
     "angular-elastic": "~2.3.0",
-    "stringjs": "~1.7.0"
+    "stringjs": "~1.7.0",
+    "angular-scrollto": "*"
   },
   "resolutions": {
     "angular": "~1.2.6",
