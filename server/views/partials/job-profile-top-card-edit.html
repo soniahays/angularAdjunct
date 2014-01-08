@@ -1,20 +1,21 @@
 <div id="top-card-job" class="panel profiles-panel col-md-12">
     <div class="panel-body profile-top-card">
 <div class="profile-details-content">
-            <form>
-                <div id="jobDetails">scroll to me</div>
-
-                <div id="name-container">
-
-                    <div class="form-group-institution">
-
+            <form name="jobForm">
+                <div id="name-container" class="form-group css-form" novalidate>
+                    <div>
                         <ul>
                             <li>
+                                  User name: <input type="text" name="jobName" ng-model="job.name" required>
+                                  <span class="error" ng-show="jobForm.jobName.$error.required">
+                                  Required!</span><br>
+
+
                                 <label>Job Position <abbr title="Required" class="required">*</abbr></label>
                                 <select ng-model="job.positionTypeId" class="edit-positionType" ng-options="p._id as p.name for p in positionTypes" class="input-xlarge" required>
                                     <option value="">choose...</option></select>
                                 - <label>Academic Discipline <abbr title="Required" class="required">*</abbr>  </label>
-                                <input type="text" class=" profile-forms" name="jobAcademicDiscipline" ng-model="job.academicDiscipline" maxlength="50">
+                                <input type="text" class=" profile-forms" name="jobAcademicDiscipline" ng-model="job.academicDiscipline" maxlength="50" required>
                             </li>
                             <li>
                                 <label>Institution Name<abbr title="Required" class="required">*</abbr>  </label>

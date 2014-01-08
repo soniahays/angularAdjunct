@@ -3,14 +3,36 @@
         <div class="profile-details-content">
             <div id="experience-edit">
 
-                <form class="form-group">
+
+                <form novalidate class="form-group css-form">
+                    Name:
+                    <input type="text" ng-model="user.name" required /><br />
+                    E-mail: <input type="email" ng-model="user.email" required /><br />
+                    Gender: <input type="radio" ng-model="user.gender" value="male" />male
+                    <input type="radio" ng-model="user.gender" value="female" />female<br />
+                    <button ng-click="reset()">RESET</button>
+                    <button ng-click="update(user)">SAVE</button>
+                </form>
+
+                <form  novalidate class="form-group css-form">
 
                     <ul>
                         <li>
+
+                            User name: <input type="text" name="userName" ng-model="user.name" required>
+        <span class="error" ng-show="myForm.userName.$error.required">
+          Required!</span><br>
+
+                            <textarea ng-model="job.description" cols="100" rows="6" name="jobDescription" ng-minlength="50" ng-maxlength="1000" required> </textarea>
                             <label>Job Description</label>
+                            <span class="error" ng-show="myForm.jobDescription.$error.required">
+                             Required!</span><br>
                             <div class="fieldgroup">
-                                <textarea name="jobDescription" class="" cols="100" rows="6" ng-model="job.description"></textarea>
+                                <textarea name="jobDescription"   cols="100" rows="6" ng-model="job.description" required></textarea>
                             </div>
+                                   <span class="error" ng-show="form-group.jobDescription.$error.required">
+                                Required!</span><br>
+
                         </li>
                         <li>
                             <label>Job Requirements</label>
@@ -77,10 +99,10 @@
                     <li style="padding-top: 8px; padding-bottom: 2px; padding-left: 0px; padding-right: 12px; font-size: 11px; line-height: 1.2em;">
                     </li>
                 </ul>
-                <div ng-show="canSaveJob" ng-click="saveBottomCard()" class="action-bar-right">
+                <div ng-show="canSaveJob" ng-click="saveJobCard()" class="action-bar-right">
                     <i class="fa fa-bullhorn fa-lg"></i> Publish Job
                 </div>
-                <div ng-click="editTopCard()" class="action-bar-right">
+                <div ng-click="saveJobCard()" class="action-bar-right">
                     <i class="fa fa-check fa-lg"></i> Save Edits
                 </div>
 

@@ -4,6 +4,20 @@ angular.module('adjunct.controllers')
     .controller('JobProfileCtrl', ['$scope', '$http', '$cookies', '$q', function ($scope, $http, $cookies, $q) {
         var jobId = $('#jobId').html();
 
+        $scope.master = {};
+
+        $scope.update = function(job) {
+            $scope.master = angular.copy(job);
+        };
+
+        $scope.reset = function() {
+            $scope.job = angular.copy($scope.master);
+        };
+
+        $scope.reset();
+
+
+
         $scope.job = {};
         $scope.canSaveJob = $cookies._id;
 
@@ -42,6 +56,11 @@ angular.module('adjunct.controllers')
         $http.get('/api/contractTypes').then(function(response) { $scope.contractTypes = response.data; });
         $http.get('/api/countries').then(function(response) { $scope.countries = response.data; });
 
+
+
+
+
+
         $scope.editJobProfile = function () {
             $scope.topCardJobTemplateUrl = '/partial/job-profile-top-card-edit';
             $scope.bottomCardJobTemplateUrl = '/partial/job-profile-bottom-card-edit';
@@ -60,7 +79,8 @@ angular.module('adjunct.controllers')
             $http.post('/api/save-job-profile/', JSON.stringify({'job': $scope.job}));
         }
 
-        $scope.saveBottomCard = function () {
+        $scope.saveJobCard = function () {
+            $scope.topCardJobTemplateUrl = '/partial/job-profile-top-card';
             $scope.bottomCardJobTemplateUrl = '/partial/job-profile-bottom-card';
             $http.post('/api/save-job-profile', JSON.stringify({'job': $scope.job}));
         }
