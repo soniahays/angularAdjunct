@@ -2,15 +2,16 @@
     <div class="panel-body profile-top-card">
 <div class="profile-details-content">
             <form name="jobForm">
-                <div id="name-container" class="form-group css-form" novalidate>
+                <div id="name-container" class="form-group css-form" novalidate style="line-height:2;">
                     <div>
                         <ul>
                             <li>
-                                  User name: <input type="text" name="jobName" ng-model="job.name" required>
-                                  <span class="error" ng-show="jobForm.jobName.$error.required">
-                                  Required!</span><br>
-
-
+                                  <!--User name: <input type="text" name="jobName" ng-model="job.name" required>-->
+                                  <!--<span class="error" ng-show="jobForm.jobName.$error.required">-->
+                                  <!--Required!</span><br>-->
+                                  <!--<textarea name="jobExample" ng-model="job.example" cols="100" rows="6" ng-minlength="50" ng-maxlength="1000"  required></textarea>-->
+                                  <!--<span class="error" ng-show="jobForm.jobExample.$error.required">-->
+                                  <!--Required!</span><br>-->
                                 <label>Job Position <abbr title="Required" class="required">*</abbr></label>
                                 <select ng-model="job.positionTypeId" class="edit-positionType" ng-options="p._id as p.name for p in positionTypes" class="input-xlarge" required>
                                     <option value="">choose...</option></select>
@@ -19,7 +20,7 @@
                             </li>
                             <li>
                                 <label>Institution Name<abbr title="Required" class="required">*</abbr>  </label>
-                                <input type="text" class=" profile-forms " name="jobInstitution" ng-model="job.institution" maxlength="50">
+                                <input type="text" class=" profile-forms " name="jobInstitution" ng-model="job.institution" maxlength="50" required>
                                 - <label>Contract Type <abbr title="Required" class="required">*</abbr></label>
 
                                 <select ng-model="job.contractType" class="edit-positionType" ng-options="c._id as c.name for c in contractTypes" class="input-xlarge" required>
@@ -38,9 +39,9 @@
                                         <select ng-model="job.country" class="edit-positionType"  ng-options="c._id as c.name for c in countries" class="input-xlarge" required>
                                             <option value="">choose...</option></select>
                                         <label>City <abbr title="Required" class="required">*</abbr></label>
-                                        <input type="text" class="profile-forms" name="jobLocationCity" ng-model="job.locationCity" maxlength="50"> <br/>
+                                        <input type="text" class="profile-forms" name="jobLocationCity" ng-model="job.locationCity" maxlength="50" required> <br/>
                                         <label>State <abbr title="Required" class="required">*</abbr></label>
-                                        <input type="text" class="profile-forms" name="jobLocationState" ng-model="job.locationState" maxlength="50">
+                                        <input type="text" class="profile-forms" name="jobLocationState" ng-model="job.locationState" maxlength="50" required>
                                 </div>
 
                             </li>
