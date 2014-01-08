@@ -1,0 +1,14 @@
+{
+  "name": "ngScrollTo",
+  "homepage": "https://github.com/iameugenejo/ngScrollTo",
+  "_release": "55459ddaf9",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "55459ddaf95833503e14424c1d12c6b20991a414"
+  },
+  "_source": "git://github.com/iameugenejo/ngScrollTo.git",
+  "_target": "*",
+  "_originalSource": "ngScrollTo",
+  "_direct": true
+}

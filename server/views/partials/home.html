@@ -1,22 +1,20 @@
 
-
-<div ng-init="init()" class="jumbotron banner " style="height:521px;margin-top: -25px;">
+<form ng-init="init()" class="jumbotron banner " style="height:521px;margin-top: -25px;" name="homeForm" novalidate>
     <div class="container">
         <div class="home-banner-left" style="margin-top:130px;width:500px;float:left;">
             <h2 style="font-size:21px;margin-bottom: 40px" >Adjuncts is a job marketplace custom-tailored to the needs of Academia.</h2>
             <div class="input-group">
-                <input type="text" class="form-control" ng-enter="search()" ng-model="searchBox" placeholder="Search by university, discipline, qualification, location and more...">
-                      <span class="input-group-btn">
-                          <button class="btn btn-default btn-custom" type="button" ng-click="search()">Go!</button>
-                      </span>
+                    <input type="text" class="form-control" ng-enter="search()" required ng-model="searchBox" placeholder="Search by university, discipline, qualification, location and more..." ng>
+                    <span class="input-group-btn">
+                      <button class="btn btn-default btn-custom" type="submit" ng-disabled="homeForm.$invalid" ng-click="search()">Go!</button>
+                    </span>
             </div>
-
           </div>
         <div class="home-banner-right" style="width:320px; padding-right:5px; float:right;margin-top:30px;margin-bottom:30px!important;">
         <div ng-include="bannerSignupFormUrl" />
         </div>
       </div>
-</div>
+</form>
 
 <div class="container marketing" align="center">
     <div class="row featurette">

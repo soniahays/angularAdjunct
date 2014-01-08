@@ -3,7 +3,7 @@
 angular.module('adjunct', [
         'ngRoute',
         'monospaced.elastic',
-        'scrollto',
+        'ngScrollTo',
         'ngCookies',
         //'ngResource',
         '$strap.directives',

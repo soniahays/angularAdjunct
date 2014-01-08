@@ -29,7 +29,7 @@
     "underscore": "~1.5.2",
     "angular-elastic": "~2.3.0",
     "stringjs": "~1.7.0",
-    "angular-scrollto": "*"
+    "ngScrollTo": "*"
   },
   "resolutions": {
     "angular": "~1.2.6",
