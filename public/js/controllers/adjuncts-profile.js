@@ -185,12 +185,12 @@ angular.module('adjunct.controllers')
         }
 
         $scope.showPersonalSummaryEdit = function(){
-           $scope.restorePersonalSummary = $scope.user.personalSummary;
+           $scope.restorePersonalSummary = angular.copy($scope.user.personalSummary);
            $scope.isPersonalSummaryShown = !$scope.isPersonalSummaryShown;
         }
 
         $scope.showResumePositionEdit = function(index) {
-//            $scope.restoreResumePosition = $scope.user.resumePosition;
+//            $scope.restoreResumePosition = angular.copy($scope.user.resumePosition);
             $scope.activePositionIndex = index;
         }
 
@@ -204,11 +204,11 @@ angular.module('adjunct.controllers')
         }
 
         $scope.restorePreviousPersonalSummary = function(){
-           $scope.user.personalSummary = $scope.restorePersonalSummary;
+           $scope.user.personalSummary = angular.copy($scope.restorePersonalSummary);
         }
 
         $scope.restorePreviousResumePosition = function(){
-            $scope.user.resumePosition = $scope.restoreResumePosition;
+            $scope.user.resumePosition =angular.copy($scope.restoreResumePosition);
         }
 
         $scope.editMiddleCard = function () {
