@@ -6,12 +6,14 @@ angular.module('adjunct.controllers')
         $scope.user = {};
 
         var searchTerm = $('#searchTerm').html();
+        var all = $('#all').html();
 
-        if (!searchTerm) {
+        if (!searchTerm && !all) {
             return;
         }
 
-        $http.post('/api/search', JSON.stringify({'query': searchTerm})).then(function(response){
+        var url = all ? '/api/searchAll' : '/api/search';
+        $http.post(url, JSON.stringify({'query': searchTerm})).then(function(response){
             if (response.data) {
                 $scope.users = _.map(response.data.hits.hits, function(user) {
                     angular.extend(user, user._source);

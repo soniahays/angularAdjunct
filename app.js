@@ -301,6 +301,10 @@ app.post('/api/search', function (req, res) {
     es.search({'query': {'match': {'_all': req.body.query}}}, function(err, result) {res.json(result);});
 });
 
+app.post('/api/searchAll', function (req, res) {
+    es.search({'query': {'match_all': {}}}, function(err, result) {res.json(result);});
+});
+
 app.get('/partial/adjuncts-profile',
     ensureLoggedIn({ redirectTo: path.join(app.get('partials'), 'signin-popover.html'), customReturnTo: '/profile' }),
     function (req, res) {
@@ -321,6 +325,11 @@ app.get('/partial/job-profile/:jobId',
 app.get('/partial/institutions-profile/:institutionId',
     function (req, res) {
         res.render(path.join(app.get('partials'), 'institutions-profile.html'), { locals: {'institutionId': req.params.institutionId}});
+    });
+
+app.get('/partial/search-results',
+    function (req, res) {
+        res.render(path.join(app.get('partials'), 'search-results.html'), { locals: {'all': true}});
     });
 
 app.get('/partial/search-results/:searchTerm',
