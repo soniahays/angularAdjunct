@@ -1,31 +1,8 @@
-<div id="top-card-job" class="panel panel-default col-md-12"
-     style="padding-left:5px !important;padding-right:5px !important; padding-bottom: 0px !important; margin-bottom: 5px !important">
+<div id="top-card-job" class="panel profiles-panel col-md-12">
     <div class="panel-body profile-top-card">
-
-
-        <!--<div class="profile-picture-container col-sm-4">-->
-        <!--<div class="profile-picture">-->
-        <!--<span ng-if="job.imageName" style="z-index: -1000;"><img class="img-thumbnail pull-left" ng-src="https://s3.amazonaws.com/Adjuncts/{{job.imageName}}" /></span>-->
-        <!--<div class="edit-photo">-->
-        <!--<a href="#" ng-click="openPictureUploadModal()">-->
-        <!--<span>Change photo</span></a>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--<div ng-if="!job.imageName" class="no-picture">-->
-        <!--<div class="addPictLink">-->
-        <!--<a href="#" ng-click="openPictureUploadModal()">-->
-        <!--<span style= "color: #fff;">-->
-        <!--<img src="/img/icon_add_photo_27x27_v1.png" /> Add a photo-->
-        <!--</span>-->
-        <!--</a>-->
-
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-
 <div class="profile-details-content">
             <form>
-
+                <div id="jobDetails">scroll to me</div>
 
                 <div id="name-container">
 
@@ -78,7 +55,6 @@
                                     <div id="tags-container">
                                         <tags-input ng-model="job.expertiseTags" class="expertise-tags"></tags-input>
                                     </div>
-                                    <!--job.requirementField1 -->
 
                                 </div>
 
@@ -87,26 +63,21 @@
 
                             </li>
                         </ul>
-
-
-
-
-
-
-
-
-
                     </div>
                 </div>
 
             </form>
-            <button type="button" class="btn btn-xs btn-primary" ng-click="saveTopCard()">
-                Save Profile
-            </button>
-
-            <!--</table>-->
-
         </div>
+    </div>
+    <div class="top-card-profile-actions" style="border-top: 1px dashed #5e5e67;background: #f6f6f6;height:35px;">
+        <ul style="display: table-cell; padding: 0 0 8px;float:left;">
+            <li style="padding-top: 8px; padding-bottom: 2px; padding-left: 0px; padding-right: 12px; font-size: 11px; line-height: 1.2em;">
+            </li>
+        </ul>
+        <div class="action-bar-right">
+            <i class="fa fa-caret-down fa-lg"></i> <a href="" scroll-to="#jobDetails" offset="0" container="window"> Edit Job details</a>
+        </div>
+
     </div>
 </div>
 

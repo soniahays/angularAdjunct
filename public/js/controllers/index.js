@@ -34,6 +34,11 @@ angular.module('adjunct.controllers')
             {
                 "text": "Post a new job",
                 "href": "/job-profile/add"
+            },
+            {
+                "text": "View institutions",
+                "href": "/institutions-profile"
             }
+
         ];
     }]);
