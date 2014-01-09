@@ -4,6 +4,8 @@ angular.module('adjunct.controllers')
     .controller('IndexCtrl', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
 
         $scope.isSignedIn = $cookies._id != null;
+        $scope.signinPopover = {title: 'Title', content: 'Hello Popover<br />This is a multiline message!'};
+
 
         if ($scope.isSignedIn) {
             $http.get('/api/get-adjuncts-profile/' + $cookies._id).then(function(response) { $scope.user = response.data; });

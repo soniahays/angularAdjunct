@@ -23,7 +23,7 @@
 
         <div class="profile-overview-content-edit col-sm-8"
              style="margin-left: 0px; padding-left: 15px;padding-right: 0px;">
-            <form>
+            <form name="profileTopCardForm" class="css-form" novalidate>
                 <div class="">
                     <div class="account-icons">
                     </div>
@@ -34,23 +34,25 @@
 
                                 <ul>
                                     <li>
-                                        <input type="text" class="profile-forms" name="firstName"
+                                        <input type="text" class="profile-forms" name="firstName" required
                                                ng-model="user.firstName" maxlength="50" placeholder="First Name">
-                                        <input type="text" class="profile-forms" name="lastName"
+                                         <span class="help-block"
+                                               ng-show="profileTopCardForm.firstName.$error.required">Required</span>
+                                        <input type="text" class="profile-forms" name="lastName" required
                                                ng-model="user.lastName" maxlength="50" placeholder="Last Name">
                                     </li>
 
 
                                     <li>
                                         <input type="text" class="profile-forms" name="currentPosition"
-                                               ng-model="user.currentPosition" maxlength="50"
+                                               ng-model="user.currentPosition" maxlength="50" required
                                                placeholder="Position Title">
                                         - at <input type="text" class="profile-forms" name="currentInstitution"
-                                                    ng-model="user.currentInstitution" maxlength="50"
+                                                    ng-model="user.currentInstitution" maxlength="50" required
                                                     placeholder="Institution Name">
                                     </li>
                                     <li>
-                                        <input type="text" class="profile-forms" name="locationCity"
+                                        <input type="text" class="profile-forms" name="locationCity" required
                                                ng-model="user.locationCity" maxlength="50" placeholder="City"> ,
                                         <select ng-model="user.country" class=""
                                                 ng-options="c._id as c.name for c in countries" style="width: 108px;font-size:12px;"
@@ -58,7 +60,7 @@
                                             <option value="">Select Country</option>
                                         </select> |
                                         <input type="text" class="profile-forms" name="generalDiscipline"
-                                               ng-model="user.generalDiscipline" maxlength="50"
+                                               ng-model="user.generalDiscipline" maxlength="50" required
                                                placeholder="General Discipline">
                                     </li>
                                     <li>

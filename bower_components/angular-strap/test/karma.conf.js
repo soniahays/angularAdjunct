@@ -1,54 +1,47 @@
+// Karma configuration
+// http://karma-runner.github.io/0.10/config/configuration-file.html
+
+'use strict';
+
 module.exports = function(config) {
+
   config.set({
+
     // base path, that will be used to resolve files and exclude
     basePath: './..',
 
+    // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
     files: [
-      'test/lib/async-callback.js',
-      'test/lib/jquery.js',
-      'test/lib/angular/angular.js',
-      'test/lib/angular/angular-mocks.js',
-      'test/lib/bootstrap.js',
-      'vendor/bootstrap-datepicker.js',
-      'vendor/bootstrap-timepicker.js',
-      'vendor/bootstrap-select.js',
-      'src/common.js',
-      'src/directives/*.js',
-      'test/unit/directives/*Spec.js'
+      'bower_components/angular/angular.js',
+      'bower_components/angular-mocks/angular-mocks.js',
+      'bower_components/angular-animate/angular-animate.js',
+      'bower_components/angular-sanitize/angular-sanitize.js',
+      'bower_components/angular-mocks/angular-mocks.js',
+      'bower_components/jquery/jquery.js',
+      'src/{,*/}*.js',
+      'test/effroi.js',
+      'test/helpers.js',
+      'test/async.js',
+      // 'test/mock/**/*.js',
+      // 'test/spec/**/*.js',
+      'src/{,*/}/test/*.spec.js'
     ],
 
-    // list of files to exclude
+    // list of files / patterns to exclude
     exclude: [],
 
-    // use dots reporter, as travis terminal does not support escaping sequences
-    // possible values: 'dots', 'progress'
-    // CLI --reporters progress
-    reporters: ['progress'],// , 'junit'],
-
-    junitReporter: {
-      // will be resolved to basePath (in the same way as files/exclude patterns)
-      outputFile: 'test-results.xml'
-    },
-
     // web server port
-    // CLI --port 9876
-    port: 9876,
-
-    // enable / disable colors in the output (reporters and logs)
-    // CLI --colors --no-colors
-    colors: true,
+    port: 8080,
 
     // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    // CLI --log-level debug
+    // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
     logLevel: config.LOG_INFO,
 
     // enable / disable watching file and executing tests whenever any file changes
-    // CLI --auto-watch --no-auto-watch
-    autoWatch: true,
+    autoWatch: false,
 
     // Start these browsers, currently available:
     // - Chrome
@@ -58,32 +51,12 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    // CLI --browsers Chrome,Firefox,Safari
-    browsers: [process.env.TRAVIS ? 'Firefox' : 'Chrome'],
+    browsers: ['Chrome'],
 
-    // If browser does not capture in given timeout [ms], kill it
-    // CLI --capture-timeout 5000
-    captureTimeout: 20000,
+    // Continuous Integration mode
+    // if true, it capture browsers, run tests and exit
+    singleRun: false
 
-    // Auto run tests on start (when browsers are captured) and exit
-    // CLI --single-run --no-single-run
-    singleRun: false,
-
-    // report which specs are slower than 500ms
-    // CLI --report-slower-than 500
-    reportSlowerThan: 500,
-
-    // compile coffee scripts
-    preprocessors: {
-      '**/*.coffee': 'coffee'
-    },
-
-    plugins: [
-      'karma-jasmine',
-      'karma-chrome-launcher',
-      'karma-phantomjs-launcher',
-      'karma-firefox-launcher',
-      'karma-junit-reporter'
-    ]
   });
+
 };

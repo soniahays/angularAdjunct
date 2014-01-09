@@ -6,7 +6,7 @@ angular.module('adjunct', [
         'ngScrollTo',
         'ngCookies',
         //'ngResource',
-        '$strap.directives',
+        'mgcrea.ngStrap',
         'tags-input',
         'ngUpload',
         'adjunct.filters',
