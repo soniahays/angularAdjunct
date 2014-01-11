@@ -1,8 +1,8 @@
 .css-form  .ng-invalid.ng-dirty{
-    border-color: #FA787E;
+    border-color: #EB7737;
 
 }
-
+.nav, .pagination, .carousel a { cursor: pointer; }
 .css-form .ng-valid.ng-dirty {
 
  }
@@ -149,8 +149,14 @@ border-width: 1px 0;
 }
 .bottom-card-panel{
     border-radius: 0!important;
-    padding:0;
+    padding:;
 }
+
+#bottom-card-post-job{
+    border-radius: 0!important;
+    padding: 10px 15px;
+}
+
 .bottom-card-panel-body{
     padding-left: 5px;
     padding-right: 5px;
@@ -1752,7 +1758,7 @@ tbody{
 
 .search-result-body {
     height:50px;
-    width:120px;
+
 }
 
 .search-results-image {

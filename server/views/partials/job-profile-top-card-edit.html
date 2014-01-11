@@ -1,27 +1,45 @@
 <div id="top-card-job" class="panel profiles-panel col-md-12">
     <div class="panel-body profile-top-card">
 <div class="profile-details-content">
+
+    <!--<script type="text/ng-template" id="customTemplate.html">-->
+        <!--<a>-->
+            <!--<img ng-src="http://upload.wikimedia.org/wikipedia/commons/thumb/{{match.model.flag}}" width="16">-->
+            <!--<span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>-->
+        <!--</a>-->
+    <!--</script>-->
+    <!--<div class='container-fluid'>-->
+
+        <!--<h4>Static arrays</h4>-->
+        <!--<pre>Model: {{selected | json}}</pre>-->
+        <!--<input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control">-->
+
+        <!--<h4>Asynchronous results</h4>-->
+        <!--<pre>Model: {{asyncSelected | json}}</pre>-->
+        <!--<input type="text" ng-model="asyncSelected" placeholder="Locations loaded via $http" typeahead="address for address in getLocation($viewValue) | filter:$viewValue" typeahead-loading="loadingLocations" class="form-control">-->
+        <!--<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>-->
+
+        <!--<h4>Custom templates for results</h4>-->
+        <!--<pre>Model: {{customSelected | json}}</pre>-->
+        <!--<input type="text" ng-model="customSelected" placeholder="Custom template" typeahead="state as state.name for state in statesWithFlags | filter:{name:$viewValue}" typeahead-template-url="customTemplate.html" class="form-control">-->
+    <!--</div>-->
+
             <form name="jobForm">
                 <div id="name-container" class="form-group css-form" novalidate style="line-height:2;">
                     <div>
                         <ul>
                             <li>
-                                  <!--User name: <input type="text" name="jobName" ng-model="job.name" required>-->
-                                  <!--<span class="error" ng-show="jobForm.jobName.$error.required">-->
-                                  <!--Required!</span><br>-->
-                                  <!--<textarea name="jobExample" ng-model="job.example" cols="100" rows="6" ng-minlength="50" ng-maxlength="1000"  required></textarea>-->
-                                  <!--<span class="error" ng-show="jobForm.jobExample.$error.required">-->
-                                  <!--Required!</span><br>-->
                                 <label>Job Position <abbr title="Required" class="required">*</abbr></label>
                                 <select ng-model="job.positionTypeId" class="edit-positionType" ng-options="p._id as p.name for p in positionTypes" class="input-xlarge" required>
                                     <option value="">choose...</option></select>
                                 - <label>Academic Discipline <abbr title="Required" class="required">*</abbr>  </label>
-                                <input type="text" class=" profile-forms" name="jobAcademicDiscipline" ng-model="job.academicDiscipline" maxlength="50" required>
+                                <input type="text"  class=" profile-forms "  name="jobAcademicDiscipline" ng-model="job.academicDiscipline" maxlength="50"required>
                             </li>
                             <li>
                                 <label>Institution Name<abbr title="Required" class="required">*</abbr>  </label>
-                                <input type="text" class=" profile-forms " name="jobInstitution" ng-model="job.institution" maxlength="50" required>
+                                <input type="text" class=" profile-forms " typeahead="state for state in states | filter:$viewValue | limitTo:8"  name="jobInstitution" ng-model="job.institution" maxlength="50" required>
                                 - <label>Contract Type <abbr title="Required" class="required">*</abbr></label>
+
 
                                 <select ng-model="job.contractType" class="edit-positionType" ng-options="c._id as c.name for c in contractTypes" class="input-xlarge" required>
                                     <option value="">choose...</option></select>
@@ -30,8 +48,8 @@
                             <li>
 
                                 <div class="fieldgroup">
-                                        <label>Location:</label>
-                                        <label>Type:<abbr title="Required" class="required">*</abbr></label>
+                                        <label>Location</label>
+                                        <label>Type<abbr title="Required" class="required">*</abbr></label>
                                         On Site <input type="checkbox" ng-model="onSite">
                                         Remote <input type="checkbox" ng-model="remote">
                                         <br/>
@@ -41,19 +59,19 @@
                                         <label>City <abbr title="Required" class="required">*</abbr></label>
                                         <input type="text" class="profile-forms" name="jobLocationCity" ng-model="job.locationCity" maxlength="50" required> <br/>
                                         <label>State <abbr title="Required" class="required">*</abbr></label>
-                                        <input type="text" class="profile-forms" name="jobLocationState" ng-model="job.locationState" maxlength="50" required>
+                                        <input type="text" class="profile-forms"  typeahead="state for state in states | filter:$viewValue | limitTo:8" name="jobLocationState" ng-model="job.locationState" maxlength="50" required>
                                 </div>
 
                             </li>
                             <li>
                                 <div class="fieldgroup">
-                                    <label>Job Requirements:</label> <br/>
-                                    <label>Minimum Educational Requirements<abbr title="Required" class="required">*</abbr>:</label>
+                                    <label>Job Requirements</label> <br/>
+                                    <label>Minimum Educational Requirements<abbr title="Required" class="required">*</abbr></label>
                                     <select ng-model="job.edDegree" class="edit-positionType"  ng-options="e._id as e.name for e in edDegrees" class="input-xlarge" required>
                                     <option value="">choose...</option></select> in <input type="text" class=" profile-forms " name="jobDegreeDiscipline" ng-model="job.degreeDiscipline" maxlength="50"><br/> -or- <select ng-model="job.edDegree" class="edit-positionType"  ng-options="e._id as e.name for e in edDegrees" class="input-xlarge" required>
                                     <option value="">choose...</option></select> in <input type="text" class=" profile-forms " name="jobDegreeDiscipline" ng-model="job.degreeDiscipline" maxlength="50"><a href=""><small> Add More </small></a>
                                     <br/>
-                                    <label>Field of Expertise<abbr title="Required" class="required">*</abbr>:</label>
+                                    <label>Field of Expertise (comma separated) <abbr title="Required" class="required">*</abbr></label>
                                     <div id="tags-container">
                                         <tags-input ng-model="job.expertiseTags" class="expertise-tags"></tags-input>
                                     </div>

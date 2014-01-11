@@ -1,50 +1,59 @@
-<div id="bottom-card" class="panel panel-default col-md-12" xmlns="http://www.w3.org/1999/html">
+<div id="bottom-card-post-job" class="panel panel-default col-md-12" xmlns="http://www.w3.org/1999/html">
     <div class="panel-body profile-bottom-card">
         <div class="profile-details-content">
             <div id="experience-edit">
 
 
-                <form novalidate class="form-group css-form">
-                    <!--Name:-->
-                    <!--<input type="text" ng-model="user.name" required /><br />-->
-                    <!--E-mail: <input type="email" ng-model="user.email" required /><br />-->
-                    <!--Gender: <input type="radio" ng-model="user.gender" value="male" />male-->
-                    <!--<input type="radio" ng-model="user.gender" value="female" />female<br />-->
-                    <!--<button ng-click="reset()">RESET</button>-->
-                    <!--<button ng-click="update(user)">SAVE</button>-->
-                </form>
-
-                <form  novalidate class="form-group css-form">
+                <form name="jobPostForm"  class="form-group css-form" novalidate>
 
                     <ul>
                         <li>
-
-                          
-        <span class="error" ng-show="myForm.userName.$error.required">
-          Required!</span><br>
-
-                            <textarea ng-model="job.description" cols="100" rows="6" name="jobDescription" ng-minlength="50" ng-maxlength="1000" required> </textarea>
-                            <label>Job Description</label>
-                            <span class="error" ng-show="myForm.jobDescription.$error.required">
-                             Required!</span><br>
-                            <div class="fieldgroup">
-                                <textarea name="jobDescription"   cols="100" rows="6" ng-model="job.description" required></textarea>
+                            <label>Job Description <abbr title="Required" class="required" style="outline-color:darkgrey;">*</abbr></label>
+                            <div ng-show="jobPostForm.jobDescription.$dirty && jobPostForm.jobDescription.$invalid">
+                                <span ng-show="jobPostForm.jobDescription.$error.required" style ="color:#EB7737;">Please enter a job description.</span>
+                                <!--<span ng-show="jobPostForm.uEmail.$error.required">Tell us your email.</span>-->
+                                <!--<span ng-show="jobPostForm.uEmail.$error.email">This is not a valid email.</span>-->
                             </div>
-                                   <span class="error" ng-show="form-group.jobDescription.$error.required">
-                                Required!</span><br>
+                            <div class="fieldgroup">
+                                <textarea name="jobDescription" class="" cols="125" rows="6" ng-model="job.description" required></textarea>
+                            </div>
+
+
+                                <!--E-mail:-->
+                                <!--<textarea ng-model="job.description" name="jobDescription" required></textarea><br />-->
+                                <!--<div ng-show="jobPostForm.jobDescription.$dirty && jobPostForm.jobDescription.$invalid">Invalid:-->
+                                    <!--<span ng-show="jobPostForm.jobDescription.$error.required">Tell us your email.</span>-->
+                                    <!--&lt;!&ndash;<span ng-show="jobPostForm.uEmail.$error.required">Tell us your email.</span>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<span ng-show="jobPostForm.uEmail.$error.email">This is not a valid email.</span>&ndash;&gt;-->
+                                <!--</div>-->
 
                         </li>
                         <li>
-                            <label>Job Requirements</label>
-                            <div class="fieldgroup">
-                                <textarea name="jobRequirement" class="" cols="100" rows="6" ng-model="job.requirement"></textarea>
+
+                            <label>Job Requirements (<a href="" ng-click="addAJobRequirement()" style="font-size: 12px;">add a requirement</a>) <abbr title="Required" class="required">*</abbr></label></br>
+
+
+                            <div class ="fieldgroup" ng-repeat="jobRequirement in job.jobRequirements" style="display: inline; line-height: 3;">
+                                <input type="email" class="profile-forms" ng-model="jobRequirement.value"
+                                       maxlength="50" placeholder="Job Requirement" required style="width:620px; border-color:black;height: 25px;display: inline;line-height: 2;">
+                                <div ng-show="jobPostForm.jobRequirement.$dirty && jobPostForm.jobRequirement[1].$invalid">Invalid:
+                                    <span ng-show="jobPostForm.jobRequirement.$error.required">Tell us your email.</span>
+                                    <span ng-show="jobPostForm.jobRequirement.$error.email">This is not a valid email.</span>
+                                </div>
+                                <a href="" ng-click="removeAJobRequirement(jobRequirement)" style="font-size: 11px;text-decoration: underline;">remove</a>
                             </div>
+
                         </li>
                         <li>
-                            <label>Addtional Assets</label>
-                            <div class="fieldgroup">
-                                <textarea name="jobAssets" cols="100" rows="6" ng-model="job.assets"></textarea>
+                            <label>Addtional Assets (<a href="" ng-click="addAnAdditionalAsset()" style="font-size: 12px;">add an asset</a>) <abbr title="Optional" class="optional"><small>Optional</small></abbr></label></br>
+
+
+                            <div class ="fieldgroup" ng-repeat="additionalAsset in job.additionalAssets" style="display: inline; line-height: 3;">
+                                <input type="text" class="profile-forms" ng-model="additionalAsset.value"
+                                       maxlength="50" required style="width:320px; border-color:black;height: 25px;display: inline;line-height: 2;">
+                                <a href="" ng-click="removeAnAdditionalAsset(additionalAsset)" style="font-size: 11px;text-decoration: underline;">remove</a>
                             </div>
+
                         </li>
                         <li class="time-period" id="time-period">
                             <fieldset>

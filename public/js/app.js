@@ -7,6 +7,7 @@ angular.module('adjunct', [
         'ngCookies',
         //'ngResource',
         'mgcrea.ngStrap',
+        'ui.bootstrap',
         'tags-input',
         'ngUpload',
         'adjunct.filters',
