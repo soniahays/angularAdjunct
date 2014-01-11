@@ -149,7 +149,6 @@ border-width: 1px 0;
 }
 .bottom-card-panel{
     border-radius: 0!important;
-    padding:;
 }
 
 #bottom-card-post-job{
@@ -241,7 +240,7 @@ li:last-child{
 }
 #or{
     width:40px !important;
-    margin-left: 142.5px !important;
+    margin-left: 142px !important;
 }
 .section-title{
     border-top: solid 2px #eaeaea;
@@ -255,7 +254,7 @@ li:last-child{
    font-size: 11px;
    width:90px;
    position: relative;
-   margin-left: 117.5px;
+   margin-left: 117px;
    text-transform: uppercase;
 }
 
@@ -513,8 +512,6 @@ ol, ul{
 
 
 .edit-badges{
-    font-size: 1em !important;
-    line-height: 0.95em !important;
     background-clip: border-box;
     background-image: none;
     background-origin: padding-box;
@@ -549,10 +546,10 @@ ol, ul{
     outline-color: rgb(255, 255, 255);
     outline-style: none;
     outline-width: 0px;
-    padding-bottom: 7.5px;
+    padding-bottom: 7px;
     padding-left: 8px;
     padding-right: 5px;
-    padding-top: 7.5px;
+    padding-top: 7px;
     vertical-align: top;
     width: 35px;
     zoom: 1;
@@ -1300,10 +1297,10 @@ body { font-family: Arial, sans-serif; }
     outline-color: rgb(255, 255, 255);
     outline-style: none;
     outline-width: 0px;
-    padding-bottom: 7.5px;
+    padding-bottom: 7px;
     padding-left: 15px;
     padding-right: 20px;
-    padding-top: 7.5px;
+    padding-top: 7px;
     vertical-align: top;
     width: 106px;
     zoom: 1;
@@ -1411,12 +1408,6 @@ body { font-family: Arial, sans-serif; }
     font-size: 10px;
 }
 
-mfp-container-custom{
-    width: 100% !important;
-    height: 100% !important;
-}
-
-
 
 /**********************************************tags*/
 .tags {
@@ -1474,7 +1465,7 @@ mfp-container-custom{
 .tm-tag-custom {
     display: inline-block;
     padding: 2px 4px;
-    font-size: 11.844px;
+    font-size: 11px;
     font-weight: bold;
     line-height: 14px;
     color: #ffffff;
@@ -1787,6 +1778,10 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
     background-color: #333;
     border-color: #333;
     outline-color: #333;
+}
+
+.dropdown-menu:focus {
+    outline: none;
 }
 
 

@@ -37,7 +37,7 @@
                             </li>
                             <li>
                                 <label>Institution Name<abbr title="Required" class="required">*</abbr>  </label>
-                                <input type="text" class=" profile-forms " typeahead="state for state in states | filter:$viewValue | limitTo:8"  name="jobInstitution" ng-model="job.institution" maxlength="50" required>
+                                <input type="text" class="profile-forms" typeahead="institution for institution in institutions | filter:$viewValue | limitTo:10"  name="jobInstitution" ng-model="job.institution" maxlength="50" required>
                                 - <label>Contract Type <abbr title="Required" class="required">*</abbr></label>
 
 

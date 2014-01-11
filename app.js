@@ -30,7 +30,7 @@ connect(function (err, db) {
     userDb = require('./server/userDb.js')(mongodb, db, bcrypt),
     jobDb = require ('./server/jobDb.js')(mongodb, db),
     institutionDb = require ('./server/institutionDb.js')(mongodb, db),
-    metadataDb = require ('./server/metadataDb.js')(mongodb, db),
+        metadataDb = require ('./server/metadataDb.js')(mongodb, db),
     pass = require('./server/passport.js')(userDb, passport, bcrypt);
 
     http.createServer(app).listen(app.get('port'), function () {
@@ -306,7 +306,7 @@ app.post('/api/searchAll', function (req, res) {
 });
 
 app.get('/partial/adjuncts-profile',
-    ensureLoggedIn({ redirectTo: path.join(app.get('partials'), 'signin-popover.html'), customReturnTo: '/profile' }),
+    ensureLoggedIn({ redirectTo: path.join(app.get('partials'), 'signin.html'), customReturnTo: '/profile' }),
     function (req, res) {
         res.cookie('_id', req.user._id);
         res.render(path.join(app.get('partials'), 'adjuncts-profile.html'));
