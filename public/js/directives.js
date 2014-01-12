@@ -70,6 +70,7 @@ angular.module('adjunct.directives')
 
                     scope.pwdValidLength = (viewValue && viewValue.length >= 8 ? 'valid' : undefined);
                     scope.pwdHasLetter = (viewValue && /[A-z]/.test(viewValue)) ? 'valid' : undefined;
+                    console.log(scope.pwdHasLetter);
                     scope.pwdHasNumber = (viewValue && /\d/.test(viewValue)) ? 'valid' : undefined;
 
                     if(scope.pwdValidLength && scope.pwdHasLetter && scope.pwdHasNumber) {

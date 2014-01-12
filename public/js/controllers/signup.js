@@ -10,7 +10,7 @@ angular.module('adjunct.controllers')
         }
 
         $scope.tooltip = {
-            "title": "Hello Tooltip<br />This is a multiline message!",
+            "title": "Password must meet the following requirements:</br><div class='pwdHasLetter' style='color:blue'>At least <strong>one letter</strong></div></br>At least <strong>one number</strong></br>At least <strong>8 characters long</strong>",
             "checked": false
         };
     }]);
