@@ -8,6 +8,11 @@ angular.module('adjunct.controllers')
             $rootScope.user = $scope.user;
             $http.post('/api/signup', JSON.stringify({'user': $scope.user})).then(function(){$location.path('/basic-profile');});
         }
+
+        $scope.tooltip = {
+            "title": "Hello Tooltip<br />This is a multiline message!",
+            "checked": false
+        };
     }]);
 
 

@@ -1,24 +1,65 @@
 <div class=" col-md-offset-4 col-md-12 col-md-offset-12">
     <br />
-
-    <!--<ol class="breadcrumb">-->
-        <!--<li><a href="#">Home</a></li>-->
-        <!--<li><a href="#">Library</a></li>-->
-        <!--<li class="active">Data</li>-->
-    <!--</ol>-->
-
-
-
-
-    <form class="form-signup">
+    <form name="signUpForm" class="form-signup css-form" novalidate>
         <h3 class="form-signin-heading">Sign up to adjuncts</h3>
 
-                First Name: <input type="text" class="form-control" ng-model="user.firstName"  autofocus/><br />
-                Last Name: <input type="text" class="form-control" ng-model="user.lastName" placeholder="" /><br />
-                Email: <input type="text" class="form-control" ng-model="user.email" placeholder=""  /><br />
-                Password <input type="password" class="form-control" ng-model="user.password" placeholder="" /><br />
-            </form>    <br />
+                First Name: <input type="text" name="userFirstName" class="form-control" ng-model="user.firstName"  autofocus required/>
+                <div ng-show="signUpForm.userFirstName.$dirty && signUpForm.userFirstName.$invalid">
+                    <span ng-show="signUpForm.userFirstName.$error.required" style ="color:#EB7737;">Please enter your first name.</span>
+                </div>
+                Last Name: <input type="text" name="userLastName" class="form-control" ng-model="user.lastName" placeholder="" required/>
+                <div ng-show="signUpForm.userLastName.$dirty && signUpForm.userLastName.$invalid">
+                    <span ng-show="signUpForm.userLastName.$error.required" style ="color:#EB7737;">Please enter your last name.</span>
+                </div>
+                Email: <input type="email" name="userEmail" class="form-control" ng-model="user.email" placeholder=""  required/>
+                <div ng-show="signUpForm.userEmail.$dirty && signUpForm.userEmail.$invalid">
+                    <span ng-show="signUpForm.userEmail.$error.required" style ="color:#EB7737;">Please enter your email address.</span>
+                    <span ng-show="signUpForm.userEmail.$error.email"style ="color:#EB7737;">This is not a valid email.</span>
+                </div>
+
+                Password <input type="password" name="userPassword" class="form-control immediate-help" ng-model="user.password" id="inputPassword" password-validate data-trigger="focus" bs-tooltip="tooltip" placeholder="" required/>
+                <div class="input-help" bs-tooltip="tooltip">
+                    <h4>Password must meet the following requirements:</h4>
+                    <ul>
+                        <li ng-class="pwdHasLetter">At least <strong>one letter</strong></li>
+                        <li ng-class="pwdHasNumber">At least <strong>one number</strong></li>
+                        <li ng-class="pwdValidLength">At least <strong>8 characters long</strong></li>
+                    </ul>
+                </div>
+
+                <div ng-show="signUpForm.userPassword.$dirty && signUpForm.userPassword.$invalid">
+                    <span ng-show="signUpForm.userPassword.$error.required" style ="color:#EB7737;">Please enter a password.</span>
+                </div>
+                Password Confirmation <input type="password" name="userPasswordConfirm" class="form-control" ng-model="user.passwordConfirm" placeholder="" required data-password-verify="user.password"/>
+                <div ng-show="signUpForm.userPasswordConfirm.$dirty && signUpForm.userPasswordConfirm.$invalid ">
+                    <span ng-show="signUpForm.userPasswordConfirm.$error.required" style ="color:#EB7737;">Please confirm your password.</span>
+                </div>
+                <div ng-show="signUpForm.userPasswordConfirm.$dirty && signUpForm.userPasswordConfirm.$invalid">
+                    <span ng-show="signUpForm.userPasswordConfirm.$error.passwordVerify"style ="color:#EB7737;">Passwords don't match</span>
+                </div>
+
+     </form>
+
+    <br />
         <button class="btn btn-primary  btn-custom" ng-click= "joinNow()">Join now</button>
+
+
+    <!-- Markup for a default tooltip with a scope passed as an object {title:''} -->
+    <p>Tight pants next level keffiyeh <a href data-animation="animation-flipX" bs-tooltip="tooltip">you probably</a> haven't heard of them. Photo booth beard raw denim letterpress vegan messenger bag stumptown.</p>
+
+    <div class="input-group col-xs-5">
+  <span class="input-group-btn">
+    <!-- You can also use data-attrs to assign scope variables -->
+    <button class="btn btn-primary" type="button" data-trigger="click" data-type="success" title="{{tooltip.title}}" bs-tooltip="tooltip">Click me</button>
+  </span>
+        <input type="text" class="form-control" data-placement="right" data-type="info" data-container="body" placeholder="Focus to toggle tooltip" data-trigger="focus" bs-tooltip="tooltip">
+    </div>
+    <div class="checkbox">
+        <label data-placement="bottom" data-animation="animation-fadeAndScale" data-type="info" bs-tooltip="tooltip">
+            <input type="checkbox" ng-model="tooltip.checked"> Remember me
+        </label>
+    </div>
+
     <br />
     <br />
     <br />

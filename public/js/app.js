@@ -6,6 +6,7 @@ angular.module('adjunct', [
         'ngScrollTo',
         'ngCookies',
         //'ngResource',
+        'ngAnimate',
         'mgcrea.ngStrap',
         'ui.bootstrap',
         'tags-input',
