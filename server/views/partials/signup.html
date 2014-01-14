@@ -10,20 +10,36 @@
                 <div ng-show="signUpForm.userLastName.$dirty && signUpForm.userLastName.$invalid">
                     <span ng-show="signUpForm.userLastName.$error.required" style ="color:#EB7737;">Please enter your last name.</span>
                 </div>
-                Email: <input type="email" name="userEmail" class="form-control" ng-model="user.email" placeholder=""  required/>
+                <span>Email:</span> <input type="email" name="userEmail" class="form-control" ng-model="user.email" placeholder=""  required/>
                 <div ng-show="signUpForm.userEmail.$dirty && signUpForm.userEmail.$invalid">
                     <span ng-show="signUpForm.userEmail.$error.required" style ="color:#EB7737;">Please enter your email address.</span>
                     <span ng-show="signUpForm.userEmail.$error.email"style ="color:#EB7737;">This is not a valid email.</span>
                 </div>
-                Password <input type="password" data-placement="right" data-container="body" name="userPassword" class="form-control" ng-model="user.password"  password-validate data-trigger="focus" bs-tooltip="tooltip" placeholder="" required/>
-                <div class="input-help" bs-tooltip="tooltip">
 
+                <!--Password <input type="password" data-placement="right" data-container="body" name="userPassword" class="immediate-help" ng-model="password" password-validate required  id="inputPassword"data-trigger="focus" bs-tooltip="tooltip" placeholder=""/>-->
+                <label for="pw">Password:</label>
+                <input type="password" name="pw" ng-model="pw" class="form-control" id="pw"  required  placeholder="" >
+                <ul id="strength" check-strength="pw"> </ul>
+                <div ng-show="signUpForm.pw.$dirty && signUpForm.pw.$invalid">
+
+                    <span ng-show="signUpForm.pw.$error.required" style ="color:#EB7737;">Please choose a password.</span>
+                    <!--<span ng-show="signUpForm.userPassword.$error.email"style ="color:#EB7737;" check-strength="userPassword" id="force">This is not a valid email.</span>-->
                 </div>
 
-                <div ng-show="signUpForm.userPassword.$dirty && signUpForm.userPassword.$invalid">
-                    <span ng-show="signUpForm.userPassword.$error.required" style ="color:#EB7737;">Please enter a password.</span>
-                </div>
-                Password Confirmation <input type="password" name="userPasswordConfirm" class="form-control" ng-model="user.passwordConfirm" placeholder="" required data-password-verify="user.password"/>
+
+                <!--<div class="input-help" ng-show="signUpForm.userPassword.$dirty && signUpForm.userPassword.$invalid">-->
+                    <!--</br>-->
+                    <!--Password must meet the following requirements:-->
+                    <!--<ul style="margin-top: 0px;">-->
+                        <!--<li ng-class="pwdHasLetter"><span ng-hide="pwdHasLetter"><i class="fa fa-times"></i> </span><span ng-show="pwdHasLetter"><i class="fa fa-check"></i></span>At least one letter</li>-->
+                        <!--<li ng-class="pwdHasNumber"><span ng-hide="pwdHasNumber"><i class="fa fa-times"></i> </span><span ng-show="pwdHasNumber"><i class="fa fa-check"></i></span>At least one number</li>-->
+                        <!--<li ng-class="pwdValidLength"><span ng-hide="pwdValidLength"><i class="fa fa-times"></i> </span><span ng-show="pwdValidLength"><i class="fa fa-check"></i></span>At least 8 characters long</li>-->
+
+
+                    <!--</ul>-->
+                <!--</div>-->
+
+                <label>Password Confirmation:</label> <input type="password" name="userPasswordConfirm" class="form-control" ng-model="user.passwordConfirm" placeholder="" required data-password-verify="user.password"/>
                 <div ng-show="signUpForm.userPasswordConfirm.$dirty && signUpForm.userPasswordConfirm.$invalid ">
                     <span ng-show="signUpForm.userPasswordConfirm.$error.required" style ="color:#EB7737;">Please confirm your password.</span>
                 </div>

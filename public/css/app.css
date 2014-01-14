@@ -1,3 +1,69 @@
+label{
+    font-family: Arial, sans-serif;
+    font-weight:normal!important;
+    font-size:14px!important;
+}
+input.ng-pristine + ul#strength {
+    display:none;
+}
+ul#strength{
+    display:inline;
+    list-style:none;
+    margin:0;
+    margin-left:15px;
+    padding:0;
+    vertical-align:2px;
+}
+.point:last {
+    margin:0 !important;
+}
+.point {
+    background:#DDD;
+    border-radius:2px;
+    display:inline-block;
+    height:5px;
+    margin-right:1px;
+    width:20px;
+}
+#footer {
+    position:fixed;
+    bottom:5px;
+}
+
+
+
+
+
+
+
+
+/*.ng-invalid:focus + .input-help-2 {*/
+    /*display: none;*/
+/*}*/
+.input-help{
+    font-size:11px;
+}
+/* Style input help requirement bullets */
+.input-help ul {
+    list-style: none;
+    margin: 10px 0 0 0;
+}
+
+/* Default each bullet to be invalid with a red cross and text */
+.input-help li {
+    padding-left: 22px;
+    line-height: 24px;
+    color:#EB7737;
+}
+
+/* Set to green check and text when valid */
+.input-help li.valid {
+    color:#595959 ;
+    background-position: 2px 6px;
+}
+
+
+
 .tooltip {
     position: absolute;
     z-index: 1030;
