@@ -31,38 +31,17 @@ angular.module('adjunct.directives')
                 }
             });
         };
-    }).directive("passwordVerify", function () {
-        return {
-            require: "ngModel",
-            scope: {
-                passwordVerify: '='
-            },
-            link: function(scope, element, attrs, ctrl) {
-                scope.$watch(function() {
-                    var combined;
-
-                    if (scope.passwordVerify || ctrl.$viewValue) {
-                        combined = scope.passwordVerify + '_' + ctrl.$viewValue;
-                    }
-                    return combined;
-                }, function(value) {
-                    if (value) {
-                        ctrl.$parsers.unshift(function(viewValue) {
-                            var origin = scope.passwordVerify;
-                            if (origin !== viewValue) {
-                                ctrl.$setValidity("passwordVerify", false);
-                                return undefined;
-                            } else {
-                                ctrl.$setValidity("passwordVerify", true);
-                                return viewValue;
-                            }
-                        });
-                    }
+    }).directive('pwCheck', [function () {
+        return { require: 'ngModel', link: function (scope, elem, attrs, ctrl) {
+            var firstPassword = '#' + attrs.pwCheck;
+            elem.add(firstPassword).on('keyup', function () {
+                scope.$apply(function () {
+                    var v = elem.val() === $(firstPassword).val();
+                    ctrl.$setValidity('pwmatch', v);
                 });
-            }
-        };
-
-    }).directive("passwordValidate", function () {
+            });
+        } }
+    }]).directive("passwordValidate", function () {
         return {
             require: 'ngModel',
             link: function(scope, elm, attrs, ctrl) {
@@ -70,9 +49,8 @@ angular.module('adjunct.directives')
 
                     scope.pwdValidLength = (viewValue && viewValue.length >= 8 ? 'valid' : undefined);
                     scope.pwdHasLetter = (viewValue && /[A-z]/.test(viewValue)) ? 'valid' : undefined;
-                    console.log(scope.pwdHasLetter);
                     scope.pwdHasNumber = (viewValue && /\d/.test(viewValue)) ? 'valid' : undefined;
-                  
+
 
                     if(scope.pwdValidLength && scope.pwdHasLetter && scope.pwdHasNumber) {
                         ctrl.$setValidity('pwd', true);
@@ -136,11 +114,10 @@ angular.module('adjunct.directives')
                 };
 
                 scope.$watch(iAttrs.checkStrength, function () {
-                    console.log(scope.pw);
-                    if (scope.pw === ''||typeof scope.pw ==='undefined') {
-                        iElement.css({ "display": "none"  });
+                    if (scope.password == null) {
+                        iElement.css({ "display": "none" });
                     } else {
-                        var c = strength.getColor(strength.mesureStrength(scope.pw));
+                        var c = strength.getColor(strength.mesureStrength(scope.password));
                         iElement.css({ "display": "block"});
                         iElement.children('li')
                             .css({ "background": "#DDD" })
