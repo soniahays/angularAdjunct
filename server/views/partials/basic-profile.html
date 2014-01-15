@@ -11,12 +11,12 @@
                       </td>
                   </tr>
                   <tr>
-                      <td>Postal Code:</td>
-                      <td><input type="text" class="input-xlarge" ng-model="user.postalCode" required/></td>
+                      <td>Zip Code:</td>
+                      <td><input type="text" class="input-xlarge" ng-model="user.zipCode" required/></td>
                   </tr>
                   <tr>
                       <td></td>
-                      <td><p class="help-block profile-card-table-th">e.g. M5E 1W5</p></td>
+                      <td><p class="help-block profile-card-table-th">e.g. 94043</p></td>
                   </tr>
                   <tr>
                       <td>I am currently:</td>
@@ -42,11 +42,11 @@
                   </tr>
                   <tr>
                       <td>Educational Institution:</td>
-                      <td><input type="text" class="input-xlarge" ng-model="user.institution" required/></td>
+                      <td><input type="text"   typeahead="institution for institution in institutions | filter:$viewValue | limitTo:10"  class="input-xlarge" ng-model="user.institution" required/></td>
                   </tr>
                   <tr>
                      <td>Specialty:</td>
-                     <td><select  ng-options="f.name for f in fieldGroup" ng-model="user.field" class="input-xlarge" required>
+                     <td><select  ng-options="f.name for f in fieldGroups" ng-model="user.field" class="input-xlarge" required>
                          <option value="">-- select a field --</option></select>
                       </td>
                   </tr>
