@@ -39,7 +39,8 @@ angular.module('adjunct.controllers')
             }).then(function(response) {
                 $scope.institutions = _.map(response.data, function(item) { return item.Institution + " (" + item.State + ")"; });
                 //$scope.institutions = response.data;
-            });
+            })
+    }]);
 
 //        $http.get('/api/institutions').then(function(response) {
 //            $scope.institutions = _.map(response.data, function(item) { return item.Institution + " (" + item.State + ")"; });
@@ -60,6 +61,6 @@ angular.module('adjunct.controllers')
 //                }).error(function (data, status, headers, config) {
 //                    console.log("basic profile post didn't work");
 //                });
-        }
-
-    }]);
+//        }
+//
+//    }]);

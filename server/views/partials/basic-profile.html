@@ -42,7 +42,7 @@
                   </tr>
                   <tr>
                       <td>Educational Institution:</td>
-                      <td><input type="text"   typeahead="institution for institution in institutions | filter:$viewValue | limitTo:10"  class="input-xlarge" ng-model="user.institution" required/></td>
+                      <td><input type="text"   typeahead="institution for institution in institutions | filter:$viewValue | limitTo:10"  class="input-xlarge" ng-model="user.institution" required style="width:309px"/></td>
                   </tr>
                   <tr>
                      <td>Specialty:</td>
@@ -57,7 +57,8 @@
 
                       <td>      <br />
                           <div class="controls">
-                          <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-click= "createProf()">Create my profile</button>
+                          <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-click="LinkedInCreateProf()">Create my profile with LinkedIn</button>
+                              <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-click="ManuallyCreateProf()">Create my profile Manually</button>
 
                       </div></td>
                   </tr>
