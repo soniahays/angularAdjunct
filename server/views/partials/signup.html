@@ -16,13 +16,10 @@
                     <span ng-show="signUpForm.userEmail.$error.email"style ="color:#EB7737;">This is not a valid email.</span>
                 </div>
 
-                <!--Password <input type="password" data-placement="right" data-container="body" name="userPassword" class="immediate-help" ng-model="password" password-validate required  id="inputPassword"data-trigger="focus" bs-tooltip="tooltip" placeholder=""/>-->
                 <label>Password:</label>
-                <input type="password" name="password" ng-model="password" class="form-control" id="password" required trigger="focus">
-                <ul id='strength' check-strength='password'></ul>
+                <input type="password" name="password" ng-model="$parent.password" class="form-control" id="password" required data-trigger="focus" bs-tooltip="tooltip" placement="right" data-type="info">
                 <div ng-show="signUpForm.password.$dirty && signUpForm.password.$invalid">
                     <span ng-show="signUpForm.password.$error.required" style ="color:#EB7737;">Please enter a password.</span>
-                    <!--<span ng-show="signUpForm.userPassword.$error.email"style ="color:#EB7737;" check-strength="userPassword" id="force">This is not a valid email.</span>-->
                 </div>
 
             <label>Password Confirmation:</label>
@@ -34,15 +31,11 @@
             <div ng-show="signUpForm.passwordConfirm.$dirty && signUpForm.passwordConfirm.$invalid">
                 <span ng-show="signUpForm.passwordConfirm.$error.pwmatch" style="color:#EB7737;">Passwords don't match</span>
             </div>
-
-
-
         </form>
-
         <br />
         <button class="btn btn-primary  btn-custom" ng-click= "joinNow()">Join now</button>
 
-
+    <button class="btn btn-primary  btn-custom" ng-click= "createProfileWithLinkedin()">Create Profile With LinkedIn</button>
 
     <br />
     <br />

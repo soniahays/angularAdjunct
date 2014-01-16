@@ -165,6 +165,7 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.jqlite.dimensions'])
 
           $animate.enter(tipElement, parent, after, function() {});
           isShown = true;
+
           scope.$digest();
           requestAnimationFrame($tooltip.$applyPlacement);
 
