@@ -9,8 +9,12 @@ angular.module('adjunct.controllers')
             $http.post('/api/signup', JSON.stringify({'user': $scope.user})).then(function(){$location.path('/basic-profile');});
         }
 
+        $scope.createProfileWithLinkedin = function() {
+            window.location.replace(window.location.origin + "/api/linkedInAuth");
+        }
+
         $scope.tooltip = {
-            "template": "checkStrengthId",
+            "title": "<ul id='strength' check-strength='password'></ul>",
             "checked": false
         };
     }]);
