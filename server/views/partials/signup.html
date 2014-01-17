@@ -1,28 +1,30 @@
 <div class=" col-md-offset-4 col-md-12 col-md-offset-12">
     <br />
     <form name="signUpForm" class="form-signup css-form" novalidate>
-        <h3 class="form-signin-heading">Sign up to adjuncts</h3>
-                First Name: <input type="text" name="userFirstName" class="form-control" ng-model="user.firstName"  autofocus required/>
+        <h3 class="form-signin-heading">Sign up to adjuncts </h3>
+        <!--<label>Institution Name <abbr title="Required" class="required">*</abbr></label>-->
+                First Name<abbr title="Required" class="required" style="color:#EB7737;">*</abbr> <input type="text" name="userFirstName" class="form-control sign-up-form" ng-model="user.firstName"  autofocus required/>
                 <div ng-show="signUpForm.userFirstName.$dirty && signUpForm.userFirstName.$invalid">
                     <span ng-show="signUpForm.userFirstName.$error.required" style ="color:#EB7737;">Please enter your first name.</span>
                 </div>
-                Last Name: <input type="text" name="userLastName" class="form-control" ng-model="user.lastName" placeholder="" required/>
+                Last Name<abbr title="Required" class="required" style="color:#EB7737;">*</abbr>  <input type="text" name="userLastName" class="form-control sign-up-form" ng-model="user.lastName" placeholder="" required/>
                 <div ng-show="signUpForm.userLastName.$dirty && signUpForm.userLastName.$invalid">
                     <span ng-show="signUpForm.userLastName.$error.required" style ="color:#EB7737;">Please enter your last name.</span>
                 </div>
-                <span>Email:</span> <input type="email" name="userEmail" class="form-control" ng-model="user.email" placeholder=""  required/>
+                <span>Email<abbr title="Required" class="required" style="color:#EB7737;">*</abbr> </span> <input type="email" name="userEmail" class="form-control sign-up-form" ng-model="user.email" placeholder=""  required/>
                 <div ng-show="signUpForm.userEmail.$dirty && signUpForm.userEmail.$invalid">
                     <span ng-show="signUpForm.userEmail.$error.required" style ="color:#EB7737;">Please enter your email address.</span>
                     <span ng-show="signUpForm.userEmail.$error.email"style ="color:#EB7737;">This is not a valid email.</span>
                 </div>
 
-                <label>Password:</label>
+                <label>Password<abbr title="Required" class="required" style="color:#EB7737;">*</abbr> </label>
                 <input type="password" name="password" ng-model="$parent.password" class="form-control" id="password" required data-trigger="focus" bs-tooltip="tooltip" placement="right" data-type="info">
+                <ul id='strength' check-strength='password'></ul>
                 <div ng-show="signUpForm.password.$dirty && signUpForm.password.$invalid">
                     <span ng-show="signUpForm.password.$error.required" style ="color:#EB7737;">Please enter a password.</span>
                 </div>
 
-            <label>Password Confirmation:</label>
+            <label>Password Confirmation<abbr title="Required" class="required" style="color:#EB7737;">*</abbr></label>
             <input type="password" name="passwordConfirm" class="form-control" ng-model="passwordConfirm" placeholder="" required pw-check="password"/>
 
             <div ng-show="signUpForm.passwordConfirm.$dirty && signUpForm.passwordConfirm.$invalid">
@@ -31,11 +33,15 @@
             <div ng-show="signUpForm.passwordConfirm.$dirty && signUpForm.passwordConfirm.$invalid">
                 <span ng-show="signUpForm.passwordConfirm.$error.pwmatch" style="color:#EB7737;">Passwords don't match</span>
             </div>
+
+
+
         </form>
+
         <br />
         <button class="btn btn-primary  btn-custom" ng-click= "joinNow()">Join now</button>
 
-    <button class="btn btn-primary  btn-custom" ng-click= "createProfileWithLinkedin()">Create Profile With LinkedIn</button>
+
 
     <br />
     <br />

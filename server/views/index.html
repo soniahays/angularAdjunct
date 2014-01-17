@@ -61,6 +61,15 @@
                 <li ng-class="{active: index == 2}" ng-click="index = 2"><a href="/search-results">Network</a></li>
                 <li ng-class="{active: index == 3}" ng-click="index = 3" class="navigation-dropdown"><a ng-href="/jobs" bs-dropdown="jobsDropdown">Jobs</a></li>
                 <li ng-class="{active: index == 4}" ng-click="index = 4"><a href="/contact-us">Contact Us</a></li>
+                <li>
+                <div class="input-group" style="padding:15px 15px;">
+                    <input type="text" class="form-control" ng-enter="search()" required ng-model="navigationSearchBox" placeholder="Search for people, jobs, institutions and more..." style="width:313px;height:25px;border-radius:15px !important;font-size:13px;">
+                    <a style="margin-left:-23px;color:#EB7737;font-size:16px;"><i class="fa fa-search" ></i></a>
+                    <!--<span class="input-group-btn">-->
+                      <!--<button class="btn btn-default btn-custom btn-primary-custom" type="submit" ng-disabled="homeForm.$invalid" ng-click="search()" ><i class="fa fa-search" ></i></button>-->
+                    <!--</span>-->
+                </div>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li ng-if="!isSignedIn">

@@ -1,3 +1,20 @@
+.marketing-background{
+    background: -moz-linear-gradient(top, rgba(160,160,160,0.14) 0%, rgba(152,152,152,0) 5%, rgba(0,0,0,0) 98%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(160,160,160,0.14)), color-stop(5%,rgba(152,152,152,0)), color-stop(98%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(160,160,160,0.14) 0%,rgba(152,152,152,0) 5%,rgba(0,0,0,0) 98%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(160,160,160,0.14) 0%,rgba(152,152,152,0) 5%,rgba(0,0,0,0) 98%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(160,160,160,0.14) 0%,rgba(152,152,152,0) 5%,rgba(0,0,0,0) 98%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(160,160,160,0.14) 0%,rgba(152,152,152,0) 5%,rgba(0,0,0,0) 98%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#24a0a0a0', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
+.sign-up-form{
+    border-radius:3px;
+    margin-bottom:10px;
+}
+
+
+
+
 label{
     font-family: Arial, sans-serif;
     font-weight:normal!important;
@@ -769,10 +786,24 @@ ol, ul{
 /* app css stylesheet */
 .btn-primary-custom {
     color: #fff;
+    font-weight:bold;
     /*background-color: #428bca;*/
     /*border-color: #357ebd;*/
-    background-color: #D06D12 !important;
-    border-color: #D06D12 !important;
+    background-color: #EB7737 !important;
+    border-color: #EB7737 !important;
+}
+
+.btn-primary-custom-home-search {
+    color: #fff;
+    font-weight:bold;
+    /*background-color: #428bca;*/
+    /*border-color: #357ebd;*/
+    background-color: #EB7737 !important;
+    border-color:#101010;
+}
+.btn-primary-custom-home-search.disabled,.btn-primary-custom-home-search.disabled.active,.btn-primary-custom-home-search[disabled] {
+
+    border-color:#101010;
 }
 
 .new-account{
@@ -781,7 +812,7 @@ ol, ul{
 
 .btn-signin {
     margin-top: 10px;
-    background-color: #D06D12 !important;
+    background-color: #EB7737 !important;
     color: #fff;
     border-radius:1px!important;
     height:38px !important;
@@ -1167,7 +1198,7 @@ body { font-family: Arial, sans-serif; }
     margin-bottom:10px;
 }
 .btn-social-google-home-page{
-    width:93px!important;
+    width:126px!important;
     font-size: 12px;
     line-height: 1;
     border-radius: 3px;
@@ -1179,7 +1210,7 @@ body { font-family: Arial, sans-serif; }
     /*border-color: #863523;*/
     height: 29px;
     padding-left: 5px;
-    margin-bottom:10px;
+    /*margin-bottom:10px;*/
     margin-right:10px;
     margin-left:10px;
 }
@@ -1201,7 +1232,7 @@ body { font-family: Arial, sans-serif; }
 
 }
 .btn-social-facebook-home-page{
-    width:93px!important;
+    width:126px!important;
     font-size: 12px;
     line-height: 1;
     border-radius: 3px;
@@ -1213,7 +1244,7 @@ body { font-family: Arial, sans-serif; }
     /*border-color: #4e5f9e;*/
     height: 29px;
     padding-left: 5px;
-    margin-bottom:10px;
+    /*margin-bottom:10px;*/
     margin-right:10px;
 
 }
@@ -1230,7 +1261,7 @@ body { font-family: Arial, sans-serif; }
     padding-left: 5px;
 }
 .btn-social-linkedin-home-page{
-    width:88px!important;
+    /*width:88px!important;*/
     font-size: 12px;
     line-height: 1;
     border-radius: 3px;
@@ -1242,7 +1273,7 @@ body { font-family: Arial, sans-serif; }
     /*border-color: #007bb6;*/
     height: 29px;
     padding-left: 5px;
-    margin-bottom:10px;
+    /*margin-bottom:10px;*/
     margin-left:10px;
 }
 
