@@ -1,3 +1,10 @@
+.basic-profile-form{
+    height: 28px;
+    border-radius: 1px;
+    padding: 3px 5px;
+}
+
+
 .marketing-background{
     background: -moz-linear-gradient(top, rgba(160,160,160,0.14) 0%, rgba(152,152,152,0) 5%, rgba(0,0,0,0) 98%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(160,160,160,0.14)), color-stop(5%,rgba(152,152,152,0)), color-stop(98%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
