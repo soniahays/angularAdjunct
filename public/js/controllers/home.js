@@ -35,6 +35,10 @@ angular.module('adjunct.controllers')
             if ($scope.hide)
                 $scope.hide();
         }
+
+        $scope.importLinkedIn = function() {
+            window.location.replace(window.location.origin + "/api/linkedInAuth");
+        }
 //        $scope.goToSignUp = function () {
 //            $location.path('/signup');
 //            if ($scope.hide)

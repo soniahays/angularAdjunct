@@ -1,13 +1,12 @@
-
 var LocalStrategy = require('passport-local').Strategy,
-    LinkedInStrategy = require('passport-linkedin').Strategy,
+    LinkedInStrategy = require('passport-linkedin-oauth2').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
     GoogleStrategy = require('passport-google').Strategy;
 
-module.exports = function(db, passport, bcrypt) {
+module.exports = function (db, passport, bcrypt, _) {
 
     var ROOT_URL = "http://localhost:3000";
-    switch(process.env.NODE_ENV) {
+    switch (process.env.NODE_ENV) {
         case 'development':
             ROOT_URL = "http://adjuncts-dev.herokuapp.com";
             break;
@@ -20,9 +19,9 @@ module.exports = function(db, passport, bcrypt) {
             usernameField: 'email',
             passwordField: 'password'
         },
-        function(email, password, done) {
+        function (email, password, done) {
             email = encodeURIComponent(email);
-            db.getUser({'email': email}, function(err, user) {
+            db.getUser({'email': email}, function (err, user) {
                 if (err)
                     return done(err, null);
 
@@ -30,7 +29,7 @@ module.exports = function(db, passport, bcrypt) {
                     return done(null, false, { message: 'Incorrect email.' });
                 }
 
-                bcrypt.compare(password, user.password, function(err, res) {
+                bcrypt.compare(password, user.password, function (err, res) {
                     if (!res) {
                         return done(null, false, { message: 'Incorrect password.' });
                     }
@@ -43,12 +42,14 @@ module.exports = function(db, passport, bcrypt) {
     ));
 
     passport.use(new LinkedInStrategy({
-            consumerKey: 'mw29t6wc4cfa',
-            consumerSecret: 'Chw82KgUKBgteXNh',
-            callbackURL: ROOT_URL + '/auth/linkedin/callback'
+            clientID: 'mw29t6wc4cfa',
+            clientSecret: 'Chw82KgUKBgteXNh',
+            callbackURL: ROOT_URL + '/auth/linkedin/callback',
+            scope: 'r_basicprofile r_fullprofile',
+            profileFields: ['id', 'first-name', 'last-name', 'summary', 'positions', 'skills', 'connections', 'shares', 'network']
         },
-        function(accessToken, refreshToken, profile, done) {
-            db.getUser({ 'linkedinId': profile.id }, function(err, user) {
+        function (accessToken, refreshToken, profile, done) {
+            db.getUser({ 'linkedinId': profile.id }, function (err, user) {
 
                 if (err) {
                     return done(err);
@@ -58,9 +59,88 @@ module.exports = function(db, passport, bcrypt) {
                     done(null, user);
                 }
                 else {
-                    db.insertUser({'linkedinId': profile.id, 'firstName': profile.name.givenName, 'lastName': profile.name.familyName }, done);
+                    var user = {
+                        'linkedinId': profile.id,
+                        'firstName': profile.name.givenName,
+                        'lastName': profile.name.familyName,
+                        'personalSummary': profile._json.summary,
+                        'expertiseTags': _.pluck(_.pluck(profile._json.skills.values, 'skill'), 'name'),
+                        'resumePositions': _.map(profile._json.positions.values, function (position) {
+                            return {
+                                title: position.title,
+                                institution: position.company.name,
+                                startMonth: position.startDate.month,
+                                startYear: position.startDate.year,
+                                stillHere: position.isCurrent,
+                                endMonth: position.isCurrent ? null : position.endDate.month,
+                                endYear: position.isCurrent ? null : position.endDate.year,
+                                location: position.location,
+                                description: position.summary,
+                                termsDate: getUniversityTerm(position.startDate.month, position.startDate.year, position.endDate, position.isCurrent)
+                            }
+                        })
+                    }
+
+                    db.insertUser(user, done);
                 }
             });
+
+            function getUniversityTerm(startMonth, startYear, endDate, isStillHere) {
+                var universityTermStart;
+                var universityTermEnd;
+                switch (startMonth) {
+                    case 1:
+                    case 2:
+                        universityTermStart = "Winter";
+                        break;
+                    case 3:
+                    case 4:
+                    case 5:
+                        universityTermStart = "Spring";
+                        break;
+                    case 6:
+                    case 7:
+                    case 8:
+                        universityTermStart = "Summer";
+                        break;
+                    case 9 :
+                    case 10 :
+                    case 11 :
+                    case 12 :
+                        universityTermStart = "Fall";
+                        break;
+
+                }
+                if (!isStillHere) {
+                    switch (endDate.month) {
+                        case 1:
+                        case 2:
+                        case 3:
+                            universityTermEnd = "winter";
+                            break;
+                        case 4:
+                        case 5:
+                        case 6:
+                            universityTermEnd = "spring";
+                            break;
+                        case 7:
+                        case 8:
+                            universityTermEnd = "summer";
+                            break;
+                        case 9 :
+                        case 10 :
+                        case 11 :
+                        case 12 :
+                            universityTermEnd = "fall";
+                            break;
+
+                    }
+                }
+
+                return isStillHere ? universityTermStart + " " + startYear + " - Present" : universityTermStart + " " + startYear + " - " + universityTermEnd + " " + endDate.year;
+
+            }
+
         }
     ));
 
@@ -69,8 +149,8 @@ module.exports = function(db, passport, bcrypt) {
             clientSecret: 'dd82492ee233507c44937f3701d078b2',
             callbackURL: ROOT_URL + '/auth/facebook/callback'
         },
-        function(accessToken, refreshToken, profile, done) {
-            db.getUser({ 'facebookId': profile.id }, function(err, user) {
+        function (accessToken, refreshToken, profile, done) {
+            db.getUser({ 'facebookId': profile.id }, function (err, user) {
                 if (err) {
                     return done(err);
                 }
@@ -89,9 +169,9 @@ module.exports = function(db, passport, bcrypt) {
             returnURL: ROOT_URL + '/auth/google/callback',
             realm: ROOT_URL
         },
-        function(identifier, profile, done) {
+        function (identifier, profile, done) {
             var googleId = encodeURIComponent(identifier);
-            db.getUser({ 'googleId': googleId }, function(err, user) {
+            db.getUser({ 'googleId': googleId }, function (err, user) {
                 if (err) {
                     return done(err);
                 }
@@ -105,12 +185,12 @@ module.exports = function(db, passport, bcrypt) {
         }
     ));
 
-    passport.serializeUser(function(user, done) {
+    passport.serializeUser(function (user, done) {
         done(null, {'_id': user._id});
     });
 
-    passport.deserializeUser(function(user, done) {
-        db.getUser({'_id': user._id}, function(err, u) {
+    passport.deserializeUser(function (user, done) {
+        db.getUser({'_id': user._id}, function (err, u) {
             done(null, u);
         });
     });

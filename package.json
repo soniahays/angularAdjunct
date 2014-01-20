@@ -8,12 +8,13 @@
     "bcryptjs": "~0.7.10",
     "passport": "0.1.17",
     "passport-facebook": "1.0.x",
-    "passport-linkedin": "0.1.x",
     "passport-google": "0.3.x",
+    "passport-linkedin-oauth2": "~1.1.0",
     "passport-local": "0.1.x",
     "node-uuid": "~1.4",
     "aws-sdk": "~2.0.x",
-    "es": "~0.3.14"
+    "es": "~0.3.14",
+    "underscore": "~1.5.2"
   },
   "engines": {
     "node": "0.10.x",

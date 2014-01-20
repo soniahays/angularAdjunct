@@ -10,6 +10,7 @@ var http = require('http'),
     aws = require('aws-sdk'),
     mongodb = require('mongodb'),
     url = require('url'),
+    _ = require('underscore'),
     connect = require('./server/dbConnect.js')(bcrypt, mongodb),
     elasticsearch = require('es')({
         server: {
@@ -31,7 +32,7 @@ connect(function (err, db) {
     jobDb = require ('./server/jobDb.js')(mongodb, db),
     institutionDb = require ('./server/institutionDb.js')(mongodb, db),
         metadataDb = require ('./server/metadataDb.js')(mongodb, db),
-    pass = require('./server/passport.js')(userDb, passport, bcrypt);
+    pass = require('./server/passport.js')(userDb, passport, bcrypt, _);
 
     http.createServer(app).listen(app.get('port'), function () {
         console.log('Express server listening on port ' + app.get('port'));
@@ -354,15 +355,15 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-        successReturnToOrRedirect: '/',
+        successReturnToOrRedirect: '/profile',
         failureRedirect: '/signin' })
 );
 
-app.get('/auth/linkedin', passport.authenticate('linkedin'));
+app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE'  }));
 
 app.get('/auth/linkedin/callback',
     passport.authenticate('linkedin', {
-        successReturnToOrRedirect: '/',
+        successReturnToOrRedirect: '/profile',
         failureRedirect: '/signin' })
 );
 
@@ -370,7 +371,7 @@ app.get('/auth/google', passport.authenticate('google'));
 
 app.get('/auth/google/callback',
     passport.authenticate('google', {
-        successReturnToOrRedirect: '/',
+        successReturnToOrRedirect: '/profile',
         failureRedirect: '/signin' })
 );
 
