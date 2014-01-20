@@ -1247,7 +1247,7 @@
   angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.jqlite.dimensions']).run([
     '$templateCache',
     function ($templateCache) {
-      var template = '' + '<div class="tooltip" ng-show="title">' + '<div class="tooltip-arrow"></div>' + '<div class="tooltip-inner" ng-bind-html="title"></div>' + '</div>';
+      var template = '' + '<div class="tooltip" ng-show="title">' + '<div class="tooltip-arrow"></div>' + '<div class="tooltip-inner" custom-bind-html="title"></div>' + '</div>';
       $templateCache.put('$tooltip', template);
     }
   ]).provider('$tooltip', function () {

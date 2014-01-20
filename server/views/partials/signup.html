@@ -28,8 +28,8 @@
                 </div>
 
                 <label>Password<abbr title="Required" class="required" style="color:#EB7737;">*</abbr> </label>
-                <input type="password" name="password" ng-model="$parent.password" class="form-control" id="password" required data-trigger="focus" bs-tooltip="tooltip" placement="right" data-type="info">
-                <ul id='strength' check-strength='password'></ul>
+                <input type="password" name="password" ng-model="$parent.password" class="form-control custom-tooltip" id="password" required data-trigger="focus" bs-tooltip="tooltip" placement="right" data-type="info">
+                <!--<ul id='strength' check-strength='password'></ul>-->
                 <div ng-show="signUpForm.password.$dirty && signUpForm.password.$invalid">
                     <span ng-show="signUpForm.password.$error.required" style ="color:#EB7737;">Please enter a password.</span>
                 </div>

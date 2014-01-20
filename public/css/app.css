@@ -1,3 +1,45 @@
+
+/*.tooltip-inner {*/
+    /*max-width: 250px;*/
+    /*padding: 3px 8px;*/
+    /*color: #ffffff;*/
+    /*text-align: center;*/
+    /*text-decoration: none;*/
+    /*background-color: #000000;*/
+    /*border-radius: 4px;*/
+/*}*/
+.custom-tooltip + .tooltip > .tooltip-inner{
+    background-color: white;
+    color:black;
+    border: solid 1px #555;
+    border-radius:1px;
+    position: relative;
+    background: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align:left;
+
+}
+
+.tooltip.right:after .tooltip-arrow:after {
+    top: 50%;
+    left: 0;
+    margin-top: -5px;
+    border-color: rgba(0, 0, 0, 0);
+    border-right-color: white;
+    border-width: 5px;
+    margin-top: -5px;
+}
+
+.tooltip.right:before .tooltip-arrow:before {
+    top: 50%;
+    left: 0;
+    border-color: rgba(85, 85, 85, 0);
+    border-right-color: #555;
+    border-width: 6px;
+    margin-top: -6px;
+}
+
 .basic-profile-form{
     height: 28px;
     border-radius: 1px;
@@ -34,7 +76,7 @@ ul#strength{
     display:inline;
     list-style:none;
     margin:0;
-    margin-left:15px;
+    margin-left:0;
     padding:0;
     vertical-align:2px;
 }
@@ -43,11 +85,11 @@ ul#strength{
 }
 .point {
     background:#DDD;
-    border-radius:2px;
+    border-radius:0;
     display:inline-block;
     height:5px;
-    margin-right:1px;
-    width:20px;
+    margin-right:0;
+    width:30px;
 }
 #footer {
     position:fixed;

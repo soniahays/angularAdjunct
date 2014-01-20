@@ -14,9 +14,11 @@ angular.module('adjunct.controllers')
         }
 
         $scope.tooltip = {
-            "title": "<ul id='strength' check-strength='password'></ul>",
+//            "title": "<ul id='strength' check-strength='password'></ul>",
+            title: '<span style="text-align: left;"><strong>Password strength: {{strength}}</strong></span><ul style="display:block;"><div id="strength" check-strength="password" style="display:block;"></div></ul><span style="display:block;">Use at least 8 characters. Don’t use a password from another site, or something too obvious like your pet’s name.</span>',
             "checked": false
         };
+        $scope.password = '';
 
         $scope.importLinkedin = function () {
             $scope.user.email = encodeURIComponent($scope.user.email);

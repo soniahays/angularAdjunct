@@ -7,6 +7,7 @@ angular.module('adjunct', [
         'ngCookies',
         //'ngResource',
         'ngAnimate',
+//        'ngSanitize',
         'mgcrea.ngStrap',
         'ui.bootstrap',
         'tags-input',
@@ -16,7 +17,7 @@ angular.module('adjunct', [
         'adjunct.directives',
         'adjunct.controllers'
     ]).
-    config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', '$sceProvider', function ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvider) {
+    config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', '$sceProvider','$tooltipProvider', function ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvider,$tooltipProvider) {
         $routeProvider.when('/', {templateUrl: '/partial/home', controller: 'HomeCtrl', accessLevel: 'public'});
         $routeProvider.when('/search-results/:searchTerm', {templateUrl: function(params) {  return '/partial/search-results/' + params.searchTerm; }, controller: 'SearchResultsCtrl', accessLevel: 'public'});
         $routeProvider.when('/search-results', {templateUrl: '/partial/search-results', controller: 'SearchResultsCtrl', accessLevel: 'public'});
@@ -36,6 +37,9 @@ angular.module('adjunct', [
         $locationProvider.html5Mode(true);
         $sceDelegateProvider.resourceUrlWhitelist(["http://www.youtube.com/embed/*", "self", "https://docs.google.com/*", "http://infolab.stanford.edu/*"]);
         $sceProvider.enabled(false);
+        angular.extend($tooltipProvider.defaults, {
+            html: false
+        });
     }]);
 
 angular.module('adjunct.filters', []);

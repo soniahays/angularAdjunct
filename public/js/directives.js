@@ -67,11 +67,11 @@ angular.module('adjunct.directives')
 
         return {
             replace: false,
-            restrict: 'EACM',
+            restrict: 'ECAM',
             link: function (scope, iElement, iAttrs) {
 
                 var strength = {
-                    colors: ['#F00', '#F90', '#FF0', '#9F0', '#0F0'],
+                    colors: ['#DDD','#F00', '#F90', '#FF0', '#9F0', '#0F0'],
                     mesureStrength: function (p) {
 
                         var _force = 0;
@@ -100,13 +100,14 @@ angular.module('adjunct.directives')
 
                     },
                     getColor: function (s) {
-
                         var idx = 0;
-                        if (s <= 10) { idx = 0; }
-                        else if (s <= 20) { idx = 1; }
-                        else if (s <= 30) { idx = 2; }
-                        else if (s <= 40) { idx = 3; }
-                        else { idx = 4; }
+                        if (s > 0) {
+                            if (s <= 10) { idx = 1; }
+                            else if (s <= 20) { idx = 2; }
+                            else if (s <= 30) { idx = 3; }
+                            else if (s <= 40) { idx = 4; }
+                            else { idx = 5; }
+                        }
 
                         return { idx: idx + 1, col: this.colors[idx] };
 
@@ -114,20 +115,60 @@ angular.module('adjunct.directives')
                 };
 
                 scope.$watch(iAttrs.checkStrength, function () {
-                    if (scope.password == null) {
-                        iElement.css({ "display": "none" });
-                    } else {
                         var c = strength.getColor(strength.mesureStrength(scope.password));
+
                         iElement.css({ "display": "block"});
                         iElement.children('li')
                             .css({ "background": "#DDD" })
                             .slice(0, c.idx)
                             .css({ "background": c.col });
-                    }
+
+                        switch(c.idx){
+                            case 0:
+                                scope.strength="No way";
+                                break;
+                            case 1:
+                                scope.strength = "";
+                                break;
+                            case 2:
+                                scope.strength ="Very weak";
+                                break;
+                            case 3:
+                                scope.strength ="Weak";
+                                break;
+                            case 4:
+                                scope.strength="Fair";
+                                break;
+                            case 5:
+                                scope.strength="Good";
+                                break;
+                            case 6:
+                                scope.strength="Excellent";
+                                break;
+                            default:
+                                scope.strength="";
+                        }
+
+                    console.log(c.idx );
+
+                        if (scope.password.length > 0 && scope.password.length <= 6){
+                            scope.strength="Too short";
+                        }
                 });
 
             },
-            template: '<li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li>'
+            template: '<li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li>'
+        };
+
+    }).directive('customBindHtml', function($compile) {
+        return {
+
+            link: function(scope, element, attr) {
+                scope.$watch(attr.customBindHtml, function (value) {
+                    element.html(value);
+                    $compile(element.contents())(scope);
+                });
+            }
         };
 
     });
