@@ -17,7 +17,7 @@ angular.module('adjunct', [
         'adjunct.directives',
         'adjunct.controllers'
     ]).
-    config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', '$sceProvider','$tooltipProvider', function ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvider,$tooltipProvider) {
+    config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', '$sceProvider','$tooltipProvider', '$dropdownProvider', function ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvider,$tooltipProvider, $dropdownProvider) {
         $routeProvider.when('/', {templateUrl: '/partial/home', controller: 'HomeCtrl', accessLevel: 'public'});
         $routeProvider.when('/search-results/:searchTerm', {templateUrl: function(params) {  return '/partial/search-results/' + params.searchTerm; }, controller: 'SearchResultsCtrl', accessLevel: 'public'});
         $routeProvider.when('/search-results', {templateUrl: '/partial/search-results', controller: 'SearchResultsCtrl', accessLevel: 'public'});
@@ -39,6 +39,9 @@ angular.module('adjunct', [
         $sceProvider.enabled(false);
         angular.extend($tooltipProvider.defaults, {
             html: false
+        });
+        angular.extend($dropdownProvider.defaults, {
+            trigger: 'click',
         });
     }]);
 

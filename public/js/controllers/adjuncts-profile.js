@@ -30,7 +30,7 @@ angular.module('adjunct.controllers')
                 $scope.user = values[0].data;
                 $scope.countries = values[1] ? values[1].data : null;
                 var linkedinData = values[2] ? values[2].data : null;
-                //console.log(linkedinData);
+                console.log("adjunctProfile", adjunctProfile);
 
                 if ($scope.user.country)
                     $scope.user.countryName = _.findWhere($scope.countries, {_id: $scope.user.country}).name;
@@ -302,7 +302,7 @@ angular.module('adjunct.controllers')
             }
         }
 
-        $scope.removePositionAlert= function(resumePosition){
+        $scope.removePositionAlert = function(resumePosition){
             console.log(resumePosition);
             $scope.selectedResumePosition = resumePosition;
             $('#alert-modal').modal();
