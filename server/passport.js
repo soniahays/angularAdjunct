@@ -46,7 +46,7 @@ module.exports = function (db, passport, bcrypt, _) {
             clientSecret: 'Chw82KgUKBgteXNh',
             callbackURL: ROOT_URL + '/auth/linkedin/callback',
             scope: 'r_basicprofile r_fullprofile',
-            profileFields: ['id', 'first-name', 'last-name', 'summary', 'positions', 'skills', 'connections', 'shares', 'network']
+            profileFields: ['id', 'first-name', 'last-name', 'summary', 'positions', 'skills', 'connections', 'shares', 'network', 'picture-urls::(original)']
         },
         function (accessToken, refreshToken, profile, done) {
             db.getUser({ 'linkedinId': profile.id }, function (err, user) {
@@ -65,6 +65,7 @@ module.exports = function (db, passport, bcrypt, _) {
                         'lastName': profile.name.familyName,
                         'personalSummary': profile._json.summary,
                         'expertiseTags': _.pluck(_.pluck(profile._json.skills.values, 'skill'), 'name'),
+                        'linkedinPictureUrl': profile._json.pictureUrls.total > 0 ? profile._json.pictureUrls.values[0] : '',
                         'resumePositions': _.map(profile._json.positions.values, function (position) {
                             return {
                                 title: position.title,

@@ -1912,31 +1912,29 @@ tbody{
     width:110px;
 }
 
-ul.nav li.navigation-dropdown:hover > ul.navigation-dropdown-menu {
-    display: block;
-}
 
-.navigation-dropdown-menu {
+
+.dropdown-menu {
     background-color: #333;
 }
 
-.navigation-dropdown-menu > li > a {
+.dropdown-menu > li > a {
     color: #ddd;
 }
 
-.navigation-dropdown-menu>li>a:hover {
+.dropdown-menu>li>a:hover {
     color: #fff;
     background-color: #333;
 }
 
-.navigation-dropdown-menu>li>a:focus {
+.dropdown-menu>li>a:focus {
     color: #fff;
     background-color: #333;
     border-color: #333;
     outline-color: #333;
 }
 
-.navigation-dropdown-menu:focus {
+.dropdown-menu:focus {
     outline: none;
 }
 
