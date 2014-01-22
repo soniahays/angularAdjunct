@@ -41,7 +41,7 @@ angular.module('adjunct', [
             html: false
         });
         angular.extend($dropdownProvider.defaults, {
-            trigger: 'click',
+            trigger: 'click'
         });
     }]);
 
