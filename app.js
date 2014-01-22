@@ -168,7 +168,7 @@ app.post('/api/signup', function (req, res) {
     res.end();
 });
 
-app.post('/save-adjuncts-profile', function (req, res) {
+app.post('/api/save-adjuncts-profile', function (req, res) {
     if (req.body.user) {
         userDb.updateUser(req.body.user);
     }

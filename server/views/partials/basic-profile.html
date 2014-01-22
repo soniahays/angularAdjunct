@@ -7,11 +7,13 @@
             <table>
                   <tr>
                       <td><label>Country<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label></td>
-                      <td><select name="userCountry" ng-model="user.country" ng-options="c.name for c in countries" class="form-control basic-profile-form"required>
-                           <option value="">-- choose country --</option></select>
-                          <div ng-show="basicProfileForm.userCountry.$dirty && basicProfileForm.userCountry.$invalid">
-                              <span ng-show="basicProfileForm.userCountry.$error.required" style ="color:#EB7737;">Please select a country.</span>
-                          </div>
+                      <!--<td><select name="userCountry" ng-model="user.country" ng-options="c.name for c in countries" class="form-control basic-profile-form"required>-->
+                      <td><input type="text" typeahead="country for country in countries | filter:$viewValue | limitTo:10" class="form-control basic-profile-form"  ng-model="user.country" required style="width:323px"/> </td>
+                           <!--<option value="">-- choose country --</option></select>-->
+                      <!--<td><input type="text"   typeahead="institution for institution in institutions | filter:$viewValue | limitTo:10"   class="form-control basic-profile-form"  ng-model="user.institution" required style="width:309px"/></td>-->
+                          <!--<div ng-show="basicProfileForm.userCountry.$dirty && basicProfileForm.userCountry.$invalid">-->
+                              <!--<span ng-show="basicProfileForm.userCountry.$error.required" style ="color:#EB7737;">Please select a country.</span>-->
+                          <!--</div>-->
                       </td>
                   </tr>
                   <tr>
@@ -59,9 +61,10 @@
                   </tr>
                   <tr>
                      <td><label>Specialty<abbr title="This is a required field." class="required"style="color:#EB7737;">*</abbr></label></td>
-                     <td><select  ng-options="f.name for f in fieldGroups" ng-model="user.field"  class="form-control basic-profile-form"  required>
-                         <option value="">-- select a field --</option></select>
-                      </td>
+                     <!--<td><select  ng-options="f.name for f in fieldGroups" ng-model="user.field"  class="form-control basic-profile-form"  required>-->
+                         <!--<option value="">-- select a field --</option></select>-->
+                      <!--</td>-->
+                      <td><input type="text" typeahead="field for field in fieldGroups | filter:$viewValue | limitTo:10" class="form-control basic-profile-form" ng-model="user.field" required style="width:323px"/></td>
                   </tr>
                   <tr>
 
@@ -70,8 +73,8 @@
 
                       <td>      <br />
                           <div class="controls">
-                          <button name="singlebutton" class="btn btn-primary" ng-click="LinkedInCreateProf()">Your profile is ready</button>
-                              <!--<button  name="" class="btn btn-primary" ng-click="ManuallyCreateProf()">Create my profile Manually</button>-->
+                          <button name="singlebutton" class="btn btn-primary" ng-click="manuallyCreateProf()">Your profile is ready</button>
+                          <!--<button  name="" class="btn btn-primary" ng-click="ManuallyCreateProf()">Create my profile Manually</button>-->
 
                       </div></td>
                   </tr>
