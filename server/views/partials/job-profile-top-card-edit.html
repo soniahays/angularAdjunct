@@ -1,47 +1,25 @@
 <div id="top-card-job" class="panel profiles-panel col-md-12">
     <div class="panel-body profile-top-card">
 <div class="profile-details-content">
-
-    <!--<script type="text/ng-template" id="customTemplate.html">-->
-        <!--<a>-->
-            <!--<img ng-src="http://upload.wikimedia.org/wikipedia/commons/thumb/{{match.model.flag}}" width="16">-->
-            <!--<span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>-->
-        <!--</a>-->
-    <!--</script>-->
-    <!--<div class='container-fluid'>-->
-
-        <!--<h4>Static arrays</h4>-->
-        <!--<pre>Model: {{selected | json}}</pre>-->
-        <!--<input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control">-->
-
-        <!--<h4>Asynchronous results</h4>-->
-        <!--<pre>Model: {{asyncSelected | json}}</pre>-->
-        <!--<input type="text" ng-model="asyncSelected" placeholder="Locations loaded via $http" typeahead="address for address in getLocation($viewValue) | filter:$viewValue" typeahead-loading="loadingLocations" class="form-control">-->
-        <!--<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>-->
-
-        <!--<h4>Custom templates for results</h4>-->
-        <!--<pre>Model: {{customSelected | json}}</pre>-->
-        <!--<input type="text" ng-model="customSelected" placeholder="Custom template" typeahead="state as state.name for state in statesWithFlags | filter:{name:$viewValue}" typeahead-template-url="customTemplate.html" class="form-control">-->
-    <!--</div>-->
-
             <form name="jobForm">
                 <div id="name-container" class="form-group css-form" novalidate style="line-height:2;">
-                    <div>
+                        <div>
                         <ul>
                             <li>
+                                <!--<label><i class="fa fa-home"></i> Address <small>(async via maps.googleapis.com)</small></label>-->
+                                <!--<input type="text" class="profile-forms edit-positionType " ng-model="selectedAddress"  typeahead="address.formatted_address for address in getAddress($viewValue)" placeholder="Enter address">-->
                                 <label>Job Position <abbr title="Required" class="required">*</abbr></label>
-                                <select ng-model="job.positionTypeId" class="edit-positionType" ng-options="p._id as p.name for p in positionTypes" class="input-xlarge" required>
-                                    <option value="">choose...</option></select>
+                                <input type="text" typeahead="positionType for positionType in positionTypes | filter:$viewValue | limitTo:10" class="profile-forms edit-positionType" ng-model="job.positionType"   maxlength="50" required style="width:212px;" />
                                 - <label>Academic Discipline <abbr title="Required" class="required">*</abbr>  </label>
-                                <input type="text"  class=" profile-forms "  name="jobAcademicDiscipline" ng-model="job.academicDiscipline" maxlength="50"required>
+                                <input type="text" typeahead="field for field in fieldGroups | filter:$viewValue | limitTo:10" class="profile-forms edit-positionType " ng-model="job.field" maxlength="50" required style="width:212px;" />
                             </li>
                             <li>
                                 <label>Institution Name<abbr title="Required" class="required">*</abbr>  </label>
-                                <input type="text" class="profile-forms" typeahead="institution for institution in institutions | filter:$viewValue | limitTo:10"  name="jobInstitution" ng-model="job.institution" maxlength="50" required>
+                                <input type="text" class="profile-forms" typeahead="institution for institution in institutions | filter:$viewValue | limitTo:10"  name="jobInstitution" ng-model="job.institution" maxlength="50" required style="width:310px;">
                                 - <label>Contract Type <abbr title="Required" class="required">*</abbr></label>
 
 
-                                <select ng-model="job.contractType" class="edit-positionType" ng-options="c._id as c.name for c in contractTypes" class="input-xlarge" required>
+                                <select ng-model="job.contractType" class="edit-positionType" ng-options="c._id as c.name for c in contractTypes" class="profile-forms edit-positionType" required style="width:128px">
                                     <option value="">choose...</option></select>
                             </li>
                             <br/>
@@ -53,13 +31,16 @@
                                         On Site <input type="checkbox" ng-model="onSite">
                                         Remote <input type="checkbox" ng-model="remote">
                                         <br/>
-                                        <label>Country <abbr title="Required" class="required">*</abbr></label>
-                                        <select ng-model="job.country" class="edit-positionType"  ng-options="c._id as c.name for c in countries" class="input-xlarge" required>
-                                            <option value="">choose...</option></select>
                                         <label>City <abbr title="Required" class="required">*</abbr></label>
-                                        <input type="text" class="profile-forms" name="jobLocationCity" ng-model="job.locationCity" maxlength="50" required> <br/>
+                                        <input type="text" id="locality" class="profile-forms" name="jobLocationCity" ng-model="job.institution.city"  typeahead="address.formatted_address for address in getAddress($viewValue)" maxlength="50" required >
+                                      {{job.institution.name|| "nothing"}}
+
+                                        <!--<select ng-model="job.country" class="edit-positionType"  ng-options="c._id as c.name for c in countries" class="input-xlarge" required>-->
+                                            <!--<option value="">choose...</option></select>-->
                                         <label>State <abbr title="Required" class="required">*</abbr></label>
-                                        <input type="text" class="profile-forms"  typeahead="state for state in states | filter:$viewValue | limitTo:8" name="jobLocationState" ng-model="job.locationState" maxlength="50" required>
+                                        <input type="text" id="administrative_area_level_1" class="profile-forms"  typeahead="state for state in states | filter:$viewValue | limitTo:8" name="jobLocationState" ng-model="job.locationState" maxlength="50" required>
+                                        <label>Country <abbr title="Required" class="required">*</abbr></label>
+                                        <input type="text"  id="country" class="profile-forms" typeahead="country for country in countries | filter:$viewValue | limitTo:10" name="jobCountry" ng-model="job.country" required/>
                                 </div>
 
                             </li>
@@ -100,11 +81,4 @@
 
     </div>
 </div>
-
-
-
-
-
-
-
 

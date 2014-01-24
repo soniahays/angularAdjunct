@@ -59,6 +59,7 @@
 .sign-up-form{
     border-radius:3px;
     margin-bottom:10px;
+    background-color: #fff;
 }
 
 
@@ -295,7 +296,8 @@ border-width: 1px 0;
 
 #bottom-card-post-job{
     border-radius: 0!important;
-    padding: 10px 15px;
+    padding: 10px 0 0;
+
 }
 
 .bottom-card-panel-body{
@@ -1949,8 +1951,8 @@ tbody{
 }
 
 .get-in-touch input[type=text],.get-in-touch input[type=email], .get-in-touch textarea {
-    background: rgb(235, 241, 245);
-    color: rgb(36, 39, 41);
+    background: #FCF9F9;
+    color: #FCF9F9;
 }
 .get-in-touch  input:focus, .get-in-touch  textarea:focus {
     outline: 0;

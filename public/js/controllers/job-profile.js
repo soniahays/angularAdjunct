@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('JobProfileCtrl', ['$scope', '$http', '$cookies', '$q','$aside', function ($scope, $http, $cookies, $q, $aside) {
+    .controller('JobProfileCtrl', ['$scope','$templateCache', '$http', '$cookies', '$q','$aside', function ($scope,$templateCache, $http, $cookies, $q, $aside ) {
         var jobId = $('#jobId').html();
 
         $scope.master = {};
@@ -66,7 +66,10 @@ angular.module('adjunct.controllers')
 
         $http.get('/api/contractTypes').then(function(response) { $scope.contractTypes = response.data; });
         $http.get('/api/edDegrees').then(function(response) { $scope.edDegrees = response.data; });
-        $http.get('/api/countries').then(function(response) { $scope.countries = response.data; });
+        $http.get('/api/countries').then(function(response) { $scope.countries = _.map(response.data, function(item){return item.name; })});
+        $http.get('/api/positionTypes').then(function(response){ $scope.positionTypes = _.map(response.data, function(item){return item.name; })});
+        $http.get('/api/fieldGroups').then(function(response) { $scope.fieldGroups = _.map(response.data, function(item){return item.name})});
+        $http.get('/api/institutions').then(function(response) { $scope.institutions = _.map(response.data, function(item){return item.name})});
 
 
 
@@ -75,6 +78,16 @@ angular.module('adjunct.controllers')
             $scope.institutions = _.map(response.data, function(item) { return item.Institution + " (" + item.State + ")"; });
             //$scope.institutions = response.data;
         });
+
+        $scope.selectedAddress = undefined;
+        $scope.getAddress = function(viewValue) {
+            var params = {address: viewValue, sensor: false};
+            return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {params: params})
+                .then(function(res) {
+                    console.log(res.data.results)
+                    return res.data.results;
+                });
+        };
 
         $scope.aside = {
             "title": "Title",
