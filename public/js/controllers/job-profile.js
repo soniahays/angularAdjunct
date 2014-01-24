@@ -74,10 +74,8 @@ angular.module('adjunct.controllers')
 
 
         $scope.selected = undefined;
-        $http.get('/api/institutions').then(function(response) {
-            $scope.institutions = _.map(response.data, function(item) { return item.Institution + " (" + item.State + ")"; });
-            //$scope.institutions = response.data;
-        });
+        $http.get('api/institutions').then(function(response) { $scope.institutions = _.map(response.data, function(item){return item.name + "(" + item.city + ", " + item.state + ")";});});
+
 
         $scope.selectedAddress = undefined;
         $scope.getAddress = function(viewValue) {
