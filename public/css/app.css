@@ -1925,6 +1925,7 @@ tbody{
 
 .dropdown-menu {
     background-color: #333;
+    border-radius:3px;
 }
 
 .dropdown-menu > li > a {
