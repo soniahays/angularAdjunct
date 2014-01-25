@@ -57,9 +57,9 @@
     <div class="container">
         <div class="navbar-collapse collapse">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/"><img src="/img/logo.png" height="25"></a>
+                <a class="navbar-brand" href="/"><img src="/img/logo.png" height="28"></a>
             </div>
-            <ul class="nav navbar-nav">
+            <ul ng-hide="!isSignedIn" class="nav navbar-nav">
 
                 <li ng-class="{active: index == 0}" ng-click="index = 0"><a href="/">Home</a></li>
                 <li ng-class="{active: index == 1}" ng-click="index = 1" class="navigation-dropdown">
@@ -69,38 +69,60 @@
                     <a ng-href="/jobs" bs-dropdown="jobsDropdown">Jobs</a>
                 </li>
                 <li ng-class="{active: index == 4}" ng-click="index = 4"><a href="/contact-us">Contact Us</a></li>
-                <li>
+                <li ng-hide="!isSignedIn">
                     <div class="input-group" style="padding:15px 15px;">
                         <input type="text" class="form-control" ng-enter="search()" required
                                ng-model="navigationSearchBox"
                                placeholder="Search for people, jobs, institutions and more..."
                                style="width:313px;height:25px;border-radius:15px !important;font-size:13px;">
                         <a style="margin-left:-23px;color:#EB7737;font-size:16px;"><i class="fa fa-search"></i></a>
-                        <!--<span class="input-group-btn">-->
-                        <!--<button class="btn btn-default btn-custom btn-primary-custom" type="submit" ng-disabled="homeForm.$invalid" ng-click="search()" ><i class="fa fa-search" ></i></button>-->
-                        <!--</span>-->
                     </div>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li ng-if="!isSignedIn">
-                    <button class="btn  btn-primary-custom btn-custom btn-signin" data-placement="bottom"
-                            data-title="{{signinPopover.title}}" data-template="/partial/signin-popover" bs-popover
-                            data-animation="animation-flipX">Sign In
-                    </button>
-                </li>
-                <li ng-if="user" class="navigation-dropdown">
-                    <a href="#" class="navigation-dropdown-toggle" data-toggle="dropdown">
-                        <img ng-if="user.imageName" class="pull-left search-image"
-                             ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}" width="35px">
-                        <img ng-if="!user.imageName" class="pull-left search-image" ng-src="/img/placeholder3.png"
-                             width="35px">
-                        {{user.firstName || 'not signed in'}}<b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href ng-click="signout()"> Sign Out</a></li>
-                    </ul>
-                </li>
+            <ul ng-show="!isSignedIn" class="nav navbar-nav navbar-right">
+
+
+                    <!--<li ng-class="{active: index == 0}" ng-click="index = 0"><a href="/">Home</a></li>-->
+                    <!--<li ng-class="{active: index == 1}" ng-click="index = 1" class="navigation-dropdown">-->
+                        <!--<a ng-href="/profile" bs-dropdown="profileDropdown">Profile</a></li>-->
+                    <!--<li ng-class="{active: index == 2}" ng-click="index = 2"><a href="/search-results">Network</a></li>-->
+                    <!--<li ng-class="{active: index == 3}" ng-click="index = 3" class="navigation-dropdown">-->
+                        <!--<a ng-href="/jobs" bs-dropdown="jobsDropdown">Jobs</a>-->
+                    <!--</li>-->
+                    <li ng-class="{active: index == 5}" ng-click="index = 5"><a href="/contact-us">About</a></li>
+                    <li ng-class="{active: index == 6}" ng-click="index = 6"><a href="/contact-us">Contact Us</a></li>
+                    <li ng-class="{active: index == 7}" ng-click="index = 7"><a href="/contact-us">Join</a></li>
+                    <li ng-class="{active: index == 8}" ng-click="index = 8" style="background-color:#EB7737;color:#fff;">
+                    <a href="" style="color:#fff;" data-placement="bottom" data-title="{{signinPopover.title}}" data-template="/partial/signin-popover" bs-popover
+                    data-animation="animation-flipX">Sign In</a></li>
+
+
+
+
+                    <li ng-hide="!isSignedIn">
+                        <div class="input-group" style="padding:15px 15px;">
+                            <input type="text" class="form-control" ng-enter="search()" required
+                                   ng-model="navigationSearchBox"
+                                   placeholder="Search for people, jobs, institutions and more..."
+                                   style="width:313px;height:25px;border-radius:15px !important;font-size:13px;">
+                            <a style="margin-left:-23px;color:#EB7737;font-size:16px;"><i class="fa fa-search"></i></a>
+                        </div>
+                    </li>
+            </ul>
+            <ul ng-show="isSignedIn" class="nav navbar-nav navbar-right">
+            <li ng-if="user" class="navigation-dropdown">
+                <a href="#" class="navigation-dropdown-toggle" data-toggle="dropdown">
+                    <img ng-if="user.imageName" class="pull-left search-image"
+                         ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}" width="35px">
+                    <img ng-if="!user.imageName" class="pull-left search-image" ng-src="/img/placeholder3.png"
+                         width="35px">
+                    {{user.firstName || 'not signed in'}}<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href ng-click="signout()"> Sign Out</a></li>
+                </ul>
+            </li>
+
             </ul>
         </div>
     </div>

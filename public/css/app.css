@@ -1,4 +1,11 @@
-
+.home-sign-up-well{
+margin-top: 30px;
+background-color: #999;
+width: 360px;
+margin-left: 33px;
+padding: 5px 22px;
+border-radius: 1px;
+}
 /*.tooltip-inner {*/
     /*max-width: 250px;*/
     /*padding: 3px 8px;*/
@@ -1991,4 +1998,9 @@ tbody{
 
 .signin-popover {
     margin: 5px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    padding: 10px;
+    
 }
