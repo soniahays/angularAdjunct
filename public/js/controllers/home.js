@@ -15,25 +15,21 @@ angular.module('adjunct.controllers')
         };
         $scope.facebookAuth = function () {
             window.location.href = '/auth/facebook';
-            if ($scope.hide)
-                $scope.hide();
+            $("[bs-popover]").click();
         }
         $scope.linkedinAuth = function () {
             window.location.href = '/auth/linkedin';
-            if ($scope.hide)
-                $scope.hide();
+            $("[bs-popover]").click();
         }
         $scope.googleAuth = function () {
 //            window.open('/auth/google');
             window.location.href = '/auth/google';
-            if ($scope.hide)
-                $scope.hide();
+            $("[bs-popover]").click();
         }
 
         $scope.connectManually = function(){
             $location.path('/signup');
-            if ($scope.hide)
-                $scope.hide();
+            $("[bs-popover]").click();
         }
 
         $scope.importLinkedIn = function() {

@@ -1,0 +1,9 @@
+angular-strap.js
+Added custom-bind-html directive which allows to add check password strength directive into the password textbox tooltip.
+angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.jqlite.dimensions']).run([
+    '$templateCache',
+    function ($templateCache) {
+      var template = '' + '<div class="tooltip" ng-show="title">' + '<div class="tooltip-arrow"></div>' + '<div class="tooltip-inner" custom-bind-html="title"></div>' + '</div>';
+      $templateCache.put('$tooltip', template);
+    }
+  ])

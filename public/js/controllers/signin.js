@@ -5,22 +5,16 @@ angular.module('adjunct.controllers')
 
         $scope.facebookAuth = function () {
             window.location.href = '/auth/facebook';
-            if ($scope.hide)
-                $scope.hide();
         }
         $scope.linkedinAuth = function () {
             window.location.href = '/auth/linkedin';
-            if ($scope.hide)
-                $scope.hide();
         }
         $scope.googleAuth = function () {
             window.location.href = '/auth/google';
-            if ($scope.hide)
-                $scope.hide();
         }
-        $scope.goToSignUp = function () {
+        $scope.signUp = function () {
             $location.path('/signup');
-            if ($scope.hide)
-                $scope.hide();
+            if ($scope.$hide)
+                $scope.$hide();
         }
     }]);

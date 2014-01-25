@@ -51,23 +51,29 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 </head>
 
-<body ng-controller="IndexCtrl" style="margin-top:20px;">
+<body ng-controller="IndexCtrl" document-click>
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="margin-bottom: 0px">
     <div class="container">
         <div class="navbar-collapse collapse">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/"><img src="/img/logo.png" height="28"></a>
+                <a class="navbar-brand" href="/" ng-click="index = 0"><img src="/img/logo.png" height="28"></a>
             </div>
             <ul ng-hide="!isSignedIn" class="nav navbar-nav">
-
-                <li ng-class="{active: index == 0}" ng-click="index = 0"><a href="/">Home</a></li>
-                <li ng-class="{active: index == 1}" ng-click="index = 1" class="navigation-dropdown">
-                    <a ng-href="/profile" bs-dropdown="profileDropdown">Profile</a></li>
-                <li ng-class="{active: index == 2}" ng-click="index = 2"><a href="/search-results">Network</a></li>
-                <li ng-class="{active: index == 3}" ng-click="index = 3" class="navigation-dropdown">
-                    <a ng-href="/jobs" bs-dropdown="jobsDropdown">Jobs</a>
+                <li ng-class="{active: index == 0}" ng-click="index = 0">
+                    <a href="/">Home</a>
                 </li>
-                <li ng-class="{active: index == 4}" ng-click="index = 4"><a href="/contact-us">Contact Us</a></li>
+                <li ng-class="{active: index == 1}" ng-click="index = 1" class="navigation-dropdown">
+                    <a bs-dropdown="profileDropdown">Profile</a>
+                </li>
+                <li ng-class="{active: index == 2}" ng-click="index = 2">
+                    <a href="/search-results">Network</a>
+                </li>
+                <li ng-class="{active: index == 3}" ng-click="index = 3" class="navigation-dropdown">
+                    <a bs-dropdown="jobsDropdown">Jobs</a>
+                </li>
+                <li ng-class="{active: index == 4}" ng-click="index = 4">
+                    <a href="/contact-us">Contact Us</a>
+                </li>
                 <li ng-hide="!isSignedIn">
                     <div class="input-group" style="padding:15px 15px;">
                         <input type="text" class="form-control" ng-enter="search()" required
@@ -79,25 +85,12 @@
                 </li>
             </ul>
             <ul ng-show="!isSignedIn" class="nav navbar-nav navbar-right">
-
-
-                    <!--<li ng-class="{active: index == 0}" ng-click="index = 0"><a href="/">Home</a></li>-->
-                    <!--<li ng-class="{active: index == 1}" ng-click="index = 1" class="navigation-dropdown">-->
-                        <!--<a ng-href="/profile" bs-dropdown="profileDropdown">Profile</a></li>-->
-                    <!--<li ng-class="{active: index == 2}" ng-click="index = 2"><a href="/search-results">Network</a></li>-->
-                    <!--<li ng-class="{active: index == 3}" ng-click="index = 3" class="navigation-dropdown">-->
-                        <!--<a ng-href="/jobs" bs-dropdown="jobsDropdown">Jobs</a>-->
-                    <!--</li>-->
                     <li ng-class="{active: index == 5}" ng-click="index = 5"><a href="/contact-us">About</a></li>
                     <li ng-class="{active: index == 6}" ng-click="index = 6"><a href="/contact-us">Contact Us</a></li>
                     <li ng-class="{active: index == 7}" ng-click="index = 7"><a href="/contact-us">Join</a></li>
-                    <li ng-class="{active: index == 8}" ng-click="index = 8" style="background-color:#EB7737;color:#fff;">
-                    <a href="" style="color:#fff;" data-placement="bottom" data-title="{{signinPopover.title}}" data-template="/partial/signin-popover" bs-popover
-                    data-animation="animation-flipX">Sign In</a></li>
-
-
-
-
+                    <li class="signin-button">
+                        <a href="#" style="color:#fff" class="popoverButton" bs-popover data-placement="bottom" data-title="{{signinPopover.title}}" data-template="/partial/signin-popover">Sign In</a>
+                    </li>
                     <li ng-hide="!isSignedIn">
                         <div class="input-group" style="padding:15px 15px;">
                             <input type="text" class="form-control" ng-enter="search()" required
@@ -130,11 +123,5 @@
 <div ng-view>
 </div>
 
-<hr class="featurette-divider">
-<footer>
-    <p class="pull-right"><a href="#">Back to top</a></p>
-
-    <p>&copy; Adjuncts Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-</footer>
 </body>
 </html>

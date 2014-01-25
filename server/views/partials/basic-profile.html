@@ -1,94 +1,110 @@
-<div class=" col-md-offset-2 col-md-10 ">
-  <br />
-  <br />
-      <div class="clearfix">
-           <fieldset><legend>{{user.firstName}} let's start creating your Adjunct profile</legend> </fieldset>
-          <form name="basicProfileForm" class=" css form" novalidate>
+<div class=" col-md-offset-2 col-md-10">
+    <br/>
+    <br/>
+    <div class="clearfix">
+        <fieldset>
+            <legend>{{user.firstName}} let's start creating your Adjunct profile</legend>
+        </fieldset>
+        <form name="basicProfileForm" class=" css form" novalidate>
             <table>
-                  <tr>
-                      <td><label>Country<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label></td>
-                      <!--<td><select name="userCountry" ng-model="user.country" ng-options="c.name for c in countries" class="form-control basic-profile-form"required>-->
-                      <td><input type="text" typeahead="country for country in countries | filter:$viewValue | limitTo:10" class="form-control basic-profile-form"  ng-model="user.country" required style="width:323px"/> </td>
-                           <!--<option value="">-- choose country --</option></select>-->
-                      <!--<td><input type="text"   typeahead="institution for institution in institutions | filter:$viewValue | limitTo:10"   class="form-control basic-profile-form"  ng-model="user.institution" required style="width:309px"/></td>-->
-                          <!--<div ng-show="basicProfileForm.userCountry.$dirty && basicProfileForm.userCountry.$invalid">-->
-                              <!--<span ng-show="basicProfileForm.userCountry.$error.required" style ="color:#EB7737;">Please select a country.</span>-->
-                          <!--</div>-->
-                      </td>
-                  </tr>
-                  <tr>
-                      <td><label>Zip Code<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label></td>
-                      <td><input type="text" name="userZipCode" ng-model="user.zipCode" class="form-control basic-profile-form" required  ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/" />
-                      <span ng-show="basicProfileForm.userZipCode.$error.pattern" style ="color:#EB7737;">This is not a valid Zip Code.</span>
-                      <div ng-show="basicProfileForm.userZipCode.$dirty && basicProfileForm.userZipCode.$invalid && !basicProfileForm.userZipCode.$error.pattern">
-                          <span ng-show="basicProfileForm.userCountry.$error.required" style ="color:#EB7737;">Please enter your Zip Code.</span>
-                      </div>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td></td>
-                      <td><p class="help-block profile-card-table-th">e.g. 94043</p></td>
-                  </tr>
-                  <tr>
-                      <td>I am currently</td>
-                      <td>
-                          <input type="radio" ng-model="jobStatus" value="employed">  Employed
-                          <!--</td>-->
-                          <!--<td>-->
-                          <input type="radio" ng-model="jobStatus" value="job-seeker"> Job Seeker
-                          <!--</td>-->
-                          <!--<td>-->
-                          <input type="radio" ng-model="jobStatus" value="student"> Student
-                      </td>
-                  </tr>
-                  <tr>
-                      <td><label>Job title<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label></td>
-                      <td><input type="text" name="userJobTitle"  class="form-control basic-profile-form"  ng-model="user.jobTitle" required/>
-                          <div ng-show="basicProfileForm.userJobTitle.$dirty && basicProfileForm.userJobTitle.$invalid">
-                              <span ng-show="basicProfileForm.userJobTitle.$error.required" style ="color:#EB7737;">Please enter a value.</span>
-                          </div>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td></td>
-                      <td><span><input type="checkbox" ng-model="user.selfEmployed" class="" ng-true-value="YES" ng-false-value="NO">
+                <tr>
+                    <td><label>Country<abbr title="This is a required field." class="required"
+                                            style="color:#EB7737;">*</abbr></label></td>
+                    <td><input type="text" typeahead="country for country in countries | filter:$viewValue | limitTo:10"
+                               class="form-control basic-profile-form" ng-model="user.country" required
+                               style="width:323px"/></td>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Zip Code<abbr title="This is a required field." class="required"
+                                             style="color:#EB7737;">*</abbr></label></td>
+                    <td><input type="text" name="userZipCode" ng-model="user.zipCode"
+                               class="form-control basic-profile-form" required
+                               ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/" numbers-only maxlength="5" />
+                        <span ng-show="basicProfileForm.userZipCode.$error.pattern" style="color:#EB7737">This is not a valid Zip Code.</span>
+
+                        <div ng-show="basicProfileForm.userZipCode.$dirty && basicProfileForm.userZipCode.$invalid && !basicProfileForm.userZipCode.$error.pattern">
+                            <span ng-show="basicProfileForm.userCountry.$error.required" style="color:#EB7737">Please enter your Zip Code.</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p class="help-block profile-card-table-th">e.g. 94043</p></td>
+                </tr>
+                <tr>
+                    <td>I am currently</td>
+                    <td>
+                        <input type="radio" ng-model="jobStatus" value="employed"> Employed
+                        <!--</td>-->
+                        <!--<td>-->
+                        <input type="radio" ng-model="jobStatus" value="job-seeker"> Job Seeker
+                        <!--</td>-->
+                        <!--<td>-->
+                        <input type="radio" ng-model="jobStatus" value="student"> Student
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Job title<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
+                    </td>
+                    <td><input type="text" name="userJobTitle" class="form-control basic-profile-form"
+                               ng-model="user.jobTitle" required/>
+
+                        <div ng-show="basicProfileForm.userJobTitle.$dirty && basicProfileForm.userJobTitle.$invalid">
+                            <span ng-show="basicProfileForm.userJobTitle.$error.required" style="color:#EB7737;">Please enter a value.</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><span><input type="checkbox" ng-model="user.selfEmployed" class="" ng-true-value="YES"
+                                     ng-false-value="NO">
                       <p class="help-block profile-card-table-th">I am self-employed</p></span>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td><label>Educational Institution<abbr title="This is a required field." class="required"  style="color:#EB7737;">*</abbr></label></td>
-                      <td><input type="text"   typeahead="institution for institution in institutions | filter:$viewValue | limitTo:10"   class="form-control basic-profile-form"  ng-model="user.institution" required style="width:309px"/></td>
-                  </tr>
-                  <tr>
-                     <td><label>Specialty<abbr title="This is a required field." class="required"style="color:#EB7737;">*</abbr></label></td>
-                     <!--<td><select  ng-options="f.name for f in fieldGroups" ng-model="user.field"  class="form-control basic-profile-form"  required>-->
-                         <!--<option value="">-- select a field --</option></select>-->
-                      <!--</td>-->
-                      <td><input type="text" typeahead="field for field in fieldGroups | filter:$viewValue | limitTo:10" class="form-control basic-profile-form" ng-model="user.field" required style="width:323px"/></td>
-                  </tr>
-                  <tr>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Educational Institution<abbr title="This is a required field." class="required"
+                                                            style="color:#EB7737;">*</abbr></label></td>
+                    <td><input type="text"
+                               typeahead="institution for institution in institutions | filter:$viewValue | limitTo:10"
+                               class="form-control basic-profile-form" ng-model="user.institution" required
+                               style="width:323px"/></td>
+                </tr>
+                <tr>
+                    <td><label>Specialty<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
+                    </td>
+                    <!--<td><select  ng-options="f.name for f in fieldGroups" ng-model="user.field"  class="form-control basic-profile-form"  required>-->
+                    <!--<option value="">-- select a field --</option></select>-->
+                    <!--</td>-->
+                    <td><input type="text" typeahead="field for field in fieldGroups | filter:$viewValue | limitTo:10"
+                               class="form-control basic-profile-form" ng-model="user.field" required
+                               style="width:323px"/></td>
+                </tr>
+                <tr>
 
-     <td> <br />
-                          </td>
-
-                      <td>      <br />
-                          <div class="controls">
-                          <button name="singlebutton" class="btn btn-primary" ng-click="manuallyCreateProf()">Your profile is ready</button>
-                          <!--<button  name="" class="btn btn-primary" ng-click="ManuallyCreateProf()">Create my profile Manually</button>-->
-
-                      </div></td>
-                  </tr>
-                  </table>
-              </form>
-                     <br />
-                     <br />
-                     <br />
-                     <br />
-                     <br />
-                     <br />
-                     <br />
-                     <br />
-              </div>
+                    <td>
+                        <br/>
+                    </td>
+                    <td>
+                        <br/>
+                        <div class="controls">
+                            <button name="singlebutton" class="btn btn-primary" ng-click="manuallyCreateProf()">Your
+                                profile is ready
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+    </div>
 
 </div>
 

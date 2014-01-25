@@ -164,8 +164,9 @@ app.get('/api/get-institutions-profile/:id', function (req, res) {
 });
 
 app.post('/api/signup', function (req, res) {
-    userDb.insertUser(req.body.user);
-    res.end();
+   userDb.insertUser(req.body.user, function(err, user) {
+       res.json(user);
+   });
 });
 
 app.post('/api/save-adjuncts-profile', function (req, res) {
@@ -194,7 +195,7 @@ app.post('/api/save-job-profile', function (req, res) {
 });
 
 app.post('/api/save-job-for-user', function (req, res) {
-    userDb.addUserJob(req.cookies._id, {'jobs': req.body.jobId}, function() {
+        userDb.addUserJob(req.cookies._id, {'jobs': req.body.jobId}, function() {
         res.end();
     });
 });
@@ -375,9 +376,9 @@ app.get('/auth/google/callback',
         failureRedirect: '/signin' })
 );
 
-app.post('/signin-post',
+app.post('/api/signin',
     passport.authenticate('local', {
-        successReturnToOrRedirect: '/',
+        successReturnToOrRedirect: '/profile',
         failureRedirect: '/signin' })
 );
 

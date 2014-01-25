@@ -10,13 +10,14 @@ module.exports = function (mongodb, db, bcrypt) {
                 bcrypt.genSalt(10, function (err, salt) {
                     bcrypt.hash(user.password, salt, function (err, hash) {
                         user.password = hash;
-                        collection.insert([user], function (err) {
+                        collection.insert([user], function (err, docs) {
                             if (err) {
                                 return console.error(err);
                             }
                             else {
                                 if (callback)
-                                    callback(err, user);
+                                    delete docs[0].password;
+                                    callback(err, docs[0]);
                             }
                         });
                     });

@@ -1,3 +1,7 @@
+body, html {
+    height: 100%;
+}
+
 .home-sign-up-well{
 margin-top: 30px;
 background-color: #999;
@@ -55,6 +59,7 @@ border-radius: 1px;
 
 
 .marketing-background{
+    height:100%;
     background: -moz-linear-gradient(top, rgba(160,160,160,0.14) 0%, rgba(152,152,152,0) 5%, rgba(0,0,0,0) 98%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(160,160,160,0.14)), color-stop(5%,rgba(152,152,152,0)), color-stop(98%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top, rgba(160,160,160,0.14) 0%,rgba(152,152,152,0) 5%,rgba(0,0,0,0) 98%); /* Chrome10+,Safari5.1+ */
@@ -62,6 +67,10 @@ border-radius: 1px;
     background: -ms-linear-gradient(top, rgba(160,160,160,0.14) 0%,rgba(152,152,152,0) 5%,rgba(0,0,0,0) 98%); /* IE10+ */
     background: linear-gradient(to bottom, rgba(160,160,160,0.14) 0%,rgba(152,152,152,0) 5%,rgba(0,0,0,0) 98%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#24a0a0a0', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
+
+.marketing {
+    margin-bottom:110px
 }
 .sign-up-form{
     border-radius:3px;
@@ -99,17 +108,6 @@ ul#strength{
     margin-right:0;
     width:30px;
 }
-#footer {
-    position:fixed;
-    bottom:5px;
-}
-
-
-
-
-
-
-
 
 /*.ng-invalid:focus + .input-help-2 {*/
     /*display: none;*/
@@ -965,6 +963,7 @@ ol, ul{
 .form-signin .checkbox
 {
     font-weight: normal;
+    color: #333;
 }
 
 .form-control-custom{
@@ -1072,6 +1071,9 @@ ol, ul{
 #profile-id{
     padding: 0 0;
 }
+.navbar {
+    height: 51px;
+}
 .navbar-header {
     float: left;
 }
@@ -1090,7 +1092,7 @@ ol, ul{
 
 .navbar-brand {
     margin-left: -15px;
-    margin-top: 0;
+    margin-top: -4px;
 }
 
 /* Always apply the floated nav */
@@ -1110,6 +1112,11 @@ ol, ul{
 /* Redeclare since we override the float above */
 .navbar-nav.navbar-right {
     float: right;
+}
+
+.signin-button, .signin-button>a {
+    background-color:#EB7737 !important;
+    color:#fff;
 }
 
 /*-----------------BODY------------*/

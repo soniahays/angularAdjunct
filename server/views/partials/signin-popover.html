@@ -1,4 +1,4 @@
-<form  method="post" action="/signin-post" class="popover form-signin input-group-sm signin-popover" ng-controller="SigninCtrl">
+<form  method="post" action="/api/signin" class="popover form-signin input-group-sm signin-popover" ng-controller="SigninCtrl">
     <div class="arrow"></div>
     <br />
     <!--<div ng-show="showError" style="color: #b94a48">Please enter a valid email and password.</div>-->
@@ -26,7 +26,7 @@
                     <button class="btn btn-lg btn-primary btn-block btn-block-custom" id="signin-btn"type="submit" ng-click="goToSignUp()">Sign in</button>
                     <label class="checkbox pull-left"><input type="checkbox" value="remember-me"><small>Remember me </small></label>
                     <span class="clearfix"></span>
-                    <a href="/signup" class="text-center new-account">Create an account </a>
+                    <a href="#" ng-click="signUp()" class="text-center new-account">Create an account </a>
                 </td>
             </tr>
         </table>
