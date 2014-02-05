@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions'])
+angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.helpers.dimensions'])
 
-  .run(function($templateCache) {
+  .run(function($templateCache, $modal) {
 
     var template = '' +
       '<div class="modal" tabindex="-1" role="dialog">' +
@@ -10,9 +10,9 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions'])
           '<div class="modal-content">' +
             '<div class="modal-header" ng-show="title">' +
               '<button type="button" class="close" ng-click="$hide()">&times;</button>' +
-              '<h4 class="modal-title" ng-bind-html="title"></h4>' +
+              '<h4 class="modal-title" ng-bind="title"></h4>' +
             '</div>'+
-            '<div class="modal-body" ng-show="content" ng-bind-html="content"></div>'+
+            '<div class="modal-body" ng-show="content" ng-bind="content"></div>'+
             '<div class="modal-footer">' +
               '<button type="button" class="btn btn-default" ng-click="$hide()">Close</button>' +
             '</div>' +
@@ -35,6 +35,7 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions'])
       element: null,
       backdrop: true,
       keyboard: true,
+      html: false,
       show: true
     };
 
@@ -44,7 +45,7 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions'])
       var jqLite = angular.element;
       var trim = String.prototype.trim;
       var bodyElement = jqLite($window.document.body);
-      var requestAnimationFrame = $window.requestAnimationFrame || $window.setTimeout;
+      var htmlReplaceRegExp = /ng-bind="/ig;
       var findElement = function(query, element) {
         return jqLite((element || document).querySelectorAll(query));
       };
@@ -90,28 +91,38 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions'])
         var backdropElement = jqLite('<div class="' + options.prefixClass + '-backdrop"/>');
         $modal.$promise.then(function(template) {
           if(angular.isObject(template)) template = template.data;
+          if(options.html) template = template.replace(htmlReplaceRegExp, 'ng-bind-html="');
           template = trim.apply(template);
           modalLinker = $compile(template);
-          // modalElement = modalLinker(scope);
           $modal.init();
         });
 
         $modal.init = function() {
+
+          // Options: show
           if(options.show) {
             scope.$$postDigest(function() {
-              $modal.show();
+              options.trigger === 'focus' ? element[0].focus() : $modal.show();
             });
           }
+
         };
 
         $modal.destroy = function() {
 
           // Remove element
-          modalElement.remove();
-          backdropElement.remove();
+          if(modalElement) {
+            modalElement.remove();
+            modalElement = null;
+          }
+          if(backdropElement) {
+            backdropElement.remove();
+            backdropElement = null;
+          }
 
           // Destroy scope
           scope.$destroy();
+
         };
 
         $modal.show = function() {
@@ -138,13 +149,18 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions'])
           }
           $animate.enter(modalElement, parent, after, function() {});
           scope.$isShown = true;
-          scope.$digest();
+          scope.$$phase || scope.$digest();
           $modal.focus();
+
           bodyElement.addClass(options.prefixClass + '-open');
+          // if(options.animation) {
+          //   bodyElement.addClass(options.prefixClass + '-with-' + options.animation);
+          // }
 
           // Bind events
           if(options.backdrop) {
             modalElement.on('click', hideOnBackdropClick);
+            backdropElement.on('click', hideOnBackdropClick);
           }
           if(options.keyboard) {
             modalElement.on('keyup', $modal.$onKeyUp);
@@ -155,17 +171,21 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions'])
         $modal.hide = function() {
 
           $animate.leave(modalElement, function() {
-            bodyElement.removeClass('modal-open');
+            bodyElement.removeClass(options.prefixClass + '-open');
+            // if(options.animation) {
+            //   bodyElement.addClass(options.prefixClass + '-with-' + options.animation);
+            // }
           });
           if(options.backdrop) {
             $animate.leave(backdropElement, function() {});
           }
-          scope.$digest();
+          scope.$$phase || scope.$digest();
           scope.$isShown = false;
 
           // Unbind events
           if(options.backdrop) {
             modalElement.off('click', hideOnBackdropClick);
+            backdropElement.off('click', hideOnBackdropClick);
           }
           if(options.keyboard) {
             modalElement.off('keyup', $modal.$onKeyUp);
@@ -212,10 +232,6 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions'])
 
   .directive('bsModal', function($window, $location, $sce, $modal) {
 
-    var forEach = angular.forEach;
-    var isDefined = angular.isDefined;
-    var requestAnimationFrame = $window.requestAnimationFrame || $window.setTimeout;
-
     return {
       restrict: 'EAC',
       scope: true,
@@ -223,12 +239,12 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions'])
 
         // Directive options
         var options = {scope: scope, element: element, show: false};
-        forEach(['template', 'placement', 'backdrop', 'keyboard', 'show', 'container', 'animation'], function(key) {
-          if(isDefined(attr[key])) options[key] = attr[key];
+        angular.forEach(['template', 'placement', 'backdrop', 'keyboard', 'html', 'container', 'animation'], function(key) {
+          if(angular.isDefined(attr[key])) options[key] = attr[key];
         });
 
         // Support scope as data-attrs
-        forEach(['title', 'content'], function(key) {
+        angular.forEach(['title', 'content'], function(key) {
           attr[key] && attr.$observe(key, function(newValue, oldValue) {
             scope[key] = newValue;
           });

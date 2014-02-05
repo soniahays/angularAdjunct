@@ -1,15 +1,16 @@
 /**
  * angular-strap
- * @version v2.0.0-beta.1 - 2014-01-07
+ * @version v2.0.0-beta.4 - 2014-01-20
  * @link http://mgcrea.github.io/angular-strap
  * @author Olivier Louvignes <olivier@mg-crea.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
 'use strict';
-angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions']).run([
+angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.helpers.dimensions']).run([
   '$templateCache',
-  function ($templateCache) {
-    var template = '' + '<div class="modal" tabindex="-1" role="dialog">' + '<div class="modal-dialog">' + '<div class="modal-content">' + '<div class="modal-header" ng-show="title">' + '<button type="button" class="close" ng-click="$hide()">&times;</button>' + '<h4 class="modal-title" ng-bind-html="title"></h4>' + '</div>' + '<div class="modal-body" ng-show="content" ng-bind-html="content"></div>' + '<div class="modal-footer">' + '<button type="button" class="btn btn-default" ng-click="$hide()">Close</button>' + '</div>' + '</div>' + '</div>' + '</div>';
+  '$modal',
+  function ($templateCache, $modal) {
+    var template = '' + '<div class="modal" tabindex="-1" role="dialog">' + '<div class="modal-dialog">' + '<div class="modal-content">' + '<div class="modal-header" ng-show="title">' + '<button type="button" class="close" ng-click="$hide()">&times;</button>' + '<h4 class="modal-title" ng-bind="title"></h4>' + '</div>' + '<div class="modal-body" ng-show="content" ng-bind="content"></div>' + '<div class="modal-footer">' + '<button type="button" class="btn btn-default" ng-click="$hide()">Close</button>' + '</div>' + '</div>' + '</div>' + '</div>';
     $templateCache.put('$modal', template);
   }
 ]).provider('$modal', function () {
@@ -22,6 +23,7 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions']).run
       element: null,
       backdrop: true,
       keyboard: true,
+      html: false,
       show: true
     };
   this.$get = [
@@ -39,7 +41,7 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions']).run
       var jqLite = angular.element;
       var trim = String.prototype.trim;
       var bodyElement = jqLite($window.document.body);
-      var requestAnimationFrame = $window.requestAnimationFrame || $window.setTimeout;
+      var htmlReplaceRegExp = /ng-bind="/gi;
       var findElement = function (query, element) {
         return jqLite((element || document).querySelectorAll(query));
       };
@@ -80,6 +82,8 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions']).run
         $modal.$promise.then(function (template) {
           if (angular.isObject(template))
             template = template.data;
+          if (options.html)
+            template = template.replace(htmlReplaceRegExp, 'ng-bind-html="');
           template = trim.apply(template);
           modalLinker = $compile(template);
           $modal.init();
@@ -87,13 +91,19 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions']).run
         $modal.init = function () {
           if (options.show) {
             scope.$$postDigest(function () {
-              $modal.show();
+              options.trigger === 'focus' ? element[0].focus() : $modal.show();
             });
           }
         };
         $modal.destroy = function () {
-          modalElement.remove();
-          backdropElement.remove();
+          if (modalElement) {
+            modalElement.remove();
+            modalElement = null;
+          }
+          if (backdropElement) {
+            backdropElement.remove();
+            backdropElement = null;
+          }
           scope.$destroy();
         };
         $modal.show = function () {
@@ -115,11 +125,12 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions']).run
           $animate.enter(modalElement, parent, after, function () {
           });
           scope.$isShown = true;
-          scope.$digest();
+          scope.$$phase || scope.$digest();
           $modal.focus();
           bodyElement.addClass(options.prefixClass + '-open');
           if (options.backdrop) {
             modalElement.on('click', hideOnBackdropClick);
+            backdropElement.on('click', hideOnBackdropClick);
           }
           if (options.keyboard) {
             modalElement.on('keyup', $modal.$onKeyUp);
@@ -127,16 +138,17 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions']).run
         };
         $modal.hide = function () {
           $animate.leave(modalElement, function () {
-            bodyElement.removeClass('modal-open');
+            bodyElement.removeClass(options.prefixClass + '-open');
           });
           if (options.backdrop) {
             $animate.leave(backdropElement, function () {
             });
           }
-          scope.$digest();
+          scope.$$phase || scope.$digest();
           scope.$isShown = false;
           if (options.backdrop) {
             modalElement.off('click', hideOnBackdropClick);
+            backdropElement.off('click', hideOnBackdropClick);
           }
           if (options.keyboard) {
             modalElement.off('keyup', $modal.$onKeyUp);
@@ -167,9 +179,6 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions']).run
   '$sce',
   '$modal',
   function ($window, $location, $sce, $modal) {
-    var forEach = angular.forEach;
-    var isDefined = angular.isDefined;
-    var requestAnimationFrame = $window.requestAnimationFrame || $window.setTimeout;
     return {
       restrict: 'EAC',
       scope: true,
@@ -179,19 +188,19 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.jqlite.dimensions']).run
             element: element,
             show: false
           };
-        forEach([
+        angular.forEach([
           'template',
           'placement',
           'backdrop',
           'keyboard',
-          'show',
+          'html',
           'container',
           'animation'
         ], function (key) {
-          if (isDefined(attr[key]))
+          if (angular.isDefined(attr[key]))
             options[key] = attr[key];
         });
-        forEach([
+        angular.forEach([
           'title',
           'content'
         ], function (key) {

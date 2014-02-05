@@ -1,14 +1,14 @@
 /**
  * angular-strap
- * @version v2.0.0-beta.1 - 2014-01-07
+ * @version v2.0.0-beta.4 - 2014-01-20
  * @link http://mgcrea.github.io/angular-strap
  * @author Olivier Louvignes <olivier@mg-crea.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
 'use strict';
 angular.module('mgcrea.ngStrap.scrollspy', [
-  'mgcrea.ngStrap.jqlite.debounce',
-  'mgcrea.ngStrap.jqlite.dimensions'
+  'mgcrea.ngStrap.helpers.debounce',
+  'mgcrea.ngStrap.helpers.dimensions'
 ]).provider('$scrollspy', function () {
   var spies = this.$$spies = {};
   var defaults = this.defaults = {
@@ -77,6 +77,8 @@ angular.module('mgcrea.ngStrap.scrollspy', [
           $rootScope.$off('$includeContentLoaded', debouncedCheckOffsets);
         };
         $scrollspy.checkPosition = function () {
+          if (!sortedElements.length)
+            return;
           scrollTop = (isWindowSpy ? $window.pageYOffset : scrollEl.prop('scrollTop')) || 0;
           viewportHeight = Math.max($window.innerHeight, docEl.prop('clientHeight'));
           if (scrollTop < sortedElements[0].offsetTop && activeTarget !== sortedElements[0].target) {

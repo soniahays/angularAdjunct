@@ -1,17 +1,20 @@
 'use strict';
 
-describe('modal', function () {
+describe('modal', function() {
 
-  var $compile, $templateCache, scope, sandboxEl;
+  var bodyEl = $('body'), sandboxEl;
+  var $compile, $templateCache, $modal, scope;
 
   beforeEach(module('ngSanitize'));
   beforeEach(module('mgcrea.ngStrap.modal'));
 
-  beforeEach(inject(function (_$rootScope_, _$compile_, _$templateCache_) {
+  beforeEach(inject(function (_$rootScope_, _$compile_, _$templateCache_, _$modal_) {
     scope = _$rootScope_.$new();
-    sandboxEl = $('<div>').attr('id', 'sandbox').appendTo($('body'));
+    bodyEl.html('');
+    sandboxEl = $('<div>').attr('id', 'sandbox').appendTo(bodyEl);
     $compile = _$compile_;
     $templateCache = _$templateCache_;
+    $modal = _$modal_;
   }));
 
   afterEach(function() {
@@ -23,15 +26,18 @@ describe('modal', function () {
 
   var templates = {
     'default': {
-      scope: {modal: {title: 'Title', content: 'Hello Modal<br>This is a multiline message!'}},
+      scope: {modal: {title: 'Title', content: 'Hello Modal!'}},
       element: '<a title="{{modal.title}}" data-content="{{modal.content}}" bs-modal>click me</a>'
     },
     'markup-scope': {
       element: '<a bs-modal="modal">click me</a>'
     },
     'markup-ngRepeat': {
-      scope: {items: [{name: 'foo', modal: {title: 'Title', content: 'Hello Modal<br>This is a multiline message!'}}]},
+      scope: {items: [{name: 'foo', modal: {title: 'Title', content: 'Hello Modal!'}}]},
       element: '<ul><li ng-repeat="item in items"><a title="{{item.modal.title}}" data-content="{{item.modal.content}}" bs-modal>{{item.name}}</a></li></ul>'
+    },
+    'markup-ngClick-service': {
+      element: '<a ng-click="showModal()">click me</a>'
     },
     'options-placement': {
       element: '<a data-placement="bottom" bs-modal="modal">click me</a>'
@@ -39,8 +45,12 @@ describe('modal', function () {
     'options-placement-exotic': {
       element: '<a data-placement="center" bs-modal="modal">click me</a>'
     },
+    'options-html': {
+      scope: {modal: {title: 'Title', content: 'Hello Modal<br>This is a multiline message!'}},
+      element: '<a title="{{modal.title}}" data-content="{{modal.content}}" data-html="1" bs-modal>click me</a>'
+    },
     'options-template': {
-      scope: {modal: {title: 'Title', content: 'Hello Modal<br>This is a multiline message!', counter: 0}, items: ['foo', 'bar', 'baz']},
+      scope: {modal: {title: 'Title', content: 'Hello Modal!', counter: 0}, items: ['foo', 'bar', 'baz']},
       element: '<a title="{{modal.title}}" data-content="{{modal.content}}" data-template="custom" bs-modal>click me</a>'
     }
   };
@@ -56,7 +66,7 @@ describe('modal', function () {
 
   // Tests
 
-  describe('with default template', function () {
+  describe('with default template', function() {
 
     it('should open on click', function() {
       var elm = compileDirective('default');
@@ -96,10 +106,41 @@ describe('modal', function () {
 
   });
 
+  describe('using service', function() {
 
-  describe('options', function () {
+    it('should correctly open on next digest', function() {
+      var myModal = $modal(templates['default'].scope.modal);
+      scope.$digest();
+      expect(bodyEl.children('.modal').length).toBe(1);
+      myModal.hide();
+      expect(bodyEl.children('.modal').length).toBe(0);
+    });
 
-    describe('animation', function () {
+    it('should correctly be destroyed', function() {
+      var myModal = $modal(angular.extend(templates['default'].scope.modal));
+      scope.$digest();
+      expect(bodyEl.children('.modal').length).toBe(1);
+      myModal.destroy();
+      expect(bodyEl.children('.modal').length).toBe(0);
+      expect(bodyEl.children().length).toBe(1);
+    });
+
+    it('should correctly work with ngClick', function() {
+      var elm = compileDirective('markup-ngClick-service');
+      var myModal = $modal(angular.extend({show: false}, templates['default'].scope.modal));
+      scope.showModal = function() {
+        myModal.$promise.then(myModal.show);
+      };
+      expect(bodyEl.children('.modal').length).toBe(0);
+      angular.element(elm[0]).triggerHandler('click');
+      expect(bodyEl.children('.modal').length).toBe(1);
+    });
+
+  });
+
+  describe('options', function() {
+
+    describe('animation', function() {
 
       it('should default to `animation-fade` animation', function() {
         var elm = compileDirective('default');
@@ -109,7 +150,7 @@ describe('modal', function () {
 
     });
 
-    describe('placement', function () {
+    describe('placement', function() {
 
       it('should default to `top` placement', function() {
         var elm = compileDirective('default');
@@ -131,7 +172,18 @@ describe('modal', function () {
 
     });
 
-    describe('template', function () {
+    describe('html', function() {
+
+      it('should correctly compile inner content', function() {
+        var elm = compileDirective('options-html');
+        angular.element(elm[0]).triggerHandler('click');
+        expect(sandboxEl.find('.modal-title').html()).toBe(scope.modal.title);
+        expect(sandboxEl.find('.modal-body').html()).toBe(scope.modal.content);
+      });
+
+    });
+
+    describe('template', function() {
 
       it('should support custom template', function() {
         $templateCache.put('custom', '<div class="modal"><div class="modal-inner">foo: {{title}}</div></div>');

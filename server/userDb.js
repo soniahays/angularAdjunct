@@ -15,22 +15,23 @@ module.exports = function (mongodb, db, bcrypt) {
                                 return console.error(err);
                             }
                             else {
-                                if (callback)
+                                if (callback) {
                                     delete docs[0].password;
                                     callback(err, docs[0]);
+                                }
                             }
                         });
                     });
                 });
             }
             else {
-                collection.insert([user], function (err) {
+                collection.insert([user], function (err, dbUser) {
                     if (err) {
                         return console.error(err);
                     }
                     else {
                         if (callback)
-                            callback(err, user);
+                            callback(err, dbUser);
                     }
                 });
             }
@@ -45,12 +46,12 @@ module.exports = function (mongodb, db, bcrypt) {
                 user.password = u.password;
                 var o_id = new BSON.ObjectID(u._id);
                 delete user._id;
-                collection.update({'_id': o_id}, user, function (err) {
+                collection.update({'_id': o_id}, user, function (err, dbUser) {
                     if (err) {
                         return console.error(err);
                     }
                     if (callback)
-                        callback(err, user);
+                        callback(err, dbUser);
                 });
             });
         },

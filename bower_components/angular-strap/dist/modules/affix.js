@@ -1,12 +1,12 @@
 /**
  * angular-strap
- * @version v2.0.0-beta.1 - 2014-01-07
+ * @version v2.0.0-beta.4 - 2014-01-20
  * @link http://mgcrea.github.io/angular-strap
  * @author Olivier Louvignes <olivier@mg-crea.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
 'use strict';
-angular.module('mgcrea.ngStrap.affix', ['mgcrea.ngStrap.jqlite.dimensions']).provider('$affix', function () {
+angular.module('mgcrea.ngStrap.affix', ['mgcrea.ngStrap.helpers.dimensions']).provider('$affix', function () {
   var defaults = this.defaults = { offsetTop: 'auto' };
   this.$get = [
     '$window',

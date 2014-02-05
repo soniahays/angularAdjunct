@@ -10,9 +10,10 @@
                 <tr>
                     <td><label>Country<abbr title="This is a required field." class="required"
                                             style="color:#EB7737;">*</abbr></label></td>
-                    <td><input type="text" typeahead="country for country in countries | filter:$viewValue | limitTo:10"
-                               class="form-control basic-profile-form" ng-model="user.country" required
-                               style="width:323px"/></td>
+                    <td>
+                        <input type="text" bs-typeahead placeholder="Enter country"
+                               class="form-control basic-profile-form" ng-model="country" ng-options="country.name as country.name for country in countries"  required
+                               style="width:323px"/>
                     </td>
                 </tr>
                 <tr>
@@ -48,7 +49,7 @@
                     <td><label>Job title<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
                     </td>
                     <td><input type="text" name="userJobTitle" class="form-control basic-profile-form"
-                               ng-model="user.jobTitle" required/>
+                               ng-model="user.jobTitle" required />
 
                         <div ng-show="basicProfileForm.userJobTitle.$dirty && basicProfileForm.userJobTitle.$invalid">
                             <span ng-show="basicProfileForm.userJobTitle.$error.required" style="color:#EB7737;">Please enter a value.</span>
@@ -65,18 +66,15 @@
                 <tr>
                     <td><label>Educational Institution<abbr title="This is a required field." class="required"
                                                             style="color:#EB7737;">*</abbr></label></td>
-                    <td><input type="text"
-                               typeahead="institution for institution in institutions | filter:$viewValue | limitTo:10"
+                    <td><input type="text" bs-typeahead
+                               ng-options="institution for institution in institutions"
                                class="form-control basic-profile-form" ng-model="user.institution" required
                                style="width:323px"/></td>
                 </tr>
                 <tr>
                     <td><label>Specialty<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
                     </td>
-                    <!--<td><select  ng-options="f.name for f in fieldGroups" ng-model="user.field"  class="form-control basic-profile-form"  required>-->
-                    <!--<option value="">-- select a field --</option></select>-->
-                    <!--</td>-->
-                    <td><input type="text" typeahead="field for field in fieldGroups | filter:$viewValue | limitTo:10"
+                    <td><input type="text" bs-typeahead ng-options="field for field in fieldGroups"
                                class="form-control basic-profile-form" ng-model="user.field" required
                                style="width:323px"/></td>
                 </tr>
@@ -88,22 +86,14 @@
                     <td>
                         <br/>
                         <div class="controls">
-                            <button name="singlebutton" class="btn btn-primary" ng-click="manuallyCreateProf()">Your
-                                profile is ready
+                            <button name="singlebutton" class="btn btn-primary" ng-click="manuallyCreateProf()">
+                                Your profile is ready
                             </button>
                         </div>
                     </td>
                 </tr>
             </table>
         </form>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
     </div>
 
 </div>

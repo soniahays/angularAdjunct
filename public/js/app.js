@@ -9,7 +9,6 @@ angular.module('adjunct', [
         'ngAnimate',
 //        'ngSanitize',
         'mgcrea.ngStrap',
-        'ui.bootstrap',
         'tags-input',
         'ngUpload',
         'adjunct.filters',

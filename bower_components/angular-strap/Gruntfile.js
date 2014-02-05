@@ -10,6 +10,7 @@ module.exports = function (grunt) {
 
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
+  grunt.loadNpmTasks('grunt-nginclude');
 
   // Time how long tasks take. Can help when optimizing build times
   // require('time-grunt')(grunt);
@@ -64,9 +65,9 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '{docs,<%= yo.src %>}/{,*/}{,docs/}*.html',
+          '{docs,.dev,<%= yo.src %>}/{,*/}{,docs/}*.html',
           '{docs,.tmp,<%= yo.src %>}/{,*/}*.css',
-          '{docs,.tmp,<%= yo.src %>}/{,*/}*.js',
+          '{docs,.dev,.tmp,<%= yo.src %>}/{,*/}*.js',
           '{docs,<%= yo.src %>}/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
@@ -77,7 +78,7 @@ module.exports = function (grunt) {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
+        hostname: '0.0.0.0',
         livereload: 35729
       },
       livereload: {
@@ -85,6 +86,7 @@ module.exports = function (grunt) {
           open: true,
           base: [
             '.tmp',
+            '.dev',
             'docs',
             '<%= yo.src %>'
           ]
@@ -159,8 +161,11 @@ module.exports = function (grunt) {
           dumpLineNumbers: 'comments',
         },
         files: [{
-          src: '<%= yo.docs %>/styles/main.less',
-          dest: '.tmp/styles/main.css'
+          expand: true,
+          cwd: '<%= yo.docs %>/styles/',
+          src: '*.less',
+          dest: '.tmp/styles/',
+          ext: '.css'
         }]
       },
       docs: {
@@ -169,8 +174,11 @@ module.exports = function (grunt) {
           report: 'gzip'
         },
         files: [{
-          src: '<%= yo.docs %>/styles/main.less',
-          dest: '.tmp/styles/main.css'
+          expand: true,
+          cwd: '<%= yo.docs %>/styles/',
+          src: '*.less',
+          dest: '.tmp/styles/',
+          ext: '.css'
         }]
       }
     },
@@ -203,54 +211,38 @@ module.exports = function (grunt) {
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
       html: '<%= yo.pages %>/index.html',
-      // css: ['<%= yo.pages %>/styles/{,*/}*.css'],
+      css: ['<%= yo.pages %>/styles/{,*/}*.css'],
       options: {
-        assetsDirs: ['<%= yo.pages %>']
+        assetsDirs: ['<%= yo.pages %>', '<%= yo.pages %>/images']
       }
     },
 
-    // The following *-min tasks produce minified files in the dist folder
-    imagemin: {
-      dist: {
+    // Embed static ngincludes
+    nginclude: {
+      docs: {
         files: [{
-          expand: true,
-          cwd: '<%= yo.src %>/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: '<%= yo.dist %>/images'
-        }]
-      }
-    },
-    svgmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= yo.src %>/images',
-          src: '{,*/}*.svg',
-          dest: '<%= yo.dist %>/images'
-        }]
+          src: '<%= yo.docs %>/index.html',
+          dest: '<%= yo.pages %>/index.html'
+        }],
+        options: {
+          assetsDirs: ['<%= yo.src %>', '<%= yo.docs %>']
+        }
       }
     },
 
     // Minify html files
     htmlmin: {
       options: {
-        collapseWhitespace: false,
+        collapseWhitespace: true,
         removeComments: false
       },
       docs: {
         files: [{
           expand: true,
-          cwd: '<%= yo.docs %>',
+          cwd: '<%= yo.pages %>',
           src: ['*.html'],//, 'views/{,*/}*.html'],
           dest: '<%= yo.pages %>'
         }]
-      }
-    },
-
-    // Replace Google CDN references
-    cdnify: {
-      dist: {
-        html: ['<%= yo.pages %>/*.html']
       }
     },
 
@@ -270,13 +262,15 @@ module.exports = function (grunt) {
 
     // Copies remaining files to places other tasks can use
     copy: {
-      fonts: {
+      static: {
         files: [{
           expand: true,
-          cwd: 'bower_components/font-awesome',
-          dest: '<%= yo.pages %>',
+          cwd: '<%= yo.pages %>',
+          dest: '<%= yo.pages %>/static',
           src: [
-            'fonts/*'
+            'images/{,*/}*.png',
+            'scripts/{,*/}*.js',
+            'styles/{,*/}*.css'
           ]
         }]
       },
@@ -297,10 +291,8 @@ module.exports = function (grunt) {
     concurrent: {
       docs: [
         'less:docs',
-        'concat:generated',
         'uglify:generated',
-        'cssmin:generated',
-        'htmlmin'
+        'cssmin:generated'
       ],
       server: [
         'less:dev'
@@ -326,19 +318,20 @@ module.exports = function (grunt) {
       dist: {
         options: {
           // Replace all 'use strict' statements in the code with a single one at the top
-          banner: '(function(window, document, $, undefined) {\n\'use strict\';\n',
-          footer: '\n})(window, document, window.jQuery);\n',
+          banner: '(function(window, document, undefined) {\n\'use strict\';\n',
+          footer: '\n})(window, document);\n',
           process: function(src, filepath) {
             return '// Source: ' + filepath + '\n' +
               src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
           }
         },
-        files: {
-          '<%= yo.dist %>/<%= pkg.name %>.js': [
-            '<%= yo.src %>/module.js',
-            '<%= yo.src %>/{,*/}*.js'
-          ]
-        }
+        files: [{
+          src: ['<%= yo.src %>/module.js', '<%= yo.src %>/{,*/}*.js'],
+          dest: '<%= yo.dist %>/<%= pkg.name %>.js'
+        }, {
+          src: ['<%= yo.dist %>/modules/{,*/}*.tpl.js'],
+          dest: '<%= yo.dist %>/<%= pkg.name %>.tpl.js'
+        }]
       },
       banner: {
         options: {
@@ -393,10 +386,41 @@ module.exports = function (grunt) {
     },
 
     ngtemplates:  {
+      test: {
+        options:  {
+          module: function(src) { return 'mgcrea.ngStrap.' + src.match(/src\/(.+)\/.*/)[1]; },
+          url: function(url) { return url.replace('src/', ''); },
+          htmlmin: { collapseWhitespace: true }
+        },
+        files: [{
+          expand: true,
+          flatten: true,
+          cwd: '<%= yo.src %>',
+          src: '{,*/}/*.tpl.html',
+          dest: '.tmp/ngtemplates',
+          ext: '.tpl.js'
+        }]
+      },
+      dist: {
+        options:  {
+          module: function(src) { return 'mgcrea.ngStrap.' + src.match(/src\/(.+)\/.*/)[1]; },
+          url: function(url) { return url.replace('src/', ''); },
+          htmlmin: { collapseWhitespace: true },
+          usemin: 'scripts/angular-strap.tpl.min.js' // docs
+        },
+        files: [{
+          expand: true,
+          flatten: true,
+          cwd: '<%= yo.src %>',
+          src: '{,*/}/*.tpl.html',
+          dest: '<%= yo.dist %>/modules',
+          ext: '.tpl.js'
+        }]
+      },
       docs: {
         options:  {
           module: 'mgcrea.ngStrapDocs',
-          usemin: 'scripts/docs.min.js'
+          usemin: 'scripts/docs.tpl.min.js'
         },
         files: [{
           cwd: '<%= yo.src %>',
@@ -405,9 +429,11 @@ module.exports = function (grunt) {
         },
         {
           cwd: '<%= yo.docs %>',
-          src: 'views/{,*/}*.html',
+          // src: 'views/{,*/}*.html',
+          src: 'views/{aside,sidebar}.html',
           dest: '.tmp/ngtemplates/scripts/docs-views.js'
-        }]
+        }
+        ]
       }
     },
 
@@ -424,6 +450,12 @@ module.exports = function (grunt) {
           src: '{,*/}*.js',
           dest: '<%= yo.dist %>',
           ext: '.min.js'
+        }, {
+          expand: true,
+          cwd: '<%= yo.dist %>',
+          src: '{,*/}*.tpl.js',
+          dest: '<%= yo.dist %>',
+          ext: '.tpl.min.js'
         }]
       }
     },
@@ -462,12 +494,14 @@ module.exports = function (grunt) {
     'clean:server',
     // 'concurrent:test',
     // 'autoprefixer',
+    'ngtemplates:test',
     'connect:test',
     'karma:unit'
   ]);
 
   grunt.registerTask('build', [
     'clean:dist',
+    'ngtemplates:dist',
     'concat:dist',
     'ngmin:dist',
     'ngmin:modules',
@@ -481,17 +515,19 @@ module.exports = function (grunt) {
     // 'concurrent:docs',
     'less:docs',
     'autoprefixer',
-    'htmlmin:docs',
+    'nginclude:docs',
+    'ngtemplates:dist',
     'ngtemplates:docs',
     'concat:generated',
     'ngmin:docs',
-    'copy:fonts',
     'copy:docs',
     'cssmin:generated',
     'uglify:generated',
     'concat:docs',
-    // 'rev',
-    'usemin'
+    'copy:static',
+    'rev',
+    'usemin',
+    // 'htmlmin:docs' // breaks code preview
   ]);
 
   grunt.registerTask('default', [

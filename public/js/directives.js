@@ -134,14 +134,11 @@ angular.module('adjunct.directives')
                         .css({ "background": c.col });
 
                     switch (c.idx) {
-                        case 0:
-                            scope.strength = "No way";
-                            break;
                         case 1:
                             scope.strength = "";
                             break;
                         case 2:
-                            scope.strength = "Very weak";
+                            scope.strength = "Weak";
                             break;
                         case 3:
                             scope.strength = "Weak";

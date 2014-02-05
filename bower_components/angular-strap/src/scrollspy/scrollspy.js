@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mgcrea.ngStrap.scrollspy', ['mgcrea.ngStrap.jqlite.debounce', 'mgcrea.ngStrap.jqlite.dimensions'])
+angular.module('mgcrea.ngStrap.scrollspy', ['mgcrea.ngStrap.helpers.debounce', 'mgcrea.ngStrap.helpers.dimensions'])
 
   .provider('$scrollspy', function() {
 
@@ -94,6 +94,9 @@ angular.module('mgcrea.ngStrap.scrollspy', ['mgcrea.ngStrap.jqlite.debounce', 'm
         };
 
         $scrollspy.checkPosition = function() {
+
+          // Not ready yet
+          if(!sortedElements.length) return;
 
           // Calculate the scroll position
           scrollTop = (isWindowSpy ? $window.pageYOffset : scrollEl.prop('scrollTop')) || 0;
