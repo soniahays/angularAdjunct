@@ -29,7 +29,7 @@
 
             <div id="summary-container" ng-hide="isPersonalSummaryShown"  ng-show="!isPersonalSummaryShown">
                          <span class=" lead user-summary lead" e-rows="12" e-cols="80">
-                             <p>{{user.personalSummary}}</p>
+                             <p ng-bind-html-unsafe="user.personalSummary | newlines"></p>
                          </span>
             </div>
 
@@ -75,7 +75,7 @@
                             </div>
                             <div class="col-md-12" style="padding: 0 0 0 0;">
                                 <div>
-                                    <small>{{ resumePosition.description || ' ' }}</small>
+                                    <small ng-bind-html-unsafe="resumePosition.description | newlines"></small>
                                 </div>
                             </div>
                        </div>
