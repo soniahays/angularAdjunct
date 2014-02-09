@@ -104,8 +104,6 @@ angular.module('adjunct.controllers')
                     });
                 }
 
-                calculateSurvey();
-
                 // this is for testing only.
                 $scope.user.portfolioLinks = [
                     {
@@ -217,7 +215,7 @@ angular.module('adjunct.controllers')
 
         $scope.saveTopCard = function () {
             $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
-            $http.post('/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
+            $http.post('/api/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
             $scope.isEditMode=false;
         }
 
@@ -227,29 +225,29 @@ angular.module('adjunct.controllers')
 
         $scope.saveMiddleCard = function () {
             $scope.middleCardTemplateUrl = '/partial/adjuncts-profile-middle-card';
-            $http.post('/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
+            $http.post('/api/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
         }
 
         $scope.saveBadgeCard = function () {
-            $http.post('/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
+            $http.post('/api/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
         }
 
         $scope.savePortfolioCard = function () {
-            $http.post('/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
+            $http.post('/api/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
         }
 
         $scope.saveBottomCard = function () {
             $scope.bottomCardTemplateUrl = '/partial/adjuncts-profile-bottom-card';
-            $http.post('/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
+            $http.post('/api/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
         }
 
         $scope.savePersonalSummary = function (){
-            $http.post('/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
+            $http.post('/api/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
             $scope.isPersonalSummaryShown = !$scope.isPersonalSummaryShown;
         }
 
         $scope.saveResumePositionEdit = function(){
-            $http.post('/save-adjuncts-profile', JSON.stringify({'user':$scope.user}));
+            $http.post('/api/save-adjuncts-profile', JSON.stringify({'user':$scope.user}));
             $scope.activePositionIndex = -1;
         }
 
@@ -361,29 +359,6 @@ angular.module('adjunct.controllers')
                 $scope.user.imageName = data.imageName;
             });
         };
-
-        function calculateSurvey() {
-            $scope.filteredBadges = [];
-
-            $scope.syllabusDesignWidth = $scope.user.survey.syllabusDesign * 20;
-            $scope.syllabusDesign = {'width': $scope.syllabusDesignWidth + "%"};
-
-            $scope.technologyDesignWidth = $scope.user.survey.technologyDesign * 20;
-            $scope.technologyDesign = {'width': $scope.technologyDesignWidth + "%"};
-
-            $scope.studFeedbackWidth = $scope.user.survey.studFeedback * 20;
-            $scope.studFeedback = {'width': $scope.studFeedbackWidth + "%"};
-
-            $scope.sumFeedbackWidth = $scope.user.survey.sumFeedback * 20;
-            $scope.sumFeedback = {'width': $scope.sumFeedbackWidth + "%"};
-
-            for (var badge in $scope.user.badges) {
-                var val = $scope.user.badges[badge];
-                if (val != false) {
-                    $scope.filteredBadges.push(val);
-                }
-            }
-        }
 
         function getUniversityTerm(startMonth, startYear, endDate, isStillHere){
             var universityTermStart;

@@ -206,4 +206,25 @@ angular.module('adjunct.directives')
                 });
             }
         }
+    }).directive('progressBar',function () {
+        return {
+            restrict: 'EA',
+            link: function (scope, iElement, iAttrs) {
+                scope.$watch(iAttrs.pbProgress, function (newVal, oldVal) {
+                    iElement.find('.progress-bar').css({ "width": (newVal * 20) + "%"});
+                    iElement.find('.percentage-title-badge-section').text((newVal * 20) + "%");
+                });
+
+                scope.$watch(iAttrs.pbTitle, function (newVal, oldVal) {
+                    iElement.find('.competency-title-badge-section').text(newVal);
+                });
+            },
+            template: '<div class="list-group-item-custom list-group-item-customize-left list-item-badge-section">' +
+                '<div class="competency-title-badge-section"></div>' +
+                '<div class="percentage-title-badge-section"></div>' +
+                '<div class="progress progress-custom progress-custom-badge-section">' +
+                '<div class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" />' +
+                '</div>' +
+                '</div>'
+        }
     });
