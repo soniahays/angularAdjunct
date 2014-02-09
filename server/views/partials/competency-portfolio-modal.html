@@ -1,7 +1,6 @@
-<div id="competency-portfolio-modal" class="modal">
+<div id="competency-portfolio-modal" class="modal" style="margin:100px 0 0 0">
     <div class="modal-dialog modal-dialog-custom-competency-portfolio">
-        <div class="modal-content"
-             style="height:550px;width:850px;margin-left:-110px; padding-left: 10px;padding-right: 25px;">
+        <div class="modal-content" style="height:550px;width:850px;margin-left:-110px; padding-left: 10px;padding-right: 25px;">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
@@ -131,9 +130,7 @@
                     </div>
                 </a>
 
-                <div class="portfolio-attachment-display-box"
-                     style="background-color:#ddd;border-left:3px solid #42426F;">
-
+                <div class="portfolio-attachment-display-box" style="background-color:#ddd;border-left:3px solid #42426F;">
                     <li ng-repeat="doc in user.portfolioLinks" class="video-thumbnail video-thumbnail-mini">
                         <a ng-click="openDoc(doc.value,doc.type, doc.title, doc.description)"> <img
                                 ng-src="{{doc.thumbnail}}" alt="" height=35px/></a>
@@ -151,23 +148,22 @@
                     </div>
                 </a>
             </div>
-
             <div class="col-md-8 dashboard-display-panel" style="padding-left:0px;margin-top:0px;">
                 <div style="height:25px;padding:15px 5px 0 0;">{{docTitle}}</div>
                 <div style="margin-top:45px;">
                     <iframe type="text/html" ng-hide="showVid" width="540" height="350" src="{{frameUrl}}"
                             frameborder="" allowfullscreen style="margin-top: -31px;"></iframe>
                 </div>
-                <div style="padding:15px 0px 0 0;"><p></p>
+                <div style="padding:15px 0px 0 0;"><p>
                     <small style="padding-left:5px">{{docDescription}}</small>
-                    </p></div>
+                    </p>
+                </div>
+                <div>
+                    <hr />
+                    <a href="#" ng-click="openUploadPortfolioModal()">Add a document...</a>
+                </div>
+
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
+</div>

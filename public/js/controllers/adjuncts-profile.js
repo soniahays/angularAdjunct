@@ -14,13 +14,10 @@ angular.module('adjunct.controllers')
         $scope.isEditMode = false;
         $scope.isPositionShown = false;
 
-
-
         var isEditModeUrl = S($location.path()).endsWith('/edit') && $scope.canEdit;
 
         $scope.topCardTemplateUrl = isEditModeUrl ?  '/partial/adjuncts-profile-top-card-edit': '/partial/adjuncts-profile-top-card';
         $scope.bottomCardTemplateUrl = isEditModeUrl ? '/partial/adjuncts-profile-bottom-card-edit' : '/partial/adjuncts-profile-bottom-card';
-        $scope.middleCardTemplateUrl = isEditModeUrl ? '/partial/adjuncts-profile-middle-card-edit' : '/partial/adjuncts-profile-middle-card';
 
         var adjunctProfile = $http.get('/api/get-adjuncts-profile/' + (userId ? userId : $cookies._id));
         var countries = $scope.canEdit ? $http.get('/api/countries') : null;
@@ -30,7 +27,6 @@ angular.module('adjunct.controllers')
                 $scope.user = values[0].data;
                 $scope.countries = values[1] ? values[1].data : null;
                 var linkedinData = values[2] ? values[2].data : null;
-                console.log("adjunctProfile", adjunctProfile);
 
                 if ($scope.user.country)
                     $scope.user.countryName = _.findWhere($scope.countries, {_id: $scope.user.country}).name;
@@ -104,6 +100,14 @@ angular.module('adjunct.controllers')
                     });
                 }
 
+                $scope.filteredBadges = [];
+                for (var badge in $scope.user.badges) {
+                    var val = $scope.user.badges[badge];
+                    if (val != false) {
+                        $scope.filteredBadges.push(val);
+                    }
+                }
+
                 // this is for testing only.
                 $scope.user.portfolioLinks = [
                     {
@@ -167,10 +171,10 @@ angular.module('adjunct.controllers')
         }
 
         $scope.statuses = [
-            {value: 1, text: 'fall'},
-            {value: 2, text: 'winter'},
-            {value: 3, text: 'spring'},
-            {value: 4, text: 'summer'}
+            {value: 1, text: 'Fall'},
+            {value: 2, text: 'Winter'},
+            {value: 3, text: 'Spring'},
+            {value: 4, text: 'Summer'}
         ];
 
         $scope.editTopCard = function () {
@@ -209,10 +213,6 @@ angular.module('adjunct.controllers')
             $scope.user.resumePosition =angular.copy($scope.restoreResumePosition);
         }
 
-        $scope.editMiddleCard = function () {
-            $scope.middleCardTemplateUrl = '/partial/adjuncts-profile-middle-card-edit';
-        }
-
         $scope.saveTopCard = function () {
             $scope.topCardTemplateUrl = '/partial/adjuncts-profile-top-card';
             $http.post('/api/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
@@ -223,12 +223,15 @@ angular.module('adjunct.controllers')
             window.location.replace(window.location.origin + "/api/linkedInAuth");
         }
 
-        $scope.saveMiddleCard = function () {
-            $scope.middleCardTemplateUrl = '/partial/adjuncts-profile-middle-card';
-            $http.post('/api/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
-        }
-
         $scope.saveBadgeCard = function () {
+            $scope.filteredBadges = [];
+            for (var badge in $scope.user.badges) {
+                var val = $scope.user.badges[badge];
+                if (val != false) {
+                    $scope.filteredBadges.push(val);
+                }
+            }
+
             $http.post('/api/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
         }
 
@@ -366,23 +369,23 @@ angular.module('adjunct.controllers')
             switch(startMonth){
                 case 1:
                 case 2:
-                    universityTermStart="winter";
+                    universityTermStart = "Winter";
                     break;
                 case 3:
                 case 4:
                 case 5:
-                    universityTermStart="spring";
+                    universityTermStart = "Spring";
                     break;
                 case 6:
                 case 7:
                 case 8:
-                    universityTermStart="summer";
+                    universityTermStart = "Summer";
                     break;
                 case 9 :
                 case 10 :
                 case 11 :
                 case 12 :
-                    universityTermStart="fall";
+                    universityTermStart = "Fall";
                     break;
 
             }
@@ -391,22 +394,22 @@ angular.module('adjunct.controllers')
                     case 1:
                     case 2:
                     case 3:
-                        universityTermEnd="winter";
+                        universityTermEnd = "Winter";
                         break;
                     case 4:
                     case 5:
                     case 6:
-                        universityTermEnd="spring";
+                        universityTermEnd = "Spring";
                         break;
                     case 7:
                     case 8:
-                        universityTermEnd="summer";
+                        universityTermEnd = "Summer";
                         break;
                     case 9 :
                     case 10 :
                     case 11 :
                     case 12 :
-                        universityTermEnd="fall";
+                        universityTermEnd = "Fall";
                         break;
 
                 }

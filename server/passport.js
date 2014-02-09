@@ -117,22 +117,22 @@ module.exports = function (db, passport, bcrypt, _) {
                         case 1:
                         case 2:
                         case 3:
-                            universityTermEnd = "winter";
+                            universityTermEnd = "Winter";
                             break;
                         case 4:
                         case 5:
                         case 6:
-                            universityTermEnd = "spring";
+                            universityTermEnd = "Spring";
                             break;
                         case 7:
                         case 8:
-                            universityTermEnd = "summer";
+                            universityTermEnd = "Summer";
                             break;
                         case 9 :
                         case 10 :
                         case 11 :
                         case 12 :
-                            universityTermEnd = "fall";
+                            universityTermEnd = "Fall";
                             break;
 
                     }
