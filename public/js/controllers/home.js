@@ -32,9 +32,22 @@ angular.module('adjunct.controllers')
             $("[bs-popover]").click();
         }
 
+
+        $scope.openBadgeEditModal = function () {
+            $('#signin-modal').modal();
+            $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
+        }
+
         $scope.importLinkedIn = function() {
             window.location.replace(window.location.origin + "/api/linkedInAuth");
         }
+
+
+        $scope.modal = {
+            title: '<span style="text-align: left;"><strong>Password strength: {{strength}}</strong></span><ul style="display:block;"><div id="strength" check-strength="password" style="display:block;"></div></ul><span style="display:block;">Use at least 8 characters. Don’t use a password from another site, or something too obvious like your pet’s name.</span>',
+            "checked": false
+        };
+
 //        $scope.goToSignUp = function () {
 //            $location.path('/signup');
 //            if ($scope.hide)
