@@ -7,9 +7,9 @@
             <div class="col-md-12 dashboard-upload-panel" style="padding-left:0px">
                 <div style="margin:20px 0 0 50px">
                     <strong>Select a category:</strong><br/>
-                    <select ng-model="portfolio.category">
+                    <select ng-model="document.category">
                         <option>Syllabus Design</option>
-                        <option>Technology Enabled instruction</option>
+                        <option>Technology Enabled Instruction</option>
                         <option>Student Centered Feedback</option>
                         <option>Summative Feedback</option>
                         <option>Instructional Design</option>
@@ -18,21 +18,21 @@
                     <br />
                     <br />
                     <strong>Enter a title:</strong><br/>
-                    <input type="text" class="portfolio-form" ng-model="portfolioLink.title" required>
+                    <input type="text" class="portfolio-form" ng-model="document.title" required>
                     <br />
                     <br />
                     <strong>Enter a description:</strong><br/>
-                    <textarea type="text" class="portfolio-form" ng-model="portfolioLink.description" style="height:80px" required></textarea>
+                    <textarea type="text" class="portfolio-form" ng-model="document.description" style="height:80px" required></textarea>
                     <br/>
                     <br/>
                     <strong>Add media from a URL:</strong><br/>
                         <label>Paste in the link of your Youtube video:</label></br>
                         <div style="width:500px">
-                            <select ng-model="portfolioLink.type">
+                            <select ng-model="document.type">
                                 <option>video</option>
                                 <option>pdf</option>
                             </select>
-                            <input type="text" class="portfolio-form" ng-model="portfolioLink.value" required>
+                            <input type="text" class="portfolio-form" ng-model="document.value" required>
                         </div>
                     <br/>
                     <strong>Or add media from your computer:</strong></br>
@@ -48,7 +48,7 @@
             <br />
             <hr />
             <div style="float:right">
-                <input type="submit" class="btn btn-primary" data-dismiss="modal" value="Save" ng-click="saveDocument()"/>
+                <button class="btn btn-primary" data-dismiss="modal" ng-click="saveDocument()">Save</button>
             </div>
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->

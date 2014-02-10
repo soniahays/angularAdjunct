@@ -108,8 +108,8 @@ angular.module('adjunct.controllers')
                     }
                 }
 
-                // this is for testing only.
-                $scope.user.portfolioLinks = [
+                $scope.document = {};
+                /*
                     {
                         "type": "video",
                         "value": "https://www.youtube.com/embed/YKulXXvK2TA",
@@ -135,8 +135,7 @@ angular.module('adjunct.controllers')
                         "$$hashKey": "02Y"
                     }
                 ];
-
-                // the above is for testing only.
+                */
 
                 $scope.isSummaryShown = $scope.user.personalSummary != null;
 
@@ -149,14 +148,6 @@ angular.module('adjunct.controllers')
 
                 if (!$scope.user.educationDegrees)
                     $scope.user.educationDegrees = [];
-
-                for (var index in $scope.user.portfolioLinks) {
-                    var portfolioLink = $scope.user.portfolioLinks[index];
-                    if (portfolioLink.type == 'video') {
-                        var videoId = URI.parseQuery(URI.parse(portfolioLink.value).query).v;
-                        $scope.user.portfolioLinks[index].id = videoId;
-                    }
-                }
             },
             function (error) {
                 console.log("get-adjuncts-profile-top-card didn't work", error);
@@ -283,7 +274,6 @@ angular.module('adjunct.controllers')
         }
 
         $scope.addAResumePosition = function () {
-
             $scope.user.resumePositions.push({value: ''});
         }
 
@@ -304,7 +294,6 @@ angular.module('adjunct.controllers')
         }
 
         $scope.removePositionAlert = function(resumePosition){
-            console.log(resumePosition);
             $scope.selectedResumePosition = resumePosition;
             $('#alert-modal').modal();
         }
@@ -346,12 +335,13 @@ angular.module('adjunct.controllers')
         }
 
         $scope.openCompetencyPortfolioModal = function () {
-            $scope.frameUrl = "https://www.youtube.com/embed/YKulXXvK2TA";
-            $scope.docTitle = "Course Welcome Fall 2012";
-            $scope.docDescription = "video description goes here",
-                $('#competency-portfolio-modal').modal();
+            //$scope.frameUrl = "https://www.youtube.com/embed/YKulXXvK2TA";
+            //$scope.docTitle = "Course Welcome Fall 2012";
+            //$scope.docDescription = "video description goes here",
+            $('#competency-portfolio-modal').modal();
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
         }
+
         $scope.openUploadPortfolioModal = function () {
             $('#upload-portfolio-modal').modal();
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
@@ -362,6 +352,35 @@ angular.module('adjunct.controllers')
                 $scope.user.imageName = data.imageName;
             });
         };
+
+        $scope.saveDocument = function() {
+            var url;
+            if ($scope.document.type == 'video') {
+                url = 'https://www.youtube.com/embed/' + getYoutubeId($scope.document.value);
+            }
+            else {
+                url = $scope.document.value;
+            }
+            $scope.user.portfolioLinks.push({
+               'category': $scope.document.category,
+               'title': $scope.document.title,
+               'description': $scope.document.description,
+               'value': url,
+               'thumbnail': "/img/PortfolioIconResume.png",
+               'type': $scope.document.type,
+               '$$hashKey': "HK" + $scope.user.portfolioLinks.length
+            });
+        }
+
+        $scope.savePortfolio = function() {
+            $http.post('/api/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
+        }
+
+        function getYoutubeId(url) {
+            var regex = /(www.)?youtu(be\.com|\.be)\/(watch\?v=)?([A-Za-z0-9._%-]*)(\&\S+)?/
+            var matches = url.match(regex);
+            return matches[4];
+        }
 
         function getUniversityTerm(startMonth, startYear, endDate, isStillHere){
             var universityTermStart;

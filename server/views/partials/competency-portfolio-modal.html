@@ -18,20 +18,19 @@
                              style="background-color:#11ce9a;">
                             <span class="sr-only">60% Complete</span>
                         </div>
-
                     </div>
                 </a>
 
-                <div class="portfolio-attachment-display-box"
-                     style="background-color:#ddd;border-left:3px solid #11ce9a;">
-
-                    <li ng-repeat="doc in user.portfolioLinks" class="video-thumbnail video-thumbnail-mini">
-                        <a ng-click="openDoc(doc.value,doc.type, doc.title, doc.description)"> <img
-                                ng-src="{{doc.thumbnail}}" alt="" height=35px/></a>
-                    </li>
+                <div class="portfolio-attachment-display-box" style="background-color:#ddd;border-left:3px solid #11ce9a;">
+                    <ul>
+                        <li ng-repeat="doc in user.portfolioLinks" ng-if="doc.category == 'Syllabus Design'" class="video-thumbnail video-thumbnail-mini">
+                            <a ng-click="openDoc(doc.value,doc.type, doc.title, doc.description)">
+                                <img ng-src="{{doc.thumbnail}}" height='35px'/>
+                            </a>
+                        </li>
                     </ul>
-
                 </div>
+
                 <a href="#"
                    class="list-group-item list-group-item-custom list-group-item-customize-left list-group-item-dashboard"
                    style="padding-left: 0px;border-left:3px solid #FFDE00;border-right: 1px solid #F6F6F6;">
@@ -46,42 +45,39 @@
                     </div>
                 </a>
 
-                <div class="portfolio-attachment-display-box"
-                     style="background-color:#ddd;border-left:3px solid #FFDE00;">
-
-                    <li ng-repeat="doc in user.portfolioLinks" class="video-thumbnail video-thumbnail-mini">
-                        <a ng-click="openDoc(doc.value,doc.type, doc.title, doc.description)"> <img
-                                ng-src="{{doc.thumbnail}}" alt="" height=35px/></a>
+                <div class="portfolio-attachment-display-box" style="background-color:#ddd;border-left:3px solid #FFDE00;">
+                    <ul>
+                    <li ng-repeat="doc in user.portfolioLinks" ng-if="doc.category == 'Technology Enabled Instruction'" class="video-thumbnail video-thumbnail-mini">
+                        <a ng-click="openDoc(doc.value,doc.type, doc.title, doc.description)">
+                            <img ng-src="{{doc.thumbnail}}" alt="" height=35px/>
+                        </a>
                     </li>
                     </ul>
                 </div>
 
-                <a href="#"
-                   class="list-group-item list-group-item-custom list-group-item-customize-left list-group-item-dashboard"
-                   style="padding-left: 0px;border-left:3px solid #6599FF;border-right: 1px solid #F6F6F6;">
+                <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left list-group-item-dashboard" style="padding-left: 0px;border-left:3px solid #6599FF;border-right: 1px solid #F6F6F6;">
                     <div class="dashboard-navigation-title">
                         <small> Student Centered Feedback {{studFeedbackWidth}}%</small>
                     </div>
                     <div class="progress progress-custom-dashboard">
                         <div id="studFeedback" class="progress-bar progress-bar-custom" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" ng-style="studFeedback"
-                             style="background-color:#6599FF;">
+                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" ng-style="studFeedback" style="background-color:#6599FF;">
                             <span class="sr-only">{{studFeedbackWidth}}%  Complete</span>
                         </div>
                     </div>
                 </a>
 
-                <div class="portfolio-attachment-display-box"
-                     style="background-color:#ddd;border-left:3px solid #6599FF;">
-
-                    <li ng-repeat="doc in user.portfolioLinks" class="video-thumbnail video-thumbnail-mini">
-                        <a ng-click="openDoc(doc.value,doc.type, doc.title, doc.description)"> <img
-                                ng-src="{{doc.thumbnail}}" alt="" height=35px/></a>
-                    </li>
+                <div class="portfolio-attachment-display-box" style="background-color:#ddd;border-left:3px solid #6599FF;">
+                    <ul>
+                        <li ng-repeat="doc in user.portfolioLinks" ng-if="doc.category == 'Student Centered Feedback'" class="video-thumbnail video-thumbnail-mini">
+                            <a ng-click="openDoc(doc.value,doc.type, doc.title, doc.description)">
+                                <img ng-src="{{doc.thumbnail}}" alt="" height=35px/>
+                            </a>
+                        </li>
                     </ul>
                 </div>
-                <a href="#"
-                   class="list-group-item list-group-item-custom list-group-item-customize-left list-group-item-dashboard"
+
+                <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left list-group-item-dashboard"
                    style="padding-left: 0px;border-left:3px solid #FF9900;border-right: 1px solid #F6F6F6;">
                     <div class="dashboard-navigation-title">
                         <small>Summative Feedback {{sumFeedbackWidth}}%</small>
@@ -95,64 +91,59 @@
                     </div>
                 </a>
 
-                <div class="portfolio-attachment-display-box"
-                     style="background-color:#ddd;border-left:3px solid #FF9900;">
-
-                    <li ng-repeat="doc in user.portfolioLinks" class="video-thumbnail video-thumbnail-mini">
-                        <a ng-click="openDoc(doc.value,doc.type, doc.title, doc.description)"> <img
-                                ng-src="{{doc.thumbnail}}" alt="" height=35px/></a>
-                    </li>
+                <div class="portfolio-attachment-display-box" style="background-color:#ddd;border-left:3px solid #FF9900;">
+                    <ul>
+                        <li ng-repeat="doc in user.portfolioLinks" ng-if="doc.category == 'Summative Feedback'" class="video-thumbnail video-thumbnail-mini">
+                            <a ng-click="openDoc(doc.value,doc.type, doc.title, doc.description)">
+                                <img ng-src="{{doc.thumbnail}}" alt="" height=35px/>
+                            </a>
+                        </li>
                     </ul>
                     <!--</span>-->
                 </div>
 
-                <a href="#"
-                   class="list-group-item list-group-item-custom list-group-item-customize-left list-group-item-dashboard"
+                <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left list-group-item-dashboard"
                    style="padding-left: 0px;border-left:3px solid #EE7AE9;border-right: 1px solid #F6F6F6;border-bottom: 1px solid #EE7AE9!important;">
                     <div class="dashboard-navigation-title">
                         <small>Learning Management Systems:<span ng-bind="sumFeedbackPercent"></span></small>
                     </div>
                     <div class="" style="height: 35px!important;">
-                        <li ng-repeat="badge in filteredBadges"
-                            style="float:left;width: 35px!important; height: 35px!important;list-style-type: none;">
-
-                            <img ng-src="/img/badges/{{badge}}.png" alt=""
-                                 style="width: 35px!important;height: 35px!important;"/>
+                        <li ng-repeat="badge in filteredBadges" ng-if="doc.category == 'Learning Management Systems'" style="float:left;width: 35px!important; height: 35px!important;list-style-type: none;">
+                            <img ng-src="/img/badges/{{badge}}.png" style="width: 35px!important;height: 35px!important;"/>
                         </li>
                     </div>
                 </a>
 
-                <a href="#"
-                   class="list-group-item list-group-item-custom list-group-item-customize-left list-group-item-dashboard"
+                <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left list-group-item-dashboard"
                    style="padding-left: 0px;border-left:3px solid #42426F;">
                     <div class="dashboard-navigation-title">
-                        <small>Scholarly & Professional contribution :<span ng-bind="sumFeedbackPercent"></span></small>
+                        <small>Scholarly & Professional Contribution:<span ng-bind="sumFeedbackPercent"></span></small>
                     </div>
                 </a>
 
                 <div class="portfolio-attachment-display-box" style="background-color:#ddd;border-left:3px solid #42426F;">
-                    <li ng-repeat="doc in user.portfolioLinks" class="video-thumbnail video-thumbnail-mini">
+                    <li ng-repeat="doc in user.portfolioLinks" ng-if="doc.category == 'Scholarly & Professional Contribution'" class="video-thumbnail video-thumbnail-mini">
                         <a ng-click="openDoc(doc.value,doc.type, doc.title, doc.description)"> <img
                                 ng-src="{{doc.thumbnail}}" alt="" height=35px/></a>
                     </li>
                     </ul>
                 </div>
 
-                <a href="#"
-                   class="list-group-item list-group-item-custom list-group-item-customize-left list-group-item-dashboard"
-                   style="padding-left: 0px;border-bottom-right-radius: 0px!important;border-bottom-left-radius: 0px!important;border-left:3px solid #cb5c5c;border-right: 1px solid #F6F6F6;">
+                <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left list-group-item-dashboard" style="padding-left: 0px;border-bottom-right-radius: 0px!important;border-bottom-left-radius: 0px!important;border-left:3px solid #cb5c5c;border-right: 1px solid #F6F6F6;">
                     <div class="dashboard-navigation-title">
                         <small>Instructional Design
                             <div id='instDYesNo' style="color:#763f3f;">{{user.survey.instructionalDesign}}</div>
-                            <span ng-bind=""></span></small>
+                            <span ng-bind="">
+
+                            </span>
+                        </small>
                     </div>
                 </a>
             </div>
             <div class="col-md-8 dashboard-display-panel" style="padding-left:0px;margin-top:0px;">
                 <div style="height:25px;padding:15px 5px 0 0;">{{docTitle}}</div>
                 <div style="margin-top:45px;">
-                    <iframe type="text/html" ng-hide="showVid" width="540" height="350" src="{{frameUrl}}"
-                            frameborder="" allowfullscreen style="margin-top: -31px;"></iframe>
+                    <iframe type="text/html" ng-hide="showVid" width="540" height="350" src="{{frameUrl}}" frameborder="" allowfullscreen style="margin-top: -31px;"></iframe>
                 </div>
                 <div style="padding:15px 0px 0 0;"><p>
                     <small style="padding-left:5px">{{docDescription}}</small>
@@ -161,8 +152,8 @@
                 <div>
                     <hr />
                     <a href="#" ng-click="openUploadPortfolioModal()">Add a document...</a>
+                    <button class="btn btn-primary" data-dismiss="modal" ng-click="savePortfolio()" style="float:right">Save</button>
                 </div>
-
             </div>
         </div>
     </div>
