@@ -33,9 +33,18 @@ angular.module('adjunct.controllers')
         }
 
 
-        $scope.openBadgeEditModal = function () {
-            $('#signin-modal').modal();
-            $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
+        $scope.openSignInModal = function () {
+            if(!$scope.isSignedIn){
+                $('#signin-modal').modal();
+                $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
+            }
+        }
+
+        $scope.openSignUpModal = function () {
+
+                $('#signup-modal').modal();
+                $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
+
         }
 
         $scope.importLinkedIn = function() {

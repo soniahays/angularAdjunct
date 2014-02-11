@@ -54,11 +54,23 @@
                                     <li>
                                         <input type="text" class="profile-forms" name="locationCity" required
                                                ng-model="user.locationCity" maxlength="50" placeholder="City"> ,
+
+
+
                                         <select ng-model="user.country" class=""
                                                 ng-options="c._id as c.name for c in countries" style="width: 108px;font-size:12px;"
                                                 required>
                                             <option value="">Select Country</option>
-                                        </select> |
+                                        </select>
+
+                                        <input type="text" bs-typeahead placeholder="Enter country"
+                                               class="form-control basic-profile-form" ng-model="country" ng-options="country.name as country.name for country in countries"  required
+                                               style="width:323px"/>
+
+
+
+
+                                        |
                                         <input type="text" class="profile-forms" name="generalDiscipline"
                                                ng-model="user.generalDiscipline" maxlength="50" required
                                                placeholder="General Discipline">

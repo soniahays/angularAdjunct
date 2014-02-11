@@ -87,7 +87,10 @@
                     <li ng-class="{active: index == 6}" ng-click="index = 6"><a href="/contact-us">Contact Us</a></li>
                     <li ng-class="{active: index == 7}" ng-click="index = 7"><a href="/signup">Join</a></li>
                     <li class="signin-button">
-                        <a href="#" style="color:#fff" class="popoverButton" bs-popover data-placement="bottom" data-title="{{signinPopover.title}}" data-template="/partial/signin-popover">Sign In</a>
+                        <!--<a href="#" style="color:#fff" class="popoverButton" bs-popover data-placement="bottom" data-title="{{signinPopover.title}}" data-template="/partial/signin-popover">Sign In</a>-->
+                        <a href="#" style="color:#fff" class="popoverButton" ng-click="openSignInModal()" data-title="{{signinPopover.title}}" data-template="/partial/signin-popover">Sign In</a>
+
+
                     </li>
                     <li ng-hide="!isSignedIn">
                         <div class="input-group" style="padding:15px 15px;">
@@ -123,3 +126,6 @@
 
 </body>
 </html>
+
+<div ng-include="'/partial/signin-modal'"/></div>
+<div ng-include="'/partial/signup-modal'"/></div>
