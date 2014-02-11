@@ -13,8 +13,8 @@
                     [<a href="" ng-click="addPortfolioLink()">add</a>]
                     <div ng-repeat="portfolioLink in user.portfolioLinks">
                         <select ng-model="portfolioLink.type">
-                            <option>video</option>
-                            <option>pdf</option>
+                            <option>Youtube</option>
+                            <option>PDF</option>
                         </select>
                         <input type="text" class="portfolio-form" ng-model="portfolioLink.value" required>
                         [<a href="" ng-click="removePortfolioLink(portfolioLink)">X</a>]

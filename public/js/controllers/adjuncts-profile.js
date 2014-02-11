@@ -246,11 +246,11 @@ angular.module('adjunct.controllers')
         }
 
         $scope.addPortfolioLink = function () {
-            $scope.user.portfolioLinks.push({type: 'video', value: ''});
+            $scope.user.portfolioLinks.push({type: 'Youtube', value: ''});
         }
 
         $scope.addPortfolioUpload = function () {
-            $scope.user.portfolioLinks.push({type: 'pdf', value: ''});
+            $scope.user.portfolioLinks.push({type: 'PDF', value: ''});
         }
 
         $scope.removePortfolioLink = function (portfolioLink) {
@@ -355,18 +355,23 @@ angular.module('adjunct.controllers')
 
         $scope.saveDocument = function() {
             var url;
-            if ($scope.document.type == 'video') {
-                url = 'https://www.youtube.com/embed/' + getYoutubeId($scope.document.value);
+            var thumbnail;
+
+            if ($scope.document.type == 'Youtube') {
+                var youtubeId = getYoutubeId($scope.document.value);
+                url = 'https://www.youtube.com/embed/' + youtubeId;
+                thumbnail = "http://img.youtube.com/vi/" + youtubeId + "/1.jpg";
             }
             else {
                 url = $scope.document.value;
+                thumbnail = "/img/PortfolioIconResume.png";
             }
             $scope.user.portfolioLinks.push({
                'category': $scope.document.category,
                'title': $scope.document.title,
                'description': $scope.document.description,
                'value': url,
-               'thumbnail': "/img/PortfolioIconResume.png",
+                "thumbnail": thumbnail,
                'type': $scope.document.type,
                '$$hashKey': "HK" + $scope.user.portfolioLinks.length
             });
@@ -430,7 +435,6 @@ angular.module('adjunct.controllers')
                     case 12 :
                         universityTermEnd = "Fall";
                         break;
-
                 }
             }
 
