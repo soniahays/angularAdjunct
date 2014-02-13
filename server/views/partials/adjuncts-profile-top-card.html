@@ -19,18 +19,18 @@
             <div class="lead lead-custom masthead">
                 <div id="name-container" >
                     <h2 style="font-weight:bold; font-size: 22px;">
-                        <span>{{ user.firstName || 'empty' }}</span>
-                        <span>{{ user.lastName || 'empty' }}</span>
+                        <span>{{ user.firstName }}</span>
+                        <span>{{ user.lastName }}</span>
                     </h2>
                 </div>
                 <div id="headline-container">
-                    <span>{{ user.currentPosition || 'empty' }}</span>
-                    <span>at {{ user.currentInstitution|| 'empty' }}</span>
+                    <span>{{ user.currentPosition }}</span>
+                    <span ng-if="user.currentInstitution">at {{ user.currentInstitution }}</span>
                 </div>
                 <div class="text-muted" id="demographic-info">
-                    <span>{{ user.locationCity || 'empty' }}</span>
-                    <span>, {{ user.countryName || 'empty' }}</span>
-                    <span>| {{ user.generalDiscipline|| 'empty' }}</span>
+                    <span>{{ user.locationCity  }}</span>
+                    <span ng-if="user.countryName">, {{ user.countryName }}</span>
+                    <span ng-if="user.generalDiscipline">| {{ user.generalDiscipline }}</span>
                 </div>
             </div>
             <table id="profile-card-table">
@@ -40,36 +40,22 @@
                     <td class="profile-card-table-td">
 
                         <div ng-repeat="fieldOfExpertise in user.fieldOfExpertises">
-                            <span>{{ fieldOfExpertise.value || 'empty' }}</span>
+                            <span>{{ fieldOfExpertise.value }}</span>
                         </div>
 
                     </td>
                 </tr>
-                <tr id="overview-summary-education">
+                <tr id="overview-summary-education" ng-if="user.educationDegrees.length > 1 || (user.educationDegrees[0] != null && user.educationDegrees[0].value != null && user.educationDegrees[0].value != '')">
                     <td class="profile-card-table-th">Education</td>
                     <td class="profile-card-table-td">
                         <div ng-repeat="educationDegree in user.educationDegrees">
-                            <span>{{ educationDegree.value || 'empty' }}</span>
+                            <span>{{ educationDegree.value }}</span>
                         </div>
                 </tr>
-                <!--<tr>-->
-                    <!--<td></td>-->
-                    <!--<td><button type="button" class="btn btn-xs btn-primary" ng-click="editTopCard()">Edit-->
-                        <!--Profile-->
-                    <!--</button></td>-->
-                <!--</tr>-->
-
-
-
-
-
-
                 </tbody>
             </table>
-
-
-            <div class="" ng-repeat="item in user.expertiseTags">
-                <span class="tags">{{ item||'tags go here' }}</span>
+            <div ng-repeat="item in user.expertiseTags" ng-if="user.expertiseTags.length > 0">
+                <span class="tags">{{ item ||'tags go here' }}</span>
             </div>
         </div>
     </div>

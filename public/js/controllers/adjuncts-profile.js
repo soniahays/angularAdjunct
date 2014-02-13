@@ -350,6 +350,7 @@ angular.module('adjunct.controllers')
         $scope.uploadComplete = function (content, completed) {
             $http.get('/api/get-adjuncts-profile/' + $cookies._id).success(function (data) {
                 $scope.user.imageName = data.imageName;
+                $("#upload-picture-modal").modal('hide');
             });
         };
 
