@@ -72,6 +72,10 @@ angular.module('adjunct.directives')
                     colors: ['#DDD', '#F00', '#F90', '#FF0', '#9F0', '#0F0'],
                     mesureStrength: function (p) {
 
+                        if (!p) {
+                            return 0;
+                        }
+
                         var _force = 0;
                         var _regex = /[$-/:-?{-~!"^_`\[\]]/g;
 
@@ -156,7 +160,7 @@ angular.module('adjunct.directives')
                             scope.strength = "";
                     }
 
-                    if (scope.password.length > 0 && scope.password.length <= 6) {
+                    if (!scope.password || scope.password.length > 0 && scope.password.length <= 6) {
                         scope.strength = "Too short";
                     }
                 });
