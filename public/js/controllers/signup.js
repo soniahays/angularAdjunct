@@ -3,14 +3,8 @@
 angular.module('adjunct.controllers')
     .controller('SignupCtrl', ['$scope', '$rootScope', '$http', '$location', function ($scope, $rootScope, $http, $location) {
         $scope.user = {};
-        /*
-        $scope.user.firstName = "Henri";
-        $scope.user.lastName = "Druau";
-        $scope.user.email = "Druau@g.com";
-        $scope.password = '';
-        */
 
-        $scope.joinNow = function () {
+        $scope.connectManually = function () {
             $scope.user.email = encodeURIComponent($scope.user.email);
             $scope.user.password = $scope.password;
             $http.post('/api/signup', JSON.stringify({'user': $scope.user})).then(function(response){
@@ -30,17 +24,8 @@ angular.module('adjunct.controllers')
         };
 
         $scope.importLinkedin = function () {
-            $scope.user.email = encodeURIComponent($scope.user.email);
-            $scope.user.password = $scope.password;
-            $rootScope.user = $scope.user;
-            $http.post('/api/signup', JSON.stringify({'user': $scope.user})).then(function(){$location.path('/basic-profile');});
             window.location.replace(window.location.origin + "/api/linkedInAuth");
         }
     }]);
-
-
-
-
-
 
 

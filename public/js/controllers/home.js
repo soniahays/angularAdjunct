@@ -28,7 +28,8 @@ angular.module('adjunct.controllers')
         }
 
         $scope.connectManually = function(){
-            $location.path('/signup');
+            //$location.path('/signup');
+            window.location.href = '/signup';
             $("[bs-popover]").click();
         }
 
