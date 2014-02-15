@@ -11,7 +11,7 @@
                     <td><label>Country<abbr title="This is a required field." class="required"
                                             style="color:#EB7737;">*</abbr></label></td>
                     <td>
-                        <select ui-select2="countries" ng-model="user.country" data-placeholder="Select a country">
+                        <select ui-select2 ng-model="user.country" data-placeholder="Select a country">
                             <option value=""></option>
                             <option ng-repeat="country in countries" value="{{country._id}}">{{country.name}}</option>
                         </select>
@@ -64,7 +64,7 @@
                     <td><label>Educational Institution<abbr title="This is a required field." class="required"
                                                             style="color:#EB7737;">*</abbr></label></td>
                     <td>
-                        <select ui-select2="institutions" ng-model="user.institution" data-placeholder="Select an institution">
+                        <select ui-select2 ng-model="user.institution" data-placeholder="Select an institution">
                             <option value=""></option>
                             <option ng-repeat="institution in institutions" value="{{institution._id}}">{{institution.name}}</option>
                         </select>
@@ -74,7 +74,7 @@
                     <td><label>Specialty<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
                     </td>
                     <td>
-                        <select ui-select2="specialties" ng-model="user.field" data-placeholder="Select a specialty">
+                        <select ui-select2 ng-model="user.field" data-placeholder="Select a specialty">
                             <option value=""></option>
                             <option ng-repeat="field in fieldGroups" value="{{field._id}}">{{field.name}}</option>
                         </select>

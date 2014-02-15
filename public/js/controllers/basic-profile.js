@@ -4,15 +4,11 @@ angular.module('adjunct.controllers')
     .controller('BasicProfileCtrl', ['$scope', '$rootScope', '$http', function ($scope, $rootScope, $http) {
 
         $http.get('/api/fieldGroups').then(function (response) {
-            $scope.fieldGroups = _.map(response.data, function (item) {
-                return item.name
-            })
+            $scope.fieldGroups = response.data; console.log(response.data);
         });
 
         $http.get('api/institutions').then(function (response) {
-            $scope.institutions = _.map(response.data, function (item) {
-                return item.name + "(" + item.city + ", " + item.state + ")";
-            });
+            $scope.institutions = response.data;
         });
 
         $http.get('api/countries').then(function (response) {
