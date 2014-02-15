@@ -11,9 +11,10 @@
                     <td><label>Country<abbr title="This is a required field." class="required"
                                             style="color:#EB7737;">*</abbr></label></td>
                     <td>
-                        <input type="text" bs-typeahead placeholder="Enter country"
-                               class="form-control basic-profile-form" ng-model="country" ng-options="country.name as country.name for country in countries"  required
-                               style="width:323px"/>
+                        <select ui-select2="countries" ng-model="user.country" data-placeholder="Select a country">
+                            <option value=""></option>
+                            <option ng-repeat="country in countries" value="{{country._id}}">{{country.name}}</option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -36,13 +37,9 @@
                 <tr>
                     <td>I am currently</td>
                     <td>
-                        <input type="radio" ng-model="jobStatus" value="employed"> Employed
-                        <!--</td>-->
-                        <!--<td>-->
-                        <input type="radio" ng-model="jobStatus" value="job-seeker"> Job Seeker
-                        <!--</td>-->
-                        <!--<td>-->
-                        <input type="radio" ng-model="jobStatus" value="student"> Student
+                        <input type="radio" ng-model="jobStatus" value="employed"> Employed &nbsp;
+                        <input type="radio" ng-model="jobStatus" value="job-seeker"> Job Seeker &nbsp;
+                        <input type="radio" ng-model="jobStatus" value="student"> Student &nbsp;
                     </td>
                 </tr>
                 <tr>
@@ -60,23 +57,28 @@
                     <td></td>
                     <td><span><input type="checkbox" ng-model="user.selfEmployed" class="" ng-true-value="YES"
                                      ng-false-value="NO">
-                      <p class="help-block profile-card-table-th">I am self-employed</p></span>
+                      <span class="help-block profile-card-table-th">I am self-employed</span></span>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Educational Institution<abbr title="This is a required field." class="required"
                                                             style="color:#EB7737;">*</abbr></label></td>
-                    <td><input type="text" bs-typeahead
-                               ng-options="institution for institution in institutions"
-                               class="form-control basic-profile-form" ng-model="user.institution" required
-                               style="width:323px"/></td>
+                    <td>
+                        <select ui-select2="institutions" ng-model="user.institution" data-placeholder="Select an institution">
+                            <option value=""></option>
+                            <option ng-repeat="institution in institutions" value="{{institution._id}}">{{institution.name}}</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td><label>Specialty<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
                     </td>
-                    <td><input type="text" bs-typeahead ng-options="field for field in fieldGroups"
-                               class="form-control basic-profile-form" ng-model="user.field" required
-                               style="width:323px"/></td>
+                    <td>
+                        <select ui-select2="specialties" ng-model="user.field" data-placeholder="Select a specialty">
+                            <option value=""></option>
+                            <option ng-repeat="field in fieldGroups" value="{{field._id}}">{{field.name}}</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
 

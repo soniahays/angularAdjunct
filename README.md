@@ -19,4 +19,6 @@ mongoimport -h localhost:27017 -d adjunct --jsonArray --collection institutions 
 mongo  
 use adjunct  
 db.users.find().pretty()  
+to deploy to heroku:  
+git push heroku master  
 

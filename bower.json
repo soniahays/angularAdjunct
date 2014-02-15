@@ -29,9 +29,12 @@
     "underscore": "~1.5.2",
     "angular-elastic": "~2.3.0",
     "stringjs": "~1.7.0",
-    "ngScrollTo": "*"
+    "ngScrollTo": "*",
+    "angular-ui-select2": "~0.0.5"
   },
   "resolutions": {
-    "bootstrap": "~3.0"
+    "bootstrap": "~3.0",
+    "jquery": "~1.10",
+    "angular": "~1.2.9"
   }
 }
