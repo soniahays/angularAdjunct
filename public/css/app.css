@@ -2254,8 +2254,8 @@ tbody{
 .no-picture-job-mini {
     background-color:  #595959;
     overflow: hidden;
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
 }
 
 .toolbar-image {
