@@ -216,7 +216,12 @@ angular.module('adjunct.directives')
             link: function (scope, iElement, iAttrs) {
                 scope.$watch(iAttrs.pbProgress, function (newVal, oldVal) {
                     iElement.find('.progress-bar').css({ "width": (newVal * 20) + "%"});
-                    iElement.find('.percentage-title-badge-section').text((newVal * 20) + "%");
+                    if (newVal) {
+                        iElement.find('.percentage-title-badge-section').text((newVal * 20) + "%");
+                    }
+                    else {
+                        iElement.find('.percentage-title-badge-section').text("0%");
+                    }
                 });
 
                 scope.$watch(iAttrs.pbTitle, function (newVal, oldVal) {
