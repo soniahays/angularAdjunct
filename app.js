@@ -234,6 +234,19 @@ app.post('/upload-job/:id', function (req, res) {
     });
 });
 
+app.post('/api/:collectionName', function (req, res) {
+    metadataDb.getWhere(req.params.collectionName, {'name': {$regex : req.body.query + ".*"}}, function(err, docs) {
+        if (err) {
+            return res.send(500, "Error retrieving " + req.params.collectionName);
+        }
+        if (!docs) {
+            return res.send("[]");
+        }
+        var data = _.map(docs, function(item) { return { id: item._id, text: item.name } });
+        return res.json(data);
+    });
+});
+
 app.post('/send-email', function (req, res) {
 
     // send to list
@@ -413,6 +426,19 @@ app.get('/api/getLinkedinData', function (req, res) {
 app.post('/basic-profile', function (req, res) {
     userDb.updateUser(req.body.user);
     res.end();
+});
+
+app.get('/api/countries', function (req, res) {
+    metadataDb.get('countries', function(err, docs) {
+        if (err) {
+            return res.send(500, "Error retrieving countries");
+        }
+        if (!docs) {
+            return res.send("[]");
+        }
+        var data = _.map(docs, function(item) { return { id: item._id, text: item.name } });
+        return res.json(data);
+    });
 });
 
 app.get('/api/:collectionName', function (req, res) {

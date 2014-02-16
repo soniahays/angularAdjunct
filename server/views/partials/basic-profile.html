@@ -8,19 +8,19 @@
         <form name="basicProfileForm" class=" css form" novalidate>
             <table>
                 <tr>
-                    <td><label>Country<abbr title="This is a required field." class="required"
-                                            style="color:#EB7737;">*</abbr></label></td>
                     <td>
-                        <select ui-select2 ng-model="user.country" data-placeholder="Select a country">
-                            <option value=""></option>
-                            <option ng-repeat="country in countries" value="{{country._id}}">{{country.name}}</option>
-                        </select>
+                        <label>Country<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
+                    </td>
+                    <td>
+                        <input ui-select2="countrySelectOptions" ng-model="user.country" data-placeholder="Select a country" style="min-width: 300px" />
                     </td>
                 </tr>
                 <tr>
-                    <td><label>Zip Code<abbr title="This is a required field." class="required"
-                                             style="color:#EB7737;">*</abbr></label></td>
-                    <td><input type="text" name="userZipCode" ng-model="user.zipCode"
+                    <td>
+                        <label>Zip Code<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
+                    </td>
+                    <td>
+                        <input type="text" name="userZipCode" ng-model="user.zipCode"
                                class="form-control basic-profile-form" required
                                ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/" numbers-only maxlength="5" />
                         <span ng-show="basicProfileForm.userZipCode.$error.pattern" style="color:#EB7737">This is not a valid Zip Code.</span>
@@ -64,20 +64,14 @@
                     <td><label>Educational Institution<abbr title="This is a required field." class="required"
                                                             style="color:#EB7737;">*</abbr></label></td>
                     <td>
-                        <select ui-select2 ng-model="user.institution" data-placeholder="Select an institution">
-                            <option value=""></option>
-                            <option ng-repeat="institution in institutions" value="{{institution._id}}">{{institution.name}}</option>
-                        </select>
-                    </td>n
+                        <input ui-select2="institutionSelectOptions" ng-model="user.institution" data-placeholder="Select an institution" style="min-width: 300px" />
+                    </td>
                 </tr>
                 <tr>
                     <td><label>Specialty<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
                     </td>
                     <td>
-                        <select ui-select2 ng-model="user.field" data-placeholder="Select a specialty">
-                            <option value=""></option>
-                            <option ng-repeat="field in fieldGroups" value="{{field._id}}">{{field.name}}</option>
-                        </select>
+                        <input ui-select2="specialtySelectOptions" ng-model="user.field" data-placeholder="Select a specialty" style="min-width: 300px" />
                     </td>
                 </tr>
                 <tr>
