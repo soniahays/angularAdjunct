@@ -192,9 +192,6 @@ h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, 
     height:34px;
     position:relative;
     text-align:center;
-
-
-
 }
 *, *:before, *:after, hr, hr:before, hr:after, input[type="search"], input[type="search"]:before, input[type="search"]:after {
     -moz-box-sizing: border-box;
@@ -204,6 +201,29 @@ h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, 
     margin: -16px auto 0 auto;
     width: 90%;
 }
+
+.signup-page-or-separator{
+    background: none;
+    height:34px;
+    position:relative;
+    text-align:center;
+}
+
+.signup-page-or-separator hr {
+    margin: -16px auto 0 auto;
+    width: 90%;
+}
+
+.signup-page-or-separator .text{
+    background-color: white;
+    display: inline-block;
+    margin:0;
+    padding: 8px 6px;
+    text-transform:uppercase;
+    font-size: 10px;
+}
+
+
 hr {
     margin-top: 13px;
     margin-bottom: 13px;
@@ -627,8 +647,12 @@ float: left;
    text-align:right;
    right:5px;
    position:absolute;
-   font-size:14px;
-   margin-top:2px;
+   font-size:13px;
+   margin-top:0;
+   font-weight:bold;
+   font-style:italic;
+   color:#5e5e67;
+
 }
 .list-item-badge-section{
     background-color:#fefefe!important;

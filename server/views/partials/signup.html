@@ -1,10 +1,24 @@
-<div class="col-md-offset-4 col-md-8" style="padding-top:65px">
+
+<div class=" col-md-offset-4 col-md-8" style="padding-top:65px;">
     <h3 style="margin-bottom:0px;margin-left:0px;margin-right:0;color:#666;font-size:21px;">SIGN UP TO ADJUNCTS</h3>
     <hr style="margin-top:10px;margin-bottom:20px;width:330px;margin-left:0;">
-        <a class="btn btn-social-linkedin-signup-page" type="submit" ng-click="linkedinAuth()" style="width: 330px;height:38px;vertical-align:bottom; margin-left: 0px;float: left;">
+    <li style="float:left;margin-top:0;margin-bottom:15px;list-style-type: none;">
+        <a class="btn btn-social-linkedin-signup-page modal-signin" type="submit" ng-click="linkedinAuth()" style="width: 330px;height:38px;vertical-align:bottom; margin-left: 0px;float: left;border: 1px solid #007cb6;">
             <i class="fa fa-linkedin fa-lg fa-linkedin-custom" ></i> Create profile automatically with LinkedIn</a>
+    </li>
+    <div class="signup-page-or-separator" style="clear:both;margin-left: 0px;width: 330px;">
+        <h6 class="text shift text-special" style="color: #777;">or create profile manually</h6>
+        <hr>
+    </div>
 
+    <!--<button class="btn btn-lg btn-primary btn-social-linkedin-home-page" ng-click= "importLinkedin()" style="">Create profile automatically with LinkedIn</button>-->
+    <!--<div class="signup-or-separator">-->
+    <!--<h6 class="shift text text-special">or</h6>-->
+    <!--<hr>-->
+    <!--</div>-->
     <form name="signUpForm" class="form-signup css-form" novalidate>
+
+        <!--<label>Institution Name <abbr title="Required" class="required">*</abbr></label>-->
         <div class="row">
             <div class="col-lg-5 col-md-5" style="padding-right: 0px;">
                 <label>First Name<abbr title="Required" class="required" style="color:#EB7737;">*</abbr></label>
@@ -14,12 +28,14 @@
                 </div>
             </div>
             <div class="col-lg-7 col-md-7">
-                <label>Last Name<abbr title="Required" class="required" style="color:#EB7737;">*</abbr></label>
-                <input type="text" name="userLastName" class="form-control sign-up-form"  ng-model="user.lastName" placeholder="" required />
+                <label></labe>Last Name<abbr title="Required" class="required" style="color:#EB7737;">*</abbr></label>
+                <input type="text" name="userLastName" class="form-control sign-up-form"  ng-model="user.lastName" placeholder="" required/>
                 <div ng-show="signUpForm.userLastName.$dirty && signUpForm.userLastName.$invalid">
                     <span ng-show="signUpForm.userLastName.$error.required" style ="color:#EB7737;">Please enter your last name.</span>
                 </div>
             </div>
+
+
         </div>
         <span>Email<abbr title="Required" class="required" style="color:#EB7737;">*</abbr> </span> <input type="email" name="userEmail" class="form-control sign-up-form" ng-model="user.email" placeholder=""  required/>
         <div ng-show="signUpForm.userEmail.$dirty && signUpForm.userEmail.$invalid">
@@ -29,6 +45,7 @@
 
         <label>Password<abbr title="Required" class="required" style="color:#EB7737;">*</abbr> </label>
         <input type="password" name="password" ng-model="$parent.password" class="form-control custom-tooltip" id="password" required data-trigger="focus" bs-tooltip="tooltip" placement="right" data-type="info">
+        <!--<ul id='strength' check-strength='password'></ul>-->
         <div ng-show="signUpForm.password.$dirty && signUpForm.password.$invalid">
             <span ng-show="signUpForm.password.$error.required" style ="color:#EB7737;">Please enter a password.</span>
         </div>
@@ -42,8 +59,22 @@
         <div ng-show="signUpForm.passwordConfirm.$dirty && signUpForm.passwordConfirm.$invalid">
             <span ng-show="signUpForm.passwordConfirm.$error.pwmatch" style="color:#EB7737;">Passwords don't match</span>
         </div>
+
+
+
     </form>
+
     <br/>
-    <span style="margin-left:71px;margin-right:0px; color:#999;float:left;"> <strong><em>or</em></strong></span>
     <button class="btn   btn-custom" style = "height:29px;line-height: 1;font-size: 15px;border-radius: 3px;color:#101010;background-color: white;padding-left:10px;text-decoration: underline;float:left;" ng-click="connectManually()" ng-disabled="signUpForm.$invalid">Create profile manually</button></span>
+    <!--<button class="btn btn-primary  btn-custom" ng-click= "joinNow()"  style="width:330px">Create profile manually</button>-->
+
+
+
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+
 </div>

@@ -12,6 +12,7 @@ angular.module('adjunct', [
         'ui.select2',
         'tags-input',
         'ngUpload',
+        'xeditable',
         'adjunct.filters',
         'adjunct.services',
         'adjunct.directives',
@@ -44,7 +45,9 @@ angular.module('adjunct', [
         angular.extend($dropdownProvider.defaults, {
             trigger: 'click'
         });
-    }]);
+    }]).run(function(editableOptions){
+        editableOptions.theme='bs3';
+    });
 
 angular.module('adjunct.filters', []);
 angular.module('adjunct.services', []);
