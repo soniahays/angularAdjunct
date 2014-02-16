@@ -1,10 +1,13 @@
 <div id="top-card" class="panel profiles-panel col-md-12">
     <div class="panel-body profile-top-card">
-
         <div class="profile-picture-container col-sm-4">
             <div class="profile-picture" style="padding-bottom: 10px;!important">
-                <span ng-if="user.imageName" style="z-index: -1000;"><img class="img-thumbnail pull-left" style="margin-bottom:7px;" ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}"/></span>
-                <div class="edit-photo">
+                <span ng-if="user.imageName" style="z-index: -1000;">
+                    <img class="img-thumbnail pull-left" style="margin-bottom:7px;"
+                         ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}"/>
+                </span>
+
+                <div ng-if="user.imageName" class="edit-photo">
                     <a href="#" ng-click="openPictureUploadModal()">
                         <span>Change photo</span>
                     </a>
@@ -20,26 +23,23 @@
                 </div>
             </div>
         </div>
-
-        <div class="profile-overview-content-edit col-sm-8"
-             style="margin-left: 0px; padding-left: 15px;padding-right: 0px;">
-            <div class="profile-overview-content" style="margin-top: 30px;">
+        <div class="profile-overview-content-edit" style="margin-left: 0px; padding-left: 15px;padding-right: 0px; margin-right: 0">
+            <div class="profile-overview-content" style="margin-top: 30px">
                 <div class="lead lead-custom masthead">
-                    <div id="name-container" >
+                    <div id="name-container">
                         <h2 style="font-weight:bold; font-size: 18px;">
                             <a href="#" editable-text="user.firstName">{{ user.firstName}}</a>
                             <a href="#" editable-text="user.lastName">{{ user.lastName }}</a>
                         </h2>
                     </div>
                     <div id="headline-container">
-                        <a href="#" editable-text="user.currentPosition">{{user.currentPosition||empty }}</a>
-                        <a href="#" editable-text="user.currentInstitution">{{user.currentInstitution||empty }}</a>
-
+                        <a href="#" editable-text="user.currentPosition">{{user.currentPosition }}</a>
+                        <a href="#" editable-text="user.currentInstitution">{{user.currentInstitution }}</a>
                     </div>
                     <div class="text-muted" id="demographic-info">
-                        <span>{{ user.locationCity  }}</span>
-                        <span ng-if="user.countryName">, {{ user.countryName||empty }}</span>
-                        <span ng-if="user.generalDiscipline">| {{ user.generalDiscipline||empty }}</span>
+                        <span>{{ user.locationCity }}</span>
+                        <span ng-if="user.countryName">, {{ user.countryName }}</span>
+                        <span ng-if="user.generalDiscipline">| {{ user.generalDiscipline }}</span>
                     </div>
                 </div>
                 <table id="profile-card-table">
@@ -47,135 +47,38 @@
                     <tr id="overview-summary-specialty">
                         <th class="profile-card-table-th" scope="row">Expertise</th>
                         <td class="profile-card-table-td">
-
                             <div ng-repeat="fieldOfExpertise in user.fieldOfExpertises">
                                 <span>{{ fieldOfExpertise.value }}</span>
                             </div>
-
                         </td>
                     </tr>
-                    <tr id="overview-summary-education" ng-if="user.educationDegrees.length > 1 || (user.educationDegrees[0] != null && user.educationDegrees[0].value != null && user.educationDegrees[0].value != '')">
+                    <tr id="overview-summary-education"
+                        ng-if="user.educationDegrees.length > 1 || (user.educationDegrees[0] != null && user.educationDegrees[0].value != null && user.educationDegrees[0].value != '')">
                         <td class="profile-card-table-th">Education</td>
                         <td class="profile-card-table-td">
                             <div ng-repeat="educationDegree in user.educationDegrees">
                                 <span>{{ educationDegree.value }}</span>
                             </div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
-            <!--<form editable-form  name="profileTopCardForm" class="css-form" novalidate>-->
-                <!--<div class="">-->
-                    <!--<div class="account-icons">-->
-                    <!--</div>-->
-                    <!--<div id="name-container">-->
-
-                            <!--<div class="form-group-institution" style="padding-top: 20px;padding-left:15px;">-->
-
-
-                                <!--<ul>-->
-                                    <!--<li>-->
-                                       <!--&lt;!&ndash;//&ndash;&gt;-->
-                                                <!--<a href="#" editable-text="user.firstName">{{ user.firstName||'Sonia' }}</a>-->
-                                                <!--<span>{{ user.firstName }}</span>-->
-                                                <!--<span>{{ user.lastName }}</span></br>-->
-
-
-                                        <!--&lt;!&ndash;//&ndash;&gt;-->
-                                        <!--<input type="text" class="profile-forms" name="firstName" required-->
-                                               <!--ng-model="user.firstName" maxlength="50" placeholder="First Name">-->
-                                         <!--<span class="help-block"-->
-                                               <!--ng-show="profileTopCardForm.firstName.$error.required">Required</span>-->
-                                        <!--<input type="text" class="profile-forms" name="lastName" required-->
-                                               <!--ng-model="user.lastName" maxlength="50" placeholder="Last Name">-->
-                                    <!--</li>-->
-
-
-                                    <!--<li>-->
-                                        <!--<input type="text" class="profile-forms" name="currentPosition"-->
-                                               <!--ng-model="user.currentPosition" maxlength="50" required-->
-                                               <!--placeholder="Position Title">-->
-                                        <!--- at <input type="text" class="profile-forms" name="currentInstitution"-->
-                                                    <!--ng-model="user.currentInstitution" maxlength="50" required-->
-                                                    <!--placeholder="Institution Name">-->
-                                    <!--</li>-->
-                                    <!--<li>-->
-                                        <!--<input type="text" class="profile-forms" name="locationCity" required-->
-                                               <!--ng-model="user.locationCity" maxlength="50" placeholder="City"> ,-->
-
-
-
-                                        <!--<select ng-model="user.country" class=""-->
-                                                <!--ng-options="c._id as c.name for c in countries" style="width: 108px;font-size:12px;"-->
-                                                <!--required>-->
-                                            <!--<option value="">Select Country</option>-->
-                                        <!--</select>-->
-
-                                        <!--<input type="text" bs-typeahead placeholder="Enter country"-->
-                                               <!--class="form-control basic-profile-form" ng-model="country" ng-options="country.name as country.name for country in countries"  required-->
-                                               <!--style="width:323px"/>-->
-
-
-
-
-                                        <!--|-->
-                                        <!--<input type="text" class="profile-forms" name="generalDiscipline"-->
-                                               <!--ng-model="user.generalDiscipline" maxlength="50" required-->
-                                               <!--placeholder="General Discipline">-->
-                                    <!--</li>-->
-                                    <!--<li>-->
-
-                                        <!--<label>Expertise(highlight 2 to 4 recommended) [<a href="" ng-click="addAFieldOfExpertise()">add a field</a>]:</label>-->
-
-                                        <!--<div ng-repeat="fieldOfExpertise in user.fieldOfExpertises">-->
-                                            <!--<input type="text" class="profile-forms" ng-model="fieldOfExpertise.value"-->
-                                                   <!--maxlength="50" placeholder="Field of Expertise" required>-->
-                                            <!--<a href="" ng-click="removeAFieldOfExpertise(fieldOfExpertise)"style="font-size: 11px;text-decoration: underline;">remove</a>-->
-                                        <!--</div>-->
-                                    <!--</li>-->
-                                    <!--<li>-->
-                                        <!--<label style="margin-bottom: 0px;margin-top: 10px;"><i class="fa fa-bookmark" ></i>-->
-                                            <!--Education (<a href="" ng-click="addAEducationDegree()" style="font-size: 12px;">add a degree</a>):</label>-->
-
-                                        <!--<div ng-repeat="educationDegree in user.educationDegrees">-->
-                                            <!--<input type="text" class="profile-forms" ng-model="educationDegree.value"-->
-                                                   <!--maxlength="50" placeholder="Education Degree" required style="width:200px;">-->
-                                            <!--<a href="" ng-click="removeAEducationDegree(educationDegree)" style="font-size: 11px;text-decoration: underline;">remove</a>-->
-                                        <!--</div>-->
-                                    <!--</li>-->
-                                    <!--<li>-->
-
-                                    <!--</li>-->
-                                <!--</ul>-->
-
-                            <!--</div>-->
-
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</form>-->
-        </div>
-        <div >
-            <div id="tags-container" style="float: left; padding-left: 15px; padding-bottom: 15px;">
-                <label style="margin-bottom: 0px;margin-top: 5px;"><i class="fa fa-tag fa-lg" ></i> Skills, and specializations (comma separated): </i></label>
+            </div>
+            <div id="tags-container" style="padding-left: 15px; padding-bottom: 15px;">
+                <label style="margin-bottom: 0px;margin-top: 5px;"><i class="fa fa-tag fa-lg"></i> Skills, and
+                    specializations (comma separated): </i></label>
                 <tags-input ng-model="user.expertiseTags"
                             class="expertise-tags expertise-tags-custom"
                             style="background-color: #B8D5EE !important;"></tags-input>
             </div>
         </div>
-    </div>
-
-    <div class="top-card-profile-actions" style="border-top: 1px dashed #5e5e67;background: #f6f6f6;height:35px;">
-        <ul style="display: table-cell; padding: 0 0 8px;float:left;">
-            <li style="padding-top: 8px; padding-bottom: 2px; padding-left: 0px; padding-right: 12px; font-size: 11px; line-height: 1.2em;">
-
-            </li>
-        </ul>
-
-        <div ng-show="canEdit" ng-click="saveTopCard()" class="action-bar">
-            <i class="fa fa-check-square-o fa-lg"></i> Save Changes
-        </div>
-        <div ng-show="canEdit" ng-click="importLinkedin()" class="action-bar">
-            <i class="fa fa-download fa-lg"></i> Import from LinkedIn
+        <div class="top-card-profile-actions" style="border-top:1px dashed #5e5e67;background:#f6f6f6;height:35px;">
+            <div ng-show="canEdit" ng-click="saveTopCard()" class="action-bar">
+                <i class="fa fa-check-square-o fa-lg"></i> Save Changes
+            </div>
+            <div ng-show="canEdit" ng-click="importLinkedin()" class="action-bar">
+                <i class="fa fa-download fa-lg"></i> Import from LinkedIn
+            </div>
         </div>
     </div>
 </div>
-
