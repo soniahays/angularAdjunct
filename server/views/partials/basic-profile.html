@@ -16,33 +16,52 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <label>Zip Code<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
+                    <td><label>City<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
                     </td>
-                    <td>
-                        <input type="text" name="userZipCode" ng-model="user.zipCode"
-                               class="form-control basic-profile-form" required
-                               ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/" numbers-only maxlength="5" />
-                        <span ng-show="basicProfileForm.userZipCode.$error.pattern" style="color:#EB7737">This is not a valid Zip Code.</span>
+                    <td><input type="text" name="userCity" class="form-control basic-profile-form"
+                               ng-model="user.city" required />
 
-                        <div ng-show="basicProfileForm.userZipCode.$dirty && basicProfileForm.userZipCode.$invalid && !basicProfileForm.userZipCode.$error.pattern">
-                            <span ng-show="basicProfileForm.userCountry.$error.required" style="color:#EB7737">Please enter your Zip Code.</span>
+                        <div ng-show="basicProfileForm.userCity.$dirty && basicProfileForm.userCity.$invalid">
+                            <span ng-show="basicProfileForm.userCity.$error.required" style="color:#EB7737;">Please enter a value.</span>
                         </div>
                     </td>
+                    <!--<td>-->
+                        <!--<label>Zip Code<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<input type="text" name="userZipCode" ng-model="user.zipCode"-->
+                               <!--class="form-control basic-profile-form" required-->
+                               <!--ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/" numbers-only maxlength="5" />-->
+                        <!--<span ng-show="basicProfileForm.userZipCode.$error.pattern" style="color:#EB7737">This is not a valid Zip Code.</span>-->
+
+                        <!--<div ng-show="basicProfileForm.userZipCode.$dirty && basicProfileForm.userZipCode.$invalid && !basicProfileForm.userZipCode.$error.pattern">-->
+                            <!--<span ng-show="basicProfileForm.userCountry.$error.required" style="color:#EB7737">Please enter your Zip Code.</span>-->
+                        <!--</div>-->
+                    <!--</td>-->
                 </tr>
-                <tr>
-                    <td></td>
-                    <td><p class="help-block profile-card-table-th">e.g. 94043</p></td>
-                </tr>
+
                 <tr>
                     <td>I am currently</td>
                     <td>
-                        <input type="radio" ng-model="jobStatus" value="employed"> Employed &nbsp;
-                        <input type="radio" ng-model="jobStatus" value="job-seeker"> Job Seeker &nbsp;
-                        <input type="radio" ng-model="jobStatus" value="student"> Student &nbsp;
+                        <input type="checkbox" ng-model="student"> Student &nbsp;
+                        <input type="checkbox" ng-model="employed"> Employed &nbsp;
+                        <input type="checkbox" ng-model="available"> Open to new opportunities &nbsp;
                     </td>
+
                 </tr>
+                <tr> <td></td>
+                    <td><p class="help-block profile-card-table-th">Check all that apply.</p></td></tr>
+
                 <tr>
+
+                    <!--<li>-->
+                    <!--<input type="text" class="profile-forms" name="currentPosition"-->
+                    <!--ng-model="user.currentPosition" maxlength="50" required-->
+                    <!--placeholder="Position Title">-->
+                    <!--- at <input type="text" class="profile-forms" name="currentInstitution"-->
+                    <!--ng-model="user.currentInstitution" maxlength="50" required-->
+                    <!--placeholder="Institution Name">-->
+                    <!--</li>-->
                     <td><label>Job title<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
                     </td>
                     <td><input type="text" name="userJobTitle" class="form-control basic-profile-form"

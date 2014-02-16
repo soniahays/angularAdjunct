@@ -19,6 +19,11 @@ input[type="checkbox"] {
     width: 1.35em;
 }
 
+input[type="checkbox"]:checked {
+    background: url("/img/pinkCheckMark.png") no-repeat center;
+    background-size: 0.8em;
+}
+
 [type="text"], [type="password"], [type="search"], [type="email"], [type="url"], [type="tel"], textarea, input[type="radio"], input[type="checkbox"] {
     background-color: #fff;
     box-shadow: inset 0 1px 1px 0 rgba(0,0,0,0.08),0 1px 0 0 #fff;
@@ -83,6 +88,31 @@ a:hover, a:focus {
     color:#69757a;
     font-family:arial;
     font-size:16px;
+    font-weight:bold;
+    padding:10px 13px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #ffffff;
+}
+.signup-page {
+    -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
+    background:-moz-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background:-webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background:-o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background:-ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0);
+    background-color:#ffffff;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    border-radius:2px;
+    border:2px solid #007cb6;
+    display:inline-block;
+    cursor:pointer;
+    color:#69757a;
+    font-family:arial;
     font-weight:bold;
     padding:10px 13px;
     text-decoration:none;

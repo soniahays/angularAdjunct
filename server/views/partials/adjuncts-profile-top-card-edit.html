@@ -37,9 +37,9 @@
                         <a href="#" editable-text="user.currentInstitution">{{user.currentInstitution }}</a>
                     </div>
                     <div class="text-muted" id="demographic-info">
-                        <span>{{ user.locationCity }}</span>
-                        <span ng-if="user.countryName">, {{ user.countryName }}</span>
-                        <span ng-if="user.generalDiscipline">| {{ user.generalDiscipline }}</span>
+                        <span>{{user.city  }}</span>
+                        <span ng-if="user.countryName">, {{ user.countryName||empty }}</span>
+                        <span ng-if="user.generalDiscipline">| {{ user.generalDiscipline||empty }}</span>
                     </div>
                 </div>
                 <table id="profile-card-table">
