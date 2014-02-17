@@ -63,11 +63,11 @@
                     <!--</li>-->
                     <td><label>Your title<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
                     </td>
-                    <td><input type="text" name="userJobTitle" class="form-control basic-profile-form"
-                               ng-model="user.jobTitle" placeholder="Adjunct Teacher" required style="width:300px;" />
+                    <td><input type="text" name="userCurrentPosition" class="form-control basic-profile-form"
+                               ng-model="user.currentPosition" placeholder="Adjunct Teacher" required style="width:300px;" />
 
-                        <div ng-show="basicProfileForm.userJobTitle.$dirty && basicProfileForm.userJobTitle.$invalid">
-                            <span ng-show="basicProfileForm.userJobTitle.$error.required" style="color:#EB7737;">Please enter a value.</span>
+                        <div ng-show="basicProfileForm.userCurrentPosition.$dirty && basicProfileForm.userCurrentPosition.$invalid">
+                            <span ng-show="basicProfileForm.userCurrentPosition.$error.required" style="color:#EB7737;">Please enter a value.</span>
                         </div>
                     </td>
                 </tr>
