@@ -1,4 +1,4 @@
-<div class=" col-md-offset-2 col-md-10">
+<div class="col-md-offset-2 col-md-10">
     <br/>
     <br/>
     <div class="clearfix">
@@ -52,10 +52,7 @@
                     <td></td>
                     <td><p class="help-block profile-card-table-th">Check all that apply.</p></td>
                 </tr>
-
-
                 <tr>
-
                     <!--<li>-->
                     <!--<input type="text" class="profile-forms" name="currentPosition"-->
                     <!--ng-model="user.currentPosition" maxlength="50" required-->
@@ -81,13 +78,6 @@
                         <input class="basic-profile-form-select" ui-select2="specialtySelectOptions" ng-model="user.field" data-placeholder="Select a specialty" style="min-width: 300px" />
                     </td>
                 </tr>
-                <!--<tr>-->
-                    <!--<td></td>-->
-                    <!--<td><span><input type="checkbox" ng-model="user.selfEmployed" class="" ng-true-value="YES"-->
-                                     <!--ng-false-value="NO">-->
-                      <!--<span class="help-block profile-card-table-th">I am self-employed</span></span>-->
-                    <!--</td>-->
-                <!--</tr>-->
                 <tr>
                     <td><label>Educational Institution<abbr title="This is a required field." class="required"
                                                             style="color:#EB7737;">*</abbr></label></td>
@@ -100,9 +90,6 @@
                                                             style="color:#EB7737;">*</abbr></label></td>
                     <td>
                         <input class="basic-profile-form-select" ui-select2="educationDegreeSelectOptions" ng-model="user.educationDegree" data-placeholder="Select a Degree" style="min-width: 300px" />
-                        <div ng-repeat="educationDegree in user.educationDegrees">
-                            <span>{{ educationDegree.value }}</span>
-                        </div>
                     </td>
                 </tr>
                 <tr>

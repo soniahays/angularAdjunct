@@ -234,19 +234,6 @@ app.post('/upload-job/:id', function (req, res) {
     });
 });
 
-app.post('/api/:collectionName', function (req, res) {
-    metadataDb.getWhere(req.params.collectionName, {'name': {$regex : req.body.query + ".*"}}, function(err, docs) {
-        if (err) {
-            return res.send(500, "Error retrieving " + req.params.collectionName);
-        }
-        if (!docs) {
-            return res.send("[]");
-        }
-        var data = _.map(docs, function(item) { return { id: item._id, text: item.name } });
-        return res.json(data);
-    });
-});
-
 app.post('/send-email', function (req, res) {
 
     // send to list
@@ -441,6 +428,19 @@ app.get('/api/countries', function (req, res) {
     });
 });
 
+app.get('/api/edDegrees', function (req, res) {
+    metadataDb.get('edDegrees', function(err, docs) {
+        if (err) {
+            return res.send(500, "Error retrieving edDegrees");
+        }
+        if (!docs) {
+            return res.send("[]");
+        }
+        var data = _.map(docs, function(item) { return { id: item._id, text: item.name } });
+        return res.json(data);
+    });
+});
+
 app.get('/api/:collectionName', function (req, res) {
     metadataDb.get(req.params.collectionName, function(err, docs) {
         if (err) {
@@ -452,6 +452,20 @@ app.get('/api/:collectionName', function (req, res) {
         return res.json(docs);
     });
 });
+
+app.post('/api/:collectionName', function (req, res) {
+    metadataDb.getWhere(req.params.collectionName, {'name': {$regex : req.body.query + ".*"}}, function(err, docs) {
+        if (err) {
+            return res.send(500, "Error retrieving " + req.params.collectionName);
+        }
+        if (!docs) {
+            return res.send("[]");
+        }
+        var data = _.map(docs, function(item) { return { id: item._id, text: item.name } });
+        return res.json(data);
+    });
+});
+
 
 app.get('*', function (req, res) {
     if (req.user) { // user coming from valid passport authentication
