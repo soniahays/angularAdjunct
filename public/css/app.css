@@ -2365,10 +2365,33 @@ tbody{
   padding-top: 0;
   padding-bottom: 0;
  }
+
+a.editable-click {
+    color: green;
+    border-bottom: dotted 2px green;
+}
+a.editable-click:hover {
+    color: #47a447;
+    border-bottom-color: #47a447;
+}
+#headline-container-editing{
+    font-size: 15px;
+    line-height: 20px;
+    color: #555;
+    font-weight: normal;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    display: inline;
+}
+#demographic-info-editing{
+    font-size:14px;
+}
 /*for signup modal*/
 /*.panel-body{*/
 /*width: 315px;*/
 /*margin: 0;*/
 /*padding: 20px;*/
 /*border-top: 1px solid #dbdbdb;*/
-/*}*/
+/*}*
+/
+
