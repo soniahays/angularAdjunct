@@ -24,7 +24,8 @@
                     </h2>
                 </div>
                 <div id="headline-container">
-                    <span>{{ user.currentPosition }}</span>
+                    <span>{{ user.currentPosition }} |</span>
+                    <span>{{ user.field }}</span>
                     <span ng-if="user.currentInstitution">at {{ user.currentInstitution }}</span>
                 </div>
                 <div class="text-muted" id="demographic-info">

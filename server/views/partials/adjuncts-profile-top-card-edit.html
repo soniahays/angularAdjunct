@@ -52,6 +52,14 @@
                         <!--<a href="#" editable-text="user.currentPosition">{{user.currentPosition }}</a>-->
                         <!--<a href="#" editable-text="user.currentInstitution">{{user.currentInstitution }}</a>-->
                     </div>
+                    <div id="institution-container-editing">
+                        <span editable-text="user.institution"  e-form="institutionBtnForm">
+                                at {{ user.institution }}
+                             </span>
+                        <button class="btn btn-default" ng-click="institutionBtnForm.$show()" ng-hide="institutionBtnForm.$visible"style ="background-color: white;border-color: white;color: #0073b2;">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </div>
                     <div class="text-muted" id="demographic-info-editing">
                              <span editable-text="user.city"  e-form="demographicBtnForm">
                                 {{ user.city }},

@@ -2374,18 +2374,19 @@ a.editable-click:hover {
     color: #47a447;
     border-bottom-color: #47a447;
 }
-#headline-container-editing{
+#headline-container-editing,#institution-container-editing{
     font-size: 15px;
     line-height: 20px;
     color: #555;
     font-weight: normal;
     padding-top: 1px;
     padding-bottom: 1px;
-    display: inline;
+
 }
 #demographic-info-editing{
     font-size:14px;
 }
+
 /*for signup modal*/
 /*.panel-body{*/
 /*width: 315px;*/
