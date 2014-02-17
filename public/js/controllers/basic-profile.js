@@ -55,6 +55,28 @@ angular.module('adjunct.controllers')
             }
         };
 
+        var getEducationDegrees = function (queryParams) {
+            return $http.post('/api/edDegrees', queryParams.data).success(queryParams.success);
+        }
+
+        $scope.educationDegreeSelectOptions = {
+            minimumInputLength: 2   ,
+            ajax: {
+                data: function (term, page) {
+                    return {
+                        query: term
+                    };
+                },
+                quietMillis: 500,
+                transport: getEducationDegrees,
+                results: function (response, page) {
+                    return {
+                        results: response
+                    };
+                }
+            }
+        };
+
         $scope.manuallyCreateProf = function () {
             angular.extend($scope.user, $rootScope.user);
             $http.post('/api/save-adjuncts-profile', JSON.stringify({'user': $scope.user})).then(function () {

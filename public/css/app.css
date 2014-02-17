@@ -331,6 +331,12 @@ border-radius: 1px;
     height: 28px;
     border-radius: 1px;
     padding: 3px 5px;
+    margin-bottom: 15px;
+}
+.basic-profile-form-select{
+    height: 28px;
+    border-radius: 1px;
+    margin-bottom: 15px;
 }
 
 

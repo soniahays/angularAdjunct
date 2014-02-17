@@ -12,14 +12,14 @@
                         <label>Country<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
                     </td>
                     <td>
-                        <input ui-select2="countrySelectOptions" ng-model="user.country" data-placeholder="Select a country" style="min-width: 300px" />
+                        <input class="basic-profile-form-select" ui-select2="countrySelectOptions" ng-model="user.country" data-placeholder="Select a country" style="min-width: 300px" />
                     </td>
                 </tr>
                 <tr>
                     <td><label>City<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
                     </td>
                     <td><input type="text" name="userCity" class="form-control basic-profile-form"
-                               ng-model="user.city" required />
+                               ng-model="user.city" required style="width:300px;" />
 
                         <div ng-show="basicProfileForm.userCity.$dirty && basicProfileForm.userCity.$invalid">
                             <span ng-show="basicProfileForm.userCity.$error.required" style="color:#EB7737;">Please enter a value.</span>
@@ -43,14 +43,16 @@
                 <tr>
                     <td>I am currently</td>
                     <td>
-                        <input type="checkbox" ng-model="student"> Student &nbsp;
+                        <input type="checkbox" ng-model="student"> a Student &nbsp;
                         <input type="checkbox" ng-model="employed"> Employed &nbsp;
                         <input type="checkbox" ng-model="available"> Open to new opportunities &nbsp;
                     </td>
-
                 </tr>
-                <tr> <td></td>
-                    <td><p class="help-block profile-card-table-th">Check all that apply.</p></td></tr>
+                <tr>
+                    <td></td>
+                    <td><p class="help-block profile-card-table-th">Check all that apply.</p></td>
+                </tr>
+
 
                 <tr>
 
@@ -62,10 +64,10 @@
                     <!--ng-model="user.currentInstitution" maxlength="50" required-->
                     <!--placeholder="Institution Name">-->
                     <!--</li>-->
-                    <td><label>Job title<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
+                    <td><label>Your title<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
                     </td>
                     <td><input type="text" name="userJobTitle" class="form-control basic-profile-form"
-                               ng-model="user.jobTitle" required />
+                               ng-model="user.jobTitle" placeholder="Adjunct Teacher" required style="width:300px;" />
 
                         <div ng-show="basicProfileForm.userJobTitle.$dirty && basicProfileForm.userJobTitle.$invalid">
                             <span ng-show="basicProfileForm.userJobTitle.$error.required" style="color:#EB7737;">Please enter a value.</span>
@@ -73,26 +75,45 @@
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td><span><input type="checkbox" ng-model="user.selfEmployed" class="" ng-true-value="YES"
-                                     ng-false-value="NO">
-                      <span class="help-block profile-card-table-th">I am self-employed</span></span>
+                    <td><label>Specialty<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
+                    </td>
+                    <td>
+                        <input class="basic-profile-form-select" ui-select2="specialtySelectOptions" ng-model="user.field" data-placeholder="Select a specialty" style="min-width: 300px" />
                     </td>
                 </tr>
+                <!--<tr>-->
+                    <!--<td></td>-->
+                    <!--<td><span><input type="checkbox" ng-model="user.selfEmployed" class="" ng-true-value="YES"-->
+                                     <!--ng-false-value="NO">-->
+                      <!--<span class="help-block profile-card-table-th">I am self-employed</span></span>-->
+                    <!--</td>-->
+                <!--</tr>-->
                 <tr>
                     <td><label>Educational Institution<abbr title="This is a required field." class="required"
                                                             style="color:#EB7737;">*</abbr></label></td>
                     <td>
-                        <input ui-select2="institutionSelectOptions" ng-model="user.institution" data-placeholder="Select an institution" style="min-width: 300px" />
+                        <input class="basic-profile-form-select" ui-select2="institutionSelectOptions" ng-model="user.institution" data-placeholder="Select an institution" style="min-width: 300px" />
                     </td>
                 </tr>
                 <tr>
-                    <td><label>Specialty<abbr title="This is a required field." class="required" style="color:#EB7737;">*</abbr></label>
-                    </td>
+                    <td><label>Highest Education<abbr title="This is a required field." class="required"
+                                                            style="color:#EB7737;">*</abbr></label></td>
                     <td>
-                        <input ui-select2="specialtySelectOptions" ng-model="user.field" data-placeholder="Select a specialty" style="min-width: 300px" />
+                        <input class="basic-profile-form-select" ui-select2="educationDegreeSelectOptions" ng-model="user.educationDegree" data-placeholder="Select a Degree" style="min-width: 300px" />
+                        <div ng-repeat="educationDegree in user.educationDegrees">
+                            <span>{{ educationDegree.value }}</span>
+                        </div>
                     </td>
                 </tr>
+                <tr>
+                    <td>I am currently</td>
+                    <td>
+                        <input type="checkbox" ng-model="educationDegreeCompleted"> Completed&nbsp;
+                        <input type="checkbox" ng-model="educationDegreeInProgress"> In progress &nbsp;
+                        <input type="checkbox" ng-model="educationDegreeDropOut"> Dropped Out&nbsp;
+                    </td>
+                </tr>
+
                 <tr>
                     <td>
                         <br/>
@@ -100,9 +121,9 @@
                     <td>
                         <br/>
                         <div class="controls">
-                            <button name="singlebutton" class="btn btn-primary" ng-click="manuallyCreateProf()">
-                                Your profile is ready
-                            </button>
+
+                            <a class="signup-page" type="submit" ng-click="manuallyCreateProf()" style="width: 330px;height:38px;vertical-align:bottom; margin-left: 0px;float: left;border: solid 1px #555;color: #555;text-align: center;">
+                                <i class="fa fa-file-text-o" ></i> Your profile is ready</a>
                         </div>
                     </td>
                 </tr>
