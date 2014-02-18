@@ -11,8 +11,9 @@ angular.module('adjunct.controllers')
         };
 
         $scope.init = function(){
-
         };
+
+// ------------------------------------   Social logging------------------------------------------------------------------------
 
         $scope.facebookAuth = function () {
             window.location.href = '/auth/facebook';
@@ -29,11 +30,16 @@ angular.module('adjunct.controllers')
             $("[bs-popover]").click();
         }
 
+        $scope.importLinkedIn = function() {
+            window.location.replace(window.location.origin + "/api/linkedInAuth");
+        }
+
+// ------------------------------------ End Social logging------------------------------------------------------------------------
+
         $scope.connectManually = function(){
             window.location.href = '/signup';
             $("[bs-popover]").click();
         }
-
 
         $scope.openSignInModal = function () {
             if(!$scope.isSignedIn){
@@ -47,14 +53,11 @@ angular.module('adjunct.controllers')
             $('.modal-backdrop').css({'background-color': '#8b8bac', 'opacity': '0'});
         }
 
-        $scope.importLinkedIn = function() {
-            window.location.replace(window.location.origin + "/api/linkedInAuth");
-        }
-
         $scope.modal = {
             title: '<span style="text-align: left;"><strong>Password strength: {{strength}}</strong></span><ul style="display:block;"><div id="strength" check-strength="password" style="display:block;"></div></ul><span style="display:block;">Use at least 8 characters. Don’t use a password from another site, or something too obvious like your pet’s name.</span>',
             "checked": false
         };
+
     }]);
 
 

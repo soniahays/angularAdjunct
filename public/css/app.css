@@ -847,7 +847,8 @@ border-radius: 0px;
 }
 
 .modal-content-custom-badge-edit{
-   width:400px;
+   width:750px;
+   border-radius:2px;
 }
 
 .modal-body-custom{
@@ -934,7 +935,7 @@ ol, ul{
 }
 /*-----------------BADGES FORM SECTION----------------------------*/
 #badges-form-wrapper {
-    width:480px;
+    width:700px;
     margin:0px auto;
 }
 #content {
@@ -1050,10 +1051,15 @@ ol, ul{
     width:458px;
 }
 .modal-dialog-custom{
-
   width:600px;
-  margin-top:0px;
+  margin: 5% auto;
 }
+
+/*.modal-vertical-centered {*/
+    /*transform: translate(0, 50%) !important;*/
+    /*-ms-transform: translate(0, 50%) !important; *//* IE 9 */
+    /*-webkit-transform: translate(0, 50%) !important; *//* Safari and Chrome */
+/*}*/
 
 .wrap{
     margin: 0 0 0 0 !important;
