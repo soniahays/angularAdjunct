@@ -22,6 +22,14 @@ angular.module('adjunct.controllers')
         $scope.linkedinAuth = function () {
             window.location.href = '/auth/linkedin';
         }
+
+        $scope.openSignInModal = function () {
+            if(!$scope.isSignedIn){
+                $('#signin-modal').modal();
+                $('.modal-backdrop').css({'background-color': '', 'opacity': '0'});
+            }
+        }
+
     }]);
 
 

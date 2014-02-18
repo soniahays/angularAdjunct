@@ -38,13 +38,13 @@ angular.module('adjunct.controllers')
         $scope.openSignInModal = function () {
             if(!$scope.isSignedIn){
                 $('#signin-modal').modal();
-                $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
+                $('.modal-backdrop').css({'background-color': '#8b8bac', 'opacity': '0'});
             }
         }
 
         $scope.openSignUpModal = function () {
             $('#signup-modal').modal();
-            $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
+            $('.modal-backdrop').css({'background-color': '#8b8bac', 'opacity': '0'});
         }
 
         $scope.importLinkedIn = function() {

@@ -1,8 +1,8 @@
 
-<div class=" col-md-offset-4 col-md-8" style="padding-top:65px;">
+<div class=" col-md-offset-4 col-md-8" style="padding-top:45px;">
     <h3 style="margin-bottom:0px;margin-left:0px;margin-right:0;color:#666;font-size:21px;">SIGN UP TO ADJUNCTS</h3>
     <hr style="margin-top:10px;margin-bottom:20px;width:330px;margin-left:0;">
-    <li style="float:left;margin-top:0;margin-bottom:15px;list-style-type: none;">
+    <li style="float:left;margin-top:0;margin-bottom:8px;list-style-type: none;">
         <a class="btn btn-social-linkedin-signup-page modal-signin" type="submit" ng-click="linkedinAuth()" style="width: 330px;height:38px;vertical-align:bottom; margin-left: 0px;float: left;border: 1px solid #007cb6;">
             <i class="fa fa-linkedin fa-lg fa-linkedin-custom" ></i> Create profile automatically with LinkedIn</a>
     </li>
@@ -70,6 +70,13 @@
     <a class="signup-page" type="submit" ng-click="connectManually()" style="width: 330px;height:38px;vertical-align:bottom; margin-left: 0px;float: left;border: solid 1px #555;color: #555;text-align: center;">
         <i class="fa fa-pencil" ></i> Create profile manually</a>
 
+    <hr style="clear: both;margin-top: 20px;width: 330px;float: left;margin-bottom: 15px;">
+         <div class="text-left" style="clear: both;width: 330px;float: left;margin-bottom: 150px;">
+            Already have an Adjuncts account?
+            <a href="#" data-dismiss="modal" ng-click="openSignInModal()">Sign in</a>
+        </div>
+
+
 
 
     <br />
@@ -79,3 +86,7 @@
 
 
 </div>
+
+
+<div ng-include="'/partial/signin-modal'"/>
+<div ng-include="'/partial/signup-modal'"/>

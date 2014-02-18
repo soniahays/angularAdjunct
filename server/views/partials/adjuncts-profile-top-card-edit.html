@@ -1,6 +1,6 @@
 <div id="top-card" class="panel profiles-panel col-md-12">
     <div class="panel-body profile-top-card">
-        <div class="profile-picture-container col-sm-4">
+       <div class="profile-picture-container col-sm-4">
             <div class="profile-picture" style="padding-bottom: 10px;!important">
                 <span ng-if="user.imageName" style="z-index: -1000;">
                     <img class="img-thumbnail pull-left" style="margin-bottom:7px;"
@@ -23,95 +23,118 @@
                 </div>
             </div>
         </div>
-        <div class="profile-overview-content-edit" style="margin-left: 0px; padding-left: 15px;padding-right: 0px; margin-right: 0">
-            <div class="profile-overview-content" style="margin-top: 30px">
-                <div class="lead lead-custom masthead">
-                    <div id="name-container">
-                        <h2 style="font-weight:bold; font-size: 20px;">
-                             <span editable-text="user.firstName"  e-form="textBtnForm">
-                                {{ user.firstName}}
-                             </span>
-                             <span editable-text="user.lastName"  e-form="textBtnForm">
-                                {{ user.lastName }}
-                             </span>
-                            <button class="btn btn-default" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible"style ="background-color: white;border-color: white;color: #0073b2;">
-                                <i class="fa fa-pencil"></i>
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="headline-container-editing">
-                        <span editable-text="user.currentPosition"  e-form="headLineBtnForm">
-                                {{ user.currentPosition }} |
-                             </span>
-                             <span editable-text="user.field"  e-form="headLineBtnForm">
-                                {{ user.field }}
-                             </span>
-                        <button class="btn btn-default" ng-click="headLineBtnForm.$show()" ng-hide="headLineBtnForm.$visible"style ="background-color: white;border-color: white;color: #0073b2;">
-                            <i class="fa fa-pencil"></i>
-                        </button>
-                        <!--<a href="#" editable-text="user.currentPosition">{{user.currentPosition }}</a>-->
-                        <!--<a href="#" editable-text="user.currentInstitution">{{user.currentInstitution }}</a>-->
-                    </div>
-                    <div id="institution-container-editing">
-                        <span editable-text="user.institution"  e-form="institutionBtnForm">
-                                at {{ user.institution }}
-                             </span>
-                        <button class="btn btn-default" ng-click="institutionBtnForm.$show()" ng-hide="institutionBtnForm.$visible"style ="background-color: white;border-color: white;color: #0073b2;">
-                            <i class="fa fa-pencil"></i>
-                        </button>
-                    </div>
-                    <div class="text-muted" id="demographic-info-editing">
-                             <span editable-text="user.city"  e-form="demographicBtnForm">
-                                {{ user.city }},
-                             </span>
-                             <span editable-text="user.country"  e-form="demographicBtnForm">
-                                {{ user.country }}
-                             </span>
-                        <button class="btn btn-default" ng-click="demographicBtnForm.$show()" ng-hide="demographicBtnForm.$visible"style ="background-color: white;border-color: white;color: #0073b2;">
-                            <i class="fa fa-pencil"></i>
-                        </button>
-                        <!--<span>{{user.city  }}</span>-->
-                        <!--<span ng-if="user.countryName">, {{ user.countryName||empty }}</span>-->
-                        <!--<span ng-if="user.generalDiscipline">| {{ user.generalDiscipline||empty }}</span>-->
-                    </div>
-                </div>
-                <table id="profile-card-table">
-                    <tbody>
-                    <tr id="overview-summary-specialty">
-                        <th class="profile-card-table-th" scope="row">Expertise</th>
-                        <td class="profile-card-table-td">
-                            <div ng-repeat="fieldOfExpertise in user.fieldOfExpertises">
-                                <span>{{ fieldOfExpertise.value }}</span>
+        <div class="profile-overview col-sm-8 col-md-8">
+                    <!--<div class="profile-overview-content-edit" style="margin-left: 0px; padding-left: 15px;padding-right: 0px; margin-right: 0">-->
+                        <div class="profile-overview-content col-sm-12 col-md-12" style="margin-top: 30px">
+                            <div class="lead lead-custom masthead">
+                                <div id="name-container">
+                                    <h2 style="font-weight:bold; font-size: 20px;">
+                                         <span editable-text="user.firstName"  e-form="textBtnForm">
+                                            {{ user.firstName || "Edit name"}}
+                                         </span>
+                                         <span editable-text="user.lastName"  e-form="textBtnForm">
+                                            {{ user.lastName }}
+                                         </span>
+                                        <button class="btn btn-default" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible"style ="background-color: white;border-color: white;color: #0073b2;">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="headline-container-editing">
+                                    <span editable-text="user.currentPosition"  e-form="headLineBtnForm">
+                                            {{ user.currentPosition||"Edit position title" }}
+                                         </span>
+                                         <span editable-text="user.field"  e-form="headLineBtnForm">
+                                           <span ng-hide="!user.field || !user.currentPosition">|</span> {{ user.field }}
+                                         </span>
+                                    <button class="btn btn-default" ng-click="headLineBtnForm.$show()" ng-hide="headLineBtnForm.$visible"style ="background-color: white;border-color: white;color: #0073b2;">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <!--<a href="#" editable-text="user.currentPosition">{{user.currentPosition }}</a>-->
+                                    <!--<a href="#" editable-text="user.currentInstitution">{{user.currentInstitution }}</a>-->
+                                </div>
+                                <div id="institution-container-editing">
+                                    <span editable-text="user.institution"  e-form="institutionBtnForm">
+                                           <span ng-hide="!user.user.institution">at</span>  {{ user.institution||"Edit institution" }}
+                                         </span>
+                                    <button class="btn btn-default" ng-click="institutionBtnForm.$show()" ng-hide="institutionBtnForm.$visible"style ="background-color: white;border-color: white;color: #0073b2;">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </div>
+                                <div class="text-muted" id="demographic-info-editing">
+                                         <span editable-text="user.city"  e-form="demographicBtnForm">
+                                            {{ user.city ||"Edit location"}}<span ng-hide="!user.city||!user.country">,</span>
+                                         </span>
+                                         <span editable-text="user.country"  e-form="demographicBtnForm">
+                                            {{ user.country }}
+                                         </span>
+                                    <button class="btn btn-default" ng-click="demographicBtnForm.$show()" ng-hide="demographicBtnForm.$visible"style ="background-color: white;border-color: white;color: #0073b2;">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <!--<span>{{user.city  }}</span>-->
+                                    <!--<span ng-if="user.countryName">, {{ user.countryName||empty }}</span>-->
+                                    <!--<span ng-if="user.generalDiscipline">| {{ user.generalDiscipline||empty }}</span>-->
+                                </div>
+                                <div id="education-container-editing">
+                                    <span editable-text="user.educationDegree"  e-form="educationBtnForm">
+                                           {{ user.educationDegree||"Edit education" }}
+                                         </span>
+                                    <button class="btn btn-default" ng-click="educationBtnForm.$show()" ng-hide="educationBtnForm.$visible"style ="background-color: white;border-color: white;color: #0073b2;">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </td>
-                    </tr>
-                    <tr id="overview-summary-education"
-                        ng-if="user.educationDegrees.length > 1 || (user.educationDegrees[0] != null && user.educationDegrees[0].value != null && user.educationDegrees[0].value != '')">
-                        <td class="profile-card-table-th">Education</td>
-                        <td class="profile-card-table-td">
-                            <div ng-repeat="educationDegree in user.educationDegrees">
-                                <span>{{ educationDegree.value }}</span>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div id="tags-container" style="padding-left: 15px; padding-bottom: 15px;">
-                <label style="margin-bottom: 0px;margin-top: 5px;"><i class="fa fa-tag fa-lg"></i> Skills, and
-                    specializations (comma separated): </i></label>
-                <tags-input ng-model="user.expertiseTags"
-                            class="expertise-tags expertise-tags-custom"
-                            style="background-color: #B8D5EE !important;"></tags-input>
-            </div>
+                            <table id="profile-card-table">
+                                <tbody>
+                                <!--<tr id="overview-summary-specialty">-->
+                                    <!--<th class="profile-card-table-th" scope="row">Expertise</th>-->
+                                    <!--<td class="profile-card-table-td">-->
+                                        <!--<div ng-repeat="fieldOfExpertise in user.fieldOfExpertises">-->
+                                            <!--<span>{{ fieldOfExpertise.value }}</span>-->
+                                        <!--</div>-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+                                <tr id="overview-summary-education"
+                                    ng-if="user.educationDegrees.length > 1 || (user.educationDegrees[0] != null && user.educationDegrees[0].value != null && user.educationDegrees[0].value != '')">
+                                    <td class="profile-card-table-th">Education</td>
+                                    <td class="profile-card-table-td">
+                                        <div ng-repeat="educationDegree in user.educationDegrees">
+                                            <span>{{ educationDegree.value }}</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="tags-container" style="padding-left: 15px; padding-bottom: 15px;">
+                            <label style="margin-bottom: 0px;margin-top: 5px;"><i class="fa fa-tag fa-lg"></i> Skills, and
+                                specializations (comma separated): </i></label>
+                            <tags-input ng-model="user.expertiseTags"
+                                        class="expertise-tags expertise-tags-custom"
+                                        style="background-color: #B8D5EE !important;"></tags-input>
+                        </div>
+                    <!--</div>-->
         </div>
-        <div class="top-card-profile-actions" style="border-top:1px dashed #5e5e67;background:#f6f6f6;height:35px;">
+        <!--<div class="top-card-profile-actions" style="border-top:1px dashed #5e5e67;background:#f6f6f6;height:35px;">-->
+            <!--<div ng-show="canEdit" ng-click="saveTopCard()" class="action-bar">-->
+                <!--<i class="fa fa-check-square-o fa-lg"></i> Save Changes-->
+            <!--</div>-->
+            <!--<div ng-show="canEdit" ng-click="importLinkedin()" class="action-bar">-->
+                <!--<i class="fa fa-download fa-lg"></i> Import from LinkedIn-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+        <div class="top-card-profile-actions" style="border-top: 1px dashed #5e5e67;background: #f6f6f6;height:35px;">
+
             <div ng-show="canEdit" ng-click="saveTopCard()" class="action-bar">
-                <i class="fa fa-check-square-o fa-lg"></i> Save Changes
+            <i class="fa fa-check-square-o fa-lg"></i> Save Changes
             </div>
             <div ng-show="canEdit" ng-click="importLinkedin()" class="action-bar">
-                <i class="fa fa-download fa-lg"></i> Import from LinkedIn
+            <i class="fa fa-download fa-lg"></i> Import from LinkedIn
+            </div>
+
             </div>
         </div>
-    </div>
+
+
 </div>

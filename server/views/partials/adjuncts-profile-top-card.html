@@ -14,51 +14,52 @@
                 </div>
             </div>
         </div>
+        <div class="profile-overview col-sm-8 col-md-8">
+                <div class="profile-overview-content col-sm-12 col-md-12" style="margin-top: 30px;">
+                    <div class="lead lead-custom masthead">
+                        <div id="name-container" >
+                            <h2 style="font-weight:bold; font-size: 22px;">
+                                <span>{{ user.firstName }}</span>
+                                <span>{{ user.lastName }}</span>
+                            </h2>
+                        </div>
+                        <div id="headline-container">
+                            <span>{{ user.currentPosition }} |</span>
+                            <span>{{ user.field }}</span>
+                            <span ng-if="user.currentInstitution">at {{ user.currentInstitution }}</span>
+                        </div>
+                        <div class="text-muted" id="demographic-info">
+                            <span>{{user.city  }}</span>
+                            <span ng-if="user.countryName">, {{ user.countryName }}</span>
+                            <span ng-if="user.generalDiscipline">| {{ user.generalDiscipline }}</span>
+                        </div>
+                    </div>
+                    <table id="profile-card-table">
+                        <tbody>
+                        <tr id="overview-summary-specialty">
+                            <th class="profile-card-table-th" scope="row">Expertise</th>
+                            <td class="profile-card-table-td">
 
-        <div class="profile-overview-content" style="margin-top: 30px;">
-            <div class="lead lead-custom masthead">
-                <div id="name-container" >
-                    <h2 style="font-weight:bold; font-size: 22px;">
-                        <span>{{ user.firstName }}</span>
-                        <span>{{ user.lastName }}</span>
-                    </h2>
-                </div>
-                <div id="headline-container">
-                    <span>{{ user.currentPosition }} |</span>
-                    <span>{{ user.field }}</span>
-                    <span ng-if="user.currentInstitution">at {{ user.currentInstitution }}</span>
-                </div>
-                <div class="text-muted" id="demographic-info">
-                    <span>{{user.city  }}</span>
-                    <span ng-if="user.countryName">, {{ user.countryName }}</span>
-                    <span ng-if="user.generalDiscipline">| {{ user.generalDiscipline }}</span>
+                                <div ng-repeat="fieldOfExpertise in user.fieldOfExpertises">
+                                    <span>{{ fieldOfExpertise.value }}</span>
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr id="overview-summary-education" ng-if="user.educationDegrees.length > 1 || (user.educationDegrees[0] != null && user.educationDegrees[0].value != null && user.educationDegrees[0].value != '')">
+                            <td class="profile-card-table-th">Education</td>
+                            <td class="profile-card-table-td">
+                                <div ng-repeat="educationDegree in user.educationDegrees">
+                                    <span>{{ educationDegree.value }}</span>
+                                </div>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div ng-repeat="item in user.expertiseTags" ng-if="user.expertiseTags.length > 0">
+                        <span class="tags">{{ item ||'tags go here' }}</span>
+                    </div>
                 </div>
             </div>
-            <table id="profile-card-table">
-                <tbody>
-                <tr id="overview-summary-specialty">
-                    <th class="profile-card-table-th" scope="row">Expertise</th>
-                    <td class="profile-card-table-td">
-
-                        <div ng-repeat="fieldOfExpertise in user.fieldOfExpertises">
-                            <span>{{ fieldOfExpertise.value }}</span>
-                        </div>
-
-                    </td>
-                </tr>
-                <tr id="overview-summary-education" ng-if="user.educationDegrees.length > 1 || (user.educationDegrees[0] != null && user.educationDegrees[0].value != null && user.educationDegrees[0].value != '')">
-                    <td class="profile-card-table-th">Education</td>
-                    <td class="profile-card-table-td">
-                        <div ng-repeat="educationDegree in user.educationDegrees">
-                            <span>{{ educationDegree.value }}</span>
-                        </div>
-                </tr>
-                </tbody>
-            </table>
-            <div ng-repeat="item in user.expertiseTags" ng-if="user.expertiseTags.length > 0">
-                <span class="tags">{{ item ||'tags go here' }}</span>
-            </div>
-        </div>
     </div>
 
     <div class="top-card-profile-actions" style="border-top: 1px dashed #5e5e67;background: #f6f6f6;height:35px;">
