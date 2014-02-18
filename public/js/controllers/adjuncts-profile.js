@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('AdjunctsProfileCtrl', ['$scope', '$http', '$cookies', '$q', '$location', function ($scope, $http, $cookies, $q, $location) {
+    .controller('AdjunctsProfileCtrl', ['$scope', '$http', '$cookies', '$q', '$location', '$filter', function ($scope, $http, $cookies, $q, $location, $filter) {
 
         var userId = $('#userId').html();
 
@@ -21,26 +21,53 @@ angular.module('adjunct.controllers')
 
         var adjunctProfile = $http.get('/api/get-adjuncts-profile/' + (userId ? userId : $cookies._id));
         var countries = $scope.canEdit ? $http.get('/api/countries') : null;
+        var fieldGroups = $scope.canEdit ? $http.get('/api/fieldGroups') : null;
+        var edDegrees = $scope.canEdit ? $http.get('/api/edDegrees') : null;
+        var institutions = $scope.canEdit ? $http.get('/api/institutions') : null;
         var linkedinData = $scope.canEdit ? $http.get('/api/getLinkedinData') : null;
 
-        $q.all([adjunctProfile, countries, linkedinData]).then(function (values) {
+
+        $scope.$watch('user.country', function(newVal, oldVal) {
+            if (newVal !== oldVal) {
+                var selected = $filter('filter')($scope.countries, {id: $scope.user.country});
+                $scope.user.countryName = selected.length ? selected[0].text : null;
+            }
+        });
+
+        $scope.$watch('user.field', function(newVal, oldVal) {
+            if (newVal !== oldVal) {
+                var selected = $filter('filter')($scope.fieldGroups, {id: $scope.user.field});
+                $scope.user.fieldName = selected.length ? selected[0].text : null;
+            }
+        });
+
+        $scope.$watch('user.edDegree', function(newVal, oldVal) {
+            if (newVal !== oldVal) {
+                var selected = $filter('filter')($scope.edDegrees, {id: $scope.user.edDegree});
+                $scope.user.edDegreeName = selected.length ? selected[0].text : null;
+            }
+        });
+
+        $scope.$watch('user.institution', function(newVal, oldVal) {
+            if (newVal !== oldVal) {
+                var selected = $filter('filter')($scope.institutions, {id: $scope.user.institution});
+                $scope.user.institutionName = selected.length ? selected[0].text : null;
+            }
+        });
+
+        $q.all([adjunctProfile, countries, fieldGroups, edDegrees, institutions, linkedinData]).then(function (values) {
                 $scope.user = values[0].data;
                 $scope.countries = values[1] ? values[1].data : null;
-                var linkedinData = values[2] ? values[2].data : null;
-
-                if ($scope.user.country)
-                    $scope.user.countryName = _.findWhere($scope.countries, {id: $scope.user.country}).text;
+                $scope.fieldGroups = values[2] ? values[2].data : null;
+                $scope.edDegrees = values[3] ? values[3].data : null;
+                $scope.institutions = values[4] ? values[4].data : null;
+                var linkedinData = values[5] ? values[5].data : null;
 
                 if (!$scope.user.survey)
                     $scope.user.survey = {};
 
                 if (!$scope.user.fieldOfExpertises || $scope.user.fieldOfExpertises.length == 0)
                     $scope.user.fieldOfExpertises = [
-                        { value: ''}
-                    ];
-
-                if (!$scope.user.educationDegrees || $scope.user.educationDegrees.length == 0)
-                    $scope.user.educationDegrees = [
                         { value: ''}
                     ];
 

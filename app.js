@@ -428,10 +428,36 @@ app.get('/api/countries', function (req, res) {
     });
 });
 
+app.get('/api/fieldGroups', function (req, res) {
+    metadataDb.get('fieldGroups', function(err, docs) {
+        if (err) {
+            return res.send(500, "Error retrieving fieldGroups");
+        }
+        if (!docs) {
+            return res.send("[]");
+        }
+        var data = _.map(docs, function(item) { return { id: item._id, text: item.name } });
+        return res.json(data);
+    });
+});
+
 app.get('/api/edDegrees', function (req, res) {
     metadataDb.get('edDegrees', function(err, docs) {
         if (err) {
             return res.send(500, "Error retrieving edDegrees");
+        }
+        if (!docs) {
+            return res.send("[]");
+        }
+        var data = _.map(docs, function(item) { return { id: item._id, text: item.name } });
+        return res.json(data);
+    });
+});
+
+app.get('/api/institutions', function (req, res) {
+    metadataDb.get('institutions', function(err, docs) {
+        if (err) {
+            return res.send(500, "Error retrieving institutions");
         }
         if (!docs) {
             return res.send("[]");
@@ -465,7 +491,6 @@ app.post('/api/:collectionName', function (req, res) {
         return res.json(data);
     });
 });
-
 
 app.get('*', function (req, res) {
     if (req.user) { // user coming from valid passport authentication
