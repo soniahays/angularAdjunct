@@ -1,0 +1,200 @@
+<div class="fieldgroup" ng-show="isPersonalSummaryShown" ng-hide="!isPersonalSummaryShown">
+    <textarea msd-elastic="\n" name="userSummary" class="edit-personal-summary" cols="80" rows="6"
+              ng-model="user.personalSummary" ng-show="isSummaryShown"
+              placeholder=" Edit your summary here."></textarea>
+
+    <div class="bottom-card-profile-actions-edit">
+        <ul>
+            <li>
+            </li>
+        </ul>
+        <div ng-show="isEditMode" ng-click="savePersonalSummary()" class="bottom-card-profile-right-actions-edit">
+            <i class="fa fa-check fa-lg"></i> Save Changes
+        </div>
+        <div ng-show="isEditMode" ng-click="restorePreviousPersonalSummary()"
+             class="bottom-card-profile-right-actions-edit">
+            <i class="fa fa-undo fa-lg"></i> Cancel
+        </div>
+    </div>
+</div>
+
+<div id="summary-container" ng-hide="isPersonalSummaryShown" ng-show="!isPersonalSummaryShown">
+             <span class=" lead user-summary lead" e-rows="12" e-cols="80">
+                 <p ng-bind-html-unsafe="user.personalSummary | newlines"></p>
+             </span>
+</div>
+
+<div class="bottom-card-profile-actions">
+    <ul>
+        <li>
+            <h6><span><i class="fa fa-clipboard fa-lg"></i> Experience</span>
+            </h6>
+        </li>
+    </ul>
+
+    <button ng-show="isEditMode" ng-click="showResumeSectionEdit()" ng-disabled="isResumeSectionShown"
+            class="bottom-card-profile-right-actions">
+        <i class="fa fa-pencil-square-o fa-lg"></i> Edit
+    </button>
+</div>
+
+<p class="bottom-adjunct-add-position" ng-show="isResumeSectionShown" ng-hide="!isResumeSectionShown">
+    <a href class="" ng-click="addAResumePosition()">
+        <span class=""><i class="fa fa-plus "></i> Add a position</span>
+    </a>
+
+</p>
+
+<div class="col-md-12 resumes-container" ng-repeat="(positionIndex,resumePosition) in user.resumePositions">
+
+    <a href ng-hide="!isResumeSectionShown" ng-click="showResumePositionEdit(positionIndex)" style="">&nbsp;<i
+            class="fa fa-pencil"></i> Edit&nbsp;</a>
+    <a href ng-hide="!isResumeSectionShown" ng-click="removePositionAlert(resumePosition)" style="">&nbsp;Remove</a>
+
+    <div ng-hide="isResumePositionShown(positionIndex)">
+        <div class="col-md-7" style="padding: 0 0 0 0;">
+            <span class="resume-position-institution" style="font-weight:bold;">{{ resumePosition.institution || 'empty' }}</span>
+
+            <div class="">
+                <i class="fa fa-briefcase"
+                   style="color: #999;display:inline;line-height: 1.428571429 !important; float: left;margin-left:3px;padding-right: 3px;padding-top:5px;font-size:0.7em;"> </i>
+                {{ resumePosition.title || ' ' }}
+            </div>
+        </div>
+        <div class="col-md-5" style="text-align:right;padding: 0 0 0 0;">
+            <div>&nbsp;</div>
+            {{resumePosition.termsDate}}
+        </div>
+        <div class="col-md-12" style="padding: 0 0 0 0;">
+            <div>
+                <small ng-bind-html-unsafe="resumePosition.description | newlines"></small>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="isResumePositionShown(positionIndex)">
+        <form class="form-group">
+            <ul>
+                <div class="" style="">
+
+                    <div id="experience-containter-edit">
+                        <li>
+                            <label for="">Institution Name <abbr title="Required" class="required">*</abbr></label>
+
+                            <div class="fieldgroup">
+                                <div class="institution">
+                                    <input type="text"
+                                           class="form-control form-inline input-sm profile-forms position-edit-form"
+                                           name="experience1Institution" ng-model="resumePosition.institution"
+                                           maxlength="100">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="">Title </label>
+
+                            <div class="fieldgroup">
+                                <div class="institution">
+                                    <input type="text"
+                                           class="form-control form-inline input-sm profile-forms position-edit-form"
+                                           name="experience1Title" ng-model="resumePosition.title " maxlength="100">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="">Location <abbr title="Required" class="required">*</abbr></label>
+
+                            <div class="fieldgroup">
+                                <div class="institution">
+                                    <input type="text"
+                                           class="form-control form-inline input-sm profile-forms position-edit-form"
+                                           name="experience1Location" ng-model="resumePosition.location  "
+                                           maxlength="100">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="time-period" id="time-period" style="display:inline!important;">
+                            <fieldset style="display:inline!important;">
+                                <legend>
+                                    <span>Time Period <abbr title="Required" class="required">*</abbr></span>
+                                </legend>
+                                <ul>
+                                    <li class="start-date" style="display:inline!important;">
+                                                                    <span><select ng-model="resumePosition.startMonth"
+                                                                                  class="edit-month"
+                                                                                  ng-options="m for m in months" class=""
+                                                                                  required
+                                                                                  style="display:inline!important;">
+                                                                        <option value="">choose...</option>
+                                                                    </select>
+                                                                    <label for="" style="display:none;">Year</label>
+                                                                    <input type="text"
+                                                                           class="form-control form-inline input-sm profile-forms year"
+                                                                           name="experience1TimePeriodYear "
+                                                                           ng-model="resumePosition.startYear" maxlength="4"
+                                                                           placeholder="Year"
+                                                                           style="display:inline!important;">
+                                                                    <span class="to">-</span></span>
+                                    </li>
+                                    <li class="end-date" style="display:inline!important;">
+                                        <div class="ended-position" style="display:inline!important;">
+                                                                    <span ng-hide="resumePosition.stillHere"><select
+                                                                            ng-model="resumePosition.endMonth"
+                                                                            class="edit-month"
+                                                                            ng-options="m for m in months" class="" required
+                                                                            style="display:inline!important;">
+                                                                        <option value="">choose...</option>
+                                                                    </select>
+                                                                    <label for="" style="display:none;">Year</label>
+                                                                    <input type="text"
+                                                                           class="form-control form-inline input-sm profile-forms year"
+                                                                           name="experience1TimePeriodYear "
+                                                                           ng-model="resumePosition.endYear" maxlength="4"
+                                                                           placeholder="Year"
+                                                                           style="display:inline!important;"></span>
+                                            <span ng-show="resumePosition.stillHere">to present</span>
+                                        </div>
+
+                                        <label class="checkbox" id="still-here">
+                                            <input type="checkbox" ng-model="resumePosition.stillHere">
+                                            I currently work here
+                                        </label>
+                                    </li>
+                                </ul>
+                            </fieldset>
+                        </li>
+                        <li id="experience-summary">
+                            <label for="">Description</label>
+
+                            <div class="fieldgroup">
+                                <textarea name="experience1Summary" class="edit-experience" cols="80" rows="6"
+                                          ng-model="resumePosition.description "></textarea>
+                            </div>
+                            <!--<button type="button" class="btn btn-xs btn-primary" ng-click="saveBottomCard()">Save</button>-->
+                            <!--<button type="button" class="btn btn-xs btn-primary" ng-click="saveBottomCard()">Cancel</button>-->
+                            <a href class="" ng-click="removePositionAlert()">
+                                <span class=""><small>Remove this position</small></span>
+                            </a>
+                        </li>
+                    </div>
+                </div>
+            </ul>
+            <div class="bottom-card-profile-actions-edit">
+                <ul>
+                    <li style="padding-top: 8px; padding-bottom: 2px; padding-left: 0px; padding-right: 12px; font-size: 11px; line-height: 1.2em;">
+                    </li>
+                </ul>
+                <div ng-show="isEditMode" ng-click="saveResumePositionEdit(positionIndex)"
+                     class="top-card-profile-right-actions" style="display: table-cell;border-left: 1px solid #ccc;padding: 8px 10px 7px 10px; background-color: #ececec;
+                            background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);font-size: 13px;vertical-align: middle; cursor: pointer;float:right;">
+                    <i class="fa fa-check fa-lg"></i> Save Changes
+                </div>
+                <div ng-show="isEditMode" ng-click="restorePreviousResumePosition(positionIndex)"
+                     class="bottom-card-profile-right-actions-edit">
+                    <i class="fa fa-undo fa-lg"></i> Cancel
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

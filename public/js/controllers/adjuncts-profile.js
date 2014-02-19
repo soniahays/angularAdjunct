@@ -456,42 +456,20 @@ angular.module('adjunct.controllers')
                 status: null,
                 group: null
             };
+
             $scope.users.push($scope.inserted);  }
 
-//        $scope.tabs = [
-//            {title:'Summary', page: 'about.html'},
-//            {title:'Questions', page: 'home.html'}
-//
-//        ];
-
-//        $scope.tabs = [
-//            {
-//                "title": "Home",
-//                "content": "Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica."
-//            },
-//            {
-//                "title": "Profile",
-//                "content": "Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee."
-//            },
-//            {
-//                "title": "About",
-//                "template": "tab/docs/pane.tpl.demo.html",
-//                "content": "Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade."
-//            }
-//        ];
-
-        $scope.tabs = [
-            {
-                "title": "Summary",
-                "content": "Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.",
-
-            },
-            {
-                "title": "Questions",
-                "content": "Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee."
-            }
-        ];
-        $scope.tabs.activeTab = 1;
+            $scope.tabs = [
+                {
+                    "title": "Summary",
+                    "template": "partial/adjuncts-profile-summary"
+                },
+                {
+                    "title": "Questions",
+                    "template": "partial/adjuncts-profile-questions"
+                }
+            ];
+            $scope.tabs.activeTab = 1;
 
 
 

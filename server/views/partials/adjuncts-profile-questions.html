@@ -1,0 +1,119 @@
+
+        <strong>Rate your experience on a scale of 1 to 5:</strong>
+        <br/>
+        - Designing syllabuses:<br/>
+        <input type="radio" ng-model="user.survey.syllabusDesign" value="1"> 1
+        <input type="radio" ng-model="user.survey.syllabusDesign" value="2"> 2
+        <input type="radio" ng-model="user.survey.syllabusDesign" value="3"> 3
+        <input type="radio" ng-model="user.survey.syllabusDesign" value="4"> 4
+        <input type="radio" ng-model="user.survey.syllabusDesign" value="5"> 5 <br/>
+
+        - Designing Technology Enabled Instructional material:<br/>
+        <input type="radio" ng-model="user.survey.technologyDesign" value="1"> 1
+        <input type="radio" ng-model="user.survey.technologyDesign" value="2"> 2
+        <input type="radio" ng-model="user.survey.technologyDesign" value="3"> 3
+        <input type="radio" ng-model="user.survey.technologyDesign" value="4"> 4
+        <input type="radio" ng-model="user.survey.technologyDesign" value="5"> 5 <br/>
+
+        - Giving Student Centered Feedback:<br/>
+        <input type="radio" ng-model="user.survey.studFeedback" value="1"> 1
+        <input type="radio" ng-model="user.survey.studFeedback" value="2"> 2
+        <input type="radio" ng-model="user.survey.studFeedback" value="3"> 3
+        <input type="radio" ng-model="user.survey.studFeedback" value="4"> 4
+        <input type="radio" ng-model="user.survey.studFeedback" value="5"> 5 <br/>
+
+        - Taking into account Summative Feedback:<br/>
+        <input type="radio" ng-model="user.survey.sumFeedback" value="1"> 1
+        <input type="radio" ng-model="user.survey.sumFeedback" value="2"> 2
+        <input type="radio" ng-model="user.survey.sumFeedback" value="3"> 3
+        <input type="radio" ng-model="user.survey.sumFeedback" value="4"> 4
+        <input type="radio" ng-model="user.survey.sumFeedback" value="5"> 5 <br/>
+
+        <br/>
+
+        <strong>Are you proficient with Learning Management Systems?</strong><br/>
+        <input type="radio" ng-model="user.survey.lMS" value="yes"> yes
+        <input type="radio" ng-model="user.survey.lMS" value="no"> no
+
+        <div ng-show="user.survey.lMS=='yes'">
+            - What LMS do work with?
+
+            <div id="content">
+                <div id="content-left">
+                    <input type="checkbox" ng-model="user.badges.blackboard" ng-true-value="blackboard"><img
+                        class="badge-form-thumb" ng-src="/img/badges/blackboard.png"/>
+                    <small>Blackboard</small>
+                    <br/>
+                    <input type="checkbox" ng-model="user.badges.canvas" ng-true-value="canvas"><img
+                        class="badge-form-thumb" ng-src="/img/badges/canvas.png"/>
+                    <small>Canvas</small>
+                    <br/>
+                    <input type="checkbox" ng-model="user.badges.desire2learn" ng-true-value="desire2learn"><img
+                        class="badge-form-thumb" ng-src="/img/badges/desire2learn.png"/>
+                    <small>Desire2Learn</small>
+                    <br/>
+                    <input type="checkbox" ng-model="user.badges.sakai" ng-true-value="sakai"><img
+                        class="badge-form-thumb" ng-src="/img/badges/sakai.png"/>
+                    <small>Sakai</small>
+                    <br/>
+                    <input type="checkbox" ng-model="user.badges.softchalk" ng-true-value="softchalk"><img
+                        class="badge-form-thumb" ng-src="/img/badges/softchalk.png"/>
+                    <small>SoftChalk</small>
+                    <br/>
+                </div>
+                <div id="content-right">
+                    <input type="checkbox" ng-model="user.badges.connect" ng-true-value="connect"><img
+                        class="badge-form-thumb" ng-src="/img/badges/connect.png"/>
+                    <small>Adobe Connect</small>
+                    <br/>
+                    <input type="checkbox" ng-model="user.badges.captivate" ng-true-value="captivate"><img
+                        class="badge-form-thumb" ng-src="/img/badges/captivate.png"/>
+                    <small>Adobe Captivate</small>
+                    <br/>
+                    <input type="checkbox" ng-model="user.badges.camtasia" ng-true-value="camtasia"><img
+                        class="badge-form-thumb" ng-src="/img/badges/camtasia.png"/>
+                    <small>Camtasia</small>
+                    <br/>
+                    <input type="checkbox" ng-model="user.badges.omeka" ng-true-value="omeka"><img
+                        class="badge-form-thumb" ng-src="/img/badges/omeka.png"/>
+                    <small>Omeka</small>
+                    <br/>
+                    <input type="checkbox" ng-model="user.badges.zotero" ng-true-value="zotero"><img
+                        class="badge-form-thumb" ng-src="/img/badges/zotero.png"/>
+                    <small>Zotero</small>
+                    <br/>
+                </div>
+            </div>
+            <div id="footer" style="width:380px">
+                <input type="checkbox" ng-model="user.badges.powerpoint" ng-true-value="powerpoint"><img
+                    class="badge-form-mini-thumb" ng-src="/img/badges/powerpoint.png"/>
+                <small>PowerPoint</small>
+                , <input type="checkbox" ng-model="user.badges.prezi" ng-true-value="prezi"><img
+                    class="badge-form-mini-thumb" ng-src="/img/badges/prezi.png"/>
+                <small>Prezi</small>
+                , <input type="checkbox" ng-model="user.badges.keynote" ng-true-value="keynote"><img
+                    class="badge-form-mini-thumb" ng-src="/img/badges/keynote.png"/>
+                <small>Keynote</small>
+                ,<br/> <input type="checkbox" ng-model="user.badges.handBrake" ng-true-value="handBrake"><img
+                    class="badge-form-mini-thumb" ng-src="/img/badges/handbrake.png"/>
+                <small>HandBrake</small>
+                </span>
+                , <input type="checkbox" ng-model="user.badges.audacity" ng-true-value="audacity"><img
+                    class="badge-form-mini-thumb" ng-src="/img/badges/audacity.png"/>
+                <small>Audacity</small>
+                ,<br/> <input type="checkbox" ng-model="user.badges.explaineverything"
+                              ng-true-value="explaineverything"><img class="badge-form-mini-thumb"
+                                                                     ng-src="/img/badges/explaineverything.png"/>
+                <small>ExplainEverything</small>
+                , <input type="checkbox" ng-model="user.badges.ibookauthor" ng-true-value="ibookauthor"><img
+                    class="badge-form-mini-thumb" ng-src="/img/badges/ibookauthor.png"/>
+                <small>iBookAuthor</small>
+
+            </div>
+            <div id="bottom"></div>
+
+        </div>
+        <br/>
+        <strong>Do you have Instructional Design Experience?</strong><br/>
+        <input type="radio" ng-model="user.survey.instructionalDesign" value="Yes"> yes
+        <input type="radio" ng-model="user.survey.instructionalDesign" value="No"> no
