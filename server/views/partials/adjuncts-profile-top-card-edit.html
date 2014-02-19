@@ -26,51 +26,137 @@
         <div class="profile-overview col-sm-8 col-md-8">
                     <!--<div class="profile-overview-content-edit" style="margin-left: 0px; padding-left: 15px;padding-right: 0px; margin-right: 0">-->
                         <div class="profile-overview-content col-sm-12 col-md-12" style="margin-top: 30px">
+                            <div>
+                                    <ul class="top-profile-card-xedit">
+                                        <li>
+                                            <!--<div id="name-container">-->
+                                            <h2 style="font-weight:bold; font-size: 20px;margin:0;">
+                                                    <span editable-text="user.firstName" e-name="firstName" e-form="rowform" e-style="font-size: 15px;height: 24px;border-radius: 1px;" e-required>
+                                                      {{ user.firstName || 'Edit name' }}
+                                                    </span>
+                                            </h2>
+                                        </li>
+                                        <li>
+                                            <h2 style="font-weight:bold; font-size: 20px;margin:0;">
+                                                    <span editable-text="user.lastName" e-name="lastName" e-style="font-size: 15px;height: 24px;border-radius: 1px;" e-form="rowform"e-required>
+                                                      {{ user.lastName }}
+                                                    </span>
+                                            </h2>
+                                            <!--</div>-->
+                                        </li>
+                                        <li>
+                                            <!-- form -->
+                                            <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == user">
+                                                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                                                    save
+                                                </button>
+                                                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+                                                    cancel
+                                                </button>
+                                            </form>
+                                            <div class="buttons" ng-show="!rowform.$visible">
+                                                <button class="btn btn-default" ng-click="rowform.$show()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                            </div>
+
+                            <ul class="top-profile-card-xedit">
+
+                                    <li>
+                                        <!--<div id="name-container">-->
+                                            <span editable-text="user.currentPosition" e-name="currentPosition" e-form="rowform2" e-style="font-size: 15px;height: 24px;border-radius: 1px;width:150px;" e-required>
+                                              {{ user.currentPosition || "Edit position title" }}
+                                            </span>
+                                    </li>
+                                    <li>
+                                            <span editable-select="user.field" e-name="fieldName" e-style="font-size: 15px;height: 24px;border-radius: 1px;width:150px;" e-form="rowform2" e-ng-options="f.id as f.text for f in fieldGroups" e-required>
+                                              <span ng-hide="!user.field || !user.currentPosition">|</span>
+                                              {{ user.fieldName }}
+                                            </span>
+                                        <!--</div>-->
+                                    </li>
+                                    <li>
+                                        <!-- form -->
+                                        <form editable-form name="rowform2" ng-show="rowform2.$visible" class="form-buttons form-inline" shown="inserted == user">
+                                            <button type="submit" ng-disabled="rowform2.$waiting" class="btn btn-primary">
+                                                save
+                                            </button>
+                                            <button type="button" ng-disabled="rowform2.$waiting" ng-click="rowform2.$cancel()" class="btn btn-default">
+                                                cancel
+                                            </button>
+                                        </form>
+                                        <div class="buttons" ng-show="!rowform2.$visible">
+                                            <button class="btn btn-default" ng-click="rowform2.$show()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
+                                        </div>
+                                    </li>
+
+                            </ul>
+                                <ul class="top-profile-card-xedit">
+                                    <li>
+                                            <span editable-select="user.institution" e-name="institution" e-style="font-size: 15px;height: 24px;border-radius: 1px;width:250px;" e-form="rowform3" e-ng-options="f.id as f.text for f in institutions" e-require>
+                                              {{ user.institutionName }}
+                                            </span>
+                                        <!--</div>-->
+                                    </li>
+                                    <li>
+                                        <!-- form -->
+                                        <form editable-form name="rowform3" ng-show="rowform3.$visible" class="form-buttons form-inline" shown="inserted == user">
+                                            <button type="submit" ng-disabled="rowform3.$waiting" class="btn btn-primary">
+                                                save
+                                            </button>
+                                            <button type="button" ng-disabled="rowform3.$waiting" ng-click="rowform3.$cancel()" class="btn btn-default">
+                                                cancel
+                                            </button>
+                                        </form>
+                                        <div class="buttons" ng-show="!rowform3.$visible">
+                                            <button class="btn btn-default" ng-click="rowform3.$show()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            <div class="text-muted" id="demographic-info-editing">
+                                <ul class="top-profile-card-xedit">
+                                    <li>
+                                        <!--<div id="name-container">-->
+                                            <span editable-text="user.city" e-name="city" e-form="rowform4" e-style="font-size: 15px;height: 24px;border-radius: 1px;width:150px;" e-required>
+                                              {{ user.city || "Edit location"}}
+                                            </span>
+                                    </li>
+                                    <li>
+                                            <span editable-select="user.country" e-name="fieldName" e-style="font-size: 15px;height: 24px;border-radius: 1px;width:150px;" e-form="rowform4" e-ng-options="c.id as c.text for c in countries" e-required>
+                                              <span ng-hide="!user.city || !user.countryName">|</span>
+                                              {{ user.countryName }}
+                                            </span>
+                                        <!--</div>-->
+                                    </li>
+                                    <li>
+                                        <!-- form -->
+                                        <form editable-form name="rowform4" ng-show="rowform4.$visible" class="form-buttons form-inline" shown="inserted == user">
+                                            <button type="submit" ng-disabled="rowform4.$waiting" class="btn btn-primary">
+                                                save
+                                            </button>
+                                            <button type="button" ng-disabled="rowform4.$waiting" ng-click="rowform4.$cancel()" class="btn btn-default">
+                                                cancel
+                                            </button>
+                                        </form>
+                                        <div class="buttons" ng-show="!rowform4.$visible">
+                                            <button class="btn btn-default" ng-click="rowform4.$show()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            </br>
+
+
+
+
+
+
                             <div class="lead lead-custom masthead">
-                                <div id="name-container">
-                                    <h2 style="font-weight:bold; font-size: 20px;">
-                                         <span editable-text="user.firstName"  e-form="textBtnForm">
-                                            {{ user.firstName || "Edit name"}}
-                                         </span>
-                                         <span editable-text="user.lastName"  e-form="textBtnForm">
-                                            {{ user.lastName }}
-                                         </span>
-                                        <button class="btn btn-default" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible" style ="background-color: white;border-color: white;color: #0073b2;">
-                                            <i class="fa fa-pencil"></i>
-                                        </button>
-                                    </h2>
-                                </div>
-                                <div id="headline-container-editing">
-                                    <span editable-text="user.currentPosition" e-form="headLineBtnForm">
-                                            {{ user.currentPosition || "Edit position title" }}
-                                         </span>
-                                         <span editable-select="user.field"  e-form="headLineBtnForm" e-ng-options="f.id as f.text for f in fieldGroups">
-                                           <span ng-hide="!user.field || !user.currentPosition">|</span>
-                                             {{ user.fieldName }}
-                                         </span>
-                                    <button class="btn btn-default" ng-click="headLineBtnForm.$show()" ng-hide="headLineBtnForm.$visible" style="background-color: white;border-color: white;color: #0073b2;">
-                                        <i class="fa fa-pencil"></i>
-                                    </button>
-                                </div>
-                                <div id="institution-container-editing">
-                                    <span editable-select="user.institution" e-form="institutionBtnForm" e-ng-options="f.id as f.text for f in institutions">
-                                       <span ng-hide="!user.institution">at</span>  {{ user.institutionName }}
-                                     </span>
-                                    <button class="btn btn-default" ng-click="institutionBtnForm.$show()" ng-hide="institutionBtnForm.$visible"style ="background-color: white;border-color: white;color: #0073b2;">
-                                        <i class="fa fa-pencil"></i>
-                                    </button>
-                                </div>
-                                <div class="text-muted" id="demographic-info-editing">
-                                         <span editable-text="user.city"  e-form="demographicBtnForm">
-                                            {{ user.city || "Edit location" }}<span ng-hide="!user.city || !user.country">,</span>
-                                         </span>
-                                         <span editable-select="user.country" e-form="demographicBtnForm" e-ng-options="c.id as c.text for c in countries">
-                                            {{ user.countryName }}
-                                         </span>
-                                    <button class="btn btn-default" ng-click="demographicBtnForm.$show()" ng-hide="demographicBtnForm.$visible" style="background-color: white;border-color: white;color: #0073b2;">
-                                        <i class="fa fa-pencil"></i>
-                                    </button>
-                                </div>
+
+
+
+
                                 <div id="education-container-editing">
                                     <span editable-select="user.edDegree" e-form="educationBtnForm" e-ng-options="c.id as c.text for c in edDegrees">
                                        {{ user.edDegreeName }}

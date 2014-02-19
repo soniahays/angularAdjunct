@@ -45,8 +45,10 @@ angular.module('adjunct', [
         angular.extend($dropdownProvider.defaults, {
             trigger: 'click'
         });
-    }]).run(function(editableOptions){
-        editableOptions.theme='bs3';
+    }]).run(function(editableOptions, editableThemes){
+        editableOptions.theme = 'default';
+        editableThemes['default'].submitTpl = '<button type="submit" style="float:right;">Save</button>';
+
     });
 
 angular.module('adjunct.filters', []);

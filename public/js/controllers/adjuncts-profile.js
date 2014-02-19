@@ -437,4 +437,29 @@ angular.module('adjunct.controllers')
             return isStillHere ? universityTermStart +" "+ startYear + " - Present" : universityTermStart +" "+ startYear + " - " + universityTermEnd +" "+ endDate.year ;
 
         }
+
+
+
+        $scope.saveUser = function(data, id) {
+            //$scope.user not updated yet
+            angular.extend(data, {id: id});
+            return $http.post('/saveUser', data);
+        };
+
+        // add user
+        $scope.addUser = function() {
+            $scope.inserted = {
+                id: $scope.users.length+1,
+                name: '',
+                status: null,
+                group: null
+            };
+            $scope.users.push($scope.inserted);  }
+
+
+
+
+
+
+
     }]);

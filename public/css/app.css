@@ -2405,6 +2405,24 @@ a.editable-click:hover {
     font-size:14px;
 }
 
+.custom-table{
+    margin:0;
+}
+.custom-table>thead>tr>th, .custom-table>tbody>tr>th, .custom-table>tfoot>tr>th, .custom-table>thead>tr>td, .custom-table>tbody>tr>td, .custom-table>tfoot>tr>td {
+    padding: 8px;
+    line-height: 1;
+    vertical-align: top;
+    border-style:none;
+    margin:0;
+}
+
+.top-profile-card-xedit>li{
+    float:left;
+}
+.top-profile-card-xedit{
+    clear:left;
+}
+
 /*for signup modal*/
 /*.panel-body{*/
 /*width: 315px;*/
