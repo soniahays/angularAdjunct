@@ -2032,7 +2032,7 @@ body { font-family: Arial, sans-serif; }
     /*height:180px; */
     position: relative;
     padding-bottom: 25px;
-    margin-top:9px;
+    margin-top:20px;
     margin-left:0px;
     margin-right:20px !important;
     padding-left:10px;
@@ -2418,11 +2418,32 @@ a.editable-click:hover {
 
 .top-profile-card-xedit>li{
     float:left;
+
 }
 .top-profile-card-xedit{
     clear:left;
 }
+.top-card-text-xedit{
+    padding:4px;
+}
 
+#tags-container{
+    padding-bottom:15px;
+}
+.top-profile-form-xedit{
+    font-size: 14px;
+    height: 24px;
+    border-radius: 1px;
+    padding: 2px 5px;
+    margin: 0 5px;
+}
+
+.cst-btn-xedit{
+    background-color: white;
+    border-color: white;
+    color: #0073b2;
+    padding: 0;
+}
 /*for signup modal*/
 /*.panel-body{*/
 /*width: 315px;*/

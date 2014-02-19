@@ -47,7 +47,7 @@ angular.module('adjunct', [
         });
     }]).run(function(editableOptions, editableThemes){
         editableOptions.theme = 'default';
-        editableThemes['default'].submitTpl = '<button type="submit" style="float:right;">Save</button>';
+        editableThemes['default'].submitTpl = '<button type="submit" style="float:right;"><i class="fa fa-check"></i></button>';
 
     });
 

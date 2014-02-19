@@ -23,22 +23,22 @@
                 </div>
             </div>
         </div>
-        <div class="profile-overview col-sm-8 col-md-8">
+        <div class="profile-overview col-sm-8 col-md-8" style="margin-left:30px;">
                     <!--<div class="profile-overview-content-edit" style="margin-left: 0px; padding-left: 15px;padding-right: 0px; margin-right: 0">-->
-                        <div class="profile-overview-content col-sm-12 col-md-12" style="margin-top: 30px">
+                        <div class="profile-overview-content col-sm-12 col-md-12" style="margin: 20px 0;">
                             <div>
                                     <ul class="top-profile-card-xedit">
                                         <li>
                                             <!--<div id="name-container">-->
                                             <h2 style="font-weight:bold; font-size: 20px;margin:0;">
-                                                    <span editable-text="user.firstName" e-name="firstName" e-form="rowform" e-style="font-size: 15px;height: 24px;border-radius: 1px;" e-required>
+                                                    <span class="top-card-text-xedit" e-class="top-profile-form-xedit" editable-text="user.firstName" e-name="firstName" e-form="rowform" e-required>
                                                       {{ user.firstName || 'Edit name' }}
                                                     </span>
                                             </h2>
                                         </li>
                                         <li>
                                             <h2 style="font-weight:bold; font-size: 20px;margin:0;">
-                                                    <span editable-text="user.lastName" e-name="lastName" e-style="font-size: 15px;height: 24px;border-radius: 1px;" e-form="rowform"e-required>
+                                                    <span class="top-card-text-xedit" e-class="top-profile-form-xedit" editable-text="user.lastName" e-name="lastName"  e-form="rowform"e-required>
                                                       {{ user.lastName }}
                                                     </span>
                                             </h2>
@@ -48,7 +48,7 @@
                                             <!-- form -->
                                             <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == user">
                                                 <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
-                                                    save
+                                                    <i class="fa fa-check"></i>
                                                 </button>
                                                 <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
                                                     cancel
@@ -65,12 +65,12 @@
 
                                     <li>
                                         <!--<div id="name-container">-->
-                                            <span editable-text="user.currentPosition" e-name="currentPosition" e-form="rowform2" e-style="font-size: 15px;height: 24px;border-radius: 1px;width:150px;" e-required>
+                                            <span class="top-card-text-xedit" e-class="top-profile-form-xedit"  editable-text="user.currentPosition" e-name="currentPosition" e-form="rowform2" e-style="width:150px;" e-required>
                                               {{ user.currentPosition || "Edit position title" }}
                                             </span>
                                     </li>
                                     <li>
-                                            <span editable-select="user.field" e-name="fieldName" e-style="font-size: 15px;height: 24px;border-radius: 1px;width:150px;" e-form="rowform2" e-ng-options="f.id as f.text for f in fieldGroups" e-required>
+                                            <span class="top-card-text-xedit" e-class="top-profile-form-xedit"  editable-select="user.field" e-name="fieldName" e-style="width:150px;" e-form="rowform2" e-ng-options="f.id as f.text for f in fieldGroups" e-required>
                                               <span ng-hide="!user.field || !user.currentPosition">|</span>
                                               {{ user.fieldName }}
                                             </span>
@@ -79,22 +79,22 @@
                                     <li>
                                         <!-- form -->
                                         <form editable-form name="rowform2" ng-show="rowform2.$visible" class="form-buttons form-inline" shown="inserted == user">
-                                            <button type="submit" ng-disabled="rowform2.$waiting" class="btn btn-primary">
-                                                save
+                                            <button type="submit" ng-disabled="rowform2.$waiting" class="btn btn-default cst-btn-xedit">
+                                                <i class="fa fa-check"></i>
                                             </button>
                                             <button type="button" ng-disabled="rowform2.$waiting" ng-click="rowform2.$cancel()" class="btn btn-default">
                                                 cancel
                                             </button>
                                         </form>
                                         <div class="buttons" ng-show="!rowform2.$visible">
-                                            <button class="btn btn-default" ng-click="rowform2.$show()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-default" ng-click="rowform2.$show()" class="cst-btn-xedit" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
                                         </div>
                                     </li>
 
                             </ul>
                                 <ul class="top-profile-card-xedit">
                                     <li>
-                                            <span editable-select="user.institution" e-name="institution" e-style="font-size: 15px;height: 24px;border-radius: 1px;width:250px;" e-form="rowform3" e-ng-options="f.id as f.text for f in institutions" e-require>
+                                            <span class="top-card-text-xedit" e-class="top-profile-form-xedit" editable-select="user.institution" e-name="institution" e-style="width:250px;" e-form="rowform3" e-ng-options="f.id as f.text for f in institutions" e-require>
                                               {{ user.institutionName }}
                                             </span>
                                         <!--</div>-->
@@ -102,8 +102,8 @@
                                     <li>
                                         <!-- form -->
                                         <form editable-form name="rowform3" ng-show="rowform3.$visible" class="form-buttons form-inline" shown="inserted == user">
-                                            <button type="submit" ng-disabled="rowform3.$waiting" class="btn btn-primary">
-                                                save
+                                            <button type="submit" ng-disabled="rowform3.$waiting" class="btn btn-default">
+                                                <i class="fa fa-check"></i>
                                             </button>
                                             <button type="button" ng-disabled="rowform3.$waiting" ng-click="rowform3.$cancel()" class="btn btn-default">
                                                 cancel
@@ -118,12 +118,12 @@
                                 <ul class="top-profile-card-xedit">
                                     <li>
                                         <!--<div id="name-container">-->
-                                            <span editable-text="user.city" e-name="city" e-form="rowform4" e-style="font-size: 15px;height: 24px;border-radius: 1px;width:150px;" e-required>
+                                            <span class="top-card-text-xedit" e-class="top-profile-form-xedit" editable-text="user.city" e-name="city" e-form="rowform4" e-style="width:150px;" e-required>
                                               {{ user.city || "Edit location"}}
                                             </span>
                                     </li>
                                     <li>
-                                            <span editable-select="user.country" e-name="fieldName" e-style="font-size: 15px;height: 24px;border-radius: 1px;width:150px;" e-form="rowform4" e-ng-options="c.id as c.text for c in countries" e-required>
+                                            <span class="top-card-text-xedit" e-class="top-profile-form-xedit" editable-select="user.country" e-name="fieldName" e-style="width:150px;" e-form="rowform4" e-ng-options="c.id as c.text for c in countries" e-required>
                                               <span ng-hide="!user.city || !user.countryName">|</span>
                                               {{ user.countryName }}
                                             </span>
@@ -133,7 +133,7 @@
                                         <!-- form -->
                                         <form editable-form name="rowform4" ng-show="rowform4.$visible" class="form-buttons form-inline" shown="inserted == user">
                                             <button type="submit" ng-disabled="rowform4.$waiting" class="btn btn-primary">
-                                                save
+                                                <i class="fa fa-check"></i>
                                             </button>
                                             <button type="button" ng-disabled="rowform4.$waiting" ng-click="rowform4.$cancel()" class="btn btn-default">
                                                 cancel
@@ -145,29 +145,30 @@
                                     </li>
                                 </ul>
                             </div>
-                            </br>
-
-
-
-
-
-
-                            <div class="lead lead-custom masthead">
-
-
-
-
-                                <div id="education-container-editing">
-                                    <span editable-select="user.edDegree" e-form="educationBtnForm" e-ng-options="c.id as c.text for c in edDegrees">
-                                       {{ user.edDegreeName }}
-                                     </span>
-                                    <button class="btn btn-default" ng-click="educationBtnForm.$show()" ng-hide="educationBtnForm.$visible" style ="background-color: white;border-color: white;color: #0073b2;">
-                                        <i class="fa fa-pencil"></i>
-                                    </button>
-                                </div>
+                            <div class="text-muted" id="">
+                                <ul class="top-profile-card-xedit">
+                                    <li>
+                                            <span class="top-card-text-xedit" e-class="top-profile-form-xedit" editable-select="user.edDegree" e-name="edDegreeName" e-style="width:150px;" e-form="educationBtnForm" e-ng-options="c.id as c.text for c in edDegrees" e-required>
+                                              {{ user.edDegreeName || "Edit education" }}
+                                            </span>
+                                    </li>
+                                    <li>
+                                        <form editable-form name="educationBtnForm" ng-show="educationBtnForm.$visible" class="form-buttons form-inline" shown="inserted == user">
+                                            <button type="submit" ng-disabled="educationBtnForm.$waiting" class="btn btn-primary">
+                                                <i class="fa fa-check"></i>
+                                            </button>
+                                            <button type="button" ng-disabled="educationBtnForm.$waiting" ng-click="educationBtnForm.$cancel()" class="btn btn-default">
+                                                cancel
+                                            </button>
+                                        </form>
+                                        <div class="buttons" ng-show="!educationBtnForm.$visible">
+                                            <button class="btn btn-default" ng-click="educationBtnForm.$show()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                        <div id="tags-container" style="padding-left: 15px; padding-bottom: 15px;">
+                        <div id="tags-container" style="padding-bottom: 15px;">
                             <label style="margin-bottom: 0px;margin-top: 5px;"><i class="fa fa-tag fa-lg"></i> Skills, and
                                 specializations (comma separated): </i></label>
                             <tags-input ng-model="user.expertiseTags"
