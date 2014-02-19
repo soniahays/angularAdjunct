@@ -8,7 +8,7 @@ module.exports = function (db, passport, bcrypt, _) {
     var ROOT_URL = "http://localhost:3000";
     switch (process.env.NODE_ENV) {
         case 'development':
-            ROOT_URL = "http://adjuncts-dev.herokuapp.com";
+            ROOT_URL = "http://adj-dev.herokuapp.com";
             break;
         case 'production':
             ROOT_URL = "http://adjuncts.herokuapp.com";
