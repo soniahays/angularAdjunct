@@ -1,11 +1,31 @@
 <div class="panel-default bottom-card-panel col-md-12" style="padding-left: 0px;padding-right: 0px;">
         <div class="panel-body profile-bottom-card">
                 <div class="bottom-card-profile-actions">
-                    <ul>
-                        <li>
-                            <h6><span><i class="fa fa-user fa-lg"></i> Summary</span></h6>
-                        </li>
-                    </ul>
+
+                    <!--<div ng-model ="tabs.index" bs-tabs>-->
+                        <!--<div ng-repeat="tab in tabs" data-title="{{tab}}">-->
+                            <!--<p>Contents from the chosen page:</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                   <!--<div ng-show="tabs.active()=='Profile'">Profile content</div>-->
+                   <!--<div ng-show="tabs.active()=='Home'">Home content</div>-->
+                   <!--<div ng-show="tabs.active()=='About'">About content</div>-->
+                    <div ng-model="tabs.activeTab" class="nav nav-tabs profile-nav-tabs" bs-tabs="tabs"></div></div>
+
+
+
+
+
+
+                    <!--<ul class="nav nav-tabs profile-nav-tabs">-->
+                        <!--<li class="active ">-->
+                            <!--<a href="#"> <h6><span><i class="fa fa-user fa-lg"></i> Summary</span></h6></a>-->
+                        <!--</li>-->
+                        <!--<li><a href="#"><h6 style="color:#333;">Questions</h6></a></li>-->
+                    <!--</ul>-->
+
+
                     <button ng-show="isEditMode" ng-click="showPersonalSummaryEdit()" ng-disabled="isPersonalSummaryShown" class="bottom-card-profile-right-actions">
                         <i class="fa fa-pencil-square-o fa-lg"></i> Edit
                     </button>

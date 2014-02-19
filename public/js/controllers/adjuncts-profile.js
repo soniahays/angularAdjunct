@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('AdjunctsProfileCtrl', ['$scope', '$http', '$cookies', '$q', '$location', '$filter', function ($scope, $http, $cookies, $q, $location, $filter) {
+    .controller('AdjunctsProfileCtrl', ['$scope', '$http', '$cookies', '$q', '$location', '$filter','$templateCache', function ($scope, $http, $cookies, $q, $location, $filter,$templateCache) {
 
         var userId = $('#userId').html();
 
@@ -152,6 +152,8 @@ angular.module('adjunct.controllers')
             function (error) {
                 console.log("get-adjuncts-profile-top-card didn't work", error);
             });
+
+
 
         $scope.months = [];
         var count = 0;
@@ -456,6 +458,40 @@ angular.module('adjunct.controllers')
             };
             $scope.users.push($scope.inserted);  }
 
+//        $scope.tabs = [
+//            {title:'Summary', page: 'about.html'},
+//            {title:'Questions', page: 'home.html'}
+//
+//        ];
+
+//        $scope.tabs = [
+//            {
+//                "title": "Home",
+//                "content": "Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica."
+//            },
+//            {
+//                "title": "Profile",
+//                "content": "Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee."
+//            },
+//            {
+//                "title": "About",
+//                "template": "tab/docs/pane.tpl.demo.html",
+//                "content": "Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade."
+//            }
+//        ];
+
+        $scope.tabs = [
+            {
+                "title": "Summary",
+                "content": "Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.",
+
+            },
+            {
+                "title": "Questions",
+                "content": "Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee."
+            }
+        ];
+        $scope.tabs.activeTab = 1;
 
 
 

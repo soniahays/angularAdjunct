@@ -703,12 +703,7 @@ float: left;
     border-bottom:0px;
     border-top:0px;
 }
-li:first-child{
-    border-top:1px!important;
-}
-li:last-child{
-    border-bottom:1px!important;
-}
+
 .competency-title-badge-section{
     margin-left: 2px;
     display:inline;
@@ -2447,6 +2442,47 @@ a.editable-click:hover {
     border-color: white;
     color: #0073b2;
     padding: 0;
+}
+.btn-valid-inline-xedit,.btn-cancel-inline-xedit{
+    border-radius:2px;
+    color:#0073b2;
+    padding: 1px 8px;
+    margin:0;
+}
+
+.profile-nav-tabs{
+    margin: 0;
+    padding: 0 0 !important;
+    height: 28px;
+
+}
+
+.profile-nav-tabs ul{
+    margin: 0;
+    padding: 0 0 !important;
+    height: 43px;
+    float:none;
+}
+
+.profile-nav-tabs>li .active>a{
+   padding: 7px 15px !important;
+
+}
+.profile-nav-tabs li>a{
+    /*padding: 7px 15px !important;*/
+    font-size: 15px;
+    border-radius: 3px 3px 0 0;
+
+}
+
+.profile-nav-tabs li{
+    padding: 0 0;
+
+}
+
+.profile-nav-tabs>li{
+    padding: 0 0;
+
 }
 /*for signup modal*/
 /*.panel-body{*/
