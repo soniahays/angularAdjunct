@@ -1,10 +1,38 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('SignupCtrl', ['$scope', '$rootScope', '$http', '$location', function ($scope, $rootScope, $http, $location) {
+    .controller('SignupCtrl', ['$scope', '$rootScope', '$http', '$location', '$alert', function ($scope, $rootScope, $http, $location, $alert) {
         $scope.user = {};
+        $scope.showRequiredError = false;
 
         $scope.connectManually = function () {
+
+            if ($scope.user.email == null || $scope.password == null || $scope.user.firstName == null || $scope.user.lastName == null || $scope.passwordConfirm == null) {
+                $('.alert').remove();
+                $alert({
+                    "content": "All fields are required",
+                    "type": "danger",
+                    "show": true,
+                    "placement": "top",
+                    "container": "#alerts-container"
+                });
+
+                return;
+            }
+
+            if ($scope.passwordConfirm != $scope.password) {
+                $('.alert').remove();
+                $alert({
+                    "content": "Passwords do not match",
+                    "type": "danger",
+                    "show": true,
+                    "placement": "top",
+                    "container": "#alerts-container"
+                });
+                return;
+            }
+
+            $scope.showRequiredError = false;
             $scope.user.email = encodeURIComponent($scope.user.email);
             $scope.user.password = $scope.password;
             $http.post('/api/signup', JSON.stringify({'user': $scope.user})).then(function(response){

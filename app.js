@@ -31,7 +31,7 @@ connect(function (err, db) {
     userDb = require('./server/userDb.js')(mongodb, db, bcrypt),
     jobDb = require ('./server/jobDb.js')(mongodb, db),
     institutionDb = require ('./server/institutionDb.js')(mongodb, db),
-        metadataDb = require ('./server/metadataDb.js')(mongodb, db),
+    metadataDb = require ('./server/metadataDb.js')(mongodb, db),
     pass = require('./server/passport.js')(userDb, passport, bcrypt, _);
 
     http.createServer(app).listen(app.get('port'), function () {
