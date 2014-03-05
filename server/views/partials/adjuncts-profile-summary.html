@@ -18,24 +18,26 @@
     </div>
 </div>
 
-<div id="summary-container" ng-hide="isPersonalSummaryShown" ng-show="!isPersonalSummaryShown">
+<div id="summary-container" ng-hide="isPersonalSummaryShown" ng-show="!isPersonalSummaryShown" style="margin-top:25px;">
              <span class=" lead user-summary lead" e-rows="12" e-cols="80">
+
                  <p ng-bind-html-unsafe="user.personalSummary | newlines"></p>
              </span>
 </div>
 
 <div class="bottom-card-profile-actions">
+    <button ng-show="isEditMode" ng-click="showResumeSectionEdit()" ng-disabled="isResumeSectionShown"
+            class="bottom-card-profile-right-actions">
+        <i class="fa fa-pencil-square-o fa-lg"></i> Edit
+    </button>
     <ul>
-        <li>
+        <li style="padding:8px 15px;margin-bottom: 15px;">
             <h6><span><i class="fa fa-clipboard fa-lg"></i> Experience</span>
             </h6>
         </li>
     </ul>
 
-    <button ng-show="isEditMode" ng-click="showResumeSectionEdit()" ng-disabled="isResumeSectionShown"
-            class="bottom-card-profile-right-actions">
-        <i class="fa fa-pencil-square-o fa-lg"></i> Edit
-    </button>
+
 </div>
 
 <p class="bottom-adjunct-add-position" ng-show="isResumeSectionShown" ng-hide="!isResumeSectionShown">

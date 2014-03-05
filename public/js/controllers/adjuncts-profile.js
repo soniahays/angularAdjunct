@@ -469,7 +469,7 @@ angular.module('adjunct.controllers')
                     "template": "partial/adjuncts-profile-questions"
                 }
             ];
-            $scope.tabs.activeTab = 1;
+            $scope.tabs.activeTab = 0;
 
 
 

@@ -2107,14 +2107,12 @@ body { font-family: Arial, sans-serif; }
 }
 
 #name-container,#name-container > h2{
-    line-height: 0.2;
+    line-height: 0.4;
 
-    margin-left:12px;
 }
 
 #headline-container{
     font-size: 0.6em;
-    margin-left:25px;
 }
 #headline{
     margin-top:5px;
@@ -2141,7 +2139,6 @@ body { font-family: Arial, sans-serif; }
 #demographic-info{
     font-size: 0.55em;
     text-decoration: none !important;
-    margin-left:25px;
 
 }
 
@@ -2151,7 +2148,6 @@ body { font-family: Arial, sans-serif; }
     text-decoration: none !important;
     font-size: 0.9em;
     vertical-align:text-top;
-    margin: 5px 25px 0;
 
 
 }
@@ -2477,6 +2473,11 @@ a.editable-click:hover {
 
 .profile-nav-tabs li{
     padding: 0 0;
+
+}
+
+.profile-nav-tabs a{
+    color: #333;
 
 }
 
