@@ -232,7 +232,7 @@ angular.module('adjunct.directives')
                 '<div class="competency-title-badge-section"></div>' +
                 '<div class="percentage-title-badge-section"></div>' +
                 '<div class="progress progress-custom progress-custom-badge-section">' +
-                '<div class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" />' +
+                '<div class="progress-bar progress-bar-custom"'+'id='+'role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" />' +
                 '</div>' +
                 '</div>'
         }

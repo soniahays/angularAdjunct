@@ -2,26 +2,26 @@
     <div class="bottom-card-profile-actions" style="border-bottom: 1px solid #5e5e67;background-color: #e1e1e1;height:43px;margin-bottom:25px;">
         <ul style="padding: 10px 0px;float:left;">
             <li style="padding-top: 4px; padding-bottom: 2px; padding-left: 10px; padding-right: 0px; font-size: 11px; line-height: 1.2em;">
-                <span style="font-size:15px;">Portfolio</span>
+                <span style="font-size:15px;"><i class="fa fa-folder-open "></i> Portfolio</span>
             </li>
         </ul>
-        <div ng-hide="isEditMode" ng-click="openCompetencyPortfolioModal()" class="top-card-profile-right-actions" style="display: table-cell;border-left: 1px solid #ccc;padding: 12px 15px 7px 15px; background-color: #ececec;
-    background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);height:42px;font-size: 13px;vertical-align: middle; cursor: pointer;float:right;">
-            <i class="fa  fa-search-plus fa-lg"></i>
-        </div>
-
-        <div ng-show="isEditMode" ng-click="openBadgeEditModal()" class="top-card-profile-right-actions" style="display: table-cell;border-left: 1px solid #ccc;padding: 12px 15px 7px 15px; background-color: #ececec;
+        <div ng-click="openCompetencyPortfolioModal()" class="top-card-profile-right-actions" style="display: table-cell;border-left: 1px solid #ccc;padding: 12px 15px 7px 15px; background-color: #ececec;
     background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);height:42px;font-size: 13px;vertical-align: middle; cursor: pointer;float:right;">
             <i class="fa fa-pencil-square-o fa-lg"></i>
         </div>
 
+        <!--<div ng-show="isEditMode" ng-click="openBadgeEditModal()" class="top-card-profile-right-actions" style="display: table-cell;border-left: 1px solid #ccc;padding: 12px 15px 7px 15px; background-color: #ececec;-->
+    <!--background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);height:42px;font-size: 13px;vertical-align: middle; cursor: pointer;float:right;">-->
+
+        <!--</div>-->
+
     </div>
     <div class="list-group-item-custom list-item-badge-section" style="position: relative; padding-right: 0px; padding-top: 0px;padding-left: 0px;padding-bottom: 20px;padding-top: 0px">
         <div class="badges-container" style="">
-            <h6 id="h6-text" style="font-weight: normal; font-size: 12px;margin-right:0;padding-left: 3px;">Learning Management Systems</h6>
+            <h6 id="h6-text"class="competency-title-badge-section">Learning Management Systems</h6>
             <ul class="badge" style="padding-left: 0px;">
                 <li ng-repeat="badge in filteredBadges" class="badge-thumbnail">
-                    <img ng-src="/img/badges/{{badge}}.png" alt="" style="width: 45px;height: 45px;"/>
+                    <img ng-src="/img/badges/{{badge}}.png" alt="" style="width: 35px;height: 35px;"/>
                 </li>
             </ul>
         </div>
@@ -40,3 +40,5 @@
         <div class="competency-title-badge-section"style="font-size:13px;margin-top:0;font-weight:bold;font-style:italic;color:#5e5e67;">{{user.survey.instructionalDesign}}</div>
     </div>
 </div>
+
+<!--<div ng-include="'/partial/upload-portfolio'"/>-->

@@ -637,6 +637,7 @@ border-width: 1px 0;
 }
 .bottom-card-panel{
     border-radius: 0!important;
+    /*background-color: white;*/
 }
 
 #bottom-card-post-job{
@@ -689,9 +690,8 @@ float: left;
    position:absolute;
    font-size:13px;
    margin-top:0;
-   font-weight:bold;
-   font-style:italic;
-   color:#5e5e67;
+   color: #adb2bb;
+
 
 }
 .list-item-badge-section{
@@ -708,7 +708,10 @@ float: left;
     margin-left: 2px;
     display:inline;
     font-size: 12px;
-    color: #333;
+    color: #7F8BA3;
+    font-weight: bold;
+    font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+
 }
 .progress-custom-badge-section{
     /*padding-left: 2px !important;*/
@@ -787,13 +790,7 @@ float: left;
 
 
 }
-/*progress progress-custom*/
-/*progress-bar progress-bar-custom*/
-.progress-bar-custom{
-    height:13px;
-    margin-bottom: 0px;
-    background-color: #EB7737;
-}
+
 
 .progress-custom-dashboard{
 border-radius: 0px;
@@ -1245,11 +1242,14 @@ ol, ul{
 
 }
 
+
+
 .progress-bar-custom{
     height:13px;
     margin-bottom: 10px;
-    background-color: #EB7737;
+    border-radius: 3px;
 }
+
 /*-----------------ICONS CUSTOM----------------------------*/
 .icon-car {
     background-image: url("http://cdn5.iconfinder.com/data/icons/Symbolicons_Transportation/24/Car.png");
@@ -1454,6 +1454,7 @@ body {
     padding-bottom: 30px;
     line-height: 1.4;
     -webkit-font-smoothing: antialiased;
+    background-color:#f7f7f7;
 }
 
 /* Finesse the page header spacing */
@@ -1731,9 +1732,9 @@ body { font-family: Arial, sans-serif; }
 
 
 .banner{
-    /*background: url("../img/BannerBackgroung.png") no-repeat;*/
+    background: url("/img/bannerBackground.png") no-repeat;
     background-color: white;
-    /*background-size: 100%;*/
+    background-size: 100%;
     margin-top: -10px;
 
 }
@@ -2484,6 +2485,9 @@ a.editable-click:hover {
 .profile-nav-tabs>li{
     padding: 0 0;
 
+}
+#syllabus-design{
+    background-color: #11ce9a;
 }
 /*for signup modal*/
 /*.panel-body{*/
