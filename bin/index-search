@@ -7,7 +7,7 @@ var http = require('http');
 
 function indexSearch() {
     var options = {
-        hostname: 'adjuncts-dev.herokuapp.com',
+        hostname: 'adj-dev.herokuapp.com',
         port: 80,
         path: '/api/index-search',
         method: 'POST'
