@@ -928,7 +928,9 @@ label, legend{
 ol, ul{
     list-style: none;
     padding-left:0px;
+    margin-bottom: 0px;
 }
+
 /*-----------------BADGES FORM SECTION----------------------------*/
 #badges-form-wrapper {
     width:700px;
@@ -1247,19 +1249,22 @@ ol, ul{
 .progress-bar-custom{
     height:13px;
     margin-bottom: 10px;
+
+}
+.bar-border-radius{
     border-radius: 3px;
 }
 .syllabus-design{
-    background-color: #11CE9A;
+    background-color: rgba(222, 144, 121, 0.85);
 }
 .technology-design{
-    background-color: #FFDE00;
+    background-color: rgba(243, 190, 64, 0.56);
 }
 .stud-feedback{
-    background-color: #6599FF;
+    background-color: rgba(91, 92, 119, 0.82);
 }
 .sum-feedback{
-    background-color: #FF9900;
+    background-color: rgba(116, 165, 86, 0.92);
 }
 
 /*-----------------ICONS CUSTOM----------------------------*/
