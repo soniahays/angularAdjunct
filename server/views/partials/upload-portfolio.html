@@ -1,53 +1,50 @@
-<!--<div id="upload-portfolio" class="modal" style="margin:100px 0 0 60px">-->
-    <div id="upload-portfolio">
-    <div class="modal-dialog modal-dialog-custom-competency-portfolio">
-        <div class="modal-content" style="height:550px; padding-left: 10px;padding-right: 25px;border-radius:0px;">
-            <div class="col-md-12 dashboard-upload-panel" style="padding-left:0px">
-                <div style="margin:20px 0 0 50px">
-                    <strong>Select a category:</strong><br/>
-                    <select ng-model="document.category">
-                        <option>Syllabus Design</option>
-                        <option>Technology Enabled Instruction</option>
-                        <option>Student Centered Feedback</option>
-                        <option>Summative Feedback</option>
-                        <option>Instructional Design</option>
-                        <option>Scholarly and Professional Contribution</option>
-                    </select>
-                    <br />
-                    <br />
-                    <strong>Enter a title:</strong><br/>
-                    <input type="text" class="portfolio-form" ng-model="document.title" required>
-                    <br />
-                    <br />
-                    <strong>Enter a description:</strong><br/>
-                    <textarea type="text" class="portfolio-form" ng-model="document.description" style="height:80px" required></textarea>
-                    <br/>
-                    <br/>
-                    <strong>Add media from a URL:</strong><br/>
-                        <label>Paste in the link of your Youtube video:</label></br>
-                        <div style="width:500px">
-                            <select ng-model="document.type">
-                                <option>Youtube</option>
-                                <option>PDF</option>
-                            </select>
-                            <input type="text" class="portfolio-form" ng-model="document.value" required>
-                        </div>
-                    <br/>
-                    <strong>Or add media from your computer:</strong></br>
-                        <div>
-                            <p>
-                                <label>Select a pdf file:</label>
-                                <input type="file" name="file"/>
-                            </p>
-                            <div ng-bind-html-unsafe="uploadResponse"></div>
-                        </div>
-                </div>
+<div id="upload-portfolio">
+    <div class="col-md-12 dashboard-upload-panel" style="padding-left:0px">
+        <div style="margin:20px 0 0 50px">
+            <strong>Select a category:</strong><br/>
+            <select ng-model="document.category">
+                <option>Syllabus Design</option>
+                <option>Technology Enabled Instruction</option>
+                <option>Student Centered Feedback</option>
+                <option>Summative Feedback</option>
+                <option>Instructional Design</option>
+                <option>Scholarly and Professional Contribution</option>
+            </select>
+            <br/>
+            <br/>
+            <strong>Enter a title:</strong><br/>
+            <input type="text" class="portfolio-form" ng-model="document.title" required>
+            <br/>
+            <br/>
+            <strong>Enter a description:</strong><br/>
+            <textarea type="text" class="portfolio-form" ng-model="document.description" style="height:80px"
+                      required></textarea>
+            <br/>
+            <br/>
+            <strong>Add media from a URL:</strong><br/>
+            <label>Paste in the link of your Youtube video:</label></br>
+            <div style="width:500px">
+                <select ng-model="document.type">
+                    <option>Youtube</option>
+                    <option>PDF</option>
+                </select>
+                <input type="text" class="portfolio-form" ng-model="document.value" required>
             </div>
-            <br />
-            <hr />
-            <div style="float:right">
-                <button class="btn btn-primary" data-dismiss="modal" ng-click="saveDocument()">Save</button>
+            <br/>
+            <strong>Or add media from your computer:</strong></br>
+            <div>
+                <p>
+                    <label>Select a pdf file:</label>
+                    <input type="file" name="file"/>
+                </p>
+                <div ng-bind-html-unsafe="uploadResponse"></div>
             </div>
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        </div>
+    </div>
+    <br/>
+    <hr/>
+    <div style="float:right">
+        <button class="btn" ng-click="closeAddDoc()">Close</button>
+        <button class="btn btn-primary" ng-click="saveDocument()">Save</button>
+    </div>
 </div>

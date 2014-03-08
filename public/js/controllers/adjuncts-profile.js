@@ -13,6 +13,8 @@ angular.module('adjunct.controllers')
 
         $scope.isEditMode = false;
         $scope.isPositionShown = false;
+        $scope.showAddDoc = false;
+        $scope.showVid = false;
 
         var isEditModeUrl = S($location.path()).endsWith('/edit') && $scope.canEdit;
 
@@ -327,6 +329,7 @@ angular.module('adjunct.controllers')
             $scope.frameUrl = url;
             $scope.docTitle = docTitle;
             $scope.docDescription = docDescription;
+            $scope.showAddDoc = false;
         }
 
         $scope.openBadgeEditModal = function () {
@@ -339,9 +342,12 @@ angular.module('adjunct.controllers')
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
         }
 
-        $scope.openUploadPortfolioModal = function () {
-            $('#upload-portfolio-modal').modal();
-            $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
+        $scope.openAddDoc = function () {
+            $scope.showAddDoc = true;
+        }
+
+        $scope.closeAddDoc = function() {
+            $scope.showAddDoc = false;
         }
 
         $scope.uploadComplete = function (content, completed) {

@@ -115,7 +115,8 @@
                 <!--<a href="#" ng-click="openUploadPortfolioModal()">Add a document...</a>-->
             </div>
             <div class="col-md-8 dashboard-display-panel" style="padding-left:0px;margin-top:0px;">
-                <div ng-include="'/partial/upload-portfolio'"  style="margin-top:5px;"/>
+                <div ng-include="'/partial/upload-portfolio'" ng-show="showAddDoc"/>
+                <div ng-hide="showAddDoc">
                 <div style="height:25px;padding:15px 5px 0 0;">{{docTitle}}</div>
                 <div style="margin-top:45px;">
 
@@ -133,6 +134,7 @@
                 <div>
                     <hr />
                     <button class="btn btn-primary" data-dismiss="modal" ng-click="savePortfolio()" style="float:right">Save</button>
+                </div>
                 </div>
             </div>
         </div>
