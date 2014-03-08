@@ -1249,6 +1249,18 @@ ol, ul{
     margin-bottom: 10px;
     border-radius: 3px;
 }
+.syllabus-design{
+    background-color: #11CE9A;
+}
+.technology-design{
+    background-color: #FFDE00;
+}
+.stud-feedback{
+    background-color: #6599FF;
+}
+.sum-feedback{
+    background-color: #FF9900;
+}
 
 /*-----------------ICONS CUSTOM----------------------------*/
 .icon-car {
