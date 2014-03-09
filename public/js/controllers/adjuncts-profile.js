@@ -15,7 +15,7 @@ angular.module('adjunct.controllers')
         $scope.isPositionShown = false;
         $scope.showAddDoc = false;
         $scope.showVid = false;
-        $scope.numberOfTagsToShow = 23;
+        $scope.maxNumberOfTagsToShow = 23;
 
         var isEditModeUrl = S($location.path()).endsWith('/edit') && $scope.canEdit;
 
@@ -386,6 +386,15 @@ angular.module('adjunct.controllers')
             });
         }
 
+        $scope.showMoreTags=function(){
+          $scope.maxNumberOfTagsToShow=9999;
+        }
+
+        $scope.showLessTags=function(){
+            $scope.maxNumberOfTagsToShow=23;
+        }
+
+
         $scope.savePortfolio = function() {
             $http.post('/api/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
         }
@@ -468,23 +477,31 @@ angular.module('adjunct.controllers')
                 group: null
             };
 
-            $scope.users.push($scope.inserted);  }
+            $scope.users.push($scope.inserted);
+        }
 
-            $scope.tabs = [
-                {
-                    "title": "Summary",
-                    "template": "partial/adjuncts-profile-summary"
-                },
-                {
-                    "title": "Questions",
-                    "template": "partial/adjuncts-profile-questions"
-                }
-            ];
-            $scope.tabs.activeTab = 0;
+        $scope.getCompetencyPercent = function(answer, category) {
+            var competencyPercent = answer*20;
 
+            var hasAttachedDocument = _.findWhere($scope.user.portfolioLinks, {'category': category }) != null;
 
+            if (!hasAttachedDocument){
+                competencyPercent -= 0.15 * competencyPercent;
+            }
 
+            return competencyPercent;
+        }
 
+        $scope.tabs = [
+            {
+                "title": "Summary",
+                "template": "partial/adjuncts-profile-summary"
+            },
+            {
+                "title": "Questions",
+                "template": "partial/adjuncts-profile-questions"
+            }
+        ];
 
-
+        $scope.tabs.activeTab = 0;
     }]);

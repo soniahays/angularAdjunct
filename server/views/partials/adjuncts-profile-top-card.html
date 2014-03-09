@@ -55,12 +55,14 @@
                         </tr>
                         </tbody>
                     </table>
-                    <div ng-repeat="item in user.expertiseTags | limitTo: numberOfTagsToShow" ng-if="user.expertiseTags.length > 0">
-                        <span class="tags">{{ item }}</span>
-                    </div>
-                    <div class="showtagslink">
-                        <a href="#" ng-click="numberOfTagsToShow=9999" ng-show="numberOfTagsToShow == 23">Show more tags</a>
-                        <a href="#" ng-click="numberOfTagsToShow=23" ng-show="numberOfTagsToShow == 9999">Show less tags</a>
+                    <div ng-if="user.expertiseTags.length > 0">
+                        <div ng-repeat="item in user.expertiseTags | limitTo: maxNumberOfTagsToShow">
+                            <span class="tags">{{ item }}</span>
+                        </div>
+                        <div class="showtagslink" ng-if="user.expertiseTags.length > 23">
+                            <a href="#" ng-click="showMoreTags()" ng-show="maxNumberOfTagsToShow == 23">Show more tags</a>
+                            <a href="#" ng-click="showLessTags()" ng-show="maxNumberOfTagsToShow == 9999">Show less tags</a>
+                        </div>
                     </div>
                 </div>
             </div>
