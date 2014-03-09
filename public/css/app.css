@@ -3,8 +3,8 @@ label, input, textarea, .input-prefix, .input-suffix, select, input[type="radio"
 }
 label {
     display: block;
-    padding-top: 7px;
-    padding-bottom: 7px;
+    /*padding-top: 7px;*/
+    /*padding-bottom: 7px;*/
 }
 
 input[type="checkbox"] {
@@ -2506,6 +2506,52 @@ a.editable-click:hover {
 #syllabus-design{
     background-color: #11ce9a;
 }
+.question-text{
+
+}
+.question-text p{
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 600;
+    color: #333;
+    display: inline;
+}
+
+#user-auto-assess input[type="radio"] {
+    position:absolute;
+    opacity: 0;
+    -moz-opacity: 0;
+    -webkit-opacity: 0;
+    -o-opacity: 0;
+}
+#user-auto-assess input[type="radio"] + label {
+    position:relative;
+    /*padding: 0 0 0 25px;*/
+    font-size: 16px;
+    line-height: 16px;
+}
+#user-auto-assess input[type="radio"] + label:before {
+    content:"";
+    display:inline-block;
+    /*position:absolute;*/
+    top:2px;
+    height: 14px;
+    width: 14px;
+    background: white;
+    border: 1px solid gray;
+    box-shadow: inset 0px 0px 0px 2px white;
+    -webkit-box-shadow: inset 0px 0px 0px 2px white;
+    -moz-box-shadow: inset 0px 0px 0px 2px white;
+    -o-box-shadow: inset 0px 0px 0px 2px white;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+#user-auto-assess input[type="radio"]:checked + label:before {
+    background: #ef8700;
+}
+
 /*for signup modal*/
 /*.panel-body{*/
 /*width: 315px;*/
