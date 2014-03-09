@@ -95,7 +95,7 @@
                                 <ul class="top-profile-card-xedit">
                                     <li>
                                             <span class="top-card-text-xedit" e-class="top-profile-form-xedit" editable-select="user.institution" e-name="institution" e-style="width:250px;" e-form="rowform3" e-ng-options="f.id as f.text for f in institutions" e-require>
-                                              {{ user.institutionName }}
+                                              {{ user.institutionName||"Edit institution" }}
                                             </span>
                                         <!--</div>-->
                                     </li>
