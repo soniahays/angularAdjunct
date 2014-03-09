@@ -15,6 +15,7 @@ angular.module('adjunct.controllers')
         $scope.isPositionShown = false;
         $scope.showAddDoc = false;
         $scope.showVid = false;
+        $scope.numberOfTagsToShow = 23;
 
         var isEditModeUrl = S($location.path()).endsWith('/edit') && $scope.canEdit;
 
@@ -32,28 +33,32 @@ angular.module('adjunct.controllers')
         $scope.$watch('user.country', function(newVal, oldVal) {
             if (newVal !== oldVal) {
                 var selected = $filter('filter')($scope.countries, {id: $scope.user.country});
-                $scope.user.countryName = selected.length ? selected[0].text : null;
+                if (selected)
+                    $scope.user.countryName = selected.length ? selected[0].text : null;
             }
         });
 
         $scope.$watch('user.field', function(newVal, oldVal) {
             if (newVal !== oldVal) {
                 var selected = $filter('filter')($scope.fieldGroups, {id: $scope.user.field});
-                $scope.user.fieldName = selected.length ? selected[0].text : null;
+                if (selected)
+                    $scope.user.fieldName = selected.length ? selected[0].text : null;
             }
         });
 
         $scope.$watch('user.edDegree', function(newVal, oldVal) {
             if (newVal !== oldVal) {
                 var selected = $filter('filter')($scope.edDegrees, {id: $scope.user.edDegree});
-                $scope.user.edDegreeName = selected.length ? selected[0].text : null;
+                if (selected)
+                    $scope.user.edDegreeName = selected.length ? selected[0].text : null;
             }
         });
 
         $scope.$watch('user.institution', function(newVal, oldVal) {
             if (newVal !== oldVal) {
                 var selected = $filter('filter')($scope.institutions, {id: $scope.user.institution});
-                $scope.user.institutionName = selected.length ? selected[0].text : null;
+                if (selected)
+                    $scope.user.institutionName = selected.length ? selected[0].text : null;
             }
         });
 

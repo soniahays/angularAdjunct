@@ -38,7 +38,7 @@
                                         </li>
                                         <li>
                                             <h2 style="font-weight:bold; font-size: 20px;margin:0;line-height:1;">
-                                                    <span class="top-card-text-xedit" e-class="top-profile-form-xedit" editable-text="user.lastName" e-name="lastName"  e-form="rowform"e-required>
+                                                    <span class="top-card-text-xedit" e-class="top-profile-form-xedit" editable-text="user.lastName" e-name="lastName" e-form="rowform" e-required>
                                                       {{ user.lastName }}
                                                     </span>
                                             </h2>
@@ -55,7 +55,7 @@
                                                 </button>
                                             </form>
                                             <div class="buttons" ng-show="!rowform.$visible">
-                                                <button class="btn btn-default" ng-click="rowform.$show()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
+                                                <button class="btn btn-default" ng-click="rowform.$show(); rowform2.$hide(); rowform3.$hide(); rowform4.$hide(); educationBtnForm.$hide()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
                                             </div>
                                         </li>
                                     </ul>
@@ -87,7 +87,7 @@
                                             </button>
                                         </form>
                                         <div class="buttons" ng-show="!rowform2.$visible">
-                                            <button class="btn btn-default" ng-click="rowform2.$show()" class="cst-btn-xedit" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-default" ng-click="rowform2.$show(); rowform.$hide(); rowform3.$hide(); rowform4.$hide(); educationBtnForm.$hide()" class="cst-btn-xedit" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
                                         </div>
                                     </li>
 
@@ -110,7 +110,7 @@
                                             </button>
                                         </form>
                                         <div class="buttons" ng-show="!rowform3.$visible">
-                                            <button class="btn btn-default" ng-click="rowform3.$show()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-default" ng-click="rowform3.$show(); rowform.$hide(); rowform2.$hide(); rowform4.$hide(); educationBtnForm.$hide()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
                                         </div>
                                     </li>
                                 </ul>
@@ -140,7 +140,7 @@
                                             </button>
                                         </form>
                                         <div class="buttons" ng-show="!rowform4.$visible">
-                                            <button class="btn btn-default" ng-click="rowform4.$show()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-default" ng-click="rowform4.$show(); rowform.$hide(); rowform2.$hide(); rowform3.$hide(); educationBtnForm.$hide()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
                                         </div>
                                     </li>
                                 </ul>
@@ -162,7 +162,7 @@
                                             </button>
                                         </form>
                                         <div class="buttons" ng-show="!educationBtnForm.$visible">
-                                            <button class="btn btn-default" ng-click="educationBtnForm.$show()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-default" ng-click="educationBtnForm.$show(); rowform.$hide(); rowform2.$hide(); rowform3.$hide(); rowform4.$hide();" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
                                         </div>
                                     </li>
                                 </ul>

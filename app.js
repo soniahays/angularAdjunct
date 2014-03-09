@@ -364,7 +364,7 @@ app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE
 
 app.get('/auth/linkedin/callback',
     passport.authenticate('linkedin', {
-        successReturnToOrRedirect: '/profile',
+        successReturnToOrRedirect: '/profile/edit',
         failureRedirect: '/signin' })
 );
 
