@@ -495,11 +495,11 @@ angular.module('adjunct.controllers')
         $scope.tabs = [
             {
                 "title": "Summary",
-                "template": "partial/adjuncts-profile-summary"
+                "template": "/partial/adjuncts-profile-summary"
             },
             {
                 "title": "Questions",
-                "template": "partial/adjuncts-profile-questions"
+                "template": "/partial/adjuncts-profile-questions"
             }
         ];
 
