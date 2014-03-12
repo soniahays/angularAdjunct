@@ -14,7 +14,7 @@
         <div ng-include="'/partial/side-search-column'" />
         </div>
     <div class="result-col col-md-8">
-        <div id="result-container" >
+        <div id="result-container">
 
 
             <div id="results" class="search-results list-group col-md-12" ng-repeat="user in users">
@@ -35,10 +35,10 @@
                         {{user.firstName}} {{user.lastName}}
                         </span>
                         <p class="description">
-                            <span>{{ user.currentPosition || 'empty' }}</span>
-                            <span>at {{ user.institution || 'empty' }}</span></br>
-                            <span> {{ user.city || 'empty' }}</span>
-                            <span>| {{ user.department || 'empty' }}</span>
+                            <span>{{ user.currentPosition }}</span>
+                            <span>at {{ user.institution }}</span></br>
+                            <span> {{ user.city }}</span>
+                            <span>| {{ user.department }}</span>
                         </p>
                     </div>
                     </td>
@@ -49,8 +49,7 @@
           </div>
     </div>
 
-    <div class="col-md-2 sidebar-offcanvas" id="sidebar2" role="navigation">
-        <div ng-include="'/partial/adjuncts-saved-jobs-column'" />
+    <div class="col-md-2" id="sidebar2" role="navigation">
         <div ng-include="'/partial/adjuncts-profile-right-bottomSide-column'" />
     </div>
 </div>
