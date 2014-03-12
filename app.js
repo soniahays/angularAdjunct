@@ -364,7 +364,7 @@ app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE
 
 app.get('/auth/linkedin/callback',
     passport.authenticate('linkedin', {
-        successReturnToOrRedirect: '/profile/edit',
+        successReturnToOrRedirect: '/profile',
         failureRedirect: '/signin' })
 );
 
@@ -388,7 +388,7 @@ app.get('/api/linkedInAuth', function (req, res) {
     if (req.cookies.linkedinAccessToken){
         linkedinAuth.oauthStep3(req, res, req.cookies.linkedinAccessToken, 'people/~:(summary,positions,skills,connections,shares,network)', function(data) {
             req.session.linkedinData = data;
-            res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile/edit' });
+            res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile' });
             res.end();
         });
     } else {
@@ -401,7 +401,7 @@ app.get('/api/linkedInAuthCallback', function (req, res) {
     var queryObject = url.parse(req.url, true).query;
     linkedinAuth.oauthStep2(req, res, queryObject.code, 'people/~:(summary,positions,skills,connections,shares,network)', function(data) {
         req.session.linkedinData = data;
-        res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile/edit' });
+        res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile' });
         res.end();
     });
 });
