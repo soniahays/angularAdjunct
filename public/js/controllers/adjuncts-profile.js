@@ -15,7 +15,7 @@ angular.module('adjunct.controllers')
         $scope.isPositionShown = false;
         $scope.showAddDoc = false;
         $scope.showVid = false;
-        $scope.maxNumberOfTagsToShow = 23;
+        $scope.maxNumberOfTagsToShow = 17;
 
         var isEditModeUrl = S($location.path()).endsWith('/edit') && $scope.canEdit;
 
@@ -391,7 +391,7 @@ angular.module('adjunct.controllers')
         }
 
         $scope.showLessTags=function(){
-            $scope.maxNumberOfTagsToShow=23;
+            $scope.maxNumberOfTagsToShow=17;
         }
 
 

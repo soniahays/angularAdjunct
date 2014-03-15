@@ -59,9 +59,9 @@
                         <div ng-repeat="item in user.expertiseTags | limitTo: maxNumberOfTagsToShow">
                             <span class="tags">{{ item }}</span>
                         </div>
-                        <div class="showtagslink" ng-if="user.expertiseTags.length > 23">
-                            <a href="#" ng-click="showMoreTags()" ng-show="maxNumberOfTagsToShow == 23">Show more tags</a>
-                            <a href="#" ng-click="showLessTags()" ng-show="maxNumberOfTagsToShow == 9999">Show less tags</a>
+                        <div class="showtagslink" ng-if="user.expertiseTags.length > 17">
+                            <a href="#" ng-click="showMoreTags()" ng-show="maxNumberOfTagsToShow == 17" style="font-size:11px;">Show more tags</a>
+                            <a href="#" ng-click="showLessTags()" ng-show="maxNumberOfTagsToShow == 9999" style="font-size:11px;">Show less tags</a>
                         </div>
                     </div>
                 </div>
