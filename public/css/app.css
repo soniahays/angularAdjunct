@@ -2013,6 +2013,9 @@ tbody {
   background-color: #333;
   border-radius: 3px;
 }
+.dropdown-menu:focus {
+  outline: none;
+}
 .dropdown-menu li > a {
   color: #ddd;
 }
@@ -2025,9 +2028,6 @@ tbody {
   background-color: #333;
   border-color: #333;
   outline-color: #333;
-}
-.dropdown-menu:focus {
-  outline: none;
 }
 .get-in-touch {
   position: relative;
