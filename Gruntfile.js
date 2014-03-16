@@ -6,7 +6,8 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             dist: {
-                src: ["public/components/jquery/jquery.min.js",
+                src: [
+                    "public/components/jquery/jquery.min.js",
                     "public/components/select2/select2.js",
                     "public/components/angular/angular.min.js",
                     "public/components/angular-elastic/elastic.js",
@@ -15,14 +16,14 @@ module.exports = function (grunt) {
                     "public/components/angular-route/angular-route.min.js",
                     "public/components/angular-cookies/angular-cookies.min.js",
                     "public/components/underscore/underscore-min.js",
-                    "public/components/bootstrap/distpublic/js/bootstrap.min.js",
+                    "public/components/bootstrap/dist/js/bootstrap.min.js",
                     "public/components/angular-strap/dist/angular-strap.js",
                     "public/components/ngUpload/ng-upload.min.js",
                     "public/components/uri.js/src/URI.min.js",
                     "public/components/momentjs/moment.js",
                     "public/components/stringjs/lib/string.min.js",
                     "public/components/angular-ui-select2/src/select2.js",
-                    "public/components/angular-xeditable/distpublic/js/xeditable.js",
+                    "public/components/angular-xeditable/dist/js/xeditable.js",
                     "public/js/lib/ng-tags-input.min.js",
                     "public/js/app.js",
                     "public/js/filters.js",
@@ -43,7 +44,6 @@ module.exports = function (grunt) {
                     "public/js/controllers/contact-us.js",
                     "public/js/controllers/about.js"
                 ],
-                
                 dest: 'public/dist/<%= pkg.name %>.js'
             }
         },
@@ -55,18 +55,18 @@ module.exports = function (grunt) {
         },
         watch: {
             scripts: {
-                files: ['publicpublic/js/**/*.js'],
-                tasks: ['jshint', 'concat', 'min'],
+                files: ['public/js/**/*.js'],
+                tasks: ['concat', 'min'],
                 options: {
                     spawn: false
                 }
             }
-        },
-        jshint: {
-            all: {
-                src: ['publicpublic/js/**/*.js']
-            }
         }
+//        jshint: {
+//            all: {
+//                src: ['public/js/**/*.js']
+//            }
+//        }
     });
 
     // on watch events configure jshint:all to only run on changed file
@@ -77,7 +77,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-yui-compressor');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
+    //grunt.loadNpmTasks('grunt-contrib-jshint');
 
     // Default task.
     grunt.registerTask('default', ['concat', 'min']);
