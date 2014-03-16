@@ -45,11 +45,11 @@ angular.module('adjunct', [
         angular.extend($dropdownProvider.defaults, {
             trigger: 'click'
         });
-    }]).run(function(editableOptions, editableThemes){
+    }]).run(['editableOptions', 'editableThemes', function(editableOptions, editableThemes){
         editableOptions.theme = 'default';
         editableThemes['default'].submitTpl = '<button type="submit" style="float:right;"><i class="fa fa-check"></i></button>';
 
-    });
+    }]);
 
 angular.module('adjunct.filters', []);
 angular.module('adjunct.services', []);

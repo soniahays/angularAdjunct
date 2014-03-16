@@ -169,7 +169,7 @@ angular.module('adjunct.directives')
             template: '<li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li>'
         };
 
-    }).directive('customBindHtml',function ($compile) {
+    }).directive('customBindHtml', ['$compile', function ($compile) {
         return {
             link: function (scope, element, attr) {
                 scope.$watch(attr.customBindHtml, function (value) {
@@ -178,7 +178,7 @@ angular.module('adjunct.directives')
                 });
             }
         };
-    }).directive('numbersOnly', function () {
+    }]).directive('numbersOnly', function () {
         return {
             require: 'ngModel',
             link: function (scope, element, attrs, modelCtrl) {
@@ -197,8 +197,7 @@ angular.module('adjunct.directives')
                 });
             }
         };
-    }).directive('documentClick',
-    function($document,$rootScope,$timeout) {
+    }).directive('documentClick', ['$document', function($document) {
         return {
             link : function(scope, element, attrs) {
                 $document.on('click', function (e) {
@@ -210,7 +209,7 @@ angular.module('adjunct.directives')
                 });
             }
         }
-    }).directive('progressBar',function () {
+    }]).directive('progressBar',function () {
         return {
             restrict: 'EA',
             link: function (scope, iElement, iAttrs) {
