@@ -244,6 +244,18 @@ h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, 
   width: 90%;
 }
 
+
+
+.signup-or-separator .text{
+  background-color: white;
+  display: inline-block;
+  margin:0;
+  padding: 8px 6px;
+  text-transform:uppercase;
+  font-size: 10px;
+}
+
+
 .signup-page-or-separator{
   background: none;
   height:34px;
@@ -274,14 +286,6 @@ hr {
 }
 
 
-.signup-or-separator .text{
-  background-color: white;
-  display: inline-block;
-  margin:0;
-  padding: 8px 6px;
-  text-transform:uppercase;
-  font-size: 10px;
-}
 
 
 
@@ -298,15 +302,7 @@ body, html {
   padding: 5px 22px;
   border-radius: 1px;
 }
-/*.tooltip-inner {*/
-/*max-width: 250px;*/
-/*padding: 3px 8px;*/
-/*color: #ffffff;*/
-/*text-align: center;*/
-/*text-decoration: none;*/
-/*background-color: #000000;*/
-/*border-radius: 4px;*/
-/*}*/
+
 .custom-tooltip + .tooltip > .tooltip-inner{
   background-color: white;
   color:black;
@@ -461,13 +457,11 @@ ul#strength{
   width:30px;
 }
 
-/*.ng-invalid:focus + .input-help-2 {*/
-/*display: none;*/
-/*}*/
+
 .input-help{
   font-size:11px;
 }
-/* Style input help requirement bullets */
+
 .input-help ul {
   list-style: none;
   margin: 10px 0 0 0;
@@ -662,14 +656,7 @@ ul#strength{
     padding-left: 5px;
     padding-right: 5px;
 }
-.expertise-tags-custom li{
-    color: #75757c!important;
-    background-color: #cccccf !important;
-    border-color: #357ebd !important;
-    font-weight: bold!important;
-    border-radius: 2px!important;
 
-}
 .tags{
     margin-top: 8px !important;
     border: 1px solid #333!important;
@@ -2233,7 +2220,14 @@ tbody{
   margin-left: 45px;
 }
 
+.expertise-tags-custom li{
+  color: #75757c!important;
+  background-color: #cccccf !important;
+  border-color: #357ebd !important;
+  font-weight: bold!important;
+  border-radius: 2px!important;
 
+}
 
 .expertise-tags li {
   color:#75757c !important;
@@ -2258,21 +2252,22 @@ tbody{
   border-radius:3px;
 }
 
-.dropdown-menu > li > a {
-  color: #ddd;
+.dropdown-menu{
+      li > a {
+          color: #ddd;
+          &:hover{
+            color: #fff;
+            background-color: #333;
+          }
+          &:focus{
+            color: #fff;
+            background-color: #333;
+            border-color: #333;
+            outline-color: #333;
+          }
+      }
 }
 
-.dropdown-menu>li>a:hover {
-  color: #fff;
-  background-color: #333;
-}
-
-.dropdown-menu>li>a:focus {
-  color: #fff;
-  background-color: #333;
-  border-color: #333;
-  outline-color: #333;
-}
 
 .dropdown-menu:focus {
   outline: none;

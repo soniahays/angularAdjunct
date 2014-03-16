@@ -270,6 +270,14 @@ input[type="search"]:after {
   margin: -16px auto 0 auto;
   width: 90%;
 }
+.signup-or-separator .text {
+  background-color: white;
+  display: inline-block;
+  margin: 0;
+  padding: 8px 6px;
+  text-transform: uppercase;
+  font-size: 10px;
+}
 .signup-page-or-separator {
   background: none;
   height: 34px;
@@ -294,14 +302,6 @@ hr {
   border: 0;
   border-top: 1px solid #dbdbdb;
 }
-.signup-or-separator .text {
-  background-color: white;
-  display: inline-block;
-  margin: 0;
-  padding: 8px 6px;
-  text-transform: uppercase;
-  font-size: 10px;
-}
 body,
 html {
   height: 100%;
@@ -314,15 +314,6 @@ html {
   padding: 5px 22px;
   border-radius: 1px;
 }
-/*.tooltip-inner {*/
-/*max-width: 250px;*/
-/*padding: 3px 8px;*/
-/*color: #ffffff;*/
-/*text-align: center;*/
-/*text-decoration: none;*/
-/*background-color: #000000;*/
-/*border-radius: 4px;*/
-/*}*/
 .custom-tooltip + .tooltip > .tooltip-inner {
   background-color: white;
   color: black;
@@ -492,13 +483,9 @@ ul#strength {
   margin-right: 0;
   width: 30px;
 }
-/*.ng-invalid:focus + .input-help-2 {*/
-/*display: none;*/
-/*}*/
 .input-help {
   font-size: 11px;
 }
-/* Style input help requirement bullets */
 .input-help ul {
   list-style: none;
   margin: 10px 0 0 0;
@@ -682,13 +669,6 @@ ul#strength {
 .bottom-card-panel-body {
   padding-left: 5px;
   padding-right: 5px;
-}
-.expertise-tags-custom li {
-  color: #75757c!important;
-  background-color: #cccccf !important;
-  border-color: #357ebd !important;
-  font-weight: bold!important;
-  border-radius: 2px!important;
 }
 .tags {
   margin-top: 8px !important;
@@ -2010,6 +1990,13 @@ tbody {
 .home-bottom-text {
   margin-left: 45px;
 }
+.expertise-tags-custom li {
+  color: #75757c!important;
+  background-color: #cccccf !important;
+  border-color: #357ebd !important;
+  font-weight: bold!important;
+  border-radius: 2px!important;
+}
 .expertise-tags li {
   color: #75757c !important;
   background-color: #cccccf !important;
@@ -2026,14 +2013,14 @@ tbody {
   background-color: #333;
   border-radius: 3px;
 }
-.dropdown-menu > li > a {
+.dropdown-menu li > a {
   color: #ddd;
 }
-.dropdown-menu > li > a:hover {
+.dropdown-menu li > a:hover {
   color: #fff;
   background-color: #333;
 }
-.dropdown-menu > li > a:focus {
+.dropdown-menu li > a:focus {
   color: #fff;
   background-color: #333;
   border-color: #333;
