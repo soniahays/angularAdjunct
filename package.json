@@ -23,5 +23,9 @@
   "repository": {
     "type": "git",
     "url": "https://bitbucket.org/sonia_brami/angular-adjunct.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-concat": "~0.3.0"
   }
 }
