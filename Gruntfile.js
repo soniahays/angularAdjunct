@@ -6,17 +6,44 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             dist: {
-                src: ['public/js/libs/tinypubsub/jquery.ba-tinypubsub.js',
-                    'public/js/libs/slickgrid/jquery.event.drag-2.0.min.js',
-                    'public/js/libs/slickgrid/slick.core.js',
-                    'public/js/libs/slickgrid/slick.rowselectionmodel.js',
-                    'public/js/libs/slickgrid/slick.grid.js',
-                    'public/js/common/card-games.common.namespace.js',
-                    'public/js/common/card-games.common.constants.js',
-                    'public/js/common/card-games.common.utils.js',
-                    'public/js/common/card-games.common.socket-manager.js',
-                    'public/js/common/card-games.common.lobby.js',
-                    'public/js/common/card-games.common.game.js'],
+                src: ["public/components/jquery/jquery.min.js",
+                    "public/components/select2/select2.js",
+                    "public/components/angular/angular.min.js",
+                    "public/components/angular-elastic/elastic.js",
+                    "public/components/angular-animate/angular-animate.min.js",
+                    "public/components/ngScrollTo/ng-scrollto.js",
+                    "public/components/angular-route/angular-route.min.js",
+                    "public/components/angular-cookies/angular-cookies.min.js",
+                    "public/components/underscore/underscore-min.js",
+                    "public/components/bootstrap/distpublic/js/bootstrap.min.js",
+                    "public/components/angular-strap/dist/angular-strap.js",
+                    "public/components/ngUpload/ng-upload.min.js",
+                    "public/components/uri.js/src/URI.min.js",
+                    "public/components/momentjs/moment.js",
+                    "public/components/stringjs/lib/string.min.js",
+                    "public/components/angular-ui-select2/src/select2.js",
+                    "public/components/angular-xeditable/distpublic/js/xeditable.js",
+                    "public/js/lib/ng-tags-input.min.js",
+                    "public/js/app.js",
+                    "public/js/filters.js",
+                    "public/js/services.js",
+                    "public/js/directives.js",
+                    "public/js/controllers/index.js",
+                    "public/js/controllers/adjuncts-profile.js",
+                    "public/js/controllers/job-profile.js",
+                    "public/js/controllers/institutions-profile.js",
+                    "public/js/controllers/home.js",
+                    "public/js/controllers/basic-profile.js",
+                    "public/js/controllers/home.js",
+                    "public/js/controllers/confirm-email.js",
+                    "public/js/controllers/signup.js",
+                    "public/js/controllers/search-results.js",
+                    "public/js/controllers/signin.js",
+                    "public/js/controllers/jobs.js",
+                    "public/js/controllers/contact-us.js",
+                    "public/js/controllers/about.js"
+                ],
+                
                 dest: 'public/dist/<%= pkg.name %>.js'
             }
         },
@@ -28,7 +55,7 @@ module.exports = function (grunt) {
         },
         watch: {
             scripts: {
-                files: ['public/js/**/*.js'],
+                files: ['publicpublic/js/**/*.js'],
                 tasks: ['jshint', 'concat', 'min'],
                 options: {
                     spawn: false
@@ -37,7 +64,7 @@ module.exports = function (grunt) {
         },
         jshint: {
             all: {
-                src: ['public/js/**/*.js']
+                src: ['publicpublic/js/**/*.js']
             }
         }
     });
