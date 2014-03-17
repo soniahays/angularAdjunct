@@ -19,6 +19,12 @@ angular.module('adjunct.controllers')
                     angular.extend(user, user._source);
                     return user;
                 });
+
+                $http.get('/api/institutions').then(function(response) {
+                    var selected = $filter('filter')(response.data, {id: $scope.user.institution});
+                    $scope.user.institutionName = selected && selected.length ? selected[0].text : null;
+                });
+
             }
             else {
                 $scope.message = "Search server is unreachable";
