@@ -25,6 +25,10 @@ angular.module('adjunct.controllers')
                     $scope.user.institutionName = selected && selected.length ? selected[0].text : null;
                 });
 
+                $http.get('/api/countries').then(function(response) {
+                    var selected = $filter('filter')(response.data, {id: $scope.user.country});
+                    $scope.user.countryName = selected && selected.length ? selected[0].text : null;
+                });
             }
             else {
                 $scope.message = "Search server is unreachable";
