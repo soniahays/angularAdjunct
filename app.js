@@ -384,7 +384,7 @@ app.get('/api/linkedInAuth', function (req, res) {
 
 // If we have the access_token in the cookie skip the Oauth Dance and go straight to Step 3 (which is calling the linkedIn API)
     if (req.cookies.linkedinAccessToken){
-        linkedinAuth.oauthStep3(req, res, req.cookies.linkedinAccessToken, 'people/~:(summary,positions,skills,connections,shares,network)', function(data) {
+        linkedinAuth.oauthStep3(req, res, req.cookies.linkedinAccessToken, 'people/~:(summary,picture-url,positions,skills,connections,shares,network)', function(data) {
             req.session.linkedinData = data;
             res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile' });
             res.end();
@@ -397,7 +397,7 @@ app.get('/api/linkedInAuth', function (req, res) {
 // The user has successfully entered their linkedin username/password, now we proceed to step 2
 app.get('/api/linkedInAuthCallback', function (req, res) {
     var queryObject = url.parse(req.url, true).query;
-    linkedinAuth.oauthStep2(req, res, queryObject.code, 'people/~:(summary,positions,skills,connections,shares,network)', function(data) {
+    linkedinAuth.oauthStep2(req, res, queryObject.code, 'people/~:(summary,picture-url,positions,skills,connections,shares,network)', function(data) {
         req.session.linkedinData = data;
         res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile' });
         res.end();
