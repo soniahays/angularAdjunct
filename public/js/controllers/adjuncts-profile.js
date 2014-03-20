@@ -69,6 +69,7 @@ angular.module('adjunct.controllers')
                 $scope.edDegrees = values[3] ? values[3].data : null;
                 $scope.institutions = values[4] ? values[4].data : null;
                 var linkedinData = values[5] ? values[5].data : null;
+                console.log(linkedinData);
 
                 if (!$scope.user.survey)
                     $scope.user.survey = {};

@@ -10996,8 +10996,35 @@ angular.module('adjunct.directives')
         return {
             restrict: 'EA',
             link: function (scope, iElement, iAttrs) {
-                scope.$watch("pbProgress", function (newVal, oldVal) {
-                    iElement.find('.progress-bar').css({ "width": newVal + "%"});
+
+                var strength = {
+                    colors :['#CAD2d7','#d6eefb','#36abeb','#103346','#1d3283'],
+                    getColor: function(newVal){
+                        var idx = 0;
+                        if(newVal>0){
+                            if(newVal <= 10){
+                                idx = 1;
+                            }
+                            else if(newVal <= 20){
+                                idx = 2;
+                            }
+                            else if(newVal <= 30){
+                                idx = 3;
+                            }
+                            else if(newVal <= 40){
+                                idx = 3;
+                            }
+                            else if(newVal <= 100){
+                                idx = 5;
+                            }
+                        }
+                        return{idx : idx+1, col: this.colors[idx]};
+                    }
+                };
+                        scope.$watch("pbProgress", function (newVal, oldVal) {
+                            var c = strength.getColor(newVal);
+
+                    iElement.find('.progress-bar').css({ "width": newVal + "%","background-color": c.col});
 
                     if (newVal) {
                         iElement.find('.percentage-title-badge-section').text(newVal + "%");
@@ -11149,6 +11176,7 @@ angular.module('adjunct.controllers')
                 $scope.edDegrees = values[3] ? values[3].data : null;
                 $scope.institutions = values[4] ? values[4].data : null;
                 var linkedinData = values[5] ? values[5].data : null;
+                console.log(linkedinData);
 
                 if (!$scope.user.survey)
                     $scope.user.survey = {};
