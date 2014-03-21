@@ -215,24 +215,27 @@ angular.module('adjunct.directives')
             link: function (scope, iElement, iAttrs) {
 
                 var strength = {
-                    colors :['#CAD2d7','#d6EEFB','#36ABEB','#103346','#1D3283'],
+                    colors :['#c7ccdf','#c5dfd9','#c7ccdf','#8f99c1','#1d3283','#0b1230'],
                     getColor: function(newVal){
                         var idx = 0;
                         if(newVal>0){
-                            if(newVal <= 10){
+                            if(newVal <= 18){
                                 idx = 1;
                             }
-                            else if(newVal <= 20){
+                            else if(newVal <= 45){
                                 idx = 2;
                             }
-                            else if(newVal <= 30){
+                            else if(newVal <= 52){
                                 idx = 3;
                             }
-                            else if(newVal <= 40){
-                                idx = 3;
+                            else if(newVal <= 69){
+                                idx = 4;
                             }
-                            else if(newVal <= 100){
+                            else if(newVal>69 && newVal < 100){
                                 idx = 5;
+                            }
+                            else if(newVal == 100){
+                                idx = 6;
                             }
                         }
                         return{idx : idx+1, col: this.colors[idx]};
@@ -245,9 +248,12 @@ angular.module('adjunct.directives')
 
                     if (newVal) {
                         iElement.find('.percentage-title-badge-section').text(newVal + "%");
+
                     }
                     else {
                         iElement.find('.percentage-title-badge-section').text("0%");
+
+
                     }
                 });
             },
@@ -260,7 +266,7 @@ angular.module('adjunct.directives')
                 '<div class="competency-title-badge-section">{{pbTitle}}</div>' +
                 '<div class="percentage-title-badge-section"></div>' +
                 '<div class="progress progress-custom progress-custom-badge-section">' +
-                '<div class="progress-bar progress-bar-custom {{class}}" role="progressbar"  aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" />' +
+                '<div class="progress-bar progress-bar-custom {{class}}" role="progressbar"  aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"/>'+
                 '</div>' +
                 '</div>'
         }

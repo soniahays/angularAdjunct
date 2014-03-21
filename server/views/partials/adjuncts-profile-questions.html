@@ -146,13 +146,33 @@
                     <div id="bottom"></div>
 
                 </div>
+
+
                 <div class="question-text">
                     <p>Do you have Instructional Design Experience?</p>
                 </div>
                 <input type="radio" ng-model="user.survey.instructionalDesign" id="instructionalDesign-yes" value="Yes">
-                <label for="instructionalDesign-yes">yes</label>
                 <input type="radio" ng-model="user.survey.instructionalDesign" id="instructionalDesign-no" value="No">
-                <label for="instructionalDesign-no">no</label>
+                <div class="switch">
+                <label for="instructionalDesign-yes">Yes</label>
+                <label for="instructionalDesign-no">No</label>
+                <span></span>
+
+                </div>
+        </br>
+                <div class="question-text">
+                    <p>Do you have any Academic or Professional papers to upload?</p>
+                </div>
+                <input type="radio" ng-model="user.survey.professionalContribution" id="professionalContribution-yes" value="Yes">
+                <input type="radio" ng-model="user.survey.professionalContribution" id="professionalContribution-no" value="No">
+                <div class="switch">
+                    <label for="professionalContribution-yes">Yes</label>
+                    <label for="professionalContribution-no">No</label>
+                    <span></span>
+
+                </div>
+
+
     </form>
         <button ng-click="saveBadgeCard()">save</button>
         <button ng-click="">cancel</button>
