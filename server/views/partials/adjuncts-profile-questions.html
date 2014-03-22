@@ -1,35 +1,32 @@
 <div style="margin: 25px 25px;">
-    <!--<form id="radio-demo">-->
-        <!--<input type="radio" name="radio-group" id="first-choice" value="First Choice"/>-->
-        <!--<label for="first-choice">First Choice</label><br/>-->
-        <!--<input type="radio" name="radio-group" id="second-choice" value="Second Choice"/>-->
-        <!--<label for="second-choice">Second Choice</label><br/>-->
-        <!--<input type="radio" name="radio-group" id="third-choice" value="Third Choice"/>-->
-        <!--<label for="third-choice">Third Choice</label>-->
-    <!--</form>-->
     <form id="user-auto-assess">
                 <div class="question-text">
                     <p>Rate your experience on a scale of 1 to 5:</p>
                 </div>
                 Designing syllabuses:
                 <input type="radio" ng-model="user.survey.syllabusDesign" id="syllabusDesign-1" value="1">
-                <label for="syllabusDesign-1"> I'm beginner, I have limited field and theoretical experience</label>
+                <!--<label for="syllabusDesign-1"> I'm beginner, I have limited field and theoretical experience
+                 I'm an advanced beginner, I understand what it takes to design a good syllabus and I already designed a few of my own
+                 I have quite a bit of experience, I reach a quite decent level of competency
+                 I'm very proficient at it
+                 I'm an expert, students and pairs praise my skills</label>-->
+                <label for="syllabusDesign-1"> I'm a beginner</label>
                 <input type="radio" ng-model="user.survey.syllabusDesign" id="syllabusDesign-2" value="2">
-                <label for="syllabusDesign-2"> I'm an advanced beginner, I understand what it takes to design a good syllabus and I already designed a few of my own</label>
+                <label for="syllabusDesign-2"> I'm an advanced beginner</label>
                 <input type="radio" ng-model="user.survey.syllabusDesign" id="syllabusDesign-3" value="3">
-                <label for="syllabusDesign-3"> I have quite a bit of experience, I reach a quite decent level of competency</label>
+                <label for="syllabusDesign-3"> I have quite a bit of experience</label>
                 <input type="radio" ng-model="user.survey.syllabusDesign" id="syllabusDesign-4" value="4">
-                <label for="syllabusDesign-4"> I'm very proficient at it</label>
+                <label for="syllabusDesign-4"> I'm very proficient</label>
                 <input type="radio" ng-model="user.survey.syllabusDesign" id="syllabusDesign-5" value="5">
-                <label for="syllabusDesign-5"> I'm an expert, students and pairs praise my skills</label>
+                <label for="syllabusDesign-5"> I'm an expert</label>
 
                 Designing Technology Enabled Instructional material:
                 <input type="radio" ng-model="user.survey.technologyDesign" id="technologyDesign-1" value="1">
-                <label for="technologyDesign-1">1</label>
+                <label for="technologyDesign-1"> I'm a beginner</label>
                 <input type="radio" ng-model="user.survey.technologyDesign" id="technologyDesign-2" value="2">
-                <label for="technologyDesign-2">2</label>
+                <label for="technologyDesign-2"> I'm an advanced beginner</label>
                 <input type="radio" ng-model="user.survey.technologyDesign" id="technologyDesign-3" value="3">
-                <label for="technologyDesign-3">3</label>
+                <label for="technologyDesign-3"> I have quite a bit of experience</label>
                 <input type="radio" ng-model="user.survey.technologyDesign" id="technologyDesign-4" value="4">
                 <label for="technologyDesign-4">4</label>
                 <input type="radio" ng-model="user.survey.technologyDesign" id="technologyDesign-5" value="5">
@@ -38,36 +35,52 @@
 
                 Giving Student Centered Feedback:
                 <input type="radio" ng-model="user.survey.studFeedback" id="studFeedback-1" value="1">
-                <label for="studFeedback-1">1</label>
+                <label for="studFeedback-1"> I'm a beginner</label>
                 <input type="radio" ng-model="user.survey.studFeedback" id="studFeedback-2" value="2">
-                <label for="studFeedback-2">2</label>
+                <label for="studFeedback-2"> I'm an advanced beginner</label>
                 <input type="radio" ng-model="user.survey.studFeedback" id="studFeedback-3" value="3">
-                <label for="studFeedback-3">3</label>
+                <label for="studFeedback-3"> I have quite a bit of experience</label>
                 <input type="radio" ng-model="user.survey.studFeedback" id="studFeedback-4" value="4">
-                <label for="studFeedback-4">4</label>
+                <label for="studFeedback-4"> I'm very proficient</label>
                 <input type="radio" ng-model="user.survey.studFeedback" id="studFeedback-5" value="5">
-                <label for="studFeedback-5">5</label>
+                <label for="studFeedback-5"> I'm an expert</label>
 
                 Taking into account Summative Feedback:
                 <input type="radio" ng-model="user.survey.sumFeedback" id="sumFeedback-1" value="1">
-                <label for="sumFeedback-1">1</label>
+                <label for="sumFeedback-1"> I'm a beginner</label>
                 <input type="radio" ng-model="user.survey.sumFeedback" id="sumFeedback-2" value="2">
-                <label for="sumFeedback-2">2</label>
+                <label for="sumFeedback-2"> I'm an advanced beginner</label>
                 <input type="radio" ng-model="user.survey.sumFeedback" id="sumFeedback-3" value="3">
-                <label for="sumFeedback-3">3</label>
+                <label for="sumFeedback-3"> I have quite a bit of experience</label>
                 <input type="radio" ng-model="user.survey.sumFeedback" id="sumFeedback-4" value="4">
-                <label for="sumFeedback-4">4</label>
+                <label for="sumFeedback-4"> I'm very proficient</label>
                 <input type="radio" ng-model="user.survey.sumFeedback" id="sumFeedback-5" value="5">
-                <label for="sumFeedback-5">5</label>
+                <label for="sumFeedback-5"> I'm an expert</label>
+
+
 
                 <div class="question-text">
                     <p>Are you proficient with Learning Management Systems?</p>
                 </div>
                 <input type="radio" ng-model="user.survey.lms" id="lms-yes" value="yes">
-                <label for="lms-yes">yes</label>
                 <input type="radio" ng-model="user.survey.lms" id="lms-no" value="no">
-                <label for="lms-no">no</label>
-                <br/>
+                <div class="switch" id="lms">
+                    <label for="lms-yes">Yes</label>
+                    <label for="lms-no">No</label>
+                    <span></span>
+                </div>
+
+
+
+
+                <!--<div class="question-text">-->
+                    <!--<p>Are you proficient with Learning Management Systems?</p>-->
+                <!--</div>-->
+                <!--<input type="radio" ng-model="user.survey.lms" id="lms-yes" value="yes">-->
+                <!--<label for="lms-yes">yes</label>-->
+                <!--<input type="radio" ng-model="user.survey.lms" id="lms-no" value="no">-->
+                <!--<label for="lms-no">no</label>-->
+                <!--<br/>-->
                 <div ng-show="user.survey.lms=='yes'">
                     What LMS do you work with?
 
@@ -153,7 +166,7 @@
                 </div>
                 <input type="radio" ng-model="user.survey.instructionalDesign" id="instructionalDesign-yes" value="Yes">
                 <input type="radio" ng-model="user.survey.instructionalDesign" id="instructionalDesign-no" value="No">
-                <div class="switch">
+                <div class="switch" id="instructionalDesign">
                 <label for="instructionalDesign-yes">Yes</label>
                 <label for="instructionalDesign-no">No</label>
                 <span></span>
@@ -165,7 +178,7 @@
                 </div>
                 <input type="radio" ng-model="user.survey.professionalContribution" id="professionalContribution-yes" value="Yes">
                 <input type="radio" ng-model="user.survey.professionalContribution" id="professionalContribution-no" value="No">
-                <div class="switch">
+                <div class="switch" id="professionalContribution">
                     <label for="professionalContribution-yes">Yes</label>
                     <label for="professionalContribution-no">No</label>
                     <span></span>
