@@ -398,29 +398,31 @@ app.get('/api/linkedInAuth', function (req, res) {
                 var newFileName = uuid.v1() + ".jpg";
                 try {
                     http.get(pictureUrl, function (response) {
-                        var picStream = fs.createWriteStream(os.tmpdir() + newFileName);
-                        response.pipe(picStream);
+                        fs.mkdir("/tmp", function() {
+                            var picStream = fs.createWriteStream("/tmp/" + newFileName);
+                            response.pipe(picStream);
 
-                        picStream.on('close', function() {
-                            var s3object = {
-                                'Bucket': 'Adjuncts',
-                                'Key': newFileName,
-                                'Body': fs.createReadStream(os.tmpdir()+ newFileName),
-                                'ACL': 'public-read'
-                            };
-                            s3.putObject(s3object, function (err, data) {
-                                if (err) {
-                                    console.log(err);
-                                    res.send(err);
-                                }
-                                else {
+                            picStream.on('close', function() {
+                                var s3object = {
+                                    'Bucket': 'Adjuncts',
+                                    'Key': newFileName,
+                                    'Body': fs.createReadStream("/tmp/" + newFileName),
+                                    'ACL': 'public-read'
+                                };
+                                s3.putObject(s3object, function (err, data) {
+                                    if (err) {
+                                        console.log(err);
+                                        res.send(err);
+                                    }
+                                    else {
 
-                                    // we are done, save the linkedin date to the session so it can be retrieved in another call
-                                    req.session.linkedinData = data;
-                                    req.session.linkedinData.pictureFileName = newFileName;
-                                    res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile' });
-                                    res.end();
-                                }
+                                        // we are done, save the linkedin date to the session so it can be retrieved in another call
+                                        req.session.linkedinData = data;
+                                        req.session.linkedinData.pictureFileName = newFileName;
+                                        res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile' });
+                                        res.end();
+                                    }
+                                });
                             });
                         });
                     });
