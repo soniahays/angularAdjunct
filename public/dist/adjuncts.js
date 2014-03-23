@@ -11142,7 +11142,6 @@ angular.module('adjunct.controllers')
         var institutions = $scope.canEdit ? $http.get('/api/institutions') : null;
         var linkedinData = $scope.canEdit ? $http.get('/api/getLinkedinData') : null;
 
-
         $scope.$watch('user.country', function(newVal, oldVal) {
             if (newVal !== oldVal) {
                 var selected = $filter('filter')($scope.countries, {id: $scope.user.country});
@@ -11182,7 +11181,10 @@ angular.module('adjunct.controllers')
                 $scope.edDegrees = values[3] ? values[3].data : null;
                 $scope.institutions = values[4] ? values[4].data : null;
                 var linkedinData = values[5] ? values[5].data : null;
-                console.log(linkedinData);
+
+                if (linkedinData.pictureFileName && !$scope.user.imageName) {
+                    $scope.user.imageName = linkedinData.pictureFileName;
+                }
 
                 if (!$scope.user.survey)
                     $scope.user.survey = {};

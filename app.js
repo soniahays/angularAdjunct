@@ -29,10 +29,10 @@ var userDb, jobDb, institutionDb, pass;
 connect(function (err, db) {
     console.log('Connected to mongodb.');
     userDb = require('./server/userDb.js')(mongodb, db, bcrypt),
-    jobDb = require ('./server/jobDb.js')(mongodb, db),
-    institutionDb = require ('./server/institutionDb.js')(mongodb, db),
-    metadataDb = require ('./server/metadataDb.js')(mongodb, db),
-    pass = require('./server/passport.js')(userDb, passport, bcrypt, _);
+        jobDb = require('./server/jobDb.js')(mongodb, db),
+        institutionDb = require('./server/institutionDb.js')(mongodb, db),
+        metadataDb = require('./server/metadataDb.js')(mongodb, db),
+        pass = require('./server/passport.js')(userDb, passport, bcrypt, _);
 
     http.createServer(app).listen(app.get('port'), function () {
         console.log('Express server listening on port ' + app.get('port'));
@@ -76,7 +76,7 @@ var ses = new aws.SES({apiVersion: '2010-12-01'});
  * Routes
  */
 
-app.get('/api/users', function(req, res) {
+app.get('/api/users', function (req, res) {
     userDb.getUsers(function (err, users) {
         if (err) {
             return res.send(500, "Error retrieving user");
@@ -89,7 +89,7 @@ app.get('/api/users', function(req, res) {
 });
 
 // elastic search indexing
-app.post('/api/index-search', function(req, res) {
+app.post('/api/index-search', function (req, res) {
     userDb.getUsers(function (err, users) {
         if (err) {
             return res.send(500, "Error retrieving user");
@@ -162,9 +162,9 @@ app.get('/api/get-institutions-profile/:id', function (req, res) {
 });
 
 app.post('/api/signup', function (req, res) {
-   userDb.insertUser(req.body.user, function(err, user) {
-       res.json(user);
-   });
+    userDb.insertUser(req.body.user, function (err, user) {
+        res.json(user);
+    });
 });
 
 app.post('/api/save-adjuncts-profile', function (req, res) {
@@ -193,7 +193,7 @@ app.post('/api/save-job-profile', function (req, res) {
 });
 
 app.post('/api/save-job-for-user', function (req, res) {
-        userDb.addUserJob(req.cookies._id, {'jobs': req.body.jobId}, function() {
+    userDb.addUserJob(req.cookies._id, {'jobs': req.body.jobId}, function () {
         res.end();
     });
 });
@@ -209,24 +209,24 @@ app.post('/api/save-institutions-profile', function (req, res) {
 });
 
 app.post('/upload-adjunct', function (req, res) {
-    upload(req, res, function(newFileName, fileName){
-        userDb.updateUserField(req.cookies._id, {'imageName': newFileName}, function() {
+    upload(req, res, function (newFileName, fileName) {
+        userDb.updateUserField(req.cookies._id, {'imageName': newFileName}, function () {
             res.send({ msg: '<b>"' + fileName + '"</b> uploaded.' });
         });
     });
 });
 
 app.post('/upload-institution/:id', function (req, res) {
-    upload(req, res, function(newFileName, fileName){
-        institutionDb.updateInstitutionField(req.params.id, {'imageName': newFileName}, function() {
+    upload(req, res, function (newFileName, fileName) {
+        institutionDb.updateInstitutionField(req.params.id, {'imageName': newFileName}, function () {
             res.send({ msg: '<b>"' + fileName + '"</b> uploaded.' });
         });
     });
 });
 
 app.post('/upload-job/:id', function (req, res) {
-    upload(req, res, function(newFileName, fileName){
-        jobDb.updateJobField(req.params.id, {'imageName': newFileName}, function() {
+    upload(req, res, function (newFileName, fileName) {
+        jobDb.updateJobField(req.params.id, {'imageName': newFileName}, function () {
             res.send({ msg: '<b>"' + fileName + '"</b> uploaded.' });
         });
     });
@@ -262,7 +262,7 @@ app.post('/send-email', function (req, res) {
     });
 });
 
-var upload = function(req, res, callback){
+var upload = function (req, res, callback) {
     setTimeout(
         function () {
             res.setHeader('Content-Type', 'text/html');
@@ -298,11 +298,15 @@ var upload = function(req, res, callback){
 };
 
 app.post('/api/search', function (req, res) {
-    es.search({'query': {'match': {'_all': req.body.query}}}, function(err, result) {res.json(result);});
+    es.search({'query': {'match': {'_all': req.body.query}}}, function (err, result) {
+        res.json(result);
+    });
 });
 
 app.post('/api/searchAll', function (req, res) {
-    es.search({'query': {'match_all': {}}}, function(err, result) {res.json(result);});
+    es.search({'query': {'match_all': {}}}, function (err, result) {
+        res.json(result);
+    });
 });
 
 app.get('/partial/adjuncts-profile',
@@ -383,11 +387,49 @@ app.post('/api/signin',
 app.get('/api/linkedInAuth', function (req, res) {
 
 // If we have the access_token in the cookie skip the Oauth Dance and go straight to Step 3 (which is calling the linkedIn API)
-    if (req.cookies.linkedinAccessToken){
-        linkedinAuth.oauthStep3(req, res, req.cookies.linkedinAccessToken, 'people/~:(summary,picture-url,positions,skills,connections,shares,network)', function(data) {
-            req.session.linkedinData = data;
-            res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile' });
-            res.end();
+    if (req.cookies.linkedinAccessToken) {
+        linkedinAuth.oauthStep3(req, res, req.cookies.linkedinAccessToken, 'people/~:(summary,positions,skills,connections,shares,network,picture-urls::(original))', function (data) {
+            var parsedData = JSON.parse(data);
+
+            // get the linkedin picture
+            if (parsedData && parsedData.pictureUrls) {
+                var pictureUrl = parsedData.pictureUrls.values[0];
+                var newFileName = uuid.v1() + ".jpg";
+                try {
+                    http.get(pictureUrl, function (response) {
+                        var picStream = fs.createWriteStream(newFileName);
+                        response.pipe(picStream);
+
+                        picStream.on('close', function() {
+                            var s3object = {
+                                'Bucket': 'Adjuncts',
+                                'Key': newFileName,
+                                'Body': fs.createReadStream(newFileName),
+                                'ACL': 'public-read'
+                            };
+                            s3.putObject(s3object, function (err, data) {
+                                if (err) {
+                                    console.log(err);
+                                    res.send(err);
+                                }
+                                else {
+
+                                    // we are done, save the linkedin date to the session so it can be retrieved in another call
+                                    req.session.linkedinData = data;
+                                    req.session.linkedinData.pictureFileName = newFileName;
+                                    res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile' });
+                                    res.end();
+                                }
+                            });
+                        });
+                    });
+                }
+                catch (e) {
+                    res.send({ 'msg': '<b>"' + pictureUrl + '"</b> NOT uploaded. ' + e });
+                }
+
+
+            }
         });
     } else {
         linkedinAuth.oauthStep1(req, res);
@@ -397,12 +439,13 @@ app.get('/api/linkedInAuth', function (req, res) {
 // The user has successfully entered their linkedin username/password, now we proceed to step 2
 app.get('/api/linkedInAuthCallback', function (req, res) {
     var queryObject = url.parse(req.url, true).query;
-    linkedinAuth.oauthStep2(req, res, queryObject.code, 'people/~:(summary,picture-url,positions,skills,connections,shares,network)', function(data) {
+    linkedinAuth.oauthStep2(req, res, queryObject.code, 'people/~:(summary,positions,skills,connections,shares,network,picture-urls::(original))', function (data) {
         req.session.linkedinData = data;
         res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile' });
         res.end();
     });
 });
+
 
 app.get('/api/getLinkedinData', function (req, res) {
     res.send(req.session.linkedinData);
@@ -414,59 +457,67 @@ app.post('/basic-profile', function (req, res) {
 });
 
 app.get('/api/countries', function (req, res) {
-    metadataDb.get('countries', function(err, docs) {
+    metadataDb.get('countries', function (err, docs) {
         if (err) {
             return res.send(500, "Error retrieving countries");
         }
         if (!docs) {
             return res.send("[]");
         }
-        var data = _.map(docs, function(item) { return { id: item._id, text: item.name } });
+        var data = _.map(docs, function (item) {
+            return { id: item._id, text: item.name }
+        });
         return res.json(data);
     });
 });
 
 app.get('/api/fieldGroups', function (req, res) {
-    metadataDb.get('fieldGroups', function(err, docs) {
+    metadataDb.get('fieldGroups', function (err, docs) {
         if (err) {
             return res.send(500, "Error retrieving fieldGroups");
         }
         if (!docs) {
             return res.send("[]");
         }
-        var data = _.map(docs, function(item) { return { id: item._id, text: item.name } });
+        var data = _.map(docs, function (item) {
+            return { id: item._id, text: item.name }
+        });
         return res.json(data);
     });
 });
 
 app.get('/api/edDegrees', function (req, res) {
-    metadataDb.get('edDegrees', function(err, docs) {
+    metadataDb.get('edDegrees', function (err, docs) {
         if (err) {
             return res.send(500, "Error retrieving edDegrees");
         }
         if (!docs) {
             return res.send("[]");
         }
-        var data = _.map(docs, function(item) { return { id: item._id, text: item.name } });
+        var data = _.map(docs, function (item) {
+            return { id: item._id, text: item.name }
+        });
         return res.json(data);
     });
 });
 
 app.get('/api/institutions', function (req, res) {
-    metadataDb.get('institutions', function(err, docs) {
+    metadataDb.get('institutions', function (err, docs) {
         if (err) {
             return res.send(500, "Error retrieving institutions");
         }
         if (!docs) {
             return res.send("[]");
         }
-        var data = _.map(docs, function(item) { return { id: item._id, text: item.name } });
+        var data = _.map(docs, function (item) {
+            return { id: item._id, text: item.name }
+        });
         return res.json(data);
     });
 });
 
 app.get('/api/:collectionName', function (req, res) {
-    metadataDb.get(req.params.collectionName, function(err, docs) {
+    metadataDb.get(req.params.collectionName, function (err, docs) {
         if (err) {
             return res.send(500, "Error retrieving " + req.params.collectionName);
         }
@@ -478,14 +529,16 @@ app.get('/api/:collectionName', function (req, res) {
 });
 
 app.post('/api/:collectionName', function (req, res) {
-    metadataDb.getWhere(req.params.collectionName, {'name': {$regex : req.body.query + ".*"}}, function(err, docs) {
+    metadataDb.getWhere(req.params.collectionName, {'name': {$regex: req.body.query + ".*"}}, function (err, docs) {
         if (err) {
             return res.send(500, "Error retrieving " + req.params.collectionName);
         }
         if (!docs) {
             return res.send("[]");
         }
-        var data = _.map(docs, function(item) { return { id: item._id, text: item.name } });
+        var data = _.map(docs, function (item) {
+            return { id: item._id, text: item.name }
+        });
         return res.json(data);
     });
 });
