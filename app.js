@@ -11,6 +11,7 @@ var http = require('http'),
     mongodb = require('mongodb'),
     url = require('url'),
     _ = require('underscore'),
+    os = require('os'),
     connect = require('./server/dbConnect.js')(bcrypt, mongodb),
     elasticsearch = require('es')({
         server: {
@@ -397,14 +398,14 @@ app.get('/api/linkedInAuth', function (req, res) {
                 var newFileName = uuid.v1() + ".jpg";
                 try {
                     http.get(pictureUrl, function (response) {
-                        var picStream = fs.createWriteStream(newFileName);
+                        var picStream = fs.createWriteStream(os.tmpdir() + newFileName);
                         response.pipe(picStream);
 
                         picStream.on('close', function() {
                             var s3object = {
                                 'Bucket': 'Adjuncts',
                                 'Key': newFileName,
-                                'Body': fs.createReadStream(newFileName),
+                                'Body': fs.createReadStream(os.tmpdir()+ newFileName),
                                 'ACL': 'public-read'
                             };
                             s3.putObject(s3object, function (err, data) {
