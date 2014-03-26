@@ -44,26 +44,22 @@
 </p>
 
 <div class="col-md-12 resumes-container" ng-repeat="(positionIndex,resumePosition) in user.resumePositions">
-
-    <a href ng-hide="!isResumeSectionShown" ng-click="showResumePositionEdit(positionIndex)" style="">&nbsp;<i
-            class="fa fa-pencil"></i> Edit&nbsp;</a>
-    <a href ng-hide="!isResumeSectionShown" ng-click="removePositionAlert(resumePosition)" style="">&nbsp;Remove</a>
-
+    <div style="padding:0 10px;">
+        <a href ng-hide="!isResumeSectionShown" ng-click="showResumePositionEdit(positionIndex)" style="">&nbsp;<i class="fa fa-pencil"></i> Edit&nbsp;</a>
+        <a href ng-hide="!isResumeSectionShown" ng-click="removePositionAlert(resumePosition)" style="">&nbsp;Remove</a>
+    </div>
     <div ng-hide="isResumePositionShown(positionIndex)">
-        <div class="col-md-7" style="padding: 0 0 0 0;">
+        <div class="col-md-7" style="padding: 0 10px;">
             <span class="resume-position-institution" style="font-weight:bold;">{{ resumePosition.institution || 'empty' }}</span>
-
-            <div class="">
-                <i class="fa fa-briefcase"
-                   style="color: #999;display:inline;line-height: 1.428571429 !important; float: left;margin-left:3px;padding-right: 3px;padding-top:5px;font-size:0.7em;"> </i>
+            <div class=""><i class="fa fa-briefcase"style="color: #999;display:inline;line-height: 1.428571429 !important; float: left;margin-left:3px;padding-right: 3px;padding-top:5px;font-size:0.7em;"> </i>
                 {{ resumePosition.title || ' ' }}
             </div>
         </div>
-        <div class="col-md-5" style="text-align:right;padding: 0 0 0 0;">
+        <div class="col-md-5" style="text-align:right;padding: 0 10px 10px 0;">
             <div>&nbsp;</div>
             {{resumePosition.termsDate}}
         </div>
-        <div class="col-md-12" style="padding: 0 0 0 0;">
+        <div class="col-md-12" style="padding: 0 10px;">
             <div>
                 <small ng-bind-html-unsafe="resumePosition.description | newlines"></small>
             </div>
@@ -73,7 +69,7 @@
     <div ng-show="isResumePositionShown(positionIndex)">
         <form class="form-group">
             <ul>
-                <div class="col-md-12" style="">
+                <div class="col-md-12" >
 
                     <div id="experience-container-edit">
                         <li>
@@ -118,11 +114,7 @@
                                 </legend>
                                 <ul>
                                     <li class="start-date" style="display:inline!important;">
-                                                                    <span><select ng-model="resumePosition.startMonth"
-                                                                                  class="edit-month"
-                                                                                  ng-options="m for m in months" class=""
-                                                                                  required
-                                                                                  style="display:inline!important;">
+                                                                    <span><select ng-model="resumePosition.startMonth" class="edit-month" ng-options="m for m in months" class=""required style="display:inline!important;">
                                                                         <option value="">choose...</option>
                                                                     </select>
                                                                     <label style="display:none;">Year</label>
@@ -168,8 +160,6 @@
                                 <textarea name="experience1Summary" class="edit-experience" cols="80" rows="6"
                                           ng-model="resumePosition.description "></textarea>
                             </div>
-                            <!--<button type="button" class="btn btn-xs btn-primary" ng-click="saveBottomCard()">Save</button>-->
-                            <!--<button type="button" class="btn btn-xs btn-primary" ng-click="saveBottomCard()">Cancel</button>-->
                             <a href class="" ng-click="removePositionAlert()">
                                 <span class=""><small>Remove this position</small></span>
                             </a>

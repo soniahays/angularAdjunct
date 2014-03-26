@@ -11632,7 +11632,7 @@ angular.module('adjunct.controllers')
             },
             {
                 "title": "Portfolio",
-                "template": "/partial/adjuncts-profile-questions"
+                "template": "/partial/adjuncts-profile-portfolio"
 
             }
         ];

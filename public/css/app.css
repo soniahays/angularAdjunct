@@ -748,7 +748,7 @@ ul#strength {
 }
 .resumes-container {
   margin: 7px 0;
-  padding: 0 20px;
+  padding: 0 0;
 }
 .resumes-container a {
   color: #0077b5;
@@ -829,7 +829,6 @@ ul#strength {
 }
 #experience-container-edit {
   margin-top: 15px;
-  margin-bottom: 20px;
   font-size: 13px;
   line-height: 17px;
   color: #333;
@@ -839,8 +838,6 @@ ul#strength {
   border: 1px solid #e9e9e9;
   border-width: 1px 0;
   width: 604px;
-  /*margin-left: -12px;*/
-  /*margin-right: -12px;*/
 }
 .position-edit-form {
   width: 292px;

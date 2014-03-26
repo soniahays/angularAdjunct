@@ -18,9 +18,12 @@
                 </div>
 
             </div>
-            <div class="modal-footer custom-modal-footer">
-                <button type="button" class="action-bar" data-dismiss="modal">Close</button>
-                <input upload-submit="uploadComplete(content)" type="submit" class="action-bar" data-dismiss="modal" value="Save"/>
+            <div class="modal-footer custom-modal-footer"style="padding:0 15px;">
+                <button type="button" class="btn-primary" style="height:30px;" data-dismiss="modal">Close</button>
+                <input upload-submit="uploadComplete(content)" type="submit" style="height:30px;"  class="btn-primary" data-dismiss="modal" value="Save"/>
+                <!--<div ng-show="canEdit" ng-click="uploadComplete(content)" class="action-bar"data-dismiss="modal" value="Save">-->
+                <!--Yes, remove it-->
+                <!--</div>-->
             </div>
         </div>
         </form>
