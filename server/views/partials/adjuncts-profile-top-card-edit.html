@@ -1,27 +1,6 @@
 <div id="top-card" class="panel profiles-panel col-md-12">
     <div class="panel-body profile-top-card">
-       <div class="profile-picture-container col-sm-4">
-
-
-
-
-           <!--<div class="profile-picture">-->
-            <!--<span ng-if="user.imageName">-->
-                <!--<img class="pull-left"  style="width: 207px;"ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}"/>-->
-            <!--</span>-->
-               <!--<div ng-if="!user.imageName" class="no-picture">-->
-                   <!--<div ng-show="canEdit" class="addPictLink">-->
-                       <!--<a href="#" ng-click="openPictureUploadModal()">-->
-                        <!--<span style= "color: #fff;">-->
-                            <!--<img src="/img/icon_add_photo_27x27_v1.png" /> Add a photo-->
-                        <!--</span>-->
-                       <!--</a>-->
-                   <!--</div>-->
-               <!--</div>-->
-           <!---->
-
-
-
+       <div class="profile-picture-container-edit col-sm-4">
             <div class="profile-picture">
                 <span ng-if="user.imageName">
                     <img class="pull-left" style="width: 207px;" ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}"/>
@@ -44,12 +23,10 @@
             </div>
         </div>
         <div class="profile-overview col-sm-8 col-md-8" style="margin-left:30px;">
-                    <!--<div class="profile-overview-content-edit" style="margin-left: 0px; padding-left: 15px;padding-right: 0px; margin-right: 0">-->
-                        <div class="profile-overview-content col-sm-12 col-md-12" style="margin: 20px 0;">
+                        <div class="profile-overview-content-edit col-sm-12 col-md-12">
                             <div>
                                     <ul class="top-profile-card-xedit">
                                         <li>
-                                            <!--<div id="name-container">-->
                                             <h2 style="font-weight:bold; font-size: 20px;margin:0;line-height:1;">
                                                     <span class="top-card-text-xedit" e-class="top-profile-form-xedit" editable-text="user.firstName" e-name="firstName" e-form="rowform" e-required>
                                                       {{ user.firstName || 'Edit name' }}
@@ -188,23 +165,8 @@
                                 </ul>
                             </div>
                         </div>
-
-
-            <!--<div ng-if="user.expertiseTags.length > 0">-->
-                <!--<div ng-repeat="item in user.expertiseTags | limitTo: maxNumberOfTagsToShow">-->
-                    <!--<span class="tags">{{ item }}</span>-->
-                <!--</div>-->
-                <!--<div class="showtagslink" ng-if="user.expertiseTags.length > 17">-->
-                    <!--<a href="#" ng-click="showMoreTags()" ng-show="maxNumberOfTagsToShow == 17" style="font-size:11px;">Show more tags</a>-->
-                    <!--<a href="#" ng-click="showLessTags()" ng-show="maxNumberOfTagsToShow == 9999" style="font-size:11px;">Show less tags</a>-->
-                <!--</div>-->
-            <!--</div>-->
-
-
-
-
                         <div id="tags-container" style="padding-bottom: 15px">
-                            <label style="margin-bottom: 0px;margin-top: 5px"><i class="fa fa-tag fa-lg"></i> Skills, and
+                            <label style="margin-bottom: 0px;margin-top: 5px"><i class="fa fa-tag"></i> Skills, and
                                 specializations (comma separated): </i></label>
                             <tags-input ng-model="user.expertiseTags"
                       class="expertise-tags expertise-tags-custom"

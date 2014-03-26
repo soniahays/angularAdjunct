@@ -5971,6 +5971,18 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap requires jQuery");+func
           }
           scope.active = scope.activePane = 0;
           scope.setActive = function (index, ev) {
+                switch(index) {
+                    case 0:
+                    $(".panel-group").css("height", "auto");
+                   break;
+                    case 1:
+                        $(".panel-group").css("height", "1300px");
+                        break;
+                    case 2:
+                        $(".panel-group").css("height", "2000px");
+                    break;
+            }
+
             scope.active = index;
             if (controller) {
               controller.$setViewValue(index);
@@ -11616,6 +11628,12 @@ angular.module('adjunct.controllers')
             {
                 "title": "Questions",
                 "template": "/partial/adjuncts-profile-questions"
+
+            },
+            {
+                "title": "Portfolio",
+                "template": "/partial/adjuncts-profile-questions"
+
             }
         ];
 

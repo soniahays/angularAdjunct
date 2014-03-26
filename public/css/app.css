@@ -21,9 +21,9 @@
   width: 70px;
   height: 25px;
   text-align: center;
-  background: #EB7737;
+  background: #a2dfff;
   transition: all 0.2s ease;
-  border-radius: 15px;
+  border-radius: 6px;
   font-style: normal;
 }
 .switch span {
@@ -101,7 +101,7 @@
   margin-left: 4px;
 }
 #instructionalDesign-no:checked ~ #instructionalDesign {
-  background: #333;
+  background: #c2c8cb;
 }
 #instructionalDesign-no:checked ~ #instructionalDesign span {
   background: white;
@@ -116,7 +116,7 @@
   font-weight: bold;
 }
 #professionalContribution-no:checked ~ #professionalContribution {
-  background: #333;
+  background: #c2c8cb;
 }
 #professionalContribution-no:checked ~ #professionalContribution span {
   background: white;
@@ -131,7 +131,7 @@
   font-weight: bold;
 }
 #lms-no:checked ~ #lms {
-  background: #333;
+  background: #c2c8cb;
 }
 #lms-no:checked ~ #lms span {
   background: white;
@@ -709,8 +709,8 @@ ul#strength {
 .css-form .ng-invalid.ng-dirty {
   border-color: #eb7737;
 }
-.nav,
-.pagination,
+.nav a,
+.pagination a,
 .carousel a {
   cursor: pointer;
 }
@@ -748,7 +748,7 @@ ul#strength {
 }
 .resumes-container {
   margin: 7px 0;
-  padding: 0 0;
+  padding: 0 20px;
 }
 .resumes-container a {
   color: #0077b5;
@@ -1076,8 +1076,8 @@ ul#strength {
   padding-right: 0px!important;
 }
 .edit-personal-summary {
-  padding: 5px 10px;
-  margin: 1px 21px  15px;
+  padding: 15px 20px;
+  margin: 20px 20px;
   font-size: 13px;
   width: 561px;
 }
@@ -2009,17 +2009,6 @@ body {
   float: left;
   z-index: 1000;
 }
-/*.profile-overview{*/
-/*position: relative;*/
-/*z-index: 5;*/
-/*float: right;*/
-/*width: 335px;*/
-/*word-wrap: break-word;*/
-/*padding-left: 10px;*/
-/*padding-right: 20px;*/
-/*padding-top: 5px;*/
-/*padding-bottom: 0px!important;*/
-/*}*/
 .profile-picture-container {
   width: 210px;
   /*height:180px;*/
@@ -2028,6 +2017,21 @@ body {
   overflow: hidden;
   float: left;
 }
+.custom-modal-content {
+  border-radius: 1px;
+}
+.custom-modal-header {
+  background-color: #222;
+  border-color: #080808;
+  color: white;
+  padding-bottom: 8px;
+  padding-top: 9px;
+}
+.custom-modal-footer {
+  border-top: 1px dashed #5e5e67;
+  background: #f6f6f6;
+  height: 35px;
+}
 .profile-overview,
 .profile-overview-content {
   margin-left: 0px;
@@ -2035,6 +2039,17 @@ body {
 }
 .profile-overview-content {
   margin-top: 45px;
+}
+.profile-overview-content-edit {
+  margin: 30px 0 10px;
+}
+.profile-picture-container-edit {
+  padding: 0 0;
+  width: 210px;
+  position: relative;
+  margin-top: 9px;
+  overflow: hidden;
+  float: left;
 }
 .account-icons,
 #badge {

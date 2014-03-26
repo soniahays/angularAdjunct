@@ -1,8 +1,8 @@
 <div id="upload-picture-modal" class="modal">
     <div class="modal-dialog modal-dialog-custom">
         <form id="profile-pic-upload" ng-upload method="POST" action="/upload-adjunct?delay=yes">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div class="modal-content custom-modal-content">
+            <div class="modal-header custom-modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Browse and upload your profile picture</h4>
             </div>
@@ -18,11 +18,19 @@
                 </div>
 
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <input upload-submit="uploadComplete(content)" type="submit" class="btn btn-primary" data-dismiss="modal" value="Save"/>
+            <div class="modal-footer custom-modal-footer">
+                <button type="button" class="action-bar" data-dismiss="modal">Close</button>
+                <input upload-submit="uploadComplete(content)" type="submit" class="action-bar" data-dismiss="modal" value="Save"/>
             </div>
         </div>
         </form>
     </div>
 </div>
+
+
+<!--<div ng-show="canEdit" ng-click="" class="action-bar">-->
+    <!--Cancel-->
+<!--</div>-->
+<!--<div ng-show="canEdit" ng-click="removeAResumePosition(selectedResumePosition)" class="action-bar">-->
+    <!--Yes, remove it-->
+<!--</div>-->
