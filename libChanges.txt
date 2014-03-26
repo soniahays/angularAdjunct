@@ -8,7 +8,24 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.jqlite.dimensions']).r
     }
   ])
 
+  Added custom tab height under: scope.setActive = function (index, ev)
+
+        switch(index) {
+          case 0:
+          $(".panel-group").css("height", "auto");
+         break;
+          case 1:
+              $(".panel-group").css("height", "1300px");
+              break;
+          case 2:
+              $(".panel-group").css("height", "2000px");
+          break;
+  }
+
+
   select2.js
   if (handler && typeof handler.abort === "function") { handler.abort(); }
   instead of
   if (handler) { handler.abort(); }
+
+
