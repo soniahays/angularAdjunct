@@ -49,7 +49,7 @@
             class="fa fa-pencil"></i> Edit&nbsp;</a>
     <a href ng-hide="!isResumeSectionShown" ng-click="removePositionAlert(resumePosition)" style="">&nbsp;Remove</a>
 
-    <div ng-hide="isResumePositionShown(positionIndex)">
+    <div ng-hide="isResumePositionShown(positionIndex)" style="padding: 0 15px;">
         <div class="col-md-7" style="padding: 0 0 0 0;">
             <span class="resume-position-institution" style="font-weight:bold;">{{ resumePosition.institution || 'empty' }}</span>
 
@@ -73,9 +73,9 @@
     <div ng-show="isResumePositionShown(positionIndex)">
         <form class="form-group">
             <ul>
-                <div class="" style="">
+                <div class="col-md-12" style="">
 
-                    <div id="experience-containter-edit">
+                    <div id="experience-container-edit">
                         <li>
                             <label>Institution Name <abbr title="Required" class="required">*</abbr></label>
 
@@ -113,7 +113,7 @@
                         </li>
                         <li class="time-period" id="time-period" style="display:inline!important;">
                             <fieldset style="display:inline!important;">
-                                <legend>
+                                <legend class="edit-experience-titles">
                                     <span>Time Period <abbr title="Required" class="required">*</abbr></span>
                                 </legend>
                                 <ul>
@@ -179,7 +179,7 @@
             </ul>
             <div class="bottom-card-profile-actions-edit">
                 <div ng-show="isEditMode" ng-click="saveResumePositionEdit(positionIndex)"
-                     class="top-card-profile-right-actions" >
+                     class="top-card-profile-right-actions bottom-card-profile-right-actions-edit" >
                     <i class="fa fa-check fa-lg"></i> Save Changes
                 </div>
                 <div ng-show="isEditMode" ng-click="restorePreviousResumePosition(positionIndex)"

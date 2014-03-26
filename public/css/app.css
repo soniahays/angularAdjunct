@@ -1,20 +1,38 @@
+@font-face {
+  font-family: hero;
+  src: url("/fonts/hero.otf") format("opentype");
+}
+@font-face {
+  font-family: heroLight;
+  src: url("/fonts/hero-light.otf") format("opentype");
+}
+@font-face {
+  font-family: latoLight;
+  src: url("/fonts/Lato-Lig.ttf") format("opentype");
+}
+@font-face {
+  font-family: latoReg;
+  src: url("/fonts/Lato-Reg.ttf") format("opentype");
+}
 .switch {
+  margin: 20px 0;
   top: 50%;
   left: 50%;
-  width: 100px;
-  height: 30px;
+  width: 70px;
+  height: 25px;
   text-align: center;
   background: #EB7737;
   transition: all 0.2s ease;
-  border-radius: 25px;
+  border-radius: 15px;
+  font-style: normal;
 }
 .switch span {
   position: relative;
-  width: 20px;
-  height: 4px;
+  width: 10px;
+  height: 2px;
   top: 50%;
   left: 50%;
-  margin: -2px 0px 0px -4px;
+  margin: -2px 0px 0px -1px;
   background: #fff;
   display: block;
   -webkit-transform: rotate(-45deg);
@@ -24,9 +42,9 @@
   content: "";
   display: block;
   position: absolute;
-  width: 4px;
-  height: 12px;
-  margin-top: -8px;
+  width: 2px;
+  height: 4px;
+  margin-top: -4px;
   background: #fff;
   transition: all 0.2s ease;
 }
@@ -35,37 +53,104 @@
 }
 .switch label {
   cursor: pointer;
-  color: rgba(0, 0, 0, 0.2);
   width: 30px;
   line-height: 30px;
   transition: all 0.2s ease;
+  font-size: 12px;
 }
 .switch label[for=instructionalDesign-yes] {
   position: relative;
   float: left;
+  color: #777777;
+}
+.switch label[for=professionalContribution-yes] {
+  position: relative;
+  float: left;
+  color: #777777;
+}
+.switch label[for=lms-yes] {
+  position: relative;
+  float: left;
+  color: #777777;
 }
 .switch label[for=instructionalDesign-no] {
   position: relative;
   float: right;
 }
-#instructionalDesign-no:checked ~ .switch span:after {
-  background: #fff;
-  height: 20px;
-  margin-top: -8px;
-  margin-left: 8px;
+.switch label[for=professionalContribution-no] {
+  position: relative;
+  float: right;
 }
-#instructionalDesign-no:checked ~ .switch {
+.switch label[for=lms-no] {
+  position: relative;
+  float: right;
+}
+#instructionalDesign-no:checked ~ #instructionalDesign span:after {
+  background: #fff;
+  height: 10px;
+  margin-left: 4px;
+}
+#professionalContribution-no:checked ~ #professionalContribution span:after {
+  background: #fff;
+  height: 10px;
+  margin-left: 4px;
+}
+#lms-no:checked ~ #lms span:after {
+  background: #fff;
+  height: 10px;
+  margin-left: 4px;
+}
+#instructionalDesign-no:checked ~ #instructionalDesign {
   background: #333;
 }
-#instructionalDesign-no:checked ~ .switch span {
+#instructionalDesign-no:checked ~ #instructionalDesign span {
   background: white;
   margin-left: -8px;
 }
 #instructionalDesign-yes:checked ~ .switch label[for=instructionalDesign-yes] {
   color: #fff;
+  font-weight: bold;
 }
 #instructionalDesign-no:checked ~ .switch label[for=instructionalDesign-no] {
   color: #fff;
+  font-weight: bold;
+}
+#professionalContribution-no:checked ~ #professionalContribution {
+  background: #333;
+}
+#professionalContribution-no:checked ~ #professionalContribution span {
+  background: white;
+  margin-left: -8px;
+}
+#professionalContribution-yes:checked ~ .switch label[for=professionalContribution-yes] {
+  color: #fff;
+  font-weight: bold;
+}
+#professionalContribution-no:checked ~ .switch label[for=professionalContribution-no] {
+  color: #fff;
+  font-weight: bold;
+}
+#lms-no:checked ~ #lms {
+  background: #333;
+}
+#lms-no:checked ~ #lms span {
+  background: white;
+  margin-left: -8px;
+}
+#lms-yes:checked ~ .switch label[for=lms-yes] {
+  color: #fff;
+  font-weight: bold;
+}
+#lms-no:checked ~ .switch label[for=lms-no] {
+  color: #fff;
+  font-weight: bold;
+}
+.edit-experience-titles {
+  font-family: Arial, sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+  display: block;
+  line-height: normal;
 }
 .tags-light-color {
   background-color: #ffffff ;
@@ -121,11 +206,6 @@ select,
 input[type="radio"],
 input[type="checkbox"] {
   line-height: normal;
-}
-label {
-  display: block;
-  /*padding-top: 7px;*/
-  /*padding-bottom: 7px;*/
 }
 input[type="checkbox"] {
   -webkit-appearance: none;
@@ -572,8 +652,9 @@ h4,
 }
 label {
   font-family: Arial, sans-serif;
-  font-weight: normal!important;
-  font-size: 14px!important;
+  font-weight: normal;
+  font-size: 14px;
+  display: block;
 }
 input.ng-pristine + ul#strength {
   display: none;
@@ -667,6 +748,13 @@ ul#strength {
 }
 .resumes-container {
   margin: 7px 0;
+  padding: 0 0;
+}
+.resumes-container a {
+  color: #0077b5;
+}
+.resumes-container .col-md-12 {
+  padding: 0 0;
 }
 .profile-bottom-card {
   padding: 0;
@@ -739,7 +827,7 @@ ul#strength {
   margin-top: 7px;
   margin-bottom: 7px;
 }
-#experience-containter-edit {
+#experience-container-edit {
   margin-top: 15px;
   margin-bottom: 20px;
   font-size: 13px;
@@ -750,6 +838,7 @@ ul#strength {
   background: #f4f4f4;
   border: 1px solid #e9e9e9;
   border-width: 1px 0;
+  width: 604px;
   /*margin-left: -12px;*/
   /*margin-right: -12px;*/
 }
@@ -813,9 +902,11 @@ ul#strength {
   margin-left: 2px;
   display: inline;
   font-size: 12px;
-  color: #7F8BA3;
+  font-family: helvetica;
+  color: #525657;
   font-weight: bold;
-  font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
 }
 .progress-custom-badge-section {
   /*padding-left: 2px !important;*/
@@ -998,11 +1089,6 @@ ul#strength {
 }
 .year {
   width: 60px;
-}
-label,
-legend {
-  font-size: 12px;
-  font-weight: bold;
 }
 ol,
 ul {
@@ -1665,6 +1751,9 @@ body {
   margin-left: 330px;
 }
 /*----------------------*/
+.top-card-profile-right-actions {
+  float: right;
+}
 #loginBox {
   margin-top: 20px ;
 }
@@ -1944,6 +2033,9 @@ body {
   margin-left: 0px;
   padding-left: 0px;
 }
+.profile-overview-content {
+  margin-top: 45px;
+}
 .account-icons,
 #badge {
   float: right;
@@ -1961,14 +2053,16 @@ body {
   vertical-align: top;
 }
 #headline-container {
-  font-size: 0.6em;
-  font-size: 18px;
+  font-size: 16px;
+  font-family: latoReg;
+  line-height: 1.5;
 }
 #name-container {
   line-height: 0;
 }
 #name-container h2 {
   color: black;
+  margin: 0 0;
 }
 #headline-institution {
   font-size: 0.84em;
@@ -1980,22 +2074,26 @@ body {
   font-size: 0.84em;
 }
 #demographic-info {
-  font-size: 0.55em;
-  text-decoration: none !important;
+  font-size: 14px;
+  line-height: 1.6;
 }
 #profile-card-table {
   padding: 0px;
   font-weight: normal !important;
   text-decoration: none !important;
-  font-size: 0.9em;
+  font-size: 14px;
   vertical-align: text-top;
+  margin-bottom: 18px;
+}
+#overview-summary-education {
+  font-size: 14px;
+  line-height: 0.6;
 }
 tbody {
   display: table-row-group;
 }
 /*#profile-card-table > th*/
 .profile-card-table-th {
-  font-size: 0.80em;
   font-weight: normal;
   text-decoration: none !important;
   color: #999;
@@ -2005,7 +2103,6 @@ tbody {
   vertical-align: baseline;
 }
 .profile-card-table-td {
-  font-size: 0.85em;
   padding: 2px 0 0 0;
 }
 .profile-edit {
@@ -2266,13 +2363,10 @@ a.editable-empty:focus {
   /*padding: 7px 15px !important;*/
   font-size: 15px;
   border-radius: 0;
+  color: #333;
 }
 .profile-nav-tabs li {
   padding: 0 0;
-}
-.profile-nav-tabs a {
-  color: #333;
-  background-color: #eee;
 }
 .profile-nav-tabs > li {
   padding: 0 0;
@@ -2298,7 +2392,6 @@ a.editable-empty:focus {
 #user-auto-assess input[type="radio"] + label {
   position: relative;
   /*padding: 0 0 0 25px;*/
-  font-size: 16px;
   line-height: 16px;
 }
 #user-auto-assess input[type="radio"] + label:before {
