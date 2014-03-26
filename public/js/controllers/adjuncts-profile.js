@@ -504,12 +504,13 @@ angular.module('adjunct.controllers')
                 "title": "Questions",
                 "template": "/partial/adjuncts-profile-questions"
 
-            },
-            {
-                "title": "Portfolio",
-                "template": "/partial/adjuncts-profile-portfolio"
-
             }
+//            ,
+//            {
+//                "title": "Portfolio",
+//                "template": "/partial/adjuncts-profile-portfolio"
+//
+//            }
         ];
 
         $scope.tabs.activeTab = 0;
