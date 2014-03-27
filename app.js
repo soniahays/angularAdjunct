@@ -391,48 +391,10 @@ app.get('/api/linkedInAuth', function (req, res) {
     if (req.cookies.linkedinAccessToken) {
         linkedinAuth.oauthStep3(req, res, req.cookies.linkedinAccessToken, 'people/~:(summary,positions,skills,connections,shares,network,picture-urls::(original))', function (data) {
             var parsedData = JSON.parse(data);
-
-            // get the linkedin picture
-            if (parsedData && parsedData.pictureUrls) {
-                var pictureUrl = parsedData.pictureUrls.values[0];
-                var newFileName = uuid.v1() + ".jpg";
-                try {
-                    http.get(pictureUrl, function (response) {
-                        fs.mkdir("/tmp", function() {
-                            var picStream = fs.createWriteStream("/tmp/" + newFileName);
-                            response.pipe(picStream);
-
-                            picStream.on('close', function() {
-                                var s3object = {
-                                    'Bucket': 'Adjuncts',
-                                    'Key': newFileName,
-                                    'Body': fs.createReadStream("/tmp/" + newFileName),
-                                    'ACL': 'public-read'
-                                };
-                                s3.putObject(s3object, function (err, data) {
-                                    if (err) {
-                                        console.log(err);
-                                        res.send(err);
-                                    }
-                                    else {
-
-                                        // we are done, save the linkedin date to the session so it can be retrieved in another call
-                                        req.session.linkedinData = data;
-                                        req.session.linkedinData.pictureFileName = newFileName;
-                                        res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile' });
-                                        res.end();
-                                    }
-                                });
-                            });
-                        });
-                    });
-                }
-                catch (e) {
-                    res.send({ 'msg': '<b>"' + pictureUrl + '"</b> NOT uploaded. ' + e });
-                }
-
-
+            if (parsedData.status == "401") {
+                res.send(parsedData.message);
             }
+            getLinkedinPicture(parsedData, req,res);
         });
     } else {
         linkedinAuth.oauthStep1(req, res);
@@ -448,7 +410,6 @@ app.get('/api/linkedInAuthCallback', function (req, res) {
         res.end();
     });
 });
-
 
 app.get('/api/getLinkedinData', function (req, res) {
     res.send(req.session.linkedinData);
@@ -552,3 +513,47 @@ app.get('*', function (req, res) {
     }
     res.render(path.join(app.get('views'), 'index.html'));
 });
+
+
+function getLinkedinPicture(parsedData, req, res) {
+    // get the linkedin picture
+    if (parsedData && parsedData.pictureUrls) {
+        var pictureUrl = parsedData.pictureUrls.values[0];
+        var newFileName = uuid.v1() + ".jpg";
+        try {
+            http.get(pictureUrl, function (response) {
+                fs.mkdir("/tmp", function() {
+                    var picStream = fs.createWriteStream("/tmp/" + newFileName);
+                    response.pipe(picStream);
+
+                    picStream.on('close', function() {
+                        var s3object = {
+                            'Bucket': 'Adjuncts',
+                            'Key': newFileName,
+                            'Body': fs.createReadStream("/tmp/" + newFileName),
+                            'ACL': 'public-read'
+                        };
+                        s3.putObject(s3object, function (err, data) {
+                            if (err) {
+                                console.log(err);
+                                res.send(err);
+                            }
+                            else {
+                                // we are done, save the linkedin date to the session so it can be retrieved in another call
+                                req.session.linkedinData = data;
+                                req.session.linkedinData.pictureFileName = newFileName;
+                                res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile' });
+                                res.end();
+                            }
+                        });
+                    });
+                });
+            });
+        }
+        catch (e) {
+            res.send({ 'msg': '<b>"' + pictureUrl + '"</b> NOT uploaded. ' + e });
+        }
+
+
+    }
+}
