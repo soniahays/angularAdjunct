@@ -1,7 +1,7 @@
 <div id="competency-portfolio-modal" class="modal">
 
     <div class="modal-dialog modal-dialog-custom modal-vertical-centered"style="position:relative;">
-        <a id="modal-close" class="rounded-close-btn">
+        <a id="modal-close" class="rounded-close-btn" data-dismiss="modal">
             <i class="fa fa-times-circle fa-3x icon-ex-white-outline"></i>
         </a>
         <div class="modal-content" style="height:550px;width:850px;margin-left:-110px; padding-left: 10px;padding-right: 25px;border-radius:2px;">
@@ -56,18 +56,6 @@
                         </li>
                     </ul>
                 </div>
-
-                <!--<label>Paste in the link of your Youtube video:</label></br>-->
-                <!--[<a href="" ng-click="addPortfolioLink()">add</a>]-->
-                <!--<div ng-repeat="portfolioLink in user.portfolioLinks">-->
-                    <!--<select ng-model="portfolioLink.type">-->
-                        <!--<option>Youtube</option>-->
-                        <!--<option>PDF</option>-->
-                    <!--</select>-->
-                    <!--<input type="text" class="portfolio-form" ng-model="portfolioLink.value" required>-->
-                    <!--[<a href="" ng-click="removePortfolioLink(portfolioLink)">X</a>]-->
-                <!--</div>-->
-
                 <a href="#" class="list-group-item list-group-item-custom list-group-item-customize-left list-group-item-dashboard"
                    style="padding-left: 0px;border-left:3px solid rgba(116, 165, 86, 0.92);border-right: 1px solid rgba(116, 165, 86, 0.92);">
                     <div progress-bar class="sum-feedback bar-border-radius" pb-progress="getCompetencyPercent(user.survey.sumFeedback, 'Summative Feedback')" pb-title="Summative Feedback" />
@@ -116,27 +104,20 @@
                         <small>Instructional Design
                             <div id='instDYesNo' style="color:#763f3f;">{{user.survey.instructionalDesign}}</div>
                             <span ng-bind="">
-
                             </span>
                         </small>
                     </div>
                 </a>
                 <button type="submit" class="btn btn-primary block" ng-click="openAddDoc()" style="margin: 20px 5px;">Add a document...</button>
-                <!--<a href="#" ng-click="openUploadPortfolioModal()">Add a document...</a>-->
             </div>
+
             <div class="col-md-8 dashboard-display-panel" style="padding-left:0px;margin-top:0px;">
                 <div ng-include="'/partial/upload-portfolio'" ng-show="showAddDoc"/>
                 <div ng-hide="showAddDoc">
                 <div style="height:25px;padding:15px 5px 0 0;">{{docTitle}}</div>
                 <div style="margin-top:45px;">
-
                     <iframe type="text/html" ng-hide="showVid" width="540" height="350" src="{{frameUrl}}" frameborder="" allowfullscreen style="margin-top: -31px;"></iframe>
                 </div>
-                <!--<div ng-if=style="margin-top:45px;">-->
-                    <!--<iframe type="text/html" ng-hide="showVid" width="540" height="350" src="{{frameUrl}}" frameborder="" allowfullscreen style="margin-top: -31px;"></iframe>-->
-                <!--</div>-->
-
-
                 <div style="padding:15px 0px 0 0;">
                     <p>
                         <small style="padding-left:5px">{{docDescription}}</small>
@@ -145,7 +126,6 @@
                 <div>
                     <hr />
                     <a href="" ng-click="removePortfolioLink()">Remove Link</a>
-                    <!--<button class="btn btn-primary" data-dismiss="modal" ng-click="savePortfolio()" style="float:right">Save</button>-->
                 </div>
                 </div>
             </div>

@@ -71,6 +71,10 @@
   z-index: 11570;
   box-shadow: 0 0 8px rgba(0,0,0,0.4);
 }
+
+.answer-container *{
+  font-size:13px;
+}
 .rounded-close-btn{
   display: inline-block;
   height: 35px;
@@ -81,6 +85,7 @@
   font-weight: bold;
   line-height: 24px;
   color: #333;
+//  background: #000;
   text-align: center;
   text-shadow: 0 1px 0 rgba(255,255,255,0.8);
   border: solid 1px #aaa;
@@ -107,7 +112,7 @@
   transition: all .05s linear;
   padding: 0;
   border-radius: 100px;
-  background: #000;
+
   border: solid 2px #fff;
   box-shadow: none;
 }
@@ -116,7 +121,6 @@
 .icon-ex-white-outline{
   position: relative;
   display: block;
-  top: 4px;
   margin-right: 4px;
   float: left;
   background-position: -256px -64px;
@@ -138,7 +142,9 @@
   width: 70px;
   height: 25px;
   text-align: center;
-  background: @yes-radio-switch-color;
+  background: white;
+  border:1.8px solid @main-theme-color;
+  color:#666;
   transition: all 0.2s ease;
   border-radius: 6px;
   font-style:normal;
@@ -149,7 +155,7 @@
     top: 50%;
     left: 50%;
     margin: -2px 0px 0px -1px;
-    background: #fff;
+    background: @main-theme-color;
     display: block;
     -webkit-transform: rotate(-45deg);
     transition: all 0.2s ease;
@@ -160,7 +166,7 @@
       width: 2px;
       height: 4px;
       margin-top: -4px;
-      background: #fff;
+      background: @main-theme-color;
       transition: all 0.2s ease;
     }
   }
@@ -170,7 +176,7 @@
   label {
     cursor: pointer;
     width: 30px;
-    line-height: 30px;
+    line-height: 25px;
     transition: all 0.2s ease;
     font-size:12px;
 
@@ -189,27 +195,28 @@
 }
 
 #lms-no:checked ~ #lms span:after,#professionalContribution-no:checked ~ #professionalContribution span:after,#instructionalDesign-no:checked ~ #instructionalDesign span:after {
-  background: #fff;
+  background: #333;
   height: 10px;
   //  margin-top: -6px;
   margin-left: 4px;
 }
 
 #lms-yes:checked ~ .switch label[for=lms-yes],#instructionalDesign-yes:checked ~ .switch label[for=instructionalDesign-yes],#professionalContribution-yes:checked ~ .switch label[for=professionalContribution-yes] {
-  color: #fff;
+  color: @main-theme-color;
   font-weight:bold;
 }
 #instructionalDesign-no:checked ~ .switch label[for=instructionalDesign-no],#professionalContribution-no:checked ~ .switch label[for=professionalContribution-no],#lms-no:checked ~ .switch label[for=lms-no]   {
-  color: #fff;
+  color: #333;
   font-weight:bold;
 
 }
 #professionalContribution-no:checked ~ #professionalContribution,#lms-no:checked ~ #lms,#instructionalDesign-no:checked ~ #instructionalDesign{
-  background: @no-radio-switch-color;
+  background: white;
+  border: 1.8px solid #666;
   //  margin-left: -8px;
 
   span {
-    background:white;
+    background:#333;
     margin-left: -8px;
   }
 }
@@ -2705,6 +2712,7 @@ a.editable-click:hover {
 #user-auto-assess input[type="radio"] {
   position:absolute;
   opacity: 0;
+  margin-top:10px;
   -moz-opacity: 0;
   -webkit-opacity: 0;
   -o-opacity: 0;

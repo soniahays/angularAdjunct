@@ -331,6 +331,7 @@ angular.module('adjunct.controllers')
             $scope.docDescription = portfolioLink.description;
             $scope.showAddDoc = false;
             $scope.selectedPortfolioLink = portfolioLink;
+            $scope.frameUrl = "http://www.youtube.com/embed/" + videoId;
         }
 
         $scope.clearDoc = function () {

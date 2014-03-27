@@ -48,6 +48,9 @@
   z-index: 11570;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
 }
+.answer-container * {
+  font-size: 13px;
+}
 .rounded-close-btn {
   display: inline-block;
   height: 35px;
@@ -84,14 +87,12 @@
   transition: all .05s linear;
   padding: 0;
   border-radius: 100px;
-  background: #000;
   border: solid 2px #fff;
   box-shadow: none;
 }
 .icon-ex-white-outline {
   position: relative;
   display: block;
-  top: 4px;
   margin-right: 4px;
   float: left;
   background-position: -256px -64px;
@@ -108,7 +109,9 @@
   width: 70px;
   height: 25px;
   text-align: center;
-  background: #a2dfff;
+  background: white;
+  border: 1.8px solid #eb7737;
+  color: #666;
   transition: all 0.2s ease;
   border-radius: 6px;
   font-style: normal;
@@ -120,7 +123,7 @@
   top: 50%;
   left: 50%;
   margin: -2px 0px 0px -1px;
-  background: #fff;
+  background: #eb7737;
   display: block;
   -webkit-transform: rotate(-45deg);
   transition: all 0.2s ease;
@@ -132,7 +135,7 @@
   width: 2px;
   height: 4px;
   margin-top: -4px;
-  background: #fff;
+  background: #eb7737;
   transition: all 0.2s ease;
 }
 .switch input[type=radio] {
@@ -141,7 +144,7 @@
 .switch label {
   cursor: pointer;
   width: 30px;
-  line-height: 30px;
+  line-height: 25px;
   transition: all 0.2s ease;
   font-size: 12px;
 }
@@ -161,31 +164,32 @@
 #lms-no:checked ~ #lms span:after,
 #professionalContribution-no:checked ~ #professionalContribution span:after,
 #instructionalDesign-no:checked ~ #instructionalDesign span:after {
-  background: #fff;
+  background: #333;
   height: 10px;
   margin-left: 4px;
 }
 #lms-yes:checked ~ .switch label[for=lms-yes],
 #instructionalDesign-yes:checked ~ .switch label[for=instructionalDesign-yes],
 #professionalContribution-yes:checked ~ .switch label[for=professionalContribution-yes] {
-  color: #fff;
+  color: #eb7737;
   font-weight: bold;
 }
 #instructionalDesign-no:checked ~ .switch label[for=instructionalDesign-no],
 #professionalContribution-no:checked ~ .switch label[for=professionalContribution-no],
 #lms-no:checked ~ .switch label[for=lms-no] {
-  color: #fff;
+  color: #333;
   font-weight: bold;
 }
 #professionalContribution-no:checked ~ #professionalContribution,
 #lms-no:checked ~ #lms,
 #instructionalDesign-no:checked ~ #instructionalDesign {
-  background: #c2c8cb;
+  background: white;
+  border: 1.8px solid #666;
 }
 #professionalContribution-no:checked ~ #professionalContribution span,
 #lms-no:checked ~ #lms span,
 #instructionalDesign-no:checked ~ #instructionalDesign span {
-  background: white;
+  background: #333;
   margin-left: -8px;
 }
 .edit-experience-titles {
@@ -2420,6 +2424,7 @@ a.editable-empty:focus {
 #user-auto-assess input[type="radio"] {
   position: absolute;
   opacity: 0;
+  margin-top: 10px;
   -moz-opacity: 0;
   -webkit-opacity: 0;
   -o-opacity: 0;
