@@ -58,6 +58,77 @@
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
 }
+#modal-close:before, .btn:after {
+  display: table;
+  content: "";
+}
+#modal-close{
+  position: absolute;
+  right: -160px;
+  top: -18px;
+  margin: 0;
+  cursor: pointer;
+  z-index: 11570;
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
+}
+.rounded-close-btn{
+  display: inline-block;
+  height: 35px;
+  width: 35px;
+  padding: 0 7px 0 7px;
+  margin: 0 7px 0 0;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 24px;
+  color: #333;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+  border: solid 1px #aaa;
+  float: left;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-shadow: 0 1px 0 0 rgba(0,0,0,0.05),inset 0 1px 0 0 #fff;
+  border-radius: 3px;
+  background-color: #f5f5f5;
+  background-image: -moz-linear-gradient(top, #fafafa, #ededed);
+  background-image: -ms-linear-gradient(top, #fafafa, #ededed);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#ededed));
+  background-image: -webkit-linear-gradient(top, #fafafa, #ededed);
+  background-image: linear-gradient(top, #fafafa, #ededed);
+  background-repeat: repeat-x;
+  -webkit-transition: all .05s linear;
+  -moz-transition: all .05s linear;
+  -ms-transition: all .05s linear;
+  transition: all .05s linear;
+  padding: 0;
+  border-radius: 100px;
+  background: #000;
+  border: solid 2px #fff;
+  box-shadow: none;
+}
+
+
+.icon-ex-white-outline{
+  position: relative;
+  display: block;
+  top: 4px;
+  margin-right: 4px;
+  float: left;
+  background-position: -256px -64px;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: text-top;
+//  background-image: url(http://static.a.gs-cdn.net/webincludes/css/images/icons-16x16.png?v=22);
+  background-repeat: no-repeat;
+}
 
 
 .switch {
