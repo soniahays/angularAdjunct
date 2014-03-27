@@ -233,7 +233,7 @@ angular.module('adjunct.controllers')
                 }
             }
 
-            $http.post('/api/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
+            $scope.savePortfolioCard();
         }
 
         $scope.savePortfolioCard = function () {
@@ -261,14 +261,6 @@ angular.module('adjunct.controllers')
 
         $scope.addPortfolioUpload = function () {
             $scope.user.portfolioLinks.push({type: 'PDF', value: ''});
-        }
-
-        $scope.removePortfolioLink = function (portfolioLink) {
-            for (var i = 0, ii = $scope.user.portfolioLinks.length; i < ii; i++) {
-                if (portfolioLink == $scope.user.portfolioLinks[i]) {
-                    $scope.user.portfolioLinks.splice(i, 1);
-                }
-            }
         }
 
         $scope.addAFieldOfExpertise = function () {
@@ -333,11 +325,20 @@ angular.module('adjunct.controllers')
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.4'});
         }
 
-        $scope.openDoc = function (url, docType, docTitle, docDescription) {
-            $scope.frameUrl = url;
-            $scope.docTitle = docTitle;
-            $scope.docDescription = docDescription;
+        $scope.openDoc = function (portfolioLink) {
+            $scope.frameUrl = portfolioLink.value;
+            $scope.docTitle = portfolioLink.title;
+            $scope.docDescription = portfolioLink.description;
             $scope.showAddDoc = false;
+            $scope.selectedPortfolioLink = portfolioLink;
+        }
+
+        $scope.clearDoc = function () {
+            $scope.frameUrl = "about:blank";
+            $scope.docTitle = "";
+            $scope.docDescription = "";
+            $scope.showAddDoc = false;
+            $scope.selectedPortfolioLink = "";
         }
 
         $scope.openBadgeEditModal = function () {
@@ -495,6 +496,16 @@ angular.module('adjunct.controllers')
             }
 
             return competencyPercent;
+        }
+
+        $scope.removePortfolioLink = function () {
+            for (var i = 0, ii = $scope.user.portfolioLinks.length; i < ii; i++) {
+                if ($scope.selectedPortfolioLink == $scope.user.portfolioLinks[i]) {
+                    $scope.user.portfolioLinks.splice(i, 1);
+                }
+            }
+            $scope.clearDoc();
+            $scope.savePortfolioCard();
         }
 
         $scope.tabs = [
