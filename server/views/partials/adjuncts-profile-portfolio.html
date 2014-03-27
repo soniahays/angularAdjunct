@@ -1,6 +1,15 @@
 <div style="margin: 25px 25px;">
-    <div style="margin-top:45px;">
-        <div style="height:25px;padding:15px 5px 0 0;">{{docTitle}}</div>
-        <iframe type="text/html" ng-hide="showVid" width="540" height="350" src="{{frameUrl}}" frameborder="" allowfullscreen style="margin-top: -31px;"></iframe>
-    </div>
+
+    <ul>
+        <li ng-repeat="doc in user.portfolioLinks" class="">
+            <a ng-click="openDoc(doc.value,doc.type, doc.title, doc.description, doc.category)">
+                <div style="font-weight:bold;">{{doc.category}}: {{doc.title}}</div>
+                <br>
+                <iframe type="text/html" width="450" height="253" src="{{doc.value}}" frameborder="" allowfullscreen style=""></iframe>
+                {{doc.description}}
+
+                <br><br><br>
+            </a>
+        </li>
+    </ul>
 </div>

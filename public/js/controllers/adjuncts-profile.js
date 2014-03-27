@@ -365,6 +365,15 @@ angular.module('adjunct.controllers')
             });
         };
 
+
+        $scope.showMoreTags=function(){
+          $scope.maxNumberOfTagsToShow=9999;
+        }
+
+        $scope.showLessTags=function(){
+            $scope.maxNumberOfTagsToShow=17;
+        }
+
         $scope.saveDocument = function() {
             var url;
             var thumbnail;
@@ -379,28 +388,21 @@ angular.module('adjunct.controllers')
                 thumbnail = "/img/PortfolioIconResume.png";
             }
             $scope.user.portfolioLinks.push({
-               'category': $scope.document.category,
-               'title': $scope.document.title,
-               'description': $scope.document.description,
-               'value': url,
+                'category': $scope.document.category,
+                'title': $scope.document.title,
+                'description': $scope.document.description,
+                'value': url,
                 "thumbnail": thumbnail,
-               'type': $scope.document.type,
-               '$$hashKey': "HK" + $scope.user.portfolioLinks.length
+                'type': $scope.document.type,
+                '$$hashKey': "HK" + $scope.user.portfolioLinks.length
             });
-        }
-
-        $scope.showMoreTags=function(){
-          $scope.maxNumberOfTagsToShow=9999;
-        }
-
-        $scope.showLessTags=function(){
-            $scope.maxNumberOfTagsToShow=17;
-        }
-
-
-        $scope.savePortfolio = function() {
             $http.post('/api/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
+
         }
+//
+//        $scope.savePortfolio = function() {
+//            $http.post('/api/save-adjuncts-profile', JSON.stringify({'user': $scope.user}));
+//        }
 
         function getYoutubeId(url) {
             var regex = /(www.)?youtu(be\.com|\.be)\/(watch\?v=)?([A-Za-z0-9._%-]*)(\&\S+)?/
@@ -505,12 +507,12 @@ angular.module('adjunct.controllers')
                 "template": "/partial/adjuncts-profile-questions"
 
             }
-//            ,
-//            {
-//                "title": "Portfolio",
-//                "template": "/partial/adjuncts-profile-portfolio"
-//
-//            }
+            ,
+            {
+                "title": "Portfolio",
+                "template": "/partial/adjuncts-profile-portfolio"
+
+            }
         ];
 
         $scope.tabs.activeTab = 0;
