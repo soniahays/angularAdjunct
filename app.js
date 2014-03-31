@@ -22,18 +22,28 @@ var http = require('http'),
     es = require('./server/elasticsearch.js')(elasticsearch),
     linkedinAuth = require('./server/linkedinAuth.js')(http, https);
 
-var userDb, jobDb, institutionDb, pass;
+var userDb, jobDb, institutionDb, pass, s3, ses;
 
 /**
  * Connect to MongoDb then start Express server
  */
 connect(function (err, db) {
+
+    // We use AWS S3 to store profile pictures
+    aws.config.loadFromPath('./server/config/aws-config.json');
+    s3 = new aws.S3();
+
+// We use AWS SES to send emails
+    ses = new aws.SES({apiVersion: '2010-12-01'});
+
+
     console.log('Connected to mongodb.');
     userDb = require('./server/userDb.js')(mongodb, db, bcrypt),
         jobDb = require('./server/jobDb.js')(mongodb, db),
         institutionDb = require('./server/institutionDb.js')(mongodb, db),
         metadataDb = require('./server/metadataDb.js')(mongodb, db),
-        pass = require('./server/passport.js')(userDb, passport, bcrypt, _);
+        utils = require('./server/utils.js')(uuid, fs, http, s3, path),
+        pass = require('./server/passport.js')(userDb, passport, bcrypt, _, utils);
 
     http.createServer(app).listen(app.get('port'), function () {
         console.log('Express server listening on port ' + app.get('port'));
@@ -65,13 +75,6 @@ app.use(function noCache(req, res, next) {
     res.header("Expires", 0);
     next();
 });
-
-// We use AWS S3 to store profile pictures
-aws.config.loadFromPath('./server/config/aws-config.json');
-var s3 = new aws.S3();
-
-// We use AWS SES to send emails
-var ses = new aws.SES({apiVersion: '2010-12-01'});
 
 /**
  * Routes
@@ -210,28 +213,18 @@ app.post('/api/save-institutions-profile', function (req, res) {
 });
 
 app.post('/upload-adjunct', function (req, res) {
-    upload(req, res, function (newFileName, fileName) {
-        userDb.updateUserField(req.cookies._id, {'imageName': newFileName}, function () {
-            res.send({ msg: '<b>"' + fileName + '"</b> uploaded.' });
-        });
+    utils.upload(req.files, function (err, newFileName, fileName) {
+        if (err) {
+            res.send(err);
+        }
+        else {
+            userDb.updateUserField(req.cookies._id, {'imageName': newFileName}, function () {
+                res.send({ msg: '<b>"' + fileName + '"</b> uploaded.' });
+            });
+        }
     });
 });
 
-app.post('/upload-institution/:id', function (req, res) {
-    upload(req, res, function (newFileName, fileName) {
-        institutionDb.updateInstitutionField(req.params.id, {'imageName': newFileName}, function () {
-            res.send({ msg: '<b>"' + fileName + '"</b> uploaded.' });
-        });
-    });
-});
-
-app.post('/upload-job/:id', function (req, res) {
-    upload(req, res, function (newFileName, fileName) {
-        jobDb.updateJobField(req.params.id, {'imageName': newFileName}, function () {
-            res.send({ msg: '<b>"' + fileName + '"</b> uploaded.' });
-        });
-    });
-});
 
 app.post('/send-email', function (req, res) {
 
@@ -262,41 +255,6 @@ app.post('/send-email', function (req, res) {
         res.send({msg: 'Email sent'});
     });
 });
-
-var upload = function (req, res, callback) {
-    setTimeout(
-        function () {
-            res.setHeader('Content-Type', 'text/html');
-            if (req.files.length == 0 || req.files.file.size == 0)
-                res.send({ 'msg': 'No file uploaded.' });
-            else {
-                var file = req.files.file;
-                var newFileName = uuid.v1() + path.extname(file.path);
-                try {
-                    var s3object = {
-                        'Bucket': 'Adjuncts',
-                        'Key': newFileName,
-                        'Body': fs.createReadStream(file.path),
-                        'ACL': 'public-read'
-                    };
-                    s3.putObject(s3object, function (err, data) {
-                        if (err) {
-                            console.log(err);
-                            res.send(err);
-                        }
-                        else {
-                            callback(newFileName, file.name);
-                        }
-                    });
-                }
-                catch (e) {
-                    res.send({ 'msg': '<b>"' + file.name + '"</b> NOT uploaded. ' + e });
-                }
-            }
-        },
-        (req.param('delay', 'yes') == 'yes') ? 2000 : -1
-    );
-};
 
 app.post('/api/search', function (req, res) {
     es.search({'query': {'match': {'_all': req.body.query}}}, function (err, result) {
@@ -342,7 +300,6 @@ app.get('/partial/search-results/:searchTerm',
         res.render(path.join(app.get('partials'), 'search-results.html'), { locals: {'searchTerm': req.params.searchTerm}});
     });
 
-
 app.get('/partial/:name',
     function (req, res) {
         var name = req.params.name;
@@ -367,8 +324,14 @@ app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE
 
 app.get('/auth/linkedin/callback',
     passport.authenticate('linkedin', {
-        successReturnToOrRedirect: '/profile',
-        failureRedirect: '/signin' })
+        failureRedirect: '/signin' }),
+    function(req, res) {
+        if (req.user[0]) {
+            req.session.user = req.user[0];
+            res.cookie('_id', req.user[0]._id.toString());
+        }
+        res.redirect('/profile');
+    }
 );
 
 app.get('/auth/google', passport.authenticate('google'));
@@ -391,11 +354,24 @@ app.get('/api/linkedInAuth', function (req, res) {
     if (req.cookies.linkedinAccessToken) {
         linkedinAuth.oauthStep3(req, res, req.cookies.linkedinAccessToken, 'people/~:(summary,positions,skills,connections,shares,network,picture-urls::(original))', function (data) {
             var parsedData = JSON.parse(data);
+
             if (parsedData.status == "401") {
-                res.send(parsedData.message);
+                console.log(err);
+                res.send(err);
             }
-            getLinkedinPicture(parsedData, req,res);
+
+            // get the linkedin picture
+            if (parsedData && parsedData.pictureUrls) {
+                var pictureUrl = parsedData.pictureUrls.values[0];
+                utils.getLinkedInPicture(pictureUrl, function(err, data) {
+                    // we are done, save the linkedin date to the session so it can be retrieved in another call
+                    req.session.linkedinData = data;
+                    res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile' });
+                    res.end();
+                });
+            }
         });
+
     } else {
         linkedinAuth.oauthStep1(req, res);
     }
@@ -514,46 +490,3 @@ app.get('*', function (req, res) {
     res.render(path.join(app.get('views'), 'index.html'));
 });
 
-
-function getLinkedinPicture(parsedData, req, res) {
-    // get the linkedin picture
-    if (parsedData && parsedData.pictureUrls) {
-        var pictureUrl = parsedData.pictureUrls.values[0];
-        var newFileName = uuid.v1() + ".jpg";
-        try {
-            http.get(pictureUrl, function (response) {
-                fs.mkdir("/tmp", function() {
-                    var picStream = fs.createWriteStream("/tmp/" + newFileName);
-                    response.pipe(picStream);
-
-                    picStream.on('close', function() {
-                        var s3object = {
-                            'Bucket': 'Adjuncts',
-                            'Key': newFileName,
-                            'Body': fs.createReadStream("/tmp/" + newFileName),
-                            'ACL': 'public-read'
-                        };
-                        s3.putObject(s3object, function (err, data) {
-                            if (err) {
-                                console.log(err);
-                                res.send(err);
-                            }
-                            else {
-                                // we are done, save the linkedin date to the session so it can be retrieved in another call
-                                req.session.linkedinData = data;
-                                req.session.linkedinData.pictureFileName = newFileName;
-                                res.writeHead(302, { 'Location': 'http://' + req.headers.host + '/profile' });
-                                res.end();
-                            }
-                        });
-                    });
-                });
-            });
-        }
-        catch (e) {
-            res.send({ 'msg': '<b>"' + pictureUrl + '"</b> NOT uploaded. ' + e });
-        }
-
-
-    }
-}

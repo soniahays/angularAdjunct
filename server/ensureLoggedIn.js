@@ -41,6 +41,9 @@ module.exports = function ensureLoggedIn(options) {
     var setReturnTo = (options.setReturnTo === undefined) ? true : options.setReturnTo;
 
     return function (req, res, next) {
+        if (req.session.user != null) {
+            req.user = req.session.user;
+        }
         if (!req.isAuthenticated || !req.isAuthenticated()) {
             if (setReturnTo && req.session) {
                 if (options.customReturnTo) {

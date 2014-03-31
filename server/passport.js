@@ -3,7 +3,7 @@ var LocalStrategy = require('passport-local').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
     GoogleStrategy = require('passport-google').Strategy;
 
-module.exports = function (db, passport, bcrypt, _) {
+module.exports = function (db, passport, bcrypt, _, utils) {
 
     var ROOT_URL = "http://localhost:3000";
     switch (process.env.NODE_ENV) {
@@ -59,32 +59,49 @@ module.exports = function (db, passport, bcrypt, _) {
                     done(null, user);
                 }
                 else {
-                    var user = {
-                        'linkedinId': profile.id,
-                        'firstName': profile.name.givenName,
-                        'lastName': profile.name.familyName,
-                        'personalSummary': profile._json.summary,
-                        'expertiseTags': _.pluck(_.pluck(profile._json.skills.values, 'skill'), 'name'),
-                        'linkedinPictureUrl': profile._json.pictureUrls.total > 0 ? profile._json.pictureUrls.values[0] : '',
-                        'resumePositions': _.map(profile._json.positions.values, function (position) {
-                            return {
-                                title: position.title,
-                                institution: position.company.name,
-                                startMonth: position.startDate.month,
-                                startYear: position.startDate.year,
-                                stillHere: position.isCurrent,
-                                endMonth: position.isCurrent ? null : position.endDate.month,
-                                endYear: position.isCurrent ? null : position.endDate.year,
-                                location: position.location,
-                                description: position.summary,
-                                termsDate: getUniversityTerm(position.startDate.month, position.startDate.year, position.endDate, position.isCurrent)
-                            }
-                        })
-                    }
 
-                    db.insertUser(user, done);
+                    if (profile._json.pictureUrls.values.length > 0) {
+                        utils.getLinkedInPicture(profile._json.pictureUrls.values[0], function(err, imageName) {
+                            if (err) {
+                                return done(err);
+                            }
+                            else {
+                                insertUser(imageName, done);
+                            }
+                        });
+                    }
+                    else {
+                        insertUser("", done);
+                    }
                 }
             });
+
+            function insertUser(imageName, done) {
+                var user = {
+                    'linkedinId': profile.id,
+                    'firstName': profile.name.givenName,
+                    'lastName': profile.name.familyName,
+                    'personalSummary': profile._json.summary,
+                    'expertiseTags': _.pluck(_.pluck(profile._json.skills.values, 'skill'), 'name'),
+                    'imageName': imageName,
+                    'resumePositions': _.map(profile._json.positions.values, function (position) {
+                        return {
+                            title: position.title,
+                            institution: position.company.name,
+                            startMonth: position.startDate.month,
+                            startYear: position.startDate.year,
+                            stillHere: position.isCurrent,
+                            endMonth: position.isCurrent ? null : position.endDate.month,
+                            endYear: position.isCurrent ? null : position.endDate.year,
+                            location: position.location,
+                            description: position.summary,
+                            termsDate: getUniversityTerm(position.startDate.month, position.startDate.year, position.endDate, position.isCurrent)
+                        }
+                    })
+                }
+
+                db.insertUser(user, done);
+            }
 
             function getUniversityTerm(startMonth, startYear, endDate, isStillHere) {
                 var universityTermStart;
