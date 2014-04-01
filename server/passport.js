@@ -60,7 +60,7 @@ module.exports = function (db, passport, bcrypt, _, utils) {
                 }
                 else {
 
-                    if (profile._json.pictureUrls.values.length > 0) {
+                    if (profile._json.pictureUrls && profile._json.pictureUrls.values && profile._json.pictureUrls.values.length > 0) {
                         utils.getLinkedInPicture(profile._json.pictureUrls.values[0], function(err, imageName) {
                             if (err) {
                                 return done(err);
