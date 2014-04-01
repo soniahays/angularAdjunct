@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('SearchResultsCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('SearchResultsCtrl', ['$scope', '$http', '$filter', function ($scope, $http, $filter) {
         $scope.users = [];
         $scope.user = {};
 
