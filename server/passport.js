@@ -60,7 +60,7 @@ module.exports = function (db, passport, bcrypt, _, utils) {
                 }
                 else {
 
-                    if (profile._json.pictureUrls && profile._json.pictureUrls.values && profile._json.pictureUrls.values.length > 0) {
+                    if (profile && profile._json && profile._json.pictureUrls && profile._json.pictureUrls.values && profile._json.pictureUrls.values.length > 0) {
                         utils.getLinkedInPicture(profile._json.pictureUrls.values[0], function(err, imageName) {
                             if (err) {
                                 return done(err);
@@ -82,9 +82,11 @@ module.exports = function (db, passport, bcrypt, _, utils) {
                     'firstName': profile.name.givenName,
                     'lastName': profile.name.familyName,
                     'personalSummary': profile._json.summary,
-                    'expertiseTags': _.pluck(_.pluck(profile._json.skills.values, 'skill'), 'name'),
-                    'imageName': imageName,
-                    'resumePositions': _.map(profile._json.positions.values, function (position) {
+                    'imageName': imageName
+                };
+
+                if (profile && profile._json && profile._json.positions && profile._json.positions.values.length > 0) {
+                    user['resumePositions'] = _.map(profile._json.positions.values, function (position) {
                         return {
                             title: position.title,
                             institution: position.company.name,
@@ -96,8 +98,12 @@ module.exports = function (db, passport, bcrypt, _, utils) {
                             location: position.location,
                             description: position.summary,
                             termsDate: getUniversityTerm(position.startDate.month, position.startDate.year, position.endDate, position.isCurrent)
-                        }
-                    })
+                        };
+                    });
+                }
+
+                if (profile && profile._json && profile._json.skills && profile._json.skills.values.length > 0) {
+                    user['expertiseTags'] = _.pluck(_.pluck(profile._json.skills.values, 'skill'), 'name');
                 }
 
                 db.insertUser(user, done);
