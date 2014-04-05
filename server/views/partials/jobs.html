@@ -19,15 +19,16 @@
                         </div>
                     </div>
                     </td>
-                    <td>
+                    <td>positoin
                     <div class="search-result-body align-horizontal">
                         <span class="list-group-item-heading-customized ppl-also-name">
-                        {{job.positionTypeDesc}} of {{job.academicDiscipline}}
+                        <!--{{job.positionTypeDesc}} of {{job.academicDiscipline}}-->
+                            {{job.jobTitle}}
                         </span>
                         <p class="description">
-                            <span>at {{ job.institution || 'empty' }}</span></br>
-                            <span> {{ job.locationCity || 'empty' }}</span>
-                            <span>| {{ job.contractType.name || 'empty' }}</span>
+                            <span>at {{ job.institution }}</span></br>
+                            <span> {{ job.locationCity }}</span>
+                            <span>| {{ job.contractType.name }}</span>
                         </p>
                     </div>
                     </td>

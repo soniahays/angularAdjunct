@@ -31,7 +31,7 @@ angular.module('adjunct.controllers')
 
         $scope.$watch('user.country', function(newVal, oldVal) {
             if (newVal !== oldVal) {
-                var selected = $filter('filter')($scope.countries, {id: $scope.user.country});
+                var selected = $Zfilter('filter')($scope.countries, {id: $scope.user.country});
                 if (selected)
                     $scope.user.countryName = selected.length ? selected[0].text : null;
             }
