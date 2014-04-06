@@ -1,13 +1,14 @@
 var Crawler = require("simplecrawler"),
     fs = require('fs');
 
-var myCrawler = new Crawler("www.universityjobs.com");
-myCrawler.initialPath = "/";
+//var myCrawler = new Crawler("www.universityjobs.com");
+var myCrawler = new Crawler("www.edsurge.com");
+myCrawler.initialPath = "/jobs/";
 
 //var myCrawler = new Crawler("adj-dev.herokuapp.com");
 //myCrawler.initialPath = "/";
 myCrawler.initialPort = 80;
-myCrawler.initialProtocol = "http";
+myCrawler.initialProtocol = "https";
 myCrawler.interval = 5000;
 myCrawler.maxConcurrency = 1;
 
@@ -30,7 +31,7 @@ myCrawler.on("fetchcomplete",function(queueItem, responseBuffer, response) {
         return;
     }
 
-    fs.writeFile("file" + i + ".html", responseBuffer, function(err) {
+    fs.writeFile("edsurge\\file" + i + ".html", responseBuffer, function(err) {
         i++;
         if(err) {
             console.log(err);
