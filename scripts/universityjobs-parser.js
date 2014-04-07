@@ -37,8 +37,23 @@ MongoClient.connect("mongodb://localhost:27017/adjunct", function (err_, db) {
                 var jobDescription = getDescription($, "Job Description");
                 var contact = getField($, "Contact");
                 var contactArr = contact.split("<br>");
+                var jobTitleArr = jobTitle.split(" ");
+                var newJobTitle = jobTitle;
+                if(!isNaN(jobTitleArr[0])&& jobTitleArr[0]>999){
+                    jobTitleArr= jobTitleArr.slice(1);
+                }
+                if(jobTitleArr[0].trim()=="-"){
+                    jobTitleArr= jobTitleArr.slice(1);
+                }
+                if(jobTitleArr[0].trim()=="Repost"){
+                    jobTitleArr= jobTitleArr.slice(1);
+                }
+                if(jobTitleArr[0].trim()=="-"){
+                    jobTitleArr= jobTitleArr.slice(1);
+                }
+                newJobTitle=jobTitleArr.join(" ");
                 console.log(contactArr);
-                console.log("jobTitle", jobTitle);
+                console.log("jobTitle", newJobTitle);
                 console.log("jobNumber", jobNumber);
                 console.log("datePosted", datePosted);
                 console.log("applicationDeadline", applicationDeadline);
@@ -47,7 +62,7 @@ MongoClient.connect("mongodb://localhost:27017/adjunct", function (err_, db) {
                 console.log("contactArr", contactArr);
 
                 if (jobTitle != "" && datePosted != "" && jobDescription != "") {
-                    insertJob({jobTitle: jobTitle, contact: contact, contactArr: contactArr, datePosted: datePosted, applicationDeadline: applicationDeadline, jobDescription: jobDescription});
+                    insertJob({jobTitle: newJobTitle, dirtyjobTitle: jobTitle, contact: contact, contactArr: contactArr, datePosted: datePosted, applicationDeadline: applicationDeadline, jobDescription: jobDescription});
                 }
             });
         }

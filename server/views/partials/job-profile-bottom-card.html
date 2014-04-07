@@ -14,15 +14,17 @@
 
 
                 <div id="experience-container">
-                    <span editable-text="jobDescription"> <div id="headline">{{ job.jobDescription  }}</div></span>
-                    <span editable-text="job.experience1Institution"><div id="headline-institution">{{ job.experience1Institution || 'empty' }}</div></span>
-                    <span editable-text="job.experience1Location"><div id="headline-location"class="text-muted">{{ job.experience1Location || 'empty' }}</div></span>
-                    <span editable-select="job.status" e-ng-options="s.value as s.text for s in statuses"> {{ showStatus() }}</span>
-                    <span editable-text="job.experience1TimePeriodYear">{{}}</span>
+                    <!--<span editable-text="jobDescription"> <div id="headline">{{ job.jobDescription  }}</div></span>-->
+                    <!--<span editable-text="job.experience1Institution"><div id="headline-institution">{{ job.experience1Institution || 'empty' }}</div></span>-->
+                    <!--<span editable-text="job.experience1Location"><div id="headline-location"class="text-muted">{{ job.experience1Location || 'empty' }}</div></span>-->
+                    <!--<span editable-select="job.status" e-ng-options="s.value as s.text for s in statuses"> {{ showStatus() }}</span>-->
+                    <!--<span editable-text="job.experience1TimePeriodYear">{{}}</span>-->
+
                     <!--<span editable-text="job.experience1TimePeriodYear">{{ job.experience1TimePeriodYear || 'empty' }}</span>-->
-                    <span editable-textarea="job.experience1Summary" e-rows="12" e-cols="80">
-                        <p id="headline-i"><em>{{job.experience1Summary || 'no description'}}</em></p>
-                    </span>
+                    <!--<span editable-textarea="job.experience1Summary" e-rows="12" e-cols="80">-->
+                        <!--<p id="headline-i"><em>{{job.experience1Summary || 'no description'}}</em></p>-->
+                    <!--</span>-->
+                    <div ng-bind-html-unsafe="job.jobDescription"></div>
                 </div>
 
 

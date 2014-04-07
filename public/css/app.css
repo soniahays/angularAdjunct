@@ -854,6 +854,9 @@ ul#strength {
   margin-top: 7px;
   margin-bottom: 7px;
 }
+#experience-container {
+  padding: 50px 40px;
+}
 #experience-container-edit {
   margin-top: 15px;
   font-size: 13px;
