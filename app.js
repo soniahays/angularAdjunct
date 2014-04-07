@@ -456,6 +456,22 @@ app.get('/api/institutions', function (req, res) {
     });
 });
 
+app.get('/api/:collectionName/:pageNumber/:pageSize', function (req, res) {
+    metadataDb.getPage(req.params.collectionName, req.params.pageNumber, req.params.pageSize, function (err, docs) {
+        if (err) {
+            return res.send(500, "Error retrieving page " + req.params.pageNumber + " from " + req.params.collectionName);
+        }
+
+        if (!docs) {
+            return res.json({count: 0, docs: []});
+        }
+
+        metadataDb.getCount(req.params.collectionName, function(err, count) {
+            return res.json({count: count, docs: docs});
+        });
+    });
+});
+
 app.get('/api/:collectionName', function (req, res) {
     metadataDb.get(req.params.collectionName, function (err, docs) {
         if (err) {
