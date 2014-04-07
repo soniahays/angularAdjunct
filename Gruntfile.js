@@ -15,7 +15,7 @@ module.exports = function (grunt) {
                     "public/components/ngScrollTo/ng-scrollto.js",
                     "public/components/angular-route/angular-route.js",
                     "public/components/angular-cookies/angular-cookies.js",
-                    "public/components/underscore/underscore-min.js",
+                    "public/components/underscore/underscore.js",
                     "public/components/bootstrap/dist/js/bootstrap.js",
                     "public/components/angular-strap/dist/angular-strap.js",
                     "public/js/lib/ui-bootstrap-tpls-pagination.js",
