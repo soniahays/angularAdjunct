@@ -1,4 +1,5 @@
 var cheerio = require('cheerio'),
+    iconvlite = require('iconv-lite'),
     fs = require('fs'),
     mongodb = require('mongodb');
 
@@ -23,11 +24,13 @@ MongoClient.connect("mongodb://localhost:27017/adjunct", function (err_, db) {
 
         for (var i = 0; i < files.length; i++) {
 
-            fs.readFile(path + files[i], 'utf8', function (err,data) {
+            fs.readFile(path + files[i], function (err,data) {
 
                 if (err) {
                     return console.log("Error reading file", err);
                 }
+
+                data = iconvlite.decode(data, 'ISO-8859-1');
 
                 var $ = cheerio.load(data);
                 var jobTitle = getField($, "Job Title");
