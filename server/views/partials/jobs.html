@@ -3,10 +3,10 @@
             <div ng-include="'/partial/side-search-column'" />
         </div>
 
-    <div class="result-col col-md-7">
+    <div class="result-col col-md-8">
         <div id="result-container">
-            <div id="results" class="search-results list-group col-md-12" >
-                <a ng-href="/job-profile/{{job._id}}" class="list-group-item list-group-item-customized" ng-repeat="job in jobs">
+            <div id="results" class="search-results list-group col-md-12"  >
+                <a ng-href="/job-profile/{{job._id}}" class="list-group-item list-group-item-customized" ng-repeat="job in jobs"style="margin-bottom: 5px;">
                     <table>
                     <tr>
                     <td>
@@ -19,16 +19,19 @@
                         </div>
                     </div>
                     </td>
-                    <td>position
+                    <td>
                     <div class="search-result-body align-horizontal">
-                        <span class="list-group-item-heading-customized ppl-also-name">
-                        <!--{{job.positionTypeDesc}} of {{job.academicDiscipline}}-->
-                            {{job.jobTitle}} at {{job.contact}}
+                        <span class="list-group-item-heading-customized title">
+                            <span>{{job.jobTitle}}</span>
+                            <span ng-hide="{{!job.category}}" class="additional-info--">{{job.category}}</span>
                         </span>
-                        <p class="description">
-                            <span>at {{ job.institution }}</span></br>
-                            <span> {{ job.locationCity }}</span>
-                            <span>| {{ job.contractType.name }}</span>
+                        <p class="description" style="margin-bottom: 0;font-size: 14px;">
+                            {{job.institution}}{{job.employer}}
+                            <span ng-hide="{{!job.companyType}}" class="additional-info--">{{job.companyType}}</span>
+                        </p>
+                        <p>
+                            <span> {{ job.location }}</span>
+                            <span ng-hide="{{!job.contractType}}" class="additional-info--">{{job.contractType}}</span>
                         </p>
                     </div>
                     </td>
@@ -37,10 +40,12 @@
                 </a>
             </div>
           </div>
-    </div>
-    <pagination total-items="totalItems" page="currentPage" on-select-page="selectPage(page)" max-size="10" rotate="false" boundary-links="true"></pagination>
+        <pagination total-items="totalItems" page="currentPage" on-select-page="selectPage(page)" max-size="10" rotate="false" boundary-links="true"></pagination>
 
+    </div>
     <div class="col-md-2" id="sidebar2" role="navigation">
         <div ng-include="'/partial/adjuncts-profile-right-bottomSide-column'" />
     </div>
+
+
 </div>

@@ -37,15 +37,19 @@ MongoClient.connect("mongodb://localhost:27017/adjunct", function (err_, db) {
                 var category = jobCategoryArr[0];
                 var companyType = jobCategoryArr[1];
                 var contractType = jobCategoryArr[2];
-                var jobLocation =jobCategoryArr[3];
-                var jobDescription = getDescription($, "description");
+                var location =jobCategoryArr[3];
+                var description = getDescription($, "description");
 
                 if (jobTitle != "" && employer != "") {
                     console.log("jobTitle", jobTitle);
                     console.log("employer", employer);
                     console.log("jobCategory", jobCategory);
                     console.log("jobCategoryArr", jobCategoryArr);
-                    insertJob({jobTitle: jobTitle, employer: employer,jobCategory: jobCategory,jobCategoryArr: jobCategoryArr, category: category, companyType: companyType, contractType: contractType, jobLocation: jobLocation, jobDescription:jobDescription});
+                    insertJob({
+                                jobTitle: jobTitle, employer: employer, jobCategory: jobCategory,
+                                category: category, companyType: companyType, contractType: contractType,
+                                location: location, description :description
+                    });
                 }
             });
         }
@@ -58,7 +62,7 @@ MongoClient.connect("mongodb://localhost:27017/adjunct", function (err_, db) {
         return $(str1).text()
     }
     function getDescription($, str) {
-        return $("span[itemprop='" + str + "']").html()
+        return $("div[itemprop='" + str + "']").html()
     }
     function insertJob(job) {
         var collection = db.collection('jobs');

@@ -2,8 +2,10 @@ var Crawler = require("simplecrawler"),
     fs = require('fs');
 
 //var myCrawler = new Crawler("www.universityjobs.com");
-var myCrawler = new Crawler("www.edsurge.com");
-myCrawler.initialPath = "/jobs/";
+//var myCrawler = new Crawler("www.edsurge.com");
+//myCrawler.initialPath = "/jobs/";
+var myCrawler = new Crawler("www.higheredjobs.com");
+myCrawler.initialPath = "/faculty/";
 
 //var myCrawler = new Crawler("adj-dev.herokuapp.com");
 //myCrawler.initialPath = "/";
@@ -31,7 +33,7 @@ myCrawler.on("fetchcomplete",function(queueItem, responseBuffer, response) {
         return;
     }
 
-    fs.writeFile("edsurge\\file" + i + ".html", responseBuffer, function(err) {
+    fs.writeFile("higheredjobs\\file" + i + ".html", responseBuffer, function(err) {
         i++;
         if(err) {
             console.log(err);

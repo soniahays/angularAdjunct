@@ -19,47 +19,46 @@
         <div class="profile-overview-content">
             <div class="lead lead-custom masthead">
                 <div id="name-container">
-                    <h4>
-                        <span>{{job.positionType}} </span>
-
-                        -
-                        <span>{{ job.field}}</span>
-                    </h4>
+                    <h3>
+                        <span>{{job.jobTitle}}</span>
+                         <span ng-hide="{{!job.category}}" id="job-category">{{job.category}}</span>
+                    </h3>
                 </div>
                 <div id="headline-container">
-                    <span>At {{ job.institution || 'Bay State College' }}</span>
-                    -
-                    <span>{{ job.contractType.name || 'Part-time' }} position</span>
+                    <span>{{job.institution}}</span>
+                    <span>{{job.employer}}</span>
+                    <span ng-hide="{{!job.contractType}}" class="additional-info--">{{job.contractType}}position</span>
                 </div>
                 <div class="text-muted" id="demographic-info">
-                    <span>{{ job.locationCity || 'Boston' }}</span>
-                    <span>, {{ job.locationState || 'MA' }}</span>
-                    <span>| posted on {{ job.postedOn || 'November 12, 2013' }}</span>
+
+                    <span>{{ job.location }}</span>
+                    <span ng-hide="{{!job.companyType}}" class="additional-info--">{{ job.companyType }}</span>
+                    <span>{{ job.postedOn }}</span>
                 </div>
             </div>
             <table id="profile-card-table">
-                <tbody>
-                <tr id="overview-summary-specialty">
-                    <th class="profile-card-table-th" scope="row">Degree Required</th>
-                    <td class="profile-card-table-td"><span>{{ job.degreeRequired || 'MS in Information Technology' }}</span> <br />
-                        or <span>{{ job.degreeRequiredAlternative || 'MS in related field' }}</span>
-                    </td>
-                </tr>
-                <tr id="overview-summary-education">
-                    <td class="profile-card-table-th">Required Expertise</td>
-                    <td class="profile-card-table-td"><span>{{ job.requirementField1 || 'JAVA' }},</span>
-                        <span>{{ job.requirementField2 || 'SQL' }},</span> <span>{{ job.requirementField3 || 'HTML' }},</span>
-                        <span>{{ job.requirementField4 || 'information security' }},</span> <span>{{ job.requirementField5 || 'database management' }}.</span></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <div ng-repeat="item in job.expertiseTags">
-                            {{ item ||'tags go here' }}
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
+                <!--<tbody>-->
+                <!--<tr id="overview-summary-specialty">-->
+                    <!--<th class="profile-card-table-th" scope="row">Degree Required</th>-->
+                    <!--<td class="profile-card-table-td"><span>{{ job.degreeRequired || 'MS in Information Technology' }}</span> <br />-->
+                        <!--or <span>{{ job.degreeRequiredAlternative || 'MS in related field' }}</span>-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--<tr id="overview-summary-education">-->
+                    <!--<td class="profile-card-table-th">Required Expertise</td>-->
+                    <!--<td class="profile-card-table-td"><span>{{ job.requirementField1 || 'JAVA' }},</span>-->
+                        <!--<span>{{ job.requirementField2 || 'SQL' }},</span> <span>{{ job.requirementField3 || 'HTML' }},</span>-->
+                        <!--<span>{{ job.requirementField4 || 'information security' }},</span> <span>{{ job.requirementField5 || 'database management' }}.</span></td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td></td>-->
+                    <!--<td>-->
+                        <!--<div ng-repeat="item in job.expertiseTags">-->
+                            <!--{{ item ||'tags go here' }}-->
+                        <!--</div>-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
             </table>
         </div>
     </div>

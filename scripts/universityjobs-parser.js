@@ -36,6 +36,7 @@ MongoClient.connect("mongodb://localhost:27017/adjunct", function (err_, db) {
                 var applicationDeadline = getField($, "Application Deadline");
                 var jobDescription = getDescription($, "Job Description");
                 var contact = getField($, "Contact");
+                var institution = getInstitution($);
                 var contactArr = contact.split("<br>");
                 var jobTitleArr = jobTitle.split(" ");
                 var newJobTitle = jobTitle;
@@ -62,7 +63,7 @@ MongoClient.connect("mongodb://localhost:27017/adjunct", function (err_, db) {
                 console.log("contactArr", contactArr);
 
                 if (jobTitle != "" && datePosted != "" && jobDescription != "") {
-                    insertJob({jobTitle: newJobTitle, dirtyjobTitle: jobTitle, contact: contact, contactArr: contactArr, datePosted: datePosted, applicationDeadline: applicationDeadline, jobDescription: jobDescription});
+                    insertJob({jobTitle: newJobTitle,institution:institution, dirtyjobTitle: jobTitle, contact: contact, contactArr: contactArr, datePosted: datePosted, applicationDeadline: applicationDeadline, jobDescription: jobDescription});
                 }
             });
         }
@@ -74,6 +75,9 @@ MongoClient.connect("mongodb://localhost:27017/adjunct", function (err_, db) {
 
     function getDescription($, str) {
         return $("font:contains(" + str + ")").parent().parent().parent().next().html();
+    }
+    function getInstitution($) {
+        return $("font[size='3']").text();
     }
 
     function insertJob(job) {
