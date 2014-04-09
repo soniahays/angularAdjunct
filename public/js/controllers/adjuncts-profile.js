@@ -325,14 +325,7 @@ angular.module('adjunct.controllers')
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.4'});
         }
 
-        $scope.openDoc = function (portfolioLink) {
-            $scope.frameUrl = portfolioLink.value;
-            $scope.docTitle = portfolioLink.title;
-            $scope.docDescription = portfolioLink.description;
-            $scope.showAddDoc = false;
-            $scope.selectedPortfolioLink = portfolioLink;
-            $scope.frameUrl = "http://www.youtube.com/embed/" + videoId;
-        }
+
 
         $scope.clearDoc = function () {
             $scope.frameUrl = "about:blank";
@@ -351,7 +344,24 @@ angular.module('adjunct.controllers')
             $('#competency-portfolio-modal').modal();
             $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
         }
-
+        $scope.viewMode = function (portfolioLink){
+            $('#competency-portfolio-modal').modal();
+            $('.modal-backdrop').css({'background-color': 'white', 'opacity': '0.7'});
+            $scope.frameUrl = portfolioLink.value;
+            $scope.docTitle = portfolioLink.title;
+            $scope.docDescription = portfolioLink.description;
+            $scope.showAddDoc = false;
+            $scope.selectedPortfolioLink = portfolioLink;
+            $scope.frameUrl = "http://www.youtube.com/embed/" + videoId;
+        }
+        $scope.openDoc = function (portfolioLink) {
+            $scope.frameUrl = portfolioLink.value;
+            $scope.docTitle = portfolioLink.title;
+            $scope.docDescription = portfolioLink.description;
+            $scope.showAddDoc = false;
+            $scope.selectedPortfolioLink = portfolioLink;
+            $scope.frameUrl = "http://www.youtube.com/embed/" + videoId;
+        }
         $scope.openAddDoc = function () {
             $scope.showAddDoc = true;
         }

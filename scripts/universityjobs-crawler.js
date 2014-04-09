@@ -1,11 +1,13 @@
 var Crawler = require("simplecrawler"),
     fs = require('fs');
 
-//var myCrawler = new Crawler("www.universityjobs.com");
-//var myCrawler = new Crawler("www.edsurge.com");
-//myCrawler.initialPath = "/jobs/";
-var myCrawler = new Crawler("www.higheredjobs.com");
-myCrawler.initialPath = "/faculty/";
+var myCrawler = new Crawler("www.universityjobs.com");
+////var myCrawler = new Crawler("www.edsurge.com");
+////myCrawler.initialPath = "/jobs/";
+//var myCrawler = new Crawler("www.higheredjobs.com");
+//myCrawler.initialPath = "/faculty/default.cfm";
+var myCrawler = new Crawler("www.universityjobs.com");
+myCrawler.initialPath = "/jobs/faculty.html";
 
 //var myCrawler = new Crawler("adj-dev.herokuapp.com");
 //myCrawler.initialPath = "/";
@@ -15,11 +17,10 @@ myCrawler.interval = 5000;
 myCrawler.maxConcurrency = 1;
 
 myCrawler.addFetchCondition(function(parsedURL) {
-    return !parsedURL.path.match(/\.jpg$/i) && !parsedURL.path.match(/\.css$/i)
-        && !parsedURL.path.match(/\.js$/i) && !parsedURL.path.match(/\.ico$/i)
-        && !parsedURL.path.match(/\.png$/i) && !parsedURL.path.match(/\.svg$/i)
-        && !parsedURL.path.match(/\.ttf$/i) && !parsedURL.path.match(/\.eot$/i)
-        && !parsedURL.path.match(/\.woff$/i) && !parsedURL.path.match(/\.gif$/i);
+    return parsedURL.path.match(/faculty\.html/i)||
+           parsedURL.path.match(/jobs2\.php\?subcatid=14&catid=1/i)||
+           parsedURL.path.match(/jobdetail\.php/i);
+
 });
 
 var i = 0;
@@ -33,7 +34,7 @@ myCrawler.on("fetchcomplete",function(queueItem, responseBuffer, response) {
         return;
     }
 
-    fs.writeFile("higheredjobs\\file" + i + ".html", responseBuffer, function(err) {
+    fs.writeFile("universityjobs\\medicineandhealth\\file" + i + ".html", responseBuffer, function(err) {
         i++;
         if(err) {
             console.log(err);

@@ -2,16 +2,24 @@
 
     <ul>
         <li ng-repeat="doc in user.portfolioLinks" class="">
-            <!--<a ng-click="openDoc(doc.value,doc.type, doc.title, doc.description, doc.category)">-->
-            <a ng-click="openCompetencyPortfolioModal()">
-                <div style="font-weight:bold;">{{doc.category}}: {{doc.title}}</div>
-                <br>
-                <iframe type="text/html" width="450" height="253" src="{{doc.value}}" frameborder="" allowfullscreen style=""></iframe>
+             <a ng-click="viewMode(doc)" >
+
+                <div style="font-weight:bold;">{{doc.category}}: {{doc.title}}
+                    </div>
+
+                 <div style="margin:10px 0;"><img src="/img/tv-icon.png" alt="" style="color:white;height:15px; margin-top: -7px;"/><a ng-click="viewMode(doc)"> View full screen</a></div>
+
+
+
+             </a>
+
+                    <iframe type="text/html" width="450" height="253" src="{{doc.value}}" frameborder="" allowfullscreen style=""></iframe>
+
 
                 {{doc.description}}
 
                 <br><br><br>
-            </a>
+
         </li>
     </ul>
 </div>
