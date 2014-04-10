@@ -26,14 +26,17 @@
                 </div>
                 <div id="headline-container">
                     <span>{{job.institution}}</span>
-                    <span>{{job.employer}}</span>
-                    <span ng-hide="{{!job.contractType}}" class="additional-info--">{{job.contractType}}position</span>
+                    <a href="#" ng-click="showDetails=!showDetails">{{job.employer}}</a>
+
+                    <span ng-hide="{{!job.contractType}}" class="additional-info--">{{job.contractType}} position</span>
+
                 </div>
                 <div class="text-muted" id="demographic-info">
 
                     <span>{{ job.location }}</span>
                     <span ng-hide="{{!job.companyType}}" class="additional-info--">{{ job.companyType }}</span>
                     <span>{{ job.postedOn }}</span>
+                    <div ng-bind-html-unsafe="job.employerDetail" ng-show="showDetails"style="display: block;margin: 20px 10px 50px 230px;"></div>
                 </div>
             </div>
             <table id="profile-card-table">

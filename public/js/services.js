@@ -14,10 +14,11 @@ angular.module('adjunct.services')
                 var readData = $(extract);
 
                 // handle redirects
-                var redirect = readData.find('li:contains("REDIRECT")').text().substr(8);
+                var redirect = readData.find('.redirectText a').attr('href');
+                console.log("hello",pages);
                 if(redirect != '') {
-                    callWikiApi(redirect);
-                    return;
+                    //callWikiApi(redirect);
+                   // return;
                 }
                 callback(readData.html());
             }

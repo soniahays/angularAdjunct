@@ -32,7 +32,10 @@ MongoClient.connect("mongodb://localhost:27017/adjunct", function (err_, db) {
                 var $ = cheerio.load(data);
                 var jobTitle = getField($, "#mainContent", "h1");
                 var employer = getThing($,"Institution:");
-                var location = getThing($,"Location:");
+                var fullLocation = getThing($,"Location:");
+                var fullLocationArr = fullLocation.split(",");
+                var city = fullLocationArr[0];
+                var state = fullLocationArr[1];
                 var datePosted = getThing($,"Posted:");
                 var applicationDeadline = getThing($,"Application Due:");
                 var contractType = getThing($,"Type:");
@@ -54,7 +57,7 @@ MongoClient.connect("mongodb://localhost:27017/adjunct", function (err_, db) {
 //                    console.log("jobCategory", jobCategory);
 //                    console.log("jobCategoryArr", jobCategoryArr);
                     insertJob({
-                                jobTitle: jobTitle, employer:employer, location:location,categoryArr:categoryArr, datePosted:datePosted,
+                                jobTitle: jobTitle, employer:employer, fullLocation:fullLocation, city: city, state: state, categoryArr:categoryArr, datePosted:datePosted,
                                 applicationDeadline:applicationDeadline,contractType:contractType, description:description
                     });
                 }

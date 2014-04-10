@@ -15,7 +15,7 @@
                             </li>
                             <li>
                                 <label>Institution Name<abbr title="Required" class="required">*</abbr>  </label>
-                                <input type="text" class="profile-forms" typeahead="institution for institution in institutions | filter:$viewValue | limitTo:10"  name="jobInstitution" ng-model="job.institution" maxlength="50" required style="width:310px;">
+                                <input type="text" class="profile-forms" typeahead="institution for institution in institutions | filter:$viewValue | limitTo:10"  name="jobInstitution" ng-model="job.employer" maxlength="50" required style="width:310px;">
                                 - <label>Contract Type <abbr title="Required" class="required">*</abbr></label>
 
 
@@ -32,13 +32,13 @@
                                         Remote <input type="checkbox" ng-model="remote">
                                         <br/>
                                         <label>City <abbr title="Required" class="required">*</abbr></label>
-                                        <input type="text" id="locality" class="profile-forms" name="jobLocationCity" ng-model="job.institution.city"  typeahead="address.formatted_address for address in getAddress($viewValue)" maxlength="50" required >
-                                      {{job.institution.name|| "nothing"}}
+                                        <input type="text" id="locality" class="profile-forms" name="jobLocationCity" ng-model="job.city"  typeahead="address.formatted_address for address in getAddress($viewValue)" maxlength="50" required >
+                                      {{job.institution.name}}
 
                                         <!--<select ng-model="job.country" class="edit-positionType"  ng-options="c._id as c.name for c in countries" class="input-xlarge" required>-->
                                             <!--<option value="">choose...</option></select>-->
                                         <label>State <abbr title="Required" class="required">*</abbr></label>
-                                        <input type="text" id="administrative_area_level_1" class="profile-forms"  typeahead="state for state in states | filter:$viewValue | limitTo:8" name="jobLocationState" ng-model="job.locationState" maxlength="50" required>
+                                        <input type="text" id="administrative_area_level_1" class="profile-forms"  typeahead="state for state in states | filter:$viewValue | limitTo:8" name="jobLocationState" ng-model="job.state" maxlength="50" required>
                                         <label>Country <abbr title="Required" class="required">*</abbr></label>
                                         <input type="text"  id="country" class="profile-forms" typeahead="country for country in countries | filter:$viewValue | limitTo:10" name="jobCountry" ng-model="job.country" required/>
                                 </div>

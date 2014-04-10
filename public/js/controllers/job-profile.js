@@ -42,6 +42,8 @@ angular.module('adjunct.controllers')
             if (values[0]) {
                 $scope.job = values[0].data;
                 WikiSummary($scope.job.employer, function(page){
+                    $scope.job.employerDetail= page;
+                    $scope.employer.detail=page;
                     console.log(page);
                 });
 
