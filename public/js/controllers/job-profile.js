@@ -41,11 +41,10 @@ angular.module('adjunct.controllers')
         $q.all([jobPromise]).then(function(values) {
             if (values[0]) {
                 $scope.job = values[0].data;
-                WikiSummary($scope.job.employer, function(page){
+
+                WikiSummary.getImages("Concordia University", function(page){
                     console.log(page);
                 });
-
-
 
 
                 if (!$scope.job.jobRequirements || $scope.job.jobRequirements.length == 0)
