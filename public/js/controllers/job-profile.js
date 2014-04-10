@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adjunct.controllers')
-    .controller('JobProfileCtrl', ['$scope','$templateCache', '$http', '$cookies', '$q','$aside', function ($scope,$templateCache, $http, $cookies, $q, $aside ) {
+    .controller('JobProfileCtrl', ['$scope','$templateCache', '$http', '$cookies', '$q','$aside',"WikiSummary", function ($scope,$templateCache, $http, $cookies, $q, $aside ,WikiSummary) {
         var jobId = $('#jobId').html();
 
         $scope.master = {};
@@ -38,18 +38,15 @@ angular.module('adjunct.controllers')
             jobPromise = $http.get('/api/get-job-profile/' + jobId);
         }
 
-        var positionTypesPromise = $http.get('/api/positionTypes');
-
-        $q.all([jobPromise, positionTypesPromise]).then(function(values) {
+        $q.all([jobPromise]).then(function(values) {
             if (values[0]) {
                 $scope.job = values[0].data;
-                $scope.positionTypes = values[1].data;
-                if ($scope.job) {
-                    var positionType = _.findWhere($scope.positionTypes, {_id: $scope.job.positionTypeId});
-                    if (positionType) {
-                        $scope.job.positionTypeDesc = positionType.name;
-                    }
-                }
+                WikiSummary($scope.job.employer, function(page){
+                    console.log(page);
+                });
+
+
+
 
                 if (!$scope.job.jobRequirements || $scope.job.jobRequirements.length == 0)
                     $scope.job.jobRequirements = [
