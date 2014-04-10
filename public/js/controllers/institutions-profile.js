@@ -18,7 +18,7 @@ angular.module('adjunct.controllers')
 
         $http.get('/api/get-institutions-profile/' + institutionId).then(function(response) {
             $scope.institution = response.data;
-            WikiSummary("Bay State College", function(wikiData) { $scope.institution.summary = wikiData; });
+            WikiSummary.getImages("Bay State College", function(wikiData) { $scope.institution.summary = wikiData; });
         });
 
         $scope.editTopCard = function () {
