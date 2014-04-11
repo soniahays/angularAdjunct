@@ -21,22 +21,33 @@
                 <div id="name-container">
                     <h3>
                         <span>{{job.jobTitle}}</span>
-                         <span ng-hide="{{!job.category}}" id="job-category">{{job.category}}</span>
+
                     </h3>
                 </div>
                 <div id="headline-container">
                     <span>{{job.institution}}</span>
-                    <a href="#" ng-click="showDetails=!showDetails">{{job.employer}}</a>
+                    <a href="#" ng-click="showDetails=!showDetails" style="font-size: 20px;font-family:'latoReg';font-weight:normal;margin:0;line-height:1;color:#333;">{{job.employer}}</a>
 
-                    <span ng-hide="{{!job.contractType}}" class="additional-info--">{{job.contractType}} position</span>
+                    <!--<span ng-hide="{{!job.contractType}}" class="additional-info--">{{job.contractType}} position</span>-->
 
+                </div>
+                <div>
+                    <span ng-hide="{{!job.jobType}}" id="job-jobType" style="font-size: 16px;font-weight:normal;font-family:'latoReg'; margin:0;line-height:1;" >{{job.jobType}}</span>
+                    <span ng-hide="{{!job.category}}" id="job-category"style="font-size: 16px;font-weight:normal;font-family:'latoReg'; margin:0;line-height:1;" > -{{job.category}}</span>
+                    <span ng-hide="{{!job.categoryDetail}}" id="job-categoryDetail"style="font-size: 16px;font-weight:normal;font-family:'latoReg'; margin:0;line-height:1;">-{{job.categoryDetail}}</span>
+                </div>
+                <div>
+                    <span ng-hide="{{!job.contractType}}" id="job-contractType" style="font-size: 16px;font-weight:normal;font-family:'latoReg';margin:0;line-height:1;color:#999;" >{{job.contractType}} position - </span>
+                    <span ng-hide="{{!job.city}}" id="job-city" style="font-size: 16px;font-weight:normal;font-family:'latoReg';margin:0;line-height:1;color:#999;" >Location : {{job.city}}</span>
+                    <span ng-hide="{{!job.state}}" id="job-state" style="font-size: 16px;font-weight:normal;font-family:'latoReg';margin:0;line-height:1;color:#999;" >{{job.state}}</span>
+                    <span ng-hide="{{!job.country}}" id="job-country" style="font-size: 16px;font-weight:normal;font-family:'latoReg';margin:0;line-height:1;color:#999;" >{{job.country}}</span>
                 </div>
                 <div class="text-muted" id="demographic-info">
 
                     <span>{{ job.location }}</span>
                     <span ng-hide="{{!job.companyType}}" class="additional-info--">{{ job.companyType }}</span>
                     <span>{{ job.postedOn }}</span>
-                    <div ng-bind-html-unsafe="job.employerDetail" ng-show="showDetails"style="display: block;margin: 20px 10px 50px 230px;"></div>
+                    <div ng-bind-html-unsafe="job.employerDetail" ng-show="showDetails" style="display: block;margin: 20px 10px 50px 230px;"></div>
                 </div>
             </div>
             <table id="profile-card-table">

@@ -41,10 +41,12 @@ angular.module('adjunct.controllers')
         $q.all([jobPromise]).then(function(values) {
             if (values[0]) {
                 $scope.job = values[0].data;
-                WikiSummary($scope.job.employer, function(page){
+
+                WikiSummary.getArticle($scope.job.employer, function(page){
+                    console.log(page);
                     $scope.job.employerDetail= page;
                     $scope.employer.detail=page;
-                    console.log(page);
+
                 });
 
 

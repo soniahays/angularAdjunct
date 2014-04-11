@@ -1,10 +1,14 @@
 <div style="margin: 25px 25px;">
-
+            <div>
+                <span class="tags">Syllabus Design</span><span class="tags">Technology Enabled Instruction</span>
+                <span class="tags">Summative Feedback</span><span class="tags">Syllabus Design</span><span class="tags">Scholarly & Professional contribution</span>
+                <span class="tags">Learning Management Systems</span>
+            </div>
     <ul>
         <li ng-repeat="doc in user.portfolioLinks" class="">
              <a ng-click="viewMode(doc)" >
 
-                <div style="font-weight:bold;">{{doc.category}}: {{doc.title}}
+                <div style="font-weight:bold;margin-top:35px;">{{doc.category}}: {{doc.title}}
                     </div>
 
                  <div style="margin:10px 0;"><img src="/img/tv-icon.png" alt="" style="color:white;height:15px; margin-top: -7px;"/><a ng-click="viewMode(doc)"> View full screen</a></div>

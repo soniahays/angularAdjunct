@@ -31,6 +31,7 @@ MongoClient.connect("mongodb://localhost:27017/adjunct", function (err_, db) {
 
                 var $ = cheerio.load(data);
                 var jobTitle = getField($, "#mainContent", "h1");
+                jobTitle = jobTitle.trim();
                 var employer = getThing($,"Institution:");
                 var fullLocation = getThing($,"Location:");
                 var fullLocationArr = fullLocation.split(",");
@@ -39,7 +40,13 @@ MongoClient.connect("mongodb://localhost:27017/adjunct", function (err_, db) {
                 var datePosted = getThing($,"Posted:");
                 var applicationDeadline = getThing($,"Application Due:");
                 var contractType = getThing($,"Type:");
-                var categoryArr = getThing($,"Category:");
+                var fullCategory = getThing($,"Category:");
+                var fullCategoryArr = fullCategory.split("-");
+                var jobType = fullCategoryArr[0];
+                jobType = jobType.trim();
+                var category = fullCategoryArr[1];
+                var categoryDetail = fullCategoryArr[2];
+
                 var description = getDescription($,"#jobDesc");
 //                var datePosted = getField($, "Date Posted");
 //                var applicationDeadline = getField($, "Application Deadline");
@@ -57,8 +64,8 @@ MongoClient.connect("mongodb://localhost:27017/adjunct", function (err_, db) {
 //                    console.log("jobCategory", jobCategory);
 //                    console.log("jobCategoryArr", jobCategoryArr);
                     insertJob({
-                                jobTitle: jobTitle, employer:employer, fullLocation:fullLocation, city: city, state: state, categoryArr:categoryArr, datePosted:datePosted,
-                                applicationDeadline:applicationDeadline,contractType:contractType, description:description
+                                jobTitle: jobTitle, employer:employer, fullLocation:fullLocation, city: city, state: state, fullCategoryArr:fullCategory,jobType:jobType, category:category,
+                                categoryDetail:categoryDetail,datePosted:datePosted,applicationDeadline:applicationDeadline,contractType:contractType, description:description
                     });
                 }
             });

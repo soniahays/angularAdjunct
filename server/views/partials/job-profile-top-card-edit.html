@@ -1,73 +1,251 @@
 <div id="top-card-job" class="panel profiles-panel col-md-12">
     <div class="panel-body profile-top-card">
-<div class="profile-details-content">
-            <form name="jobForm">
-                <div id="name-container" class="form-group css-form" novalidate style="line-height:2;">
-                        <div>
-                        <ul>
-                            <li>
-                                <!--<label><i class="fa fa-home"></i> Address <small>(async via maps.googleapis.com)</small></label>-->
-                                <!--<input type="text" class="profile-forms edit-positionType " ng-model="selectedAddress"  typeahead="address.formatted_address for address in getAddress($viewValue)" placeholder="Enter address">-->
-                                <label>Job Position <abbr title="Required" class="required">*</abbr></label>
-                                <input type="text" typeahead="positionType for positionType in positionTypes | filter:$viewValue | limitTo:10" class="profile-forms edit-positionType" ng-model="job.positionType"   maxlength="50" required style="width:212px;" />
-                                - <label>Academic Discipline <abbr title="Required" class="required">*</abbr>  </label>
-                                <input type="text" typeahead="field for field in fieldGroups | filter:$viewValue | limitTo:10" class="profile-forms edit-positionType " ng-model="job.field" maxlength="50" required style="width:212px;" />
-                            </li>
-                            <li>
-                                <label>Institution Name<abbr title="Required" class="required">*</abbr>  </label>
-                                <input type="text" class="profile-forms" typeahead="institution for institution in institutions | filter:$viewValue | limitTo:10"  name="jobInstitution" ng-model="job.employer" maxlength="50" required style="width:310px;">
-                                - <label>Contract Type <abbr title="Required" class="required">*</abbr></label>
-
-
-                                <select ng-model="job.contractType" class="edit-positionType" ng-options="c._id as c.name for c in contractTypes" class="profile-forms edit-positionType" required style="width:128px">
-                                    <option value="">choose...</option></select>
-                            </li>
-                            <br/>
-                            <li>
-
-                                <div class="fieldgroup">
-                                        <label>Location</label>
-                                        <label>Type<abbr title="Required" class="required">*</abbr></label>
-                                        On Site <input type="checkbox" ng-model="onSite">
-                                        Remote <input type="checkbox" ng-model="remote">
-                                        <br/>
-                                        <label>City <abbr title="Required" class="required">*</abbr></label>
-                                        <input type="text" id="locality" class="profile-forms" name="jobLocationCity" ng-model="job.city"  typeahead="address.formatted_address for address in getAddress($viewValue)" maxlength="50" required >
-                                      {{job.institution.name}}
-
-                                        <!--<select ng-model="job.country" class="edit-positionType"  ng-options="c._id as c.name for c in countries" class="input-xlarge" required>-->
-                                            <!--<option value="">choose...</option></select>-->
-                                        <label>State <abbr title="Required" class="required">*</abbr></label>
-                                        <input type="text" id="administrative_area_level_1" class="profile-forms"  typeahead="state for state in states | filter:$viewValue | limitTo:8" name="jobLocationState" ng-model="job.state" maxlength="50" required>
-                                        <label>Country <abbr title="Required" class="required">*</abbr></label>
-                                        <input type="text"  id="country" class="profile-forms" typeahead="country for country in countries | filter:$viewValue | limitTo:10" name="jobCountry" ng-model="job.country" required/>
-                                </div>
-
-                            </li>
-                            <li>
-                                <div class="fieldgroup">
-                                    <label>Job Requirements</label> <br/>
-                                    <label>Minimum Educational Requirements<abbr title="Required" class="required">*</abbr></label>
-                                    <select ng-model="job.edDegree" class="edit-positionType"  ng-options="e._id as e.name for e in edDegrees" class="input-xlarge" required>
-                                    <option value="">choose...</option></select> in <input type="text" class=" profile-forms " name="jobDegreeDiscipline" ng-model="job.degreeDiscipline" maxlength="50"><br/> -or- <select ng-model="job.edDegree" class="edit-positionType"  ng-options="e._id as e.name for e in edDegrees" class="input-xlarge" required>
-                                    <option value="">choose...</option></select> in <input type="text" class=" profile-forms " name="jobDegreeDiscipline" ng-model="job.degreeDiscipline" maxlength="50"><a href=""><small> Add More </small></a>
-                                    <br/>
-                                    <label>Field of Expertise (comma separated) <abbr title="Required" class="required">*</abbr></label>
-                                    <div id="tags-container">
-                                        <tags-input ng-model="job.expertiseTags" class="expertise-tags"></tags-input>
-                                    </div>
-
-                                </div>
-
-                            </li>
-                            <li>
-
-                            </li>
-                        </ul>
-                    </div>
+<div class="profile-details-content" style="padding:35px;">
+    <div>
+        <ul class="top-profile-card-xedit">
+            <li>
+                <h2 style="font-weight:bold; font-size: 20px;margin:0;line-height:1;">
+                                                    <span class="top-card-text-xedit" e-class="top-profile-form-xedit x-large" editable-text="job.jobTitle" e-name="jobTitle" e-form="jobTitle" e-required e-placeholder="Enter Job title">
+                                                      {{ job.jobTitle || 'Edit job title' }}
+                                                    </span>
+                </h2>
+            </li>
+            <li>
+                <!-- form -->
+                <form editable-form name="jobTitle" ng-show="jobTitle.$visible" class="form-buttons form-inline" shown="inserted == job" >
+                    <button type="submit" ng-disabled="jobTitle.$waiting" class="btn btn-default btn-valid-inline-xedit">
+                        <i class="fa fa-check"></i>
+                    </button>
+                    <button type="button" ng-disabled="jobTitle.$waiting" ng-click="jobTitle.$cancel()" class="btn btn-default btn-cancel-inline-xedit">
+                        cancel
+                    </button>
+                </form>
+                <div class="buttons" ng-show="!jobTitle.$visible">
+                    <button class="btn btn-default" ng-click="jobTitle.$show(); rowform2.$hide(); rowform3.$hide(); rowform4.$hide(); educationBtnForm.$hide()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
                 </div>
+            </li>
+        </ul>
+        <ul class="top-profile-card-xedit">
+            <li>
+                <h3 style="font-size: 20px;font-family:'latoReg';font-weight:normal;margin:0;line-height:1;">
+                                                    <span class="top-card-text-xedit" e-class="top-profile-form-xedit large" editable-text="job.employer" e-name="employer" e-form="employer" e-required e-placeholder="Enter Employer's name">
+                                                      {{ job.employer || '' }}
+                                                    </span>
+                </h3>
+            </li>
+            <li>
+                <!-- form -->
+                <form editable-form name="employer" ng-show="employer.$visible" class="form-buttons form-inline" shown="inserted == job" >
+                    <button type="submit" ng-disabled="employer.$waiting" class="btn btn-default btn-valid-inline-xedit">
+                        <i class="fa fa-check"></i>
+                    </button>
+                    <button type="button" ng-disabled="employer.$waiting" ng-click="employer.$cancel()" class="btn btn-default btn-cancel-inline-xedit">
+                        cancel
+                    </button>
+                </form>
+                <div class="buttons" ng-show="!employer.$visible">
+                    <button class="btn btn-default" ng-click="employer.$show(); rowform2.$hide(); rowform3.$hide(); rowform4.$hide(); educationBtnForm.$hide()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
+                </div>
+            </li>
+        </ul>
+        <ul class="top-profile-card-xedit">
+            <li>
+                <h3 style="font-size: 16px;font-weight:normal;font-family:'latoReg'; margin:0;line-height:1;">
+                                                    <span class="top-card-text-xedit " e-class="top-profile-form-xedit x-small" editable-text="job.jobType" e-name="jobType" e-form="category" e-required e-placeholder="Enter Employer's name">
+                                                    {{job.jobType || '' }}-
+                                                    </span>
+                </h3>
+            </li>
+            <li>
+                <h3 style="font-size: 16px;font-weight:normal;font-family:'latoReg';margin:0;line-height:1;">
+                                                    <span class="top-card-text-xedit " e-class="top-profile-form-xedit smaller" editable-text="job.category" e-name="category" e-form="category" e-required e-placeholder="Enter Employer's name">
+                                                      {{ job.category || '' }}-
+                                                    </span>
+                </h3>
+            </li>
+            <li>
+                <h3 style="font-size: 16px;font-weight:normal;font-family:'latoReg';margin:0;line-height:1;">
+                <span class="top-card-text-xedit" e-class="top-profile-form-xedit larger" editable-text="job.categoryDetail" e-name="categoryDetail" e-form="category" e-required e-placeholder="Select category">
+                {{ job.categoryDetail }}
+                </span>
+                </h3>
+                <!--</div>-->
+            </li>
+            <li>
+                <!-- form -->
+                <form editable-form name="category" ng-show="category.$visible" class="form-buttons form-inline" shown="inserted == job" >
+                    <button type="submit" ng-disabled="category.$waiting" class="btn btn-default btn-valid-inline-xedit">
+                        <i class="fa fa-check"></i>
+                    </button>
+                    <button type="button" ng-disabled="category.$waiting" ng-click="category.$cancel()" class="btn btn-default btn-cancel-inline-xedit">
+                        cancel
+                    </button>
+                </form>
+                <div class="buttons" ng-show="!category.$visible">
+                    <button class="btn btn-default" ng-click="category.$show(); rowform2.$hide(); rowform3.$hide(); rowform4.$hide(); educationBtnForm.$hide()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
+                </div>
+            </li>
+        </ul>
+        <ul class="top-profile-card-xedit">
+            <li>
+                <h3 style="font-size: 16px;font-weight:normal;font-family:'latoReg';margin:0;line-height:1;color:#999;">
+                                                    <span class="top-card-text-xedit" e-class="top-profile-form-xedit" editable-text="job.contractType" e-name="contractType" e-form="contractType" e-required e-placeholder="Enter Contract type">
+                                                      {{ job.contractType || '' }}
+                                                    </span>
+                </h3>
+            </li>
+            <li>
+                <!-- form -->
+                <form editable-form name="contractType" ng-show="contractType.$visible" class="form-buttons form-inline" shown="inserted == job" >
+                    <button type="submit" ng-disabled="contractType.$waiting" class="btn btn-default btn-valid-inline-xedit">
+                        <i class="fa fa-check"></i>
+                    </button>
+                    <button type="button" ng-disabled="contractType.$waiting" ng-click="contractType.$cancel()" class="btn btn-default btn-cancel-inline-xedit">
+                        cancel
+                    </button>
+                </form>
+                <div class="buttons" ng-show="!contractType.$visible">
+                    <button class="btn btn-default" ng-click="contractType.$show(); rowform2.$hide(); rowform3.$hide(); rowform4.$hide(); educationBtnForm.$hide()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
+                </div>
+            </li>
+        </ul>
+        <ul class="top-profile-card-xedit">
+            <li>
+                <h3 style="font-size: 16px;font-weight:normal;font-family:'latoReg';margin:0;line-height:1;color:#999;">
+                                                    <span class="top-card-text-xedit" e-class="top-profile-form-xedit" editable-text="job.city" e-name="city" e-form="location" e-required e-placeholder="Enter Contract type">
+                                                     Location: {{ job.city || 'Edit location' }}
+                                                    </span>
+                </h3>
+            </li>
+            <li>
+                <h3 style="font-size: 16px;font-weight:normal;font-family:'latoReg';margin:0;line-height:1;color:#999;">
+                <span class="top-card-text-xedit" e-class="top-profile-form-xedit smaller" editable-text="job.state" e-name="categoryDetail" e-form="location" e-required e-placeholder="Select category">
+                {{ job.state }}
+                </span>
+                </h3>
+                <!--</div>-->
+            </li>
+            <li>
+                <h3 style="font-size: 16px;font-weight:normal;font-family:'latoReg';margin:0;line-height:1;color:#999;">
+                <span class="top-card-text-xedit" e-class="top-profile-form-xedit" editable-text="job.country" e-name="country" e-form="location" e-required e-placeholder="Select country">
+                {{ job.country }}
+                </span>
+                </h3>
+                <!--</div>-->
+            </li>
+            <li>
+                <!-- form -->
+                <form editable-form name="location" ng-show="location.$visible" class="form-buttons form-inline" shown="inserted == job" >
+                    <button type="submit" ng-disabled="location.$waiting" class="btn btn-default btn-valid-inline-xedit">
+                        <i class="fa fa-check"></i>
+                    </button>
+                    <button type="button" ng-disabled="location.$waiting" ng-click="location.$cancel()" class="btn btn-default btn-cancel-inline-xedit">
+                        cancel
+                    </button>
+                </form>
+                <div class="buttons" ng-show="!location.$visible">
+                    <button class="btn btn-default" ng-click="location.$show(); rowform2.$hide(); rowform3.$hide(); rowform4.$hide(); educationBtnForm.$hide()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
+                </div>
+            </li>
+        </ul>
+        <ul class="top-profile-card-xedit">
+            <li>
+                <h3 style="font-size: 16px;font-weight:normal;font-family:'latoReg';margin:0;line-height:1;color:#999;">
+                                                    <span class="top-card-text-xedit" e-class="top-profile-form-xedit" editable-text="job.applicationDeadline" e-name="applicationDeadline" e-form="dates" e-required e-placeholder="Enter deadline date">
+                                                    Application deadline: {{job.applicationDeadline||"NO DATES edit dates"}}
+                                                    </span>
+                </h3>
+            </li>
+            <li>
+                <h3 style="font-size: 16px;font-weight:normal;font-family:'latoReg';margin:0;line-height:1;color:#999;">
+                <span class="top-card-text-xedit" e-class="top-profile-form-xedit" editable-text="job.datePosted" e-name="datePosted" e-form="dates" e-required e-placeholder="Select category">
+                Date posted{{job.datePosted||"edit posted" }}
+                </span>
+                </h3>
+                <!--</div>-->
+            </li>
+            <li>
+                <!-- form -->
+                <form editable-form name="dates" ng-show="dates.$visible" class="form-buttons form-inline" shown="inserted == job" >
+                    <button type="submit" ng-disabled="dates.$waiting" class="btn btn-default btn-valid-inline-xedit">
+                        <i class="fa fa-check"></i>
+                    </button>
+                    <button type="button" ng-disabled="dates.$waiting" ng-click="dates.$cancel()" class="btn btn-default btn-cancel-inline-xedit">
+                        cancel
+                    </button>
+                </form>
+                <div class="buttons" ng-show="!dates.$visible">
+                    <button class="btn btn-default" ng-click="dates.$show(); rowform2.$hide(); rowform3.$hide(); rowform4.$hide(); educationBtnForm.$hide()" style ="background-color: white;border-color: white;color: #0073b2;padding:0;"> <i class="fa fa-pencil"></i></button>
+                </div>
+            </li>
+        </ul>
+    </div>
+            <!--<form name="jobForm">-->
+                <!--<div id="name-container" class="form-group css-form" novalidate style="line-height:2;">-->
+                        <!--<div>-->
 
-            </form>
+                        <!--<ul>-->
+                            <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<label>Job Position <abbr title="Required" class="required">*</abbr></label>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" typeahead="positionType for positionType in positionTypes | filter:$viewValue | limitTo:10" class="profile-forms edit-positionType" ng-model="job.jobTitle"   maxlength="50" required style="width:400px;" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;- <label>Academic Discipline <abbr title="Required" class="required">*</abbr>  </label>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" typeahead="field for field in fieldGroups | filter:$viewValue | limitTo:10" class="profile-forms edit-positionType " ng-model="job.category" maxlength="50" required style="width:212px;" />&ndash;&gt;-->
+                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<label>Institution Name<abbr title="Required" class="required">*</abbr>  </label>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" class="profile-forms" typeahead="institution for institution in institutions | filter:$viewValue | limitTo:10"  name="jobInstitution" ng-model="job.employer" maxlength="50" required style="width:310px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;- <label>Contract Type <abbr title="Required" class="required">*</abbr></label>&ndash;&gt;-->
+
+
+                                <!--&lt;!&ndash;<select ng-model="job.contractType" class="edit-positionType" ng-options="c._id as c.name for c in contractTypes" class="profile-forms edit-positionType" required style="width:128px">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<option value="">choose...</option>{{job.contractType}}</select>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                            <!--<br/>-->
+                            <!--<li>-->
+
+                                <!--&lt;!&ndash;<div class="fieldgroup">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<label>Location</label>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<label>Type<abbr title="Required" class="required">*</abbr></label>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;On Site <input type="checkbox" ng-model="onSite">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;Remote <input type="checkbox" ng-model="remote">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<br/>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<label>City <abbr title="Required" class="required">*</abbr></label>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<input type="text" id="locality" class="profile-forms" name="jobLocationCity" ng-model="job.city"  typeahead="address.formatted_address for address in getAddress($viewValue)" maxlength="50" required >&ndash;&gt;-->
+                                      <!--&lt;!&ndash;{{job.institution.name}}&ndash;&gt;-->
+
+                                        <!--&lt;!&ndash;&lt;!&ndash;<select ng-model="job.country" class="edit-positionType"  ng-options="c._id as c.name for c in countries" class="input-xlarge" required>&ndash;&gt;&ndash;&gt;-->
+                                            <!--&lt;!&ndash;&lt;!&ndash;<option value="">choose...</option></select>&ndash;&gt;&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<label>State <abbr title="Required" class="required">*</abbr></label>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<input type="text" id="administrative_area_level_1" class="profile-forms"  typeahead="state for state in states | filter:$viewValue | limitTo:8" name="jobLocationState" ng-model="job.state" maxlength="50" required>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<label>Country <abbr title="Required" class="required">*</abbr></label>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<input type="text"  id="country" class="profile-forms" typeahead="country for country in countries | filter:$viewValue | limitTo:10" name="jobCountry" ng-model="job.country" required/>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<div class="fieldgroup">-->
+                                    <!--<label>Job Requirements</label> <br/>-->
+                                    <!--<label>Minimum Educational Requirements<abbr title="Required" class="required">*</abbr></label>-->
+                                    <!--<select ng-model="job.edDegree" class="edit-positionType"  ng-options="e._id as e.name for e in edDegrees" class="input-xlarge" required>-->
+                                    <!--<option value="">choose...</option></select> in <input type="text" class=" profile-forms " name="jobDegreeDiscipline" ng-model="job.degreeDiscipline" maxlength="50"><br/> -or- <select ng-model="job.edDegree" class="edit-positionType"  ng-options="e._id as e.name for e in edDegrees" class="input-xlarge" required>-->
+                                    <!--<option value="">choose...</option></select> in <input type="text" class=" profile-forms " name="jobDegreeDiscipline" ng-model="job.degreeDiscipline" maxlength="50"><a href=""><small> Add More </small></a>-->
+                                    <!--<br/>-->
+                                    <!--<label>Field of Expertise (comma separated) <abbr title="Required" class="required">*</abbr></label>-->
+                                    <!--<div id="tags-container">-->
+                                        <!--<tags-input ng-model="job.expertiseTags" class="expertise-tags">{{jobs.category}}</tags-input>-->
+                                    <!--</div>-->
+
+                                <!--</div>-->
+
+                            <!--</li>-->
+                            <!--<li>-->
+
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+            <!--</form>-->
         </div>
     </div>
     <div class="top-card-profile-actions" style="border-top: 1px dashed #5e5e67;background: #f6f6f6;height:35px;" id="jobDetails">
