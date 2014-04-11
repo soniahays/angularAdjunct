@@ -12,7 +12,7 @@ var http = require('http'),
     url = require('url'),
     _ = require('underscore'),
     os = require('os'),
-    connect = require('./server/dbConnect.js')(bcrypt, mongodb),
+    connect = require('./server/dbConnect.js')(mongodb),
     elasticsearch = require('es')({
         server: {
             auth: '7jrpodo2:pg40ubsoo8ebvaqg',
