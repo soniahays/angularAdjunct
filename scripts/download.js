@@ -2,8 +2,7 @@ var https = require('https');
 var fs = require('fs');
 var _ = require('underscore');
 var mongodb = require('mongodb');
-var bcrypt = require('bcryptjs');
-var dbConnect = require('../server/dbConnect.js')(bcrypt, mongodb);
+var dbConnect = require('../server/dbConnect.js')(mongodb);
 
 var url = 'https://explore.data.gov/views/xq9j-48uk/rows.json?accessType=DOWNLOAD';
 var collectionName = 'institutions';

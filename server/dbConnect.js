@@ -1,5 +1,5 @@
 
-module.exports = function (bcrypt, mongodb) {
+module.exports = function (mongodb) {
 
     var MongoClient = mongodb.MongoClient;
 
