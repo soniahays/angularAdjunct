@@ -1,40 +1,41 @@
 <div class="container">
     <div class="col-md-2 sidebar-offcanvas" id="sidebar1" role="navigation">
             <div ng-include="'/partial/side-search-column'" />
-        </div>
-
-    <div class="result-col col-md-8">
+    </div>
+    <div class="job-results col-md-8">
         <div id="result-container">
             <div id="results" class="search-results list-group col-md-12"  >
-                <a ng-href="/job-profile/{{job._id}}" class="list-group-item list-group-item-customized" ng-repeat="job in jobs"style="margin-bottom: 5px;">
+                <a ng-href="/job-profile/{{job._id}}" class="list-group-item list-group-item-customized" ng-repeat="job in jobs">
                     <table>
                     <tr>
                     <td>
                     <div id="search-result-picture" class="align-horizontal search-results-image">
                         <div ng-if="job.imageName">
-                        <img class= "main-search-job-image" ng-src="https://s3.amazonaws.com/Adjuncts/{{job.imageName}}" width="100px" />
+                            <img class= "main-search-job-image" ng-src="https://s3.amazonaws.com/Adjuncts/{{job.imageName}}" width="100px" />
                         </div>
                         <div ng-if="!job.imageName" class="no-picture-job-mini">
                             <i class="fa fa-briefcase briefcase"></i>
                         </div>
                     </div>
                     </td>
-                    <td style="padding-top:15px;">
+                    <td class="job-results-content-text">
                     <div class="search-result-body align-horizontal" >
                         <span class="list-group-item-heading-customized title">
-                            <span>{{job.jobTitle}}</span>
-                            <!--<span ng-hide="{{!job.category}}" class="additional-info--">{{job.category}}</span>-->
+                            <span class="job-title">{{job.jobTitle}}</span>
                         </span>
-                        <p class="description" style="margin-bottom: 0;font-size: 14px;">
+                        <p class="description" style="margin-bottom: 0;font-size: 16px;">
                             {{job.institution}}{{job.employer}}
                             <span ng-hide="{{!job.companyType}}" class="additional-info--">{{job.companyType}}</span>
                         </p>
                         <p>
                             <span> {{ job.location }}</span>
                             <span> {{ job.fullLocation }}</span>
-
-
                             <span ng-hide="{{!job.contractType}}" class="additional-info--">{{job.contractType}}</span>
+                        </p>
+                        <p>
+                            <div class="dates">
+                                <span ng-hide="{{!job.applicationDeadline}}" class="apply-by" style="margin-right:15px;"> {{job.applicationDeadline}}</span> <span ng-hide="{{!job.datePosted}}" class="posted-on">{{job.datePosted}}</span>
+                            </div>
                         </p>
                     </div>
                     </td>

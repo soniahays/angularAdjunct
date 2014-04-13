@@ -90,6 +90,40 @@
   border: solid 2px #fff;
   box-shadow: none;
 }
+.job-results .search-results-image {
+  width: 90px;
+}
+.job-results .no-picture-job-mini {
+  background-color: #595959;
+  overflow: hidden;
+  width: 70px;
+  height: 70px;
+}
+.job-results .job-title {
+  font-size: 16px;
+  color: #333;
+  font-weight: 700;
+}
+.job-results .list-group-item-customized {
+  margin-bottom: 5px;
+}
+.job-results .job-results-content-text {
+  padding-top: 15px;
+}
+.job-results .posted-on:before {
+  content: "Posted On:";
+}
+.job-results .apply-by:before {
+  content: "Apply by:";
+}
+.job-results .dates {
+  font-size: 13px;
+  font-weight: normal;
+  font-family: 'latoReg';
+  margin: 0;
+  line-height: 1;
+  color: #999;
+}
 .icon-ex-white-outline {
   position: relative;
   display: block;
@@ -2226,9 +2260,6 @@ tbody {
 .search-results-image {
   width: 110px;
 }
-.search-results-image-job {
-  width: 90px;
-}
 .dropdown-menu {
   background-color: #333;
   border-radius: 3px;
@@ -2275,16 +2306,10 @@ tbody {
   color: white;
 }
 .additional-info--:before {
-  content: "-";
+  content: "- ";
 }
 .additional-info-at:before {
   content: "at";
-}
-.no-picture-job-mini {
-  background-color: #595959;
-  overflow: hidden;
-  width: 70px;
-  height: 70px;
 }
 .toolbar-image {
   width: 52px;

@@ -114,10 +114,16 @@
             <div class="col-md-8 dashboard-display-panel" style="padding-left:0px;margin-top:0px;">
                 <div ng-include="'/partial/upload-portfolio'" ng-show="showAddDoc"/>
                 <div ng-hide="showAddDoc">
-                <div style="height:25px;padding:15px 5px 0 0;">{{docTitle}}</div>
+                <!--<div style="height:25px;padding:15px 5px 0 0;">{{docTitle}}</div>-->
+                    <!--<div ng-show="">-->
+                        <!--<div style="font-size:40px;margin-top:60px;color:#EB7737;"><i class="fa fa-reply"></i> Browse documents by categories</div>-->
+                        <!--<div style="font-size:40px;margin-top:200px;color:#EB7737;"><i class="fa fa-long-arrow-left"></i>Add document now</div>-->
+
+                <!--</div>-->
                 <div style="margin-top:45px;">
                     <iframe type="text/html" ng-hide="showVid" width="540" height="350" src="{{frameUrl}}" frameborder="" allowfullscreen style="margin-top: -31px;"></iframe>
                 </div>
+
                 <div style="padding:15px 0px 0 0;">
                     <p>
                         <small style="padding-left:5px">{{docDescription}}</small>
