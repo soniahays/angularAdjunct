@@ -4,6 +4,9 @@
     "dependencies": {
         "express": "*",
         "body-parser": "*",
+        "cookie-parser": "*",
+        "method-override": "*",
+        "express-session": "*",
         "morgan": "*",
         "ejs": "1.0.x",
         "mongodb": "1.4.x",
