@@ -5,6 +5,7 @@
         "express": "*",
         "body-parser": "*",
         "ejs": "1.0.x",
+        "mongodb": "1.4.x",
         "bcryptjs": "~0.7.x",
         "passport": "0.2.x",
         "passport-facebook": "1.0.x",
