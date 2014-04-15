@@ -4,6 +4,7 @@
     "dependencies": {
         "express": "*",
         "body-parser": "*",
+        "logger": "*",
         "ejs": "1.0.x",
         "mongodb": "1.4.x",
         "bcryptjs": "~0.7.x",
