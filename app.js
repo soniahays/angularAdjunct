@@ -4,6 +4,10 @@ var http = require('http'),
     fs = require('fs'),
     uuid = require('node-uuid'),
     express = require('express'),
+    bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser'),
+    methodOverride = require('methodOverride'),
+    session = require('express-session'),
     logger = require('morgan'),
     passport = require('passport'),
     ensureLoggedIn = require('./server/ensureLoggedIn.js'),
@@ -61,10 +65,10 @@ app.set('uploadPath', path.join(app.get('publicPath'), 'uploads'));
 app.engine('html', require('ejs').renderFile);
 app.use(logger('dev'));
 app.use(bodyParser());
-app.use(express.cookieParser());
-app.use(express.methodOverride());
-app.use(static(app.get('publicPath')));
-app.use(express.session({ secret: 'keyboard cat' }));
+app.use(cookieParser());
+app.use(methodOverride());
+app.use(express.static(app.get('publicPath')));
+app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
