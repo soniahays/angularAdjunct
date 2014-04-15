@@ -7,16 +7,41 @@
         <div id="result-container">
             <div id="results" class="search-results list-group col-md-12"  >
                 <a ng-href="/job-profile/{{job._id}}" class="list-group-item list-group-item-customized" ng-repeat="job in jobs"style="margin-bottom: 5px;">
+
+
+                    <!--<div class="profile-picture">-->
+                            <!--<span ng-if="user.imageName">-->
+                                <!--<img class="pull-left"  style="width: 207px;" ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}"/>-->
+                            <!--</span>-->
+                        <!--<div ng-if="!user.imageName" class="no-picture">-->
+                            <!--<div ng-show="canEdit" class="addPictLink">-->
+                                <!--<a href="#" ng-click="openPictureUploadModal()">-->
+                        <!--<span style= "color: #fff;">-->
+                            <!--<img src="/img/icon_add_photo_27x27_v1.png" /> Add a photo-->
+                        <!--</span>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+
                     <table>
                     <tr>
                     <td>
                     <div id="search-result-picture" class="align-horizontal search-results-image">
-                        <div ng-if="job.imageFileName">
-                        <img class= "main-search-job-image" ng-src="https://s3.amazonaws.com/Adjuncts/institution-logos/{{job.imageFileName}}" width="100px" />
-                        </div>
-                        <div ng-if="!job.imageFileName" class="no-picture-job-mini">
-                            <i class="fa fa-briefcase briefcase"></i>
-                        </div>
+                        <!--<span ng-if="job.imageFileName">-->
+                        <!--<img class= "main-search-job-image" ng-src="https://s3.amazonaws.com/Adjuncts/institution-logos/{{job.imageFileName}}" style="width:100px" />-->
+                        <!--</span>-->
+                        <!--<div ng-if="!job.imageFileName" class="no-picture-job-mini">-->
+                            <!--&lt;!&ndash;<i class="fa fa-briefcase briefcase"></i>&ndash;&gt;-->
+
+                            <div id="search-result-picture" class="align-horizontal search-results-image">
+                                <div ng-if="job.imageFileName">
+                                    <img class= "main-search-job-image" ng-src="https://s3.amazonaws.com/Adjuncts/institution-logos/{{job.imageFileName}}" width="100px" />
+                                </div>
+                                <div ng-if="!job.imageFileName" class="no-picture-job-mini"></div>
+                            </div>
+                        <!--</div>-->
                     </div>
                     </td>
                     <td style="padding-top:15px;">

@@ -24,6 +24,11 @@
 }
 
 @font-face{
+  font-family:fontAwesome;
+  src: url("/fonts/FontAwesome.otf")format("opentype");
+}
+
+@font-face{
   font-family:heroLight;
   src: url("/fonts/hero-light.otf")format("opentype");
 }
@@ -235,7 +240,6 @@
 #lms-no:checked ~ #lms span:after,#professionalContribution-no:checked ~ #professionalContribution span:after,#instructionalDesign-no:checked ~ #instructionalDesign span:after {
   background: #333;
   height: 10px;
-  //  margin-top: -6px;
   margin-left: 4px;
 }
 
@@ -330,12 +334,12 @@ a {
   background: transparent;
   color: @link-color;
   text-decoration: none;
+  a:hover, a:focus {
+    color: #333;
+    text-decoration: underline;
+  }
 }
 
-a:hover, a:focus {
-  color: #333;
-  text-decoration: underline;
-}
 .forgot-password {
   float: right;
 }
@@ -506,25 +510,23 @@ h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, 
   height:34px;
   position:relative;
   text-align:center;
+  hr {
+    margin: -16px auto 0 auto;
+    width: 90%;
+  }
+  .text{
+    background-color: white;
+    display: inline-block;
+    margin:0;
+    padding: 8px 6px;
+    text-transform:uppercase;
+    font-size: 10px;
+  }
+
 }
 *, *:before, *:after, hr, hr:before, hr:after, input[type="search"], input[type="search"]:before, input[type="search"]:after {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-}
-.signup-or-separator hr {
-  margin: -16px auto 0 auto;
-  width: 90%;
-}
-
-
-
-.signup-or-separator .text{
-  background-color: white;
-  display: inline-block;
-  margin:0;
-  padding: 8px 6px;
-  text-transform:uppercase;
-  font-size: 10px;
 }
 
 
@@ -533,21 +535,20 @@ h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, 
   height:34px;
   position:relative;
   text-align:center;
+  hr {
+    margin: -16px auto 0 auto;
+    width: 90%;
+  }
+  .text{
+    background-color: white;
+    display: inline-block;
+    margin:0;
+    padding: 8px 6px;
+    text-transform:uppercase;
+    font-size: 10px;
+  }
 }
 
-.signup-page-or-separator hr {
-  margin: -16px auto 0 auto;
-  width: 90%;
-}
-
-.signup-page-or-separator .text{
-  background-color: white;
-  display: inline-block;
-  margin:0;
-  padding: 8px 6px;
-  text-transform:uppercase;
-  font-size: 10px;
-}
 
 
 hr {
@@ -556,10 +557,6 @@ hr {
   border: 0;
   border-top: 1px solid #dbdbdb;
 }
-
-
-
-
 
 
 body, html {
@@ -657,6 +654,7 @@ body, html {
   padding: 50px;
 }
 
+
 .modal-table{
   display: table;
   table-layout: fixed;
@@ -689,17 +687,6 @@ h4, .h4, .panel-header, .alert {
   box-shadow: 0 0 25px 12px rgba(0,0,0,0.35);
   width:315px;
 }
-.modal-cell{
-  display: table-cell;
-  height: 100%;
-  width: 100%;
-  vertical-align: middle;
-  padding: 50px;
-}
-
-
-
-
 
 label{
   font-family: Arial, sans-serif;
@@ -718,9 +705,7 @@ ul#strength{
   padding:0;
   vertical-align:2px;
 }
-.point:last {
-  margin:0 !important;
-}
+
 .point {
   background:#DDD;
   border-radius:0;
@@ -728,26 +713,25 @@ ul#strength{
   height:5px;
   margin-right:0;
   width:30px;
+  &:last-child {
+    margin:0 !important;
+  }
 }
-
 
 .input-help{
   font-size:11px;
+  ul {
+    list-style: none;
+    margin: 10px 0 0 0;
+  }
+  li {
+    padding-left: 22px;
+    line-height: 24px;
+    color:@main-theme-color;
+  }
+
 }
 
-.input-help ul {
-  list-style: none;
-  margin: 10px 0 0 0;
-}
-
-/* Default each bullet to be invalid with a red cross and text */
-.input-help li {
-  padding-left: 22px;
-  line-height: 24px;
-  color:@main-theme-color;
-}
-
-/* Set to green check and text when valid */
 .input-help li.valid {
   color:#595959 ;
   background-position: 2px 6px;
@@ -818,20 +802,61 @@ ul#strength{
 .profile-bottom-card{
   padding:0;
 }
-.bottom-card-profile-actions-edit{
-  border-top: 1px dashed #5e5e67;
-  background: #f6f6f6;
-  height:35px;
+//.bottom-card-profile-actions-edit{
+//  border-top: 1px dashed #5e5e67;
+//  background: #f6f6f6;
+//  height:35px;
+//  ul{
+//    display: table-cell;
+//    padding: 0 0 8px;
+//    float:left;
+//  }
+//  li{
+//    padding: 8px 12px 2px 0;
+//    font-size: 11px;
+//    line-height: 1.2em;
+//  }
+//}
+.bottom-card-profile-actions{
+  border-bottom: 1px solid #5e5e67;
+  background-color: #e1e1e1;
+  height:43px;
+  margin-bottom:25px;
+  position:relative;
   ul{
     display: table-cell;
-    padding: 0 0 8px;
+    padding: 5px 15px;
     float:left;
   }
   li{
-    padding: 8px 12px 2px 0;
+    padding-top: 0;
+    padding-bottom: 2px;
+    padding-left: 0px;
+    padding-right: 12px;
     font-size: 11px;
     line-height: 1.2em;
   }
+  h6{
+    margin-top: 7px;
+    margin-bottom: 7px;
+  }
+}
+
+#experience-container{
+  padding:50px 40px;
+}
+#experience-container-edit{
+  margin-top: 15px;
+  font-size: 13px;
+  line-height: 17px;
+  color: #333;
+  font-weight: normal;
+  padding: 20px 20px;
+  background: #f4f4f4;
+  border: 1px solid #e9e9e9;
+  border-width: 1px 0;
+  width:604px;
+
 }
 
 .bottom-card-profile-right-actions-edit{
@@ -868,46 +893,7 @@ ul#strength{
       color:@edit-icons-color;
     }
 }
-.bottom-card-profile-actions{
-    border-bottom: 1px solid #5e5e67;
-    background-color: #e1e1e1;
-    height:43px;
-    margin-bottom:25px;
-    position:relative;
-    ul{
-      display: table-cell;
-      padding: 5px 15px;
-      float:left;
-    }
-    li{
-      padding-top: 0;
-      padding-bottom: 2px;
-      padding-left: 0px;
-      padding-right: 12px;
-      font-size: 11px;
-      line-height: 1.2em;
-    }
-    h6{
-      margin-top: 7px;
-      margin-bottom: 7px;
-    }
-}
-#experience-container{
-  padding:50px 40px;
-}
-#experience-container-edit{
-    margin-top: 15px;
-    font-size: 13px;
-    line-height: 17px;
-    color: #333;
-    font-weight: normal;
-    padding: 20px 20px;
-    background: #f4f4f4;
-    border: 1px solid #e9e9e9;
-    border-width: 1px 0;
-    width:604px;
 
-}
 .position-edit-form{
     width:292px;
 }
@@ -944,8 +930,6 @@ ul#strength{
     padding-right: 5px;
 }
 
-
-
 .showtagslink {
     float:left;
     margin: 3px 0 0 5px;
@@ -962,8 +946,6 @@ ul#strength{
     font-size:13px;
     margin-top:0;
     color: #adb2bb;
-
-
 }
 .list-item-badge-section{
     background-color:#fefefe!important;
@@ -1130,7 +1112,6 @@ ul#strength{
     width: 346px;
 }
 .video-thumbnails{
-
     float:left;
 }
 .video-thumbnail{
@@ -1157,16 +1138,17 @@ ul#strength{
     background-color: #D1D1D1;
     border-color:#D1D1D1;
     color:#272727;
+    i {
+      background-color: #D1D1D1;
+      border-color:#D1D1D1;
+      color:#272727;
+    }
 }
 
-.edit-buttons i {
-    background-color: #D1D1D1;
-    border-color:#D1D1D1;
+.list-group-item-customize-left{
+  h6{
     color:#272727;
-}
-
-.list-group-item-customize-left h6{
-    color:#272727;
+  }
 }
 
 #top-card,#top-card-job{
@@ -1210,11 +1192,12 @@ ol, ul{
 #content {
     margin-top:10px;
     padding-bottom:10px;
+    div {
+      padding:0px;
+      float:left;
+    }
 }
-#content div {
-    padding:0px;
-    float:left;
-}
+
 #content-left {
     width:160px;
 }
@@ -1250,9 +1233,7 @@ ol, ul{
     background: url('http://akcdn.okccdn.com/media/img/forms/form_spriteV9.png') no-repeat;
 }
 #checkboxFive {
-
     display:none;
-
 }
 
 
@@ -1339,20 +1320,13 @@ ol, ul{
     float:left;
     width: 45px!important;
     height: 45px!important;
-
-
-
     list-style-type: none;
 
 }
 
 .badge-form-mini-thumb{
-
     width: 25px!important;
     height: 25px!important;
-
-
-
     list-style-type: none;
 }
 
@@ -1368,13 +1342,12 @@ ol, ul{
     margin-right: auto;
 }
 
-#badges tr td{
-    /*border:0.2em solid grey;*/
-    /*border-width:3px;*/
-    display: table ;
-    display: table-cell  ;
+#badges{
+  tr td{
+  display: table ;
+  display: table-cell  ;
 
-}
+}}
 .no-institution-picture{
     box-shadow: none;
     width: 100%;
@@ -1431,6 +1404,15 @@ ol, ul{
     background: url("/img/placeholder3mini.png") no-repeat;
 }
 
+.no-picture-job-mini{
+  height: 100px;
+  width:100px;
+  padding: 0;
+  background: url("/img/briefcase.png") no-repeat;
+  background-color: #d8d8d8;
+  padding: 10px;
+}
+
 .addPictLink{
     padding-top: 116px;
 
@@ -1467,7 +1449,6 @@ ol, ul{
 
     border-color:#101010;
 }
-
 .new-account{
     color: @no-picture-background-color;
 }
@@ -1548,7 +1529,6 @@ ol, ul{
 
 #email-form{
   width:75%;
-
 }
 
 .profile-forms{
@@ -1631,9 +1611,11 @@ ol, ul{
   box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
 }
 
-#a-custom:hover{
-  color: @main-theme-color !important;
-  text-decoration: underline;
+#a-custom{
+  &:hover{
+    color: @main-theme-color !important;
+    text-decoration: underline;
+  }
 }
 
 /*-----------------POPOVER CUSTOM---------------------------*/
@@ -1748,21 +1730,19 @@ body {
 /* Finesse the page header spacing */
 .page-header {
   margin-bottom: 30px;
+  .lead {
+    margin-bottom: 10px;
+  }
 }
-.page-header .lead {
-  margin-bottom: 10px;
-}
-
 
 body { font-family: Arial, sans-serif; }
 
 .profile-badges{
   padding: 5px 0px 0px ;
-}
-
-.profile-badges img{
-  padding: 5px;
-  /*width: 40px !important;*/
+  img{
+    padding: 5px;
+    /*width: 40px !important;*/
+  }
 }
 
 .list-group-item-customized{
