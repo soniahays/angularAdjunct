@@ -2,6 +2,7 @@
 <html lang="en" ng-app="adjunct" id="ng-app">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Adjuncts</title>
     <link rel="icon" type="image/x-icon" href="/img/ico/favicon.ico">
 
@@ -19,27 +20,39 @@
     <link rel="stylesheet" href="/components/select2/select2.css">
     <link rel="stylesheet" href="/components/angular-xeditable/dist/css/xeditable.css"/>
     <link rel="stylesheet" href="/css/app.css"/>
+    <link rel="stylesheet" media="screen and (max-width:600px)" href="/css/mobile-device.css"/>
     <script src="/dist/adjuncts.min.js"></script>
 </head>
 
+
+
+
 <body ng-controller="IndexCtrl" document-click>
-<div id="top" class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="margin-bottom: 0px">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
-        <div class="navbar-collapse collapse">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/" ng-click="index = 0"><img src="/img/logo.png" height="28"></a>
-            </div>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/" ng-click="index = 0"><img src="/img/logo.png" height="28"></a>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul ng-hide="!isSignedIn" class="nav navbar-nav">
                 <li ng-class="{active: index == 0}" ng-click="index = 0">
                     <a href="/">Home</a>
                 </li>
                 <li ng-class="{active: index == 1}" ng-click="index = 1" class="navigation-dropdown">
+                    <input type="radio" class="activate" name="accordion" />
                     <a bs-dropdown="profileDropdown">Profile</a>
                 </li>
                 <li ng-class="{active: index == 2}" ng-click="index = 2">
                     <a href="/search-results">Network</a>
                 </li>
                 <li ng-class="{active: index == 3}" ng-click="index = 3" class="navigation-dropdown">
+                    <input type="radio" class="activate" name="accordion" />
                     <a bs-dropdown="jobsDropdown">Jobs</a>
                 </li>
                 <li ng-class="{active: index == 4}" ng-click="index = 4">
@@ -47,49 +60,48 @@
                 </li>
                 <li ng-hide="!isSignedIn">
                     <div class="input-group" style="padding:15px 15px;">
-                        <input type="text" class="form-control" ng-enter="search()" required
-                               ng-model="navigationSearchBox"
-                               placeholder="Search for people, jobs, institutions and more..."
-                               style="width:313px;height:25px;border-radius:15px !important;font-size:13px;">
-                        <a style="margin-left:-23px;color:#EB7737;font-size:16px;"><i class="fa fa-search"></i></a>
+                    <input type="text" class="form-control" ng-enter="search()" required
+                    ng-model="navigationSearchBox"
+                    placeholder="Search for people, jobs, institutions and more..."
+                    style="width:313px;height:25px;border-radius:15px !important;font-size:13px;">
+                    <a style="margin-left:-23px;color:#EB7737;font-size:16px;"><i class="fa fa-search"></i></a>
                     </div>
                 </li>
             </ul>
             <ul ng-show="!isSignedIn" class="nav navbar-nav navbar-right">
-                    <li ng-class="{active: index == 5}" ng-click="index = 5"><a href="/about">About</a></li>
-                    <li ng-class="{active: index == 6}" ng-click="index = 6"><a href="/contact-us">Contact Us</a></li>
-                    <li class="">
-                        <a href="#" style="" class="popoverButton" ng-click="openSignUpModal()" data-title="{{signupPopover.title}}" data-template="/partial/signup-popover">Join</a>
-                    </li>
-                    <li class="signin-button">
-                        <a href="#" style="color:#fff" class="popoverButton" ng-click="openSignInModal()" data-title="{{signinPopover.title}}" data-template="/partial/signin-popover">Sign In</a>
-                    </li>
-                    <li ng-hide="!isSignedIn">
-                        <div class="input-group" style="padding:15px 15px;">
-                            <input type="text" class="form-control" ng-enter="search()" required
-                                   ng-model="navigationSearchBox"
-                                   placeholder="Search for people, jobs, institutions and more..."
-                                   style="width:313px;height:25px;border-radius:15px !important;font-size:13px;">
-                            <a style="margin-left:-23px;color:#EB7737;font-size:16px;"><i class="fa fa-search"></i></a>
-                        </div>
-                    </li>
+                <li ng-class="{active: index == 5}" ng-click="index = 5"><a href="/about">About</a></li>
+                <li ng-class="{active: index == 6}" ng-click="index = 6"><a href="/contact-us">Contact Us</a></li>
+                <li class="">
+                    <a href="#" style="" class="popoverButton" ng-click="openSignUpModal()" data-title="{{signupPopover.title}}" data-template="/partial/signup-popover">Join</a>
+                </li>
+                <li class="signin-button">
+                    <a href="#" style="color:#fff" class="popoverButton" ng-click="openSignInModal()" data-title="{{signinPopover.title}}" data-template="/partial/signin-popover">Sign In</a>
+                </li>
+                <li ng-hide="!isSignedIn">
+                    <div class="input-group" style="padding:15px 15px;">
+                    <input type="text" class="form-control" ng-enter="search()" required
+                    ng-model="navigationSearchBox"
+                    placeholder="Search for people, jobs, institutions and more..."
+                    style="width:313px;height:25px;border-radius:15px !important;font-size:13px;">
+                    <a style="margin-left:-23px;color:#EB7737;font-size:16px;"><i class="fa fa-search"></i></a>
+                    </div>
+                </li>
             </ul>
             <ul ng-show="isSignedIn" class="nav navbar-nav navbar-right">
-            <li ng-if="user" class="navigation-dropdown">
-                <a href="#" class="navigation-dropdown-toggle" data-toggle="dropdown">
+                <li ng-if="user" class="navigation-dropdown">
+                    <a href="#" class="navigation-dropdown-toggle" data-toggle="dropdown">
                     <img ng-if="user.imageName" class="pull-left search-image"
-                         ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}" width="35px">
+                    ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}" width="35px">
                     <img ng-if="!user.imageName" class="pull-left search-image" ng-src="/img/placeholder3.png"
-                         width="35px">
+                    width="35px">
                     {{user.firstName || 'not signed in'}}<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#" ng-click="signout()"> Sign Out</a></li>
-                </ul>
-            </li>
-
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" ng-click="signout()"> Sign Out</a></li>
+                    </ul>
+                </li>
             </ul>
-        </div>
+        </nav>
     </div>
 </div>
 
@@ -97,13 +109,91 @@
 </div>
 
 <hr class="featurette-divider">
-<footer>
-    <p class="pull-right"><a href="#top">Back to top</a></p>
-    <p>
-        &copy; Adjuncts Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
-        <br /><br />
-    </p>
-</footer>
+<div ng-show="!isSignedIn" class="nav navbar-nav navbar-inverse navbar-fixed-bottom" style="min-height:80px;-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+	background-color:#ededed;margin-bottom:-5px;">
+        <div class="btn-group justified"style="">
+            <!--<div class="btn-group"style="display:table-cell;-->
+<!--float: none!important;">-->
+                <a href="#/route1" class="btn btn-primary" style="color:#444;font-weight:bold;font-size:20px;width:50%;height:80px">Sign Up</a>
+                <a href="#/route2" class="btn btn-primary btn-navbar btn-icon-only" style="color:#444;font-weight:bold;font-size:20px;width:50%;height:80px;">Sign In</a>
+        </div>
+</div>
+
+<!--<footer>-->
+
+<!--</footer>-->
+
+
+<!--<footer>-->
+    <!--<div class="navbar navbar-app navbar-absolute-bottom">-->
+        <!--<div class="btn-group justified">-->
+            <!--<a href="#/route1" class="btn btn-navbar btn-icon-only"><i class="fa fa-home fa-navbar"></i></a>-->
+            <!--<a href="#/route2" class="btn btn-navbar btn-icon-only"><i class="fa fa-list fa-navbar"></i></a>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="navbar navbar-inverse navbar-fixed-bottom " role="navigation" style="background-color: darkslateblue ;min-height: 100px;">-->
+        <!--<div class="container">-->
+                 <!--<div class="btn-group justified">-->
+            <!--<a href="#/route1" class="btn btn-navbar btn-icon-only"><i class="fa fa-home fa-navbar"></i></a>-->
+            <!--<a href="#/route2" class="btn btn-navbar btn-icon-only"><i class="fa fa-list fa-navbar"></i></a>-->
+        <!--</div>-->
+            <!--&lt;!&ndash;<div class="navbar-header">&ndash;&gt;-->
+
+
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--<nav class="" role="navigation">-->
+
+                <!--&lt;!&ndash;<ul ng-show="!isSignedIn" class=" ">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li class="">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<a href="#" style="" class="popoverButton" ng-click="openSignUpModal()" data-title="{{signupPopover.title}}" data-template="/partial/signup-popover">Sign Up</a>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li class="signin-button">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<a href="#" style="color:#fff" class="popoverButton" ng-click="openSignInModal()" data-title="{{signinPopover.title}}" data-template="/partial/signin-popover">Sign In</a>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li ng-hide="!isSignedIn">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="input-group" style="padding:15px 15px;">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<input type="text" class="form-control" ng-enter="search()" required&ndash;&gt;-->
+                                   <!--&lt;!&ndash;ng-model="navigationSearchBox"&ndash;&gt;-->
+                                   <!--&lt;!&ndash;placeholder="Search for people, jobs, institutions and more..."&ndash;&gt;-->
+                                   <!--&lt;!&ndash;style="width:313px;height:25px;border-radius:15px !important;font-size:13px;">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<a style="margin-left:-23px;color:#EB7737;font-size:16px;"><i class="fa fa-search"></i></a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                <!--&lt;!&ndash;<ul ng-show="isSignedIn" class="" style="bottom:0; margin-bottom:0; position:fixed;right:0;left:0;z-index:1030;">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li ng-if="user" class="">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<a href="#" class="" data-toggle="dropdown">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<img ng-if="user.imageName" class="pull-left search-image"&ndash;&gt;-->
+                                 <!--&lt;!&ndash;ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}" width="35px">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<img ng-if="!user.imageName" class="pull-left search-image" ng-src="/img/placeholder3.png"&ndash;&gt;-->
+                                 <!--&lt;!&ndash;width="35px">&ndash;&gt;-->
+                            <!--&lt;!&ndash;{{user.firstName || 'not signed in'}}<b class="caret"></b>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<ul class="">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<li><a href="#" ng-click="signout()"> Sign Out</a></li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+            <!--</nav>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+
+
+
+    <!--<p class="pull-right"><a href="#top">Back to top</a></p>-->
+    <!--<p>-->
+        <!--&copy; Adjuncts Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>-->
+        <!--<br /><br />-->
+    <!--</p>-->
+<!--</footer>-->
 
 </body>
 </html>

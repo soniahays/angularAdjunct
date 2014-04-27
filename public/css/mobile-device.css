@@ -1,0 +1,31 @@
+@media screen and (max-width: 600px) {
+.banner {
+background: none ;
+background-color:#CCFFFF ;
+background-size: 100%;
+margin-top: -10px;
+}
+#sidebar1{
+    display:none;
+}
+    .btn-group .btn+.btn, .btn-group .btn+.btn-group, .btn-group .btn-group+.btn, .btn-group .btn-group+.btn-group {
+        margin-left: -1px;
+    }
+    .btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .btn-group, .btn-group-vertical {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .justified {
+        display: table;
+        width: 100%;
+    }
+    .activate:checked ~ .drop-down {
+        max-height: 600px;
+    }
+}
+

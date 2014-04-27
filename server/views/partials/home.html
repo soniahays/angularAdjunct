@@ -1,44 +1,44 @@
-
-<form ng-init="init()" class="jumbotron banner" style="height:400px;margin-top: -25px;margin-bottom:0;border-bottom: 1px solid;" name="homeForm" novalidate>
-    <div class="container">
-        <div class="home-banner-left col-md-12" style="margin-top:100px;width:950px;">
-           <h2 style="font-size:25px;margin-bottom: 10px " >Adjuncts is a career marketplace for higher education institutions and adjunct faculty.</h2>
-           <div class="input-group">
-                    <input type="text" class="form-control" ng-enter="search()" required ng-model="searchBox"  ng-focus="openSignInModal()"   placeholder="Search by university, discipline, qualification, location and more..." style="border-color:#999;">
+        <form ng-init="init()" class="jumbotron banner" style="height:400px;margin-top: -25px;margin-bottom:0;border-bottom: 1px solid;" name="homeForm" novalidate>
+            <div class="container">
+                <div class="home-banner-left col-xs-5 col-sm-8 col-md-12" style="margin-top:100px;width:950px;">
+                    <h2 style="font-size:25px;margin-bottom: 10px "class="input-group col-xs-5 col-sm-8 col-md-12"  >Adjuncts is a career marketplace for higher education institutions and adjunct faculty.</h2>
+                    <div class="input-group col-xs-5 col-sm-8 col-md-12">
+                        <input type="text" class="form-control" ng-enter="search()" required ng-model="searchBox"  ng-focus="openSignInModal()"   placeholder="Search by university, discipline, qualification, location and more..." style="border-color:#999;">
                     <span class="input-group-btn">
                       <button class="btn btn-default btn-custom btn-primary-custom-home-search " type="submit" ng-disabled="homeForm.$invalid" placement="right" ng-click="search()" ><i class="fa fa-search" style="border-color:#101010;background-color: #EB7737;color: #fff;" ></i></button>
                     </span>
-            </div>
-        </div>
-      </div>
-</form>
-
-    <section id="home" name="home"></section>
-    <div id="headerwrap" style="background-color: #F7F7F7;">
-        <div class="container">
-            <div class="row centered" style="margin-top: 100px;">
-                <div class="col-lg-12">
-
-                </div>
-
-                <div class="col-lg-2">
-                    <h5><strong>Visual-Multimedia Resume</strong></h5>
-                    <p>We highlight your best features through a simple visual resume.</p>
-                    <img class="hidden-xs hidden-sm hidden-md" src="/img/arrow1.png">
-                </div>
-                <div class="col-lg-8">
-                    <img class="img-responsive" src="/img/screenCapture.png" style="border: 1px solid #d3d3d3">
-                    <br />
-                </div>
-                <div class="col-lg-2">
-                    <br>
-                    <img class="hidden-xs hidden-sm hidden-md" src="/img/arrow2.png">
-                    <h5>Easy to use</h5>
-                    <p>Import your profile from LinkedIn in a few clicks and start connecting now!</p>
+                    </div>
                 </div>
             </div>
+        </form>
+
+        <section id="home" name="home"></section>
+        <div id="headerwrap" style="background-color: #F7F7F7;">
+            <div class="container">
+                <div class="row centered" style="margin-top: 100px;">
+                    <div class="col-lg-12">
+
+                    </div>
+
+                    <div class="col-lg-2">
+                        <h5><strong>Visual-Multimedia Resume</strong></h5>
+                        <p>We highlight your best features through a simple visual resume.</p>
+                        <img class="hidden-xs hidden-sm hidden-md" src="/img/arrow1.png">
+                    </div>
+                    <div class="col-lg-8">
+                        <img class="img-responsive" src="/img/screenCapture.png" style="border: 1px solid #d3d3d3">
+                        <br />
+                    </div>
+                    <div class="col-lg-2">
+                        <br>
+                        <img class="hidden-xs hidden-sm hidden-md" src="/img/arrow2.png">
+                        <h5>Easy to use</h5>
+                        <p>Import your profile from LinkedIn in a few clicks and start connecting now!</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
 <div ng-include="'/partial/signin-modal'"/>
 <div ng-include="'/partial/signup-modal'"/>
+

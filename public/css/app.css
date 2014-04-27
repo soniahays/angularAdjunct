@@ -1113,7 +1113,6 @@ ul#strength {
 }
 #top-card,
 #top-card-job {
-  /*background-color: #FaFaFa;*/
   border-radius: 2px 0 0 0 !important;
   padding-right: 0px!important;
 }
@@ -1163,7 +1162,6 @@ ul {
   float: left;
   margin-top: 10px;
   margin-bottom: 10px;
-  /*padding:10px;*/
 }
 #bottom {
   clear: both;
@@ -1363,16 +1361,12 @@ ul {
 .btn-primary-custom {
   color: #fff;
   font-weight: bold;
-  /*background-color: #428bca;*/
-  /*border-color: #357ebd;*/
   background-color: #eb7737 !important;
   border-color: #eb7737 !important;
 }
 .btn-primary-custom-home-search {
   color: #fff;
   font-weight: bold;
-  /*background-color: #428bca;*/
-  /*border-color: #357ebd;*/
   background-color: #eb7737 !important;
   border-color: #101010;
 }
@@ -1406,12 +1400,6 @@ ul {
   background-color: #FaFaFa;
   border-top-right-radius: 0px !important;
   border-top-left-radius: 0px !important;
-  /*padding: 2px 15px 5px 12px; !important*/
-  /*margin-bottom: 0px;*/
-  /*}*/
-  /*#h6-text{*/
-  /*padding: 2px 15px -25px 0px; !important*/
-  /*margin-bottom: 0px;*/
 }
 .progress-custom {
   height: 13px;
@@ -1505,11 +1493,10 @@ ul {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-.form-control:focus {
+.form-control:focusfocus {
   border-color: #F8C691;
   outline: 0;
   webkit-box-shadow: none !important;
-  /*-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);*/
   box-shadow: none !important;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
@@ -1542,59 +1529,6 @@ ul {
   border-right: 2px solid #E0E7EC;
 }
 /*-----------------CONTAINER----------------------------*/
-.container .navbar-header,
-.container .navbar-collapse {
-  margin-right: 0;
-  margin-left: 0;
-}
-/* Non-responsive overrides
-/* Reset the container */
-.container {
-  max-width: none !important;
-  width: 970px;
-  padding-right: 0px;
-  padding-left: 0px;
-}
-/*-----------------NAVBAR CUSTOM--------------------*/
-/* Always float the navbar header */
-#profile-id {
-  padding: 0 0;
-}
-.navbar {
-  height: 51px;
-}
-.navbar-header {
-  float: left;
-}
-/* Undo the collapsing navbar */
-.navbar-collapse {
-  display: block !important;
-  height: auto !important;
-  padding-bottom: 0;
-  overflow: visible !important;
-}
-.navbar-toggle {
-  display: none;
-}
-.navbar-brand {
-  margin-left: -15px;
-  margin-top: -4px;
-}
-/* Always apply the floated nav */
-.navbar-nav {
-  float: left;
-  margin: 0;
-}
-.navbar-nav > li {
-  float: left;
-}
-.navbar-nav > li > a {
-  padding: 15px;
-}
-/* Redeclare since we override the float above */
-.navbar-nav.navbar-right {
-  float: right;
-}
 .signin-button,
 .signin-button > a {
   background-color: #eb7737 !important;
@@ -1781,15 +1715,6 @@ body {
   padding-left: 5px;
   /*margin-bottom:10px;*/
   margin-left: 10px;
-}
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary.active,
-.open .navigation-dropdown-toggle.btn-primary {
-  color: #fff;
-  background-color: #d0c2b1 !important;
-  border-color: #d06d12 !important;
 }
 #signin-btn {
   background-color: #d06d12;
@@ -2012,20 +1937,6 @@ body {
   float: none;
   margin-left: 0;
 }
-/*.tags input[type="text"],*/
-/*.tags input[type="text"]:focus {*/
-/*border: none;*/
-/*display: inline;*/
-/*outline: 0;*/
-/*margin: 0;*/
-/*padding: 0;*/
-/*font-size: 11.844px;*/
-/*line-height: 14px;*/
-/*-webkit-box-shadow: none;*/
-/*-moz-box-shadow: none;*/
-/*box-shadow: none;*/
-/*width: 100%;*/
-/*}*/
 .tm-tag-custom {
   display: inline-block;
   padding: 2px 4px;
@@ -2069,7 +1980,6 @@ body {
 }
 .profile-picture-container {
   width: 210px;
-  /*height:180px;*/
   position: relative;
   margin-top: 9px;
   overflow: hidden;
@@ -2165,7 +2075,6 @@ body {
 tbody {
   display: table-row-group;
 }
-/*#profile-card-table > th*/
 .profile-card-table-th {
   font-weight: normal;
   text-decoration: none !important;
@@ -2203,7 +2112,7 @@ tbody {
   height: auto;
   width: auto;
 }
-.collapse.height {
+.collapse .height {
   position: relative;
   height: 0;
   overflow: hidden;
@@ -2212,7 +2121,7 @@ tbody {
   -o-transition: height 0.35s ease;
   transition: height 0.35s ease;
 }
-.collapse.width {
+.collapse .width {
   position: relative;
   width: 0;
   overflow: hidden;
@@ -2502,4 +2411,13 @@ a.editable-empty:focus {
 }
 .ngTagsCustom {
   height: 80px;
+}
+.activate {
+  display: none;
+  position: absolute;
+  cursor: pointer;
+  width: 100%;
+  height: 40px;
+  margin: 0 0 0 -15px;
+  opacity: 0;
 }

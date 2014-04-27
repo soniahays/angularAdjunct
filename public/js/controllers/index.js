@@ -2,6 +2,10 @@
 
 angular.module('adjunct.controllers')
     .controller('IndexCtrl', ['$scope', '$http', '$cookies', '$popover', function ($scope, $http, $cookies, $popover) {
+        $('.navbar-collapse ul li:not(.navigation-dropdown) a').click(function(){
+            console.log('hello!!');
+            $('.navbar-toggle:visible').click();
+        });
 
         $scope.isSignedIn = $cookies._id != null;
         $scope.signinPopover = {title: 'Title', content: 'Hello Popover<br />This is a multiline message!'};
