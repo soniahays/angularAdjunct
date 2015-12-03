@@ -18,6 +18,53 @@
   font-family: latoReg;
   src: url("/fonts/Lato-Reg.ttf") format("opentype");
 }
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+.adjunct-img-logo {
+  background-image: url("/img/adjunct-logo.png");
+  background-repeat: no-repeat;
+  background-size: auto;
+  display: block;
+  height: 40px;
+  width: 101px;
+  outline: none;
+  text-indent: -999px;
+  z-index: 999;
+}
+
+nav {
+  font-size: 1.7rem;
+  line-height: 2.4em;
+}
+
+nav li {
+    display: inline-block;
+}
+
+nav a {
+    padding: 0 0.7em;
+    font-weight: 400;
+    color: #fff;
+}
+
+.hero h1, .hero h2 {
+   text-align: center; 
+}
+
+.hero h1 {
+  font-size: 4.4rem;
+  color:#fff;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+
 .tags-light-color {
   background-color: #ffffff ;
   color: #333;
@@ -1529,16 +1576,10 @@ ul {
   border-right: 2px solid #E0E7EC;
 }
 /*-----------------CONTAINER----------------------------*/
-.signin-button,
-.signin-button > a {
-  background-color: #eb7737 !important;
-  color: #fff;
-}
+
 /*-----------------BODY------------*/
 /* Account for fixed navbar */
 body {
-  padding-top: 60px;
-  padding-bottom: 30px;
   line-height: 1.4;
   -webkit-font-smoothing: antialiased;
   background-color: #f7f7f7;
@@ -1549,9 +1590,6 @@ body {
 }
 .page-header .lead {
   margin-bottom: 10px;
-}
-body {
-  font-family: Arial, sans-serif;
 }
 .profile-badges {
   padding: 5px 0px 0px ;

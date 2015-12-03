@@ -12,7 +12,6 @@ var http = require('http'),
     passport = require('passport'),
     ensureLoggedIn = require('./server/ensureLoggedIn.js'),
     bcrypt = require('bcryptjs'),
-    aws = require('aws-sdk'),
     mongodb = require('mongodb'),
     url = require('url'),
     _ = require('underscore'),
@@ -33,15 +32,6 @@ var userDb, jobDb, institutionDb, pass, s3, ses;
  * Connect to MongoDb then start Express server
  */
 connect(function (err, db) {
-
-    // We use AWS S3 to store profile pictures
-    aws.config.loadFromPath('./server/config/aws-config.json');
-    s3 = new aws.S3();
-
-// We use AWS SES to send emails
-    ses = new aws.SES({apiVersion: '2010-12-01'});
-
-
     console.log('Connected to mongodb.');
     userDb = require('./server/userDb.js')(mongodb, db, bcrypt),
         jobDb = require('./server/jobDb.js')(mongodb, db),
@@ -410,7 +400,7 @@ app.get('/api/countries', function (req, res) {
             return res.send("[]");
         }
         var data = _.map(docs, function (item) {
-            return { id: item._id, text: item.name }
+            return { id: item._id, text: item.text }
         });
         return res.json(data);
     });
