@@ -1,31 +1,29 @@
-        <section class="hero" style="height:400px;margin-bottom:0;border-bottom: 1px solid;background-color: rgba(0, 0, 1, 0.3); ">
-                <div class="container">
-                    <div style="margin:200px auto 0;width:950px;color:#fff;">
-                        <h1 class="input-group col-xs-5 col-sm-8 col-md-12">Adjunct career marketplace</h1>
-                        <h2 style="margin-top:10px;">Matching higher education institutions and adjunct professionals.</h2>
-                        <form ng-init="init()" name="homeForm" novalidate>
-                            <div class="input-group col-xs-5 col-sm-8 col-md-12">
-                                <input type="text" class="form-control" ng-enter="search()" required ng-model="searchBox"  ng-focus="openSignInModal()"   placeholder="Search by university, discipline, qualification, location and more..." style="border-color:#999;">
-                            <span class="input-group-btn">
-                              <button class="btn btn-default btn-custom btn-primary-custom-home-search " type="submit" ng-disabled="homeForm.$invalid" placement="right" ng-click="search()" ><i class="fa fa-search" style="border-color:#101010;background-color: #EB7737;color: #fff;" ></i></button>
-                            </span>
-                            </div>
-                        </form>
+        <section class="hero" role="main">
+            <div class="container vertical-centered">
+                <h1>Adjunct career marketplace</h1>
+                <h2 style="margin-top:10px;">Matching higher education institutions and adjunct professionals.</h2>
+                <form ng-init="init()" name="homeForm" novalidate>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-enter="search()" required ng-model="searchBox"  ng-focus="openSignInModal()"   placeholder="Search by university, discipline, qualification, location and more..." style="border-color:#999;">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default btn-custom btn-primary-custom-home-search " type="submit" ng-disabled="homeForm.$invalid" placement="right" ng-click="search()" >
+                            <i class="fa fa-search" style="border-color:#101010;background-color: #EB7737;color: #fff;" ></i>
+                      </button>
+                    </span>
                     </div>
-                </div>
-            <video autoplay muted style="max-width:100%;position:fixed;top:0;z-index: -1;" poster="img/vid2-poster.png">
+                </form>
+            </div>
+            <video autoplay muted style="max-width:100%;z-index: -1;" poster="img/vid2-poster-min.png">
                 <source src="video/Adjunct.mp4" type="video/mp4" >
             </video>
         </section>
 
         <section id="home" name="home"></section>
-        <div id="headerwrap" style="background-color: #F7F7F7;">
+        <section id="headerwrap" style="background-color: #F7F7F7;">
             <div class="container">
                 <div class="row centered" style="margin-top: 100px;">
                     <div class="col-lg-12">
-
                     </div>
-
                     <div class="col-lg-2">
                         <h5><strong>Visual-Multimedia Resume</strong></h5>
                         <p>We highlight your best features through a simple visual resume.</p>
@@ -33,7 +31,7 @@
                     </div>
                     <div class="col-lg-8">
                         <img class="img-responsive" src="/img/screenCapture.png" style="border: 1px solid #d3d3d3">
-                        <br />
+                        <br>
                     </div>
                     <div class="col-lg-2">
                         <br>
@@ -43,7 +41,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
 <div ng-include="'/partial/signin-modal'"/>
 <div ng-include="'/partial/signup-modal'"/>

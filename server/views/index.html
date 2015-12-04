@@ -24,12 +24,18 @@
     <script src="/dist/adjuncts.min.js"></script>
 </head>
 <body ng-controller="IndexCtrl" document-click>
-<header class="" style="background-color:rgba(34, 34, 34, .9)" role="navigation">
-    <div class="container" style="padding: 21px 0;">
+<header role="banner">
+    <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand adjunct-img-logo" href="/" ng-click="index = 0">Adjunct</a>
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span> 
+                <span class="icon-bar"></span> 
+                <span class="icon-bar"></span> 
+                <span class="icon-bar"></span> 
+            </button>
         </div>
-        <nav style="border-color: #101010;display: inline-block;float:right;"role="navigation">
+        <nav id="bs-navbar" class="collapse navbar-collapse" role="navigation">
             <ul ng-hide="!isSignedIn">
                 <li ng-class="{active: index == 0}" ng-click="index = 0">
                     <a href="/">Home</a>
@@ -50,11 +56,13 @@
                 </li>
                 <li ng-hide="!isSignedIn">
                     <div class="input-group" style="padding:15px 15px;">
-                    <input type="text" class="form-control" ng-enter="search()" required
-                    ng-model="navigationSearchBox"
-                    placeholder="Search for people, jobs, institutions and more..."
-                    style="width:313px;height:25px;border-radius:15px !important;font-size:13px;">
-                    <a style="margin-left:-23px;color:#EB7737;font-size:16px;"><i class="fa fa-search"></i></a>
+                        <input type="text" class="form-control" ng-enter="search()" required
+                        ng-model="navigationSearchBox"
+                        placeholder="Search for people, jobs, institutions and more..."
+                        style="width:313px;height:25px;border-radius:15px !important;font-size:13px;">
+                        <a style="margin-left:-23px;color:#EB7737;font-size:16px;">
+                        <i class="fa fa-search"></i>
+                        </a>
                     </div>
                 </li>
             </ul>
@@ -73,18 +81,20 @@
                         ng-model="navigationSearchBox"
                         placeholder="Search for people, jobs, institutions and more..."
                         style="width:313px;height:25px;border-radius:15px !important;font-size:13px;">
-                        <a style="margin-left:-23px;color:#EB7737;font-size:16px;"><i class="fa fa-search"></i></a>
+                        <a style="margin-left:-23px;color:#EB7737;font-size:16px;">
+                            <i class="fa fa-search"></i>
+                        </a>
                     </div>
                 </li>
             </ul>
             <ul ng-show="isSignedIn" class="nav navbar-nav navbar-right">
                 <li ng-if="user" class="navigation-dropdown">
                     <a href="#" class="navigation-dropdown-toggle" data-toggle="dropdown">
-                    <img ng-if="user.imageName" class="pull-left search-image"
-                    ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}" width="35px">
-                    <img ng-if="!user.imageName" class="pull-left search-image" ng-src="/img/placeholder3.png"
-                    width="35px">
-                    {{user.firstName || 'not signed in'}}<b class="caret"></b>
+                        <img ng-if="user.imageName" class="pull-left search-image"
+                        ng-src="https://s3.amazonaws.com/Adjuncts/{{user.imageName}}" width="35px">
+                        <img ng-if="!user.imageName" class="pull-left search-image" ng-src="/img/placeholder3.png"
+                        width="35px">
+                        {{user.firstName || 'not signed in'}}<b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="#" ng-click="signout()"> Sign Out</a></li>
