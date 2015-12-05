@@ -29,12 +29,20 @@ body {
 
 /* Helper styles
    ========================================================================== */
-.vertical-centered {
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+
+.vertical-center {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.horizontal-center {
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 /* Header section
@@ -137,6 +145,7 @@ nav a {
   letter-spacing: 1.5px;
   margin-bottom: 10px;
 }
+}
 
 .hero h2 {
   font-size: 1.8rem;
@@ -152,6 +161,40 @@ nav a {
       font-size: 2.5rem;
     }
 }
+
+/* Forms
+   ========================================================================== */
+
+  input, 
+  textarea {
+    width: 100%;
+    margin: 0 0 0 10px;
+    padding: 0.5em 0.7em;
+    font-size: 1.5rem;
+    line-height: 1.25em;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: .25em;
+    transition: border-color .3s ease;
+  }
+
+  input:focus, 
+  textarea:focus {
+    outline: none;
+    border-color: #EB7737;
+  }
+
+/*  TODO: temporary*/
+  .input-group-btn {
+    position: absolute;
+    white-space: nowrap;
+    display: inline-block;
+    top: 5px;
+    right: 20px;
+  }
+
+  .hero form { position: relative; }/*  TODO: temporary*/
 
 /* TODO: other section
    ========================================================================== */
@@ -423,45 +466,7 @@ input[type="checkbox"]:checked {
   background: url("/img/pinkCheckMark.png") no-repeat center;
   background-size: 0.8em;
 }
-[type="text"],
-[type="password"],
-[type="search"],
-[type="email"],
-[type="url"],
-[type="tel"],
-textarea,
-input[type="radio"],
-input[type="checkbox"] {
-  background-color: #fff;
-  box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.08), 0 1px 0 0 #ffffff;
-}
-[type="text"],
-[type="password"],
-[type="search"],
-[type="email"],
-[type="url"],
-[type="tel"],
-textarea,
-.input-prefix,
-.input-suffix,
-select,
-input[type="radio"],
-input[type="checkbox"] {
-  border: 1px solid #cdcdcd;
-  border-radius: 3px;
-}
-[type="text"],
-[type="password"],
-[type="search"],
-[type="email"],
-[type="url"],
-[type="tel"],
-textarea,
-input[type="radio"],
-input[type="checkbox"] {
-  -webkit-transition: border-color 0.3s, box-shadow 0.3s;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
+
 a {
   background: transparent;
   color: #0077b5;
@@ -801,32 +806,6 @@ input[type="search"]:after {
   table-layout: fixed;
   height: 100%;
   width: 100%;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.panel-header,
-.alert,
-.h5,
-.panel-header-small,
-.tab-item,
-.h6 {
-  font-weight: bold;
-  line-height: 1.2;
-  text-rendering: optimizelegibility;
-}
-h4,
-.h4,
-.panel-header,
-.alert {
-  font-size: 15px;
 }
 .alert {
   outline: 0;
