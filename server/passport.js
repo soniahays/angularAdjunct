@@ -45,7 +45,7 @@ module.exports = function (db, passport, bcrypt, _, utils) {
             clientID: 'mw29t6wc4cfa',
             clientSecret: 'Chw82KgUKBgteXNh',
             callbackURL: ROOT_URL + '/auth/linkedin/callback',
-            scope: 'r_basicprofile r_fullprofile',
+            scope: 'r_basicprofile',
             profileFields: ['id', 'first-name', 'last-name', 'summary', 'positions', 'skills', 'connections', 'shares', 'network', 'picture-urls::(original)']
         },
         function (accessToken, refreshToken, profile, done) {
@@ -60,7 +60,8 @@ module.exports = function (db, passport, bcrypt, _, utils) {
                 }
                 else {
 
-                    if (profile && profile._json && profile._json.pictureUrls && profile._json.pictureUrls.values && profile._json.pictureUrls.values.length > 0) {
+                   /* if (profile && profile._json && profile._json.pictureUrls && profile._json.pictureUrls.values && profile._json.pictureUrls.values.length > 0) {
+
                         utils.getLinkedInPicture(profile._json.pictureUrls.values[0], function(err, imageName) {
                             if (err) {
                                 return done(err);
@@ -70,9 +71,9 @@ module.exports = function (db, passport, bcrypt, _, utils) {
                             }
                         });
                     }
-                    else {
+                    else {*/
                         insertUser("", done);
-                    }
+                    //}
                 }
             });
 

@@ -1,9 +1,9 @@
-module.exports = function (uuid, fs, http, s3, path) {
+module.exports = function (uuid, fs, https, s3, path) {
     return {
         getLinkedInPicture: function(pictureUrl, callback) {
             var newFileName = uuid.v1() + ".jpg";
             try {
-                http.get(pictureUrl, function (response) {
+                https.get(pictureUrl, function (response) {
                     fs.mkdir("/tmp", function() {
                         var picStream = fs.createWriteStream("/tmp/" + newFileName);
                         response.pipe(picStream);
