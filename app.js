@@ -9,6 +9,7 @@ var http = require('http'),
     methodOverride = require('method-override'),
     session = require('express-session'),
     logger = require('morgan'),
+    aws = require('aws-sdk'),
     passport = require('passport'),
     ensureLoggedIn = require('./server/ensureLoggedIn.js'),
     bcrypt = require('bcryptjs'),
@@ -28,6 +29,10 @@ var http = require('http'),
 
 var userDb, jobDb, institutionDb, pass, s3, ses;
 
+aws.config.region = 'us-west-2';
+
+s3 = new aws.S3({params: {Bucket: 'myBucket'}});
+
 /**
  * Connect to MongoDb then start Express server
  */
@@ -37,7 +42,7 @@ connect(function (err, db) {
         jobDb = require('./server/jobDb.js')(mongodb, db),
         institutionDb = require('./server/institutionDb.js')(mongodb, db),
         metadataDb = require('./server/metadataDb.js')(mongodb, db),
-        utils = require('./server/utils.js')(uuid, fs, http, s3, path),
+        utils = require('./server/utils.js')(uuid, fs, https, s3, path),
         pass = require('./server/passport.js')(userDb, passport, bcrypt, _, utils);
 
     http.createServer(app).listen(app.get('port'), function () {
@@ -210,7 +215,7 @@ app.post('/api/save-institutions-profile', function (req, res) {
 app.post('/upload-adjunct', function (req, res) {
     utils.upload(req.files, function (err, newFileName, fileName) {
         if (err) {
-            res.send(err);
+            res.json(err);
         }
         else {
             userDb.updateUserField(req.cookies._id, {'imageName': newFileName}, function () {
@@ -352,7 +357,7 @@ app.get('/api/linkedInAuth', function (req, res) {
 
             if (parsedData.status == "401") {
                 console.log(err);
-                res.send(err);
+                res.json(err);
             }
 
             // get the linkedin picture

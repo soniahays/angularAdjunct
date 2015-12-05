@@ -1,7 +1,7 @@
 
 module.exports = function (mongodb, db, bcrypt) {
 
-    var BSON = mongodb.BSONPure;
+    var ObjectID = mongodb.ObjectID;
 
     var self = {
         insertUser: function (user, callback) {
@@ -42,9 +42,10 @@ module.exports = function (mongodb, db, bcrypt) {
                 if (err) {
                     return console.error(err);
                 }
+
                 var collection = db.collection('users');
                 user.password = u.password;
-                var o_id = new BSON.ObjectID(u._id);
+                var o_id = new ObjectID(u._id);
                 delete user._id;
                 collection.update({'_id': o_id}, user, function (err, dbUser) {
                     if (err) {
@@ -57,7 +58,7 @@ module.exports = function (mongodb, db, bcrypt) {
         },
         updateUserField: function (_id, field, callback) {
             var collection = db.collection('users');
-            var o_id = new BSON.ObjectID(_id);
+            var o_id = new ObjectID(_id);
             collection.update({'_id': o_id}, {'$set': field}, function (err, user) {
                 if (err) {
                     return console.error(err);
@@ -68,7 +69,7 @@ module.exports = function (mongodb, db, bcrypt) {
         },
         addUserJob: function (_id, field, callback) {
             var collection = db.collection('users');
-            var o_id = new BSON.ObjectID(_id);
+            var o_id = new ObjectID(_id);
             collection.update({'_id': o_id}, {'$push': field}, function (err, user) {
                 if (err) {
                     return console.error(err);
@@ -80,7 +81,7 @@ module.exports = function (mongodb, db, bcrypt) {
         getUser: function (user, callback) {
             var collection = db.collection('users');
             if (user._id) {
-                var o_id = new BSON.ObjectID(user._id);
+                var o_id = new ObjectID(user._id);
                 user._id = o_id;
             }
             collection.find(user)

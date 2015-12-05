@@ -4,7 +4,7 @@ module.exports = function (http, https) {
     var APIKeySecret = "Chw82KgUKBgteXNh";
     var callbackURL = "/api/linkedInAuthCallback";
     var APIVersion = "v1";
-    var APIScope = 'r_basicprofile r_fullprofile';
+    var APIScope = 'r_basicprofile';
 
     var self = {
         randomState: function (howLong) {
