@@ -25,7 +25,8 @@ var http = require('http'),
         }
     }),
     es = require('./server/elasticsearch.js')(elasticsearch),
-    linkedinAuth = require('./server/linkedinAuth.js')(http, https);
+    linkedinAuth = require('./server/linkedinAuth.js')(http, https),
+    MobileDetect = require('mobile-detect');
 
 var userDb, jobDb, institutionDb, pass, s3, ses;
 
@@ -500,9 +501,14 @@ app.post('/api/:collectionName', function (req, res) {
 });
 
 app.get('*', function (req, res) {
+    var md;
+    var isMobile;
     if (req.user) { // user coming from valid passport authentication
         res.cookie('_id', req.user._id);
     }
-    res.render(path.join(app.get('views'), 'index.html'));
+    md = new MobileDetect(req.headers['user-agent']);
+    isMobile = (md.mobile() !== null);
+
+    res.render(path.join(app.get('views'), 'index.html'), { locals: {'isMobile': isMobile}});
 });
 
