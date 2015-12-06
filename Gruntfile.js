@@ -4,10 +4,18 @@ module.exports = function (grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        uncss: {
+          dist: {
+            files: {
+              'public/css/tidy.css': ['server/views/index.html']
+            }
+          }
+        },
         concat: {
             dist: {
                 src: [
                     "public/components/jquery/jquery.min.js",
+                    "public/components/modernizr/modernizr.js",
                     "public/components/select2/select2.js",
                     "public/components/angular/angular.js",
                     "public/components/angular-elastic/elastic.js",
@@ -75,6 +83,7 @@ module.exports = function (grunt) {
         grunt.config('jshint.all.src', filepath);
     });
 
+    grunt.loadNpmTasks('grunt-uncss');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
