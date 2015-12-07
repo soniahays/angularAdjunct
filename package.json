@@ -43,6 +43,7 @@
     "postinstall": "./node_modules/.bin/grunt"
   },
   "devDependencies": {
+    "grunt-sass": "^1.1.0",
     "grunt-uncss": "^0.4.4",
     "uuid": "^1.4.2"
   }

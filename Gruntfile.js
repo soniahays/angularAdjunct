@@ -11,6 +11,16 @@ module.exports = function (grunt) {
             }
           }
         },
+        sass: {
+            options: {
+                sourceMap: true
+            },
+            dist: {
+                files: {
+                    'public/css/app.css': 'public/css/app.scss'
+                }
+            }
+        },
         concat: {
             dist: {
                 src: [
@@ -84,11 +94,12 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-uncss');
+    grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     // Default task.
-    grunt.registerTask('default', ['concat', 'uglify']);
+    grunt.registerTask('default', ['sass', 'concat', 'uglify']);
 
 };
