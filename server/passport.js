@@ -86,7 +86,7 @@ module.exports = function (db, passport, bcrypt, _, utils) {
                     'imageName': imageName
                 };
 
-                if (profile && profile._json && profile._json.positions && profile._json.positions.values.length > 0) {
+                if (profile && profile._json && profile._json.positions && profile._json.positions.values && profile._json.positions.values.length > 0) {
                     user['resumePositions'] = _.map(profile._json.positions.values, function (position) {
                         return {
                             title: position.title,
