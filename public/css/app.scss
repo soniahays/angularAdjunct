@@ -27,6 +27,13 @@ body {
    Global styles
    =================================================================================================== */
 
+/* Variables
+========================================================================== */
+
+/* Colors ===================== */
+
+$primary-color: #eb7737;
+
 /* Helper styles
    ========================================================================== */
 
@@ -72,7 +79,7 @@ header .container {
 
 nav {
     font-size: 1.7rem;
-    line-height: 2.4em;
+/*    line-height: 2.4em;*/
 }
 
 .navbar-toggle {
@@ -182,7 +189,7 @@ nav a {
   input:focus, 
   textarea:focus {
     outline: none;
-    border-color: #EB7737;
+    border-color: $primary-color;
   }
 
 /*  TODO: temporary*/
@@ -194,7 +201,17 @@ nav a {
     right: 20px;
   }
 
-  .hero form { position: relative; }/*  TODO: temporary*/
+  .inset {
+    position: relative;
+  }
+
+  .inset-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+
+
 
 /* TODO: other section
    ========================================================================== */
@@ -329,7 +346,7 @@ nav a {
   height: 25px;
   text-align: center;
   background: white;
-  border: 1.8px solid #eb7737;
+  border: 1.8px solid $primary-color;
   color: #666;
   transition: all 0.2s ease;
   border-radius: 6px;
@@ -342,7 +359,7 @@ nav a {
   top: 50%;
   left: 50%;
   margin: -2px 0px 0px -1px;
-  background: #eb7737;
+  background: $primary-color;
   display: block;
   -webkit-transform: rotate(-45deg);
   transition: all 0.2s ease;
@@ -354,7 +371,7 @@ nav a {
   width: 2px;
   height: 4px;
   margin-top: -4px;
-  background: #eb7737;
+  background: $primary-color;
   transition: all 0.2s ease;
 }
 .switch input[type=radio] {
@@ -390,7 +407,7 @@ nav a {
 #lms-yes:checked ~ .switch label[for=lms-yes],
 #instructionalDesign-yes:checked ~ .switch label[for=instructionalDesign-yes],
 #professionalContribution-yes:checked ~ .switch label[for=professionalContribution-yes] {
-  color: #eb7737;
+  color: $primary-color;
   font-weight: bold;
 }
 #instructionalDesign-no:checked ~ .switch label[for=instructionalDesign-no],
@@ -782,18 +799,6 @@ pre,
 .dot-info {
   background-color: #efefef;
 }
-*,
-*:before,
-*:after,
-hr,
-hr:before,
-hr:after,
-input[type="search"],
-input[type="search"]:before,
-input[type="search"]:after {
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
 .modal-cell {
   display: table-cell;
   height: 100%;
@@ -859,7 +864,7 @@ ul#strength {
 .input-help li {
   padding-left: 22px;
   line-height: 24px;
-  color: #eb7737;
+  color: $primary-color;
 }
 .input-help li.valid {
   color: #595959 ;
@@ -876,7 +881,7 @@ ul#strength {
   visibility: visible;
 }
 .css-form .ng-invalid.ng-dirty {
-  border-color: #eb7737;
+  border-color: $primary-color;
 }
 .nav a,
 .pagination a,
@@ -1478,13 +1483,13 @@ ul {
 .btn-primary-custom {
   color: #fff;
   font-weight: bold;
-  background-color: #eb7737 !important;
-  border-color: #eb7737 !important;
+  background-color: $primary-color !important;
+  border-color: $primary-color !important;
 }
 .btn-primary-custom-home-search {
   color: #fff;
   font-weight: bold;
-  background-color: #eb7737 !important;
+  background-color: $primary-color !important;
   border-color: #101010;
 }
 .btn-primary-custom-home-search.disabled,
@@ -1497,7 +1502,7 @@ ul {
 }
 .btn-signin {
   margin-top: 10px;
-  background-color: #eb7737 !important;
+  background-color: $primary-color !important;
   color: #fff;
   border-radius: 1px!important;
   height: 38px !important;
@@ -1618,7 +1623,7 @@ ul {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
 #a-custom:hover {
-  color: #eb7737 !important;
+  color: $primary-color !important;
   text-decoration: underline;
 }
 /*-----------------POPOVER CUSTOM---------------------------*/

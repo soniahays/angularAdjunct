@@ -2,16 +2,15 @@
             <div class="container horizontal-center vertical-center">
                 <h1>Adjunct career marketplace</h1>
                 <h2>Matching higher education institutions and adjunct professionals.</h2>
-                <form ng-init="init()" name="homeForm" novalidate role="search">
-                        <input type="text" class="" ng-enter="search()" required ng-model="searchBox"  ng-focus="openSignInModal()"   placeholder="Search by university, discipline, qualification, location and more...">
-                    <span class="input-group-btn">
-                      <button class="" type="submit" ng-disabled="homeForm.$invalid" placement="right" ng-click="search()" >
-                            <i class="fa fa-search" style="border-color:#101010;background-color: #EB7737;color: #fff;" ></i>
-                      </button>
-                    </span>
+                <form ng-init="init()" name="homeForm" novalidate role="search" class="inset">
+                    <input type="text" class="inset-input" ng-enter="search()" required ng-model="searchBox"  ng-focus="openSignInModal()"   placeholder="Search by university, discipline, qualification, location and more...">
+
+                    <button class="inset-btn" type="submit" ng-disabled="homeForm.$invalid" placement="right" ng-click="search()" >
+                    <i class="fa fa-search"></i>
+                    </button>
                 </form>
             </div>
-            <video autoplay muted style="max-width:100%;z-index: -1;" poster="img/vid2-poster-min.png">
+            <video autoplay muted poster="img/vid2-poster-min.png">
                 <source src="video/Adjunct.mp4" type="video/mp4" >
             </video>
         </section>
